@@ -1,0 +1,29 @@
+PODS:
+  - Alamofire (3.3.1)
+  - Moya (6.4.0):
+    - Moya/Core (= 6.4.0)
+  - Moya-ObjectMapper (1.2):
+    - Moya-ObjectMapper/Core (= 1.2)
+  - Moya-ObjectMapper/Core (1.2):
+    - Moya (~> 6.3)
+    - ObjectMapper (~> 1.2)
+  - Moya/Core (6.4.0):
+    - Alamofire (~> 3.0)
+    - Result (~> 2.0)
+  - ObjectMapper (1.2.0)
+  - Result (2.0.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.3)
+  - Moya
+  - Moya-ObjectMapper
+  - ObjectMapper
+
+SPEC CHECKSUMS:
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  Moya: 4d526954c8afd79820991393d40d7d8af756ceee
+  Moya-ObjectMapper: 565c1e9e1e79bdf72e18fa8fa01a0741d042fa34
+  ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
+  Result: 9e75e1111c774c6ac594e14907b15057053a7959
+
+COCOAPODS: 0.39.0

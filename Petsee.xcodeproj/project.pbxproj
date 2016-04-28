@@ -1,0 +1,721 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		287D5F4389B13D598E76BE1E /* Pods_PetseeNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B745F75D3E4C5C32F49E84 /* Pods_PetseeNetwork.framework */; };
+		3DD40AA2D629E56CB6C5FE9A /* Pods_PetseeCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246705114E32F4903C37B912 /* Pods_PetseeCore.framework */; };
+		73F819891CD1E592001AC3FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819881CD1E592001AC3FB /* AppDelegate.swift */; };
+		73F8198E1CD1E592001AC3FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198C1CD1E592001AC3FB /* Main.storyboard */; };
+		73F819901CD1E592001AC3FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198F1CD1E592001AC3FB /* Assets.xcassets */; };
+		73F819931CD1E592001AC3FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F819911CD1E592001AC3FB /* LaunchScreen.storyboard */; };
+		73F819A21CD1E5E0001AC3FB /* PetseeCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 73F819A11CD1E5E0001AC3FB /* PetseeCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73F819A61CD1E5E0001AC3FB /* PetseeCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F8199F1CD1E5E0001AC3FB /* PetseeCore.framework */; };
+		73F819A71CD1E5E0001AC3FB /* PetseeCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 73F8199F1CD1E5E0001AC3FB /* PetseeCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		73F819B41CD1E5F1001AC3FB /* PetseeNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 73F819B31CD1E5F1001AC3FB /* PetseeNetwork.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73F819B81CD1E5F1001AC3FB /* PetseeNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F819B11CD1E5F1001AC3FB /* PetseeNetwork.framework */; };
+		73F819B91CD1E5F1001AC3FB /* PetseeNetwork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 73F819B11CD1E5F1001AC3FB /* PetseeNetwork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		73F819BD1CD1E60B001AC3FB /* PetseeCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F8199F1CD1E5E0001AC3FB /* PetseeCore.framework */; };
+		73F819BF1CD1EC9A001AC3FB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819BE1CD1EC9A001AC3FB /* User.swift */; };
+		73F819C11CD1EE6C001AC3FB /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819C01CD1EE6C001AC3FB /* Pet.swift */; };
+		73F819C31CD1F001001AC3FB /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819C21CD1F001001AC3FB /* Review.swift */; };
+		73F819C51CD1F0C3001AC3FB /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819C41CD1F0C3001AC3FB /* Service.swift */; };
+		73F819C71CD1F11E001AC3FB /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819C61CD1F11E001AC3FB /* Client.swift */; };
+		73F819C91CD1F130001AC3FB /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819C81CD1F130001AC3FB /* ServiceProvider.swift */; };
+		73F819CB1CD1F293001AC3FB /* ServiceProviderSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819CA1CD1F293001AC3FB /* ServiceProviderSkill.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		73F819A41CD1E5E0001AC3FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73F8197D1CD1E592001AC3FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 73F8199E1CD1E5E0001AC3FB;
+			remoteInfo = PetseeCore;
+		};
+		73F819B61CD1E5F1001AC3FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73F8197D1CD1E592001AC3FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 73F819B01CD1E5F1001AC3FB;
+			remoteInfo = PetseeNetwork;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		73F819AB1CD1E5E0001AC3FB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				73F819A71CD1E5E0001AC3FB /* PetseeCore.framework in Embed Frameworks */,
+				73F819B91CD1E5F1001AC3FB /* PetseeNetwork.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		17B289779B78DF50F1BA9469 /* Pods-PetseeCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetseeCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetseeCore/Pods-PetseeCore.debug.xcconfig"; sourceTree = "<group>"; };
+		246705114E32F4903C37B912 /* Pods_PetseeCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetseeCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		31DAA5969BA9C3B00E21D1FD /* Pods-PetseeNetwork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetseeNetwork.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetseeNetwork/Pods-PetseeNetwork.release.xcconfig"; sourceTree = "<group>"; };
+		45589BC3EB30AD6A937B6317 /* Pods-PetseeNetwork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetseeNetwork.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetseeNetwork/Pods-PetseeNetwork.debug.xcconfig"; sourceTree = "<group>"; };
+		73F819851CD1E592001AC3FB /* Petsee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petsee.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		73F819881CD1E592001AC3FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		73F8198D1CD1E592001AC3FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		73F8198F1CD1E592001AC3FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		73F819921CD1E592001AC3FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		73F819941CD1E592001AC3FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73F8199F1CD1E5E0001AC3FB /* PetseeCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PetseeCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73F819A11CD1E5E0001AC3FB /* PetseeCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PetseeCore.h; sourceTree = "<group>"; };
+		73F819A31CD1E5E0001AC3FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73F819B11CD1E5F1001AC3FB /* PetseeNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PetseeNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73F819B31CD1E5F1001AC3FB /* PetseeNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PetseeNetwork.h; sourceTree = "<group>"; };
+		73F819B51CD1E5F1001AC3FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73F819BE1CD1EC9A001AC3FB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		73F819C01CD1EE6C001AC3FB /* Pet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
+		73F819C21CD1F001001AC3FB /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		73F819C41CD1F0C3001AC3FB /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		73F819C61CD1F11E001AC3FB /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		73F819C81CD1F130001AC3FB /* ServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		73F819CA1CD1F293001AC3FB /* ServiceProviderSkill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderSkill.swift; sourceTree = "<group>"; };
+		835C65D63270579EC293C31D /* Pods-PetseeCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetseeCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetseeCore/Pods-PetseeCore.release.xcconfig"; sourceTree = "<group>"; };
+		C6B745F75D3E4C5C32F49E84 /* Pods_PetseeNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetseeNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		73F819821CD1E592001AC3FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73F819A61CD1E5E0001AC3FB /* PetseeCore.framework in Frameworks */,
+				73F819B81CD1E5F1001AC3FB /* PetseeNetwork.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73F8199B1CD1E5E0001AC3FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DD40AA2D629E56CB6C5FE9A /* Pods_PetseeCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73F819AD1CD1E5F1001AC3FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73F819BD1CD1E60B001AC3FB /* PetseeCore.framework in Frameworks */,
+				287D5F4389B13D598E76BE1E /* Pods_PetseeNetwork.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3618863996777A4E61838700 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				246705114E32F4903C37B912 /* Pods_PetseeCore.framework */,
+				C6B745F75D3E4C5C32F49E84 /* Pods_PetseeNetwork.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		73F8197C1CD1E592001AC3FB = {
+			isa = PBXGroup;
+			children = (
+				73F819871CD1E592001AC3FB /* Petsee */,
+				73F819A01CD1E5E0001AC3FB /* PetseeCore */,
+				73F819B21CD1E5F1001AC3FB /* PetseeNetwork */,
+				73F819861CD1E592001AC3FB /* Products */,
+				876E8D20C163A24C6D4CD869 /* Pods */,
+				3618863996777A4E61838700 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		73F819861CD1E592001AC3FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73F819851CD1E592001AC3FB /* Petsee.app */,
+				73F8199F1CD1E5E0001AC3FB /* PetseeCore.framework */,
+				73F819B11CD1E5F1001AC3FB /* PetseeNetwork.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		73F819871CD1E592001AC3FB /* Petsee */ = {
+			isa = PBXGroup;
+			children = (
+				73F819881CD1E592001AC3FB /* AppDelegate.swift */,
+				73F8198C1CD1E592001AC3FB /* Main.storyboard */,
+				73F8198F1CD1E592001AC3FB /* Assets.xcassets */,
+				73F819911CD1E592001AC3FB /* LaunchScreen.storyboard */,
+				73F819941CD1E592001AC3FB /* Info.plist */,
+			);
+			path = Petsee;
+			sourceTree = "<group>";
+		};
+		73F819A01CD1E5E0001AC3FB /* PetseeCore */ = {
+			isa = PBXGroup;
+			children = (
+				73F819A11CD1E5E0001AC3FB /* PetseeCore.h */,
+				73F819A31CD1E5E0001AC3FB /* Info.plist */,
+				73F819BE1CD1EC9A001AC3FB /* User.swift */,
+				73F819C01CD1EE6C001AC3FB /* Pet.swift */,
+				73F819C21CD1F001001AC3FB /* Review.swift */,
+				73F819C41CD1F0C3001AC3FB /* Service.swift */,
+				73F819C61CD1F11E001AC3FB /* Client.swift */,
+				73F819C81CD1F130001AC3FB /* ServiceProvider.swift */,
+				73F819CA1CD1F293001AC3FB /* ServiceProviderSkill.swift */,
+			);
+			path = PetseeCore;
+			sourceTree = "<group>";
+		};
+		73F819B21CD1E5F1001AC3FB /* PetseeNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				73F819B31CD1E5F1001AC3FB /* PetseeNetwork.h */,
+				73F819B51CD1E5F1001AC3FB /* Info.plist */,
+			);
+			path = PetseeNetwork;
+			sourceTree = "<group>";
+		};
+		876E8D20C163A24C6D4CD869 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				17B289779B78DF50F1BA9469 /* Pods-PetseeCore.debug.xcconfig */,
+				835C65D63270579EC293C31D /* Pods-PetseeCore.release.xcconfig */,
+				45589BC3EB30AD6A937B6317 /* Pods-PetseeNetwork.debug.xcconfig */,
+				31DAA5969BA9C3B00E21D1FD /* Pods-PetseeNetwork.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		73F8199C1CD1E5E0001AC3FB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73F819A21CD1E5E0001AC3FB /* PetseeCore.h in Headers */,
+				73F819B41CD1E5F1001AC3FB /* PetseeNetwork.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73F819AE1CD1E5F1001AC3FB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		73F819841CD1E592001AC3FB /* Petsee */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73F819971CD1E592001AC3FB /* Build configuration list for PBXNativeTarget "Petsee" */;
+			buildPhases = (
+				73F819811CD1E592001AC3FB /* Sources */,
+				73F819821CD1E592001AC3FB /* Frameworks */,
+				73F819831CD1E592001AC3FB /* Resources */,
+				73F819AB1CD1E5E0001AC3FB /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				73F819A51CD1E5E0001AC3FB /* PBXTargetDependency */,
+				73F819B71CD1E5F1001AC3FB /* PBXTargetDependency */,
+			);
+			name = Petsee;
+			productName = Petsee;
+			productReference = 73F819851CD1E592001AC3FB /* Petsee.app */;
+			productType = "com.apple.product-type.application";
+		};
+		73F8199E1CD1E5E0001AC3FB /* PetseeCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73F819A81CD1E5E0001AC3FB /* Build configuration list for PBXNativeTarget "PetseeCore" */;
+			buildPhases = (
+				4EF51FF628ABDEA949FF508A /* Check Pods Manifest.lock */,
+				73F8199A1CD1E5E0001AC3FB /* Sources */,
+				73F8199B1CD1E5E0001AC3FB /* Frameworks */,
+				73F8199C1CD1E5E0001AC3FB /* Headers */,
+				73F8199D1CD1E5E0001AC3FB /* Resources */,
+				C1D57239DEB82C2E715223E1 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PetseeCore;
+			productName = PetseeCore;
+			productReference = 73F8199F1CD1E5E0001AC3FB /* PetseeCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		73F819B01CD1E5F1001AC3FB /* PetseeNetwork */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73F819BA1CD1E5F1001AC3FB /* Build configuration list for PBXNativeTarget "PetseeNetwork" */;
+			buildPhases = (
+				C6BB079B3642C035DDB26369 /* Check Pods Manifest.lock */,
+				73F819AC1CD1E5F1001AC3FB /* Sources */,
+				73F819AD1CD1E5F1001AC3FB /* Frameworks */,
+				73F819AE1CD1E5F1001AC3FB /* Headers */,
+				73F819AF1CD1E5F1001AC3FB /* Resources */,
+				FCDE63F5A42FB893E5AD8509 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PetseeNetwork;
+			productName = PetseeNetwork;
+			productReference = 73F819B11CD1E5F1001AC3FB /* PetseeNetwork.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		73F8197D1CD1E592001AC3FB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Ariel Pollack";
+				TargetAttributes = {
+					73F819841CD1E592001AC3FB = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					73F8199E1CD1E5E0001AC3FB = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					73F819B01CD1E5F1001AC3FB = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 73F819801CD1E592001AC3FB /* Build configuration list for PBXProject "Petsee" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 73F8197C1CD1E592001AC3FB;
+			productRefGroup = 73F819861CD1E592001AC3FB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				73F819841CD1E592001AC3FB /* Petsee */,
+				73F8199E1CD1E5E0001AC3FB /* PetseeCore */,
+				73F819B01CD1E5F1001AC3FB /* PetseeNetwork */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		73F819831CD1E592001AC3FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73F819931CD1E592001AC3FB /* LaunchScreen.storyboard in Resources */,
+				73F819901CD1E592001AC3FB /* Assets.xcassets in Resources */,
+				73F8198E1CD1E592001AC3FB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73F8199D1CD1E5E0001AC3FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73F819AF1CD1E5F1001AC3FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4EF51FF628ABDEA949FF508A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C1D57239DEB82C2E715223E1 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PetseeCore/Pods-PetseeCore-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6BB079B3642C035DDB26369 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FCDE63F5A42FB893E5AD8509 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PetseeNetwork/Pods-PetseeNetwork-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		73F819811CD1E592001AC3FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73F819891CD1E592001AC3FB /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73F8199A1CD1E5E0001AC3FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73F819C91CD1F130001AC3FB /* ServiceProvider.swift in Sources */,
+				73F819CB1CD1F293001AC3FB /* ServiceProviderSkill.swift in Sources */,
+				73F819BF1CD1EC9A001AC3FB /* User.swift in Sources */,
+				73F819C51CD1F0C3001AC3FB /* Service.swift in Sources */,
+				73F819C11CD1EE6C001AC3FB /* Pet.swift in Sources */,
+				73F819C71CD1F11E001AC3FB /* Client.swift in Sources */,
+				73F819C31CD1F001001AC3FB /* Review.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73F819AC1CD1E5F1001AC3FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		73F819A51CD1E5E0001AC3FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 73F8199E1CD1E5E0001AC3FB /* PetseeCore */;
+			targetProxy = 73F819A41CD1E5E0001AC3FB /* PBXContainerItemProxy */;
+		};
+		73F819B71CD1E5F1001AC3FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 73F819B01CD1E5F1001AC3FB /* PetseeNetwork */;
+			targetProxy = 73F819B61CD1E5F1001AC3FB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		73F8198C1CD1E592001AC3FB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				73F8198D1CD1E592001AC3FB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		73F819911CD1E592001AC3FB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				73F819921CD1E592001AC3FB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		73F819951CD1E592001AC3FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		73F819961CD1E592001AC3FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		73F819981CD1E592001AC3FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = Petsee/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pollack.petsee;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		73F819991CD1E592001AC3FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = Petsee/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pollack.petsee;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		73F819A91CD1E5E0001AC3FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 17B289779B78DF50F1BA9469 /* Pods-PetseeCore.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = PetseeCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pollack.PetseeCore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		73F819AA1CD1E5E0001AC3FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 835C65D63270579EC293C31D /* Pods-PetseeCore.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = PetseeCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pollack.PetseeCore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		73F819BB1CD1E5F1001AC3FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45589BC3EB30AD6A937B6317 /* Pods-PetseeNetwork.debug.xcconfig */;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = PetseeNetwork/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pollack.PetseeNetwork;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		73F819BC1CD1E5F1001AC3FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31DAA5969BA9C3B00E21D1FD /* Pods-PetseeNetwork.release.xcconfig */;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = PetseeNetwork/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pollack.PetseeNetwork;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		73F819801CD1E592001AC3FB /* Build configuration list for PBXProject "Petsee" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73F819951CD1E592001AC3FB /* Debug */,
+				73F819961CD1E592001AC3FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73F819971CD1E592001AC3FB /* Build configuration list for PBXNativeTarget "Petsee" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73F819981CD1E592001AC3FB /* Debug */,
+				73F819991CD1E592001AC3FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73F819A81CD1E5E0001AC3FB /* Build configuration list for PBXNativeTarget "PetseeCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73F819A91CD1E5E0001AC3FB /* Debug */,
+				73F819AA1CD1E5E0001AC3FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73F819BA1CD1E5F1001AC3FB /* Build configuration list for PBXNativeTarget "PetseeNetwork" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73F819BB1CD1E5F1001AC3FB /* Debug */,
+				73F819BC1CD1E5F1001AC3FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 73F8197D1CD1E592001AC3FB /* Project object */;
+}
