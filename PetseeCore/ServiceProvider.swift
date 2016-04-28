@@ -7,7 +7,19 @@
 //
 
 import Foundation
+import ObjectMapper
 
 class ServiceProvider: User {
     
+    var skills: [ServiceProviderSkill]?
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        
+        skills <- map["skills"]
+    }
 }
