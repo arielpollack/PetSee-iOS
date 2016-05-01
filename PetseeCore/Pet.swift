@@ -9,21 +9,22 @@
 import Foundation
 import ObjectMapper
 
-class Pet: Mappable {
+public class Pet: Mappable, Identifiable {
     
-    var name: String!
-    var race: String!
-    var color: String!
-    var about: String?
-    var image: String?
-    var isTrained: Bool!
-    var birthday: NSDate!
+    public var id: Int!
+    public var name: String!
+    public var race: String!
+    public var color: String!
+    public var about: String?
+    public var image: String?
+    public var isTrained: Bool!
+    public var birthday: NSDate!
     
-    required init?(_ map: Map) {
+    required public init?(_ map: Map) {
         
     }
     
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         name <- map["name"]
         race <- map["race"]
         color <- map["color"]

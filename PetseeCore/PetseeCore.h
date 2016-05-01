@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double PetseeCoreVersionNumber;
 FOUNDATION_EXPORT const unsigned char PetseeCoreVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <PetseeCore/PublicHeader.h>
-
-

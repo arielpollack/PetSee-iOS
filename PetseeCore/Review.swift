@@ -9,20 +9,21 @@
 import Foundation
 import ObjectMapper
 
-class Review: Mappable {
+public class Review: Mappable, Identifiable {
     
-    var rate: Double!
-    var feedback: String?
-    var writer: User?
-    var user: User?
-    var createdAt: NSDate?
-    var updatedAt: NSDate?
+    public var id: Int!
+    public var rate: Double!
+    public var feedback: String?
+    public var writer: User?
+    public var user: User?
+    public var createdAt: NSDate?
+    public var updatedAt: NSDate?
     
-    required init?(_ map: Map) {
+    required public init?(_ map: Map) {
         
     }
     
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         rate <- map["rate"]
         feedback <- map["feedback"]
         writer <- map["writer"]

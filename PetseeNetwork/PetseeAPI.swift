@@ -1,13 +1,13 @@
 //
-//  Client.swift
+//  PetseeAPI.swift
 //  Petsee
 //
-//  Created by Ariel Pollack on 28/04/2016.
+//  Created by Ariel Pollack on 30/04/2016.
 //  Copyright © 2016 Ariel Pollack. All rights reserved.
 //
 
 import Foundation
 
-public class Client: User {
-    
+public struct PetseeAPI {
+
 }

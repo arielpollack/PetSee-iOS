@@ -9,33 +9,34 @@
 import Foundation
 import ObjectMapper
 
-enum ServiceStatus: String {
+public enum ServiceStatus: String {
     case Pending = "pending"
     case Confirmed = "confirmed"
     case InProgress = "in_progress"
     case Ended = "ended"
 }
 
-enum ServiceType: String {
+public enum ServiceType: String {
     case Walking = "walking"
     case Sitting = "sitting"
 }
 
-class Service: Mappable {
+public class Service: Mappable , Identifiable {
     
-    var client: Client!
-    var serviceProvider: ServiceProvider?
-    var pet: Pet!
-    var startDate: NSDate!
-    var endDate: NSDate!
-    var status: ServiceStatus!
-    var type: ServiceType!
+    public var id: Int!
+    public var client: Client!
+    public var serviceProvider: ServiceProvider?
+    public var pet: Pet!
+    public var startDate: NSDate!
+    public var endDate: NSDate!
+    public var status: ServiceStatus!
+    public var type: ServiceType!
     
-    required init?(_ map: Map) {
+    required public init?(_ map: Map) {
         
     }
     
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         client <- map["client"]
         serviceProvider <- map["service_provider"]
         pet <- map["pet"]

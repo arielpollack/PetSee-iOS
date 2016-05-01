@@ -9,22 +9,31 @@
 import Foundation
 import ObjectMapper
 
-class User: Mappable {
+public enum UserType: String {
+    case Client = "Client"
+    case ServiceProvider = "ServiceProvider"
+}
+
+ public class User: Mappable, Identifiable {
     
-    var email: String?
-    var token: String?
-    var name: String?
-    var phone: String?
-    var about: String?
-    var image: String?
-    var ratingCount: Int?
-    var rating: Double?
+    public var id: Int!
+    public var email: String?
+    public var token: String?
+    public var name: String?
+    public var phone: String?
+    public var about: String?
+    public var image: String?
+    public var ratingCount: Int?
+    public var rating: Double?
     
-    required init?(_ map: Map) {
-        
+    required public init?(_ map: Map) {
+        if map["id"].value() == nil {
+            return nil
+        }
     }
     
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
+        id <- map["id"]
         email <- map["email"]
         name <- map["name"]
         phone <- map["phone"]
