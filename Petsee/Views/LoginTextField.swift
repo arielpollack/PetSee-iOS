@@ -17,26 +17,79 @@ class LoginTextField: UIView {
             self.setNeedsDisplay()
         }
     }
-    @IBInspectable var borderWidth: Float! = 5.0 {
+    @IBInspectable var borderWidth: Float! = 3.0 {
         didSet {
             self.setNeedsDisplay()
         }
     }
-    private lazy var label: UILabel = {
-        let label = UILabel(frame: self.frame)
-        label.font = UIFont.italicSystemFontOfSize(18)
-        label.textColor = UIColor.darkGrayColor()
-        self.addSubview(label)
-        return label
-    }()
-    
+    @IBInspectable var securedText: Bool = false {
+        didSet {
+            self.textField.secureTextEntry = self.securedText;
+        }
+    }
     @IBInspectable var placeholder: String = "" {
         didSet {
             self.label.text = placeholder;
         }
     }
     
+    private lazy var label: UILabel = {
+        let label = UILabel(frame: self.bounds)
+        label.font = UIFont.italicSystemFontOfSize(18)
+        self.addSubview(label)
+        return label
+    }()
+    
+    private lazy var textField: UITextField = {
+        let txtField = UITextField(frame: self.bounds)
+        txtField.font = UIFont.boldSystemFontOfSize(18)
+        self.addSubview(txtField)
+        return txtField
+    }()
+    
+    var text: String? {
+        get {
+            return self.textField.text
+        }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        loadView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        loadView()
+    }
+    
+    func loadView() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UITextInputDelegate.textDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: textField)
+    }
+    
+    func textDidChange(notification: NSNotification) {
+        guard let text = textField.text where text.characters.count > 0 else {
+            showPlaceholder()
+            return
+        }
+        
+        hidePlaceholder()
+    }
+    
+    private func showPlaceholder() {
+        UIView.animateWithDuration(0.1) { 
+            self.label.alpha = 1
+        }
+    }
+    
+    private func hidePlaceholder() {
+        UIView.animateWithDuration(0.1) {
+            self.label.alpha = 0
+        }
+    }
+    
     override func drawRect(rect: CGRect) {
+        super.drawRect(rect)
         let context = UIGraphicsGetCurrentContext()
         CGContextSetLineWidth(context, CGFloat(self.borderWidth))
         CGContextSetStrokeColorWithColor(context, self.color.CGColor)

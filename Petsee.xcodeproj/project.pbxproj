@@ -10,8 +10,10 @@
 		287D5F4389B13D598E76BE1E /* Pods_PetseeNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B745F75D3E4C5C32F49E84 /* Pods_PetseeNetwork.framework */; };
 		3DD40AA2D629E56CB6C5FE9A /* Pods_PetseeCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246705114E32F4903C37B912 /* Pods_PetseeCore.framework */; };
 		732F2EE81CD5178800CB491D /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2EE71CD5178800CB491D /* LoginTextField.swift */; };
+		732F2EEA1CD7BFFE00CB491D /* PetseeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2EE91CD7BFFE00CB491D /* PetseeButton.swift */; };
+		732F2EEC1CD7C6D800CB491D /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2EEB1CD7C6D800CB491D /* OnboardingVC.swift */; };
 		73F819891CD1E592001AC3FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819881CD1E592001AC3FB /* AppDelegate.swift */; };
-		73F8198E1CD1E592001AC3FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198C1CD1E592001AC3FB /* Main.storyboard */; };
+		73F8198E1CD1E592001AC3FB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198C1CD1E592001AC3FB /* Login.storyboard */; };
 		73F819901CD1E592001AC3FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198F1CD1E592001AC3FB /* Assets.xcassets */; };
 		73F819931CD1E592001AC3FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F819911CD1E592001AC3FB /* LaunchScreen.storyboard */; };
 		73F819A21CD1E5E0001AC3FB /* PetseeCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 73F819A11CD1E5E0001AC3FB /* PetseeCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -81,9 +83,11 @@
 		45589BC3EB30AD6A937B6317 /* Pods-PetseeNetwork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetseeNetwork.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetseeNetwork/Pods-PetseeNetwork.debug.xcconfig"; sourceTree = "<group>"; };
 		69BD4E1D91E54E56395184A3 /* Pods-PetseeCore.local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetseeCore.local.xcconfig"; path = "Pods/Target Support Files/Pods-PetseeCore/Pods-PetseeCore.local.xcconfig"; sourceTree = "<group>"; };
 		732F2EE71CD5178800CB491D /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
+		732F2EE91CD7BFFE00CB491D /* PetseeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetseeButton.swift; sourceTree = "<group>"; };
+		732F2EEB1CD7C6D800CB491D /* OnboardingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		73F819851CD1E592001AC3FB /* Petsee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petsee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73F819881CD1E592001AC3FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		73F8198D1CD1E592001AC3FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		73F8198D1CD1E592001AC3FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		73F8198F1CD1E592001AC3FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73F819921CD1E592001AC3FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73F819941CD1E592001AC3FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				732F2EE71CD5178800CB491D /* LoginTextField.swift */,
+				732F2EE91CD7BFFE00CB491D /* PetseeButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 		732F2EE61CD5175500CB491D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				732F2EEB1CD7C6D800CB491D /* OnboardingVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -190,7 +196,7 @@
 				732F2EE61CD5175500CB491D /* ViewControllers */,
 				732F2EE51CD5174C00CB491D /* Views */,
 				73F819881CD1E592001AC3FB /* AppDelegate.swift */,
-				73F8198C1CD1E592001AC3FB /* Main.storyboard */,
+				73F8198C1CD1E592001AC3FB /* Login.storyboard */,
 				73F8198F1CD1E592001AC3FB /* Assets.xcassets */,
 				73F819911CD1E592001AC3FB /* LaunchScreen.storyboard */,
 				73F819941CD1E592001AC3FB /* Info.plist */,
@@ -372,7 +378,7 @@
 			files = (
 				73F819931CD1E592001AC3FB /* LaunchScreen.storyboard in Resources */,
 				73F819901CD1E592001AC3FB /* Assets.xcassets in Resources */,
-				73F8198E1CD1E592001AC3FB /* Main.storyboard in Resources */,
+				73F8198E1CD1E592001AC3FB /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +467,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				732F2EE81CD5178800CB491D /* LoginTextField.swift in Sources */,
+				732F2EEC1CD7C6D800CB491D /* OnboardingVC.swift in Sources */,
+				732F2EEA1CD7BFFE00CB491D /* PetseeButton.swift in Sources */,
 				73F819891CD1E592001AC3FB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,12 +518,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		73F8198C1CD1E592001AC3FB /* Main.storyboard */ = {
+		73F8198C1CD1E592001AC3FB /* Login.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				73F8198D1CD1E592001AC3FB /* Base */,
 			);
-			name = Main.storyboard;
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 		73F819911CD1E592001AC3FB /* LaunchScreen.storyboard */ = {

@@ -13,9 +13,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        let onboardingVC = OnboardingVC(nibName: nil, bundle: nil)
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window!.rootViewController = onboardingVC
+        window!.makeKeyAndVisible()
         return true
     }
 
