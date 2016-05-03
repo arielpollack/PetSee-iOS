@@ -19,7 +19,7 @@ class OnboardingVC: UIPageViewController {
     }()
     
     lazy var passwordVC: OnboardingDataVC = {
-        let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewControllerWithIdentifier("Password") as! OnboardingDataVC
+        let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewControllerWithIdentifier(self.isExistingUser ? "Password" : "NewPassword") as! OnboardingDataVC
         vc.delegate = self
         return vc
     }()
@@ -34,6 +34,31 @@ class OnboardingVC: UIPageViewController {
         let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewControllerWithIdentifier("Type") as! OnboardingDataVC
         vc.delegate = self
         return vc
+    }()
+    
+    lazy var loadingView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(white: 0, alpha: 0.2)
+        view.hidden = true
+        view.alpha = 0
+        self.view.addSubview(view)
+        
+        view.leadingAnchor.constraintEqualToAnchor(self.view.leadingAnchor).active = true
+        view.trailingAnchor.constraintEqualToAnchor(self.view.trailingAnchor).active = true
+        view.topAnchor.constraintEqualToAnchor(self.view.topAnchor).active = true
+        view.bottomAnchor.constraintEqualToAnchor(self.view.bottomAnchor).active = true
+        
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.color = UIColor.blackColor()
+        indicator.startAnimating()
+        view.addSubview(indicator)
+        
+        indicator.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
+        indicator.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true
+        
+        return view
     }()
     
     private var email: String!
@@ -57,7 +82,24 @@ class OnboardingVC: UIPageViewController {
     }
     
     private func login() {
+        showActivityIndicator()
         PetseeAPI.sharedInstance.login(email, password: password) { user, error in
+            self.hideActivityIndicator()
+            guard let user = user else {
+                return
+            }
+            
+            let hello = user.name ?? user.email!
+            let alert = UIAlertController(title: "Hello \(hello)", message: nil, preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Close", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    private func signup() {
+        showActivityIndicator()
+        PetseeAPI.sharedInstance.signup(email, password: password, name: name, type: type) { user, error in
+            self.hideActivityIndicator()
             guard let user = user else {
                 return
             }
@@ -68,15 +110,28 @@ class OnboardingVC: UIPageViewController {
         }
     }
     
-    private func signup() {
-        
-    }
-    
     private func isValidEmail(testStr: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluateWithObject(testStr)
+    }
+    
+    private func showActivityIndicator() {
+        loadingView.hidden = false
+        UIView.animateWithDuration(0.2) { 
+            self.loadingView.alpha = 1
+        }
+    }
+    
+    private func hideActivityIndicator() {
+        UIView.animateWithDuration(0.2, animations: { 
+            self.loadingView.alpha = 0
+        }) { finished in
+            if finished {
+                self.loadingView.hidden = true
+            }
+        }
     }
 }
 
@@ -85,7 +140,9 @@ extension OnboardingVC: OnboardingDataDelegate {
         print(data)
         if controller == emailVC {
             email = data as! String
+            showActivityIndicator()
             PetseeAPI.sharedInstance.checkIfEmailExist(email, completion: { exist in
+                self.hideActivityIndicator()
                 if exist {
                     self.isExistingUser = true
                     self.showNextViewController(self.passwordVC)
@@ -94,11 +151,11 @@ extension OnboardingVC: OnboardingDataDelegate {
                 }
             })
         }
-        if controller == nameVC {
+        else if controller == nameVC {
+            name = data as? String
             showNextViewController(passwordVC)
-            // save user name and get password
         }
-        if controller == passwordVC {
+        else if controller == passwordVC {
             password = data as! String
             if self.isExistingUser {
                 login()
@@ -106,7 +163,7 @@ extension OnboardingVC: OnboardingDataDelegate {
                 showNextViewController(typeVC)
             }
         }
-        if controller == typeVC {
+        else if controller == typeVC {
             type = UserType(rawValue: data as! String)!
             signup()
         }

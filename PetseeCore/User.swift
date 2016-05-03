@@ -27,9 +27,9 @@ public enum UserType: String {
     public var rating: Double?
     
     required public init?(_ map: Map) {
-//        guard let _: String = map["id"].value() else {
-//            return nil
-//        }
+        if map.JSONDictionary["id"] == nil {
+            return nil
+        }
     }
     
     public func mapping(map: Map) {

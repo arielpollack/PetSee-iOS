@@ -19,7 +19,7 @@ public struct PetseeAPI {
     public static var sharedInstance = PetseeAPI()
     
     public func checkIfEmailExist(email: String, completion: Bool->()) {
-        authProvider.request(.CheckEmailExist(email: email)).mapJSON().subscribe({ event in
+        authProvider.request(.CheckEmailExist(email: email)).delaySubscription(1, scheduler: MainScheduler.instance).mapJSON().subscribe({ event in
             switch event {
             case .Next(let json):
                 completion(json["email_exist"] as! Bool)
@@ -33,7 +33,21 @@ public struct PetseeAPI {
     }
     
     public func login(email: String, password: String, completion: (User?, String?)->()) {
-        authProvider.request(.Login(email: email, password: password)).mapObject(User).subscribe({ event in
+        authProvider.request(.Login(email: email, password: password)).delaySubscription(1, scheduler: MainScheduler.instance).mapObject(User).subscribe({ event in
+            switch event {
+            case .Next(let user):
+                completion(user, nil)
+            case .Error(let error):
+                print(error)
+                completion(nil, "something went wrong")
+            default:
+                break
+            }
+        }).addDisposableTo(disposeBag)
+    }
+    
+    public func signup(email: String, password: String, name: String?, type: UserType, completion: (User?, String?)->()) {
+        authProvider.request(.Signup(email: email, password: password, name: name, type: type)).delaySubscription(1, scheduler: MainScheduler.instance).mapObject(User).subscribe({ event in
             switch event {
             case .Next(let user):
                 completion(user, nil)

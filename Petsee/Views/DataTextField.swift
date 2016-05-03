@@ -144,14 +144,18 @@ extension DataTextField: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         guard let valid = delegate?.validateTextFieldData(self) else {
             // if delegate not implemented, return true by default
-            delegate?.textFieldDidFinishEnteringData(self)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.delegate?.textFieldDidFinishEnteringData(self)
+            })
             return true
         }
-        if valid {
-            delegate?.textFieldDidFinishEnteringData(self)
-        } else {
-            vibrateForInvalid()
-        }
+        dispatch_async(dispatch_get_main_queue(), {
+            if valid {
+                self.delegate?.textFieldDidFinishEnteringData(self)
+            } else {
+                self.vibrateForInvalid()
+            }
+        })
         return valid
     }
 }

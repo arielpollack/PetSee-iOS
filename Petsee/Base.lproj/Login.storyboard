@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your email?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aks-CC-F0U">
-                                <rect key="frame" x="190" y="50" width="220" height="33"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your email?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aks-CC-F0U">
+                                <rect key="frame" x="15" y="50" width="570" height="33"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -54,10 +54,11 @@
                             <constraint firstItem="xXn-N4-6oE" firstAttribute="leading" secondItem="qhS-Sa-fsw" secondAttribute="leadingMargin" constant="15" id="9H5-Qy-eRg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Hjq-qC-5UO" secondAttribute="trailing" constant="15" id="BuC-6x-yIm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xXn-N4-6oE" secondAttribute="trailing" constant="15" id="IUT-c5-evn"/>
-                            <constraint firstItem="Aks-CC-F0U" firstAttribute="centerX" secondItem="qhS-Sa-fsw" secondAttribute="centerX" id="IVv-Qe-dsV"/>
                             <constraint firstItem="xXn-N4-6oE" firstAttribute="centerY" secondItem="qhS-Sa-fsw" secondAttribute="centerY" id="IaC-g4-u8D"/>
                             <constraint firstItem="Hjq-qC-5UO" firstAttribute="top" secondItem="Aks-CC-F0U" secondAttribute="bottom" constant="10" id="Oqd-Mn-MX6"/>
+                            <constraint firstAttribute="trailing" secondItem="Aks-CC-F0U" secondAttribute="trailing" constant="15" id="WKT-yw-gt3"/>
                             <constraint firstItem="Hjq-qC-5UO" firstAttribute="leading" secondItem="qhS-Sa-fsw" secondAttribute="leadingMargin" constant="15" id="X2y-Q7-PbY"/>
+                            <constraint firstItem="Aks-CC-F0U" firstAttribute="leading" secondItem="qhS-Sa-fsw" secondAttribute="leading" constant="15" id="gYb-QX-uu1"/>
                             <constraint firstItem="Aks-CC-F0U" firstAttribute="top" secondItem="08r-O9-mh4" secondAttribute="bottom" constant="30" id="zVl-Ne-qEs"/>
                         </constraints>
                     </view>
@@ -67,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Cg-Ix-CX5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-318" y="466"/>
+            <point key="canvasLocation" x="-377" y="466"/>
         </scene>
         <!--Onboarding Data TextVC-->
         <scene sceneID="Iyj-wq-iJQ">
@@ -81,8 +82,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your name?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xid-a3-QN9">
-                                <rect key="frame" x="188" y="50" width="224" height="33"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your name?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xid-a3-QN9">
+                                <rect key="frame" x="15" y="50" width="570" height="33"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -113,10 +114,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="QfC-tQ-a4L" firstAttribute="centerY" secondItem="wHh-g6-RiL" secondAttribute="centerY" id="4Kj-lS-Iij"/>
+                            <constraint firstAttribute="trailing" secondItem="xid-a3-QN9" secondAttribute="trailing" constant="15" id="8MR-GM-pGh"/>
                             <constraint firstItem="QfC-tQ-a4L" firstAttribute="leading" secondItem="wHh-g6-RiL" secondAttribute="leadingMargin" constant="15" id="9KC-8F-DaH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QfC-tQ-a4L" secondAttribute="trailing" constant="15" id="Aaj-Jp-gon"/>
+                            <constraint firstItem="xid-a3-QN9" firstAttribute="leading" secondItem="wHh-g6-RiL" secondAttribute="leading" constant="15" id="N3O-rq-Tbq"/>
                             <constraint firstItem="0m3-Cy-Bir" firstAttribute="top" secondItem="xid-a3-QN9" secondAttribute="bottom" constant="10" id="NPg-xD-uAV"/>
-                            <constraint firstItem="xid-a3-QN9" firstAttribute="centerX" secondItem="wHh-g6-RiL" secondAttribute="centerX" id="Qxi-Vh-cnu"/>
                             <constraint firstItem="xid-a3-QN9" firstAttribute="top" secondItem="chV-1i-XTf" secondAttribute="bottom" constant="30" id="Uxj-3p-rYr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0m3-Cy-Bir" secondAttribute="trailing" constant="15" id="rnH-kr-qbj"/>
                             <constraint firstItem="0m3-Cy-Bir" firstAttribute="leading" secondItem="wHh-g6-RiL" secondAttribute="leadingMargin" constant="15" id="scP-QC-7o4"/>
@@ -131,7 +133,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIM-mD-psf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="942" y="466"/>
+            <point key="canvasLocation" x="1510" y="466"/>
         </scene>
         <!--Onboarding Data User TypeVC-->
         <scene sceneID="f3R-N7-XUX">
@@ -151,8 +153,8 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are you doing here?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKX-o9-Oat">
-                                <rect key="frame" x="151" y="50" width="299" height="33"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are you doing here?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qKX-o9-Oat">
+                                <rect key="frame" x="15" y="50" width="570" height="33"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -212,8 +214,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ck0-cm-EiI" firstAttribute="top" secondItem="qKX-o9-Oat" secondAttribute="bottom" constant="10" id="1Yo-s6-gR5"/>
+                            <constraint firstAttribute="trailing" secondItem="qKX-o9-Oat" secondAttribute="trailing" constant="15" id="39O-hA-5xF"/>
                             <constraint firstItem="FPH-IV-oUn" firstAttribute="centerY" secondItem="joh-gj-HXc" secondAttribute="centerY" id="3cp-LM-ZYZ"/>
-                            <constraint firstItem="qKX-o9-Oat" firstAttribute="centerX" secondItem="joh-gj-HXc" secondAttribute="centerX" id="6JC-5D-a29"/>
+                            <constraint firstItem="qKX-o9-Oat" firstAttribute="leading" secondItem="joh-gj-HXc" secondAttribute="leading" constant="15" id="DLw-gz-xuw"/>
                             <constraint firstItem="Ck0-cm-EiI" firstAttribute="leading" secondItem="joh-gj-HXc" secondAttribute="leadingMargin" constant="15" id="G3I-GB-w1F"/>
                             <constraint firstItem="FPH-IV-oUn" firstAttribute="leading" secondItem="joh-gj-HXc" secondAttribute="leading" constant="30" id="Hnf-LW-D89"/>
                             <constraint firstItem="qKX-o9-Oat" firstAttribute="top" secondItem="jWp-My-JrN" secondAttribute="bottom" constant="30" id="RKo-5T-23a"/>
@@ -224,7 +227,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qye-Y1-0Mj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1585" y="466"/>
+            <point key="canvasLocation" x="2153" y="466"/>
         </scene>
         <!--Onboarding Data TextVC-->
         <scene sceneID="Ryd-A1-K2t">
@@ -238,13 +241,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PTb-Qc-CJ3">
-                                <rect key="frame" x="165" y="50" width="270" height="33"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PTb-Qc-CJ3">
+                                <rect key="frame" x="15" y="50" width="570" height="33"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="it will be used to log you in to you account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1dP-lK-ajM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The same one you've signed up with" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1dP-lK-ajM">
                                 <rect key="frame" x="35" y="93" width="530" height="20"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -274,10 +277,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="aWV-bE-Qkb" secondAttribute="trailing" constant="15" id="2ef-lW-rfi"/>
                             <constraint firstItem="aWV-bE-Qkb" firstAttribute="leading" secondItem="Yex-YF-ldc" secondAttribute="leadingMargin" constant="15" id="BmO-IP-peT"/>
                             <constraint firstItem="1dP-lK-ajM" firstAttribute="leading" secondItem="Yex-YF-ldc" secondAttribute="leadingMargin" constant="15" id="Ksq-0a-0Cg"/>
+                            <constraint firstItem="PTb-Qc-CJ3" firstAttribute="leading" secondItem="Yex-YF-ldc" secondAttribute="leading" constant="15" id="Xw3-vv-dpj"/>
                             <constraint firstItem="1dP-lK-ajM" firstAttribute="top" secondItem="PTb-Qc-CJ3" secondAttribute="bottom" constant="10" id="Zd3-Gd-k7v"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1dP-lK-ajM" secondAttribute="trailing" constant="15" id="rlW-Wn-rta"/>
+                            <constraint firstAttribute="trailing" secondItem="PTb-Qc-CJ3" secondAttribute="trailing" constant="15" id="rvb-K6-IcP"/>
                             <constraint firstItem="PTb-Qc-CJ3" firstAttribute="top" secondItem="YRb-0j-o5e" secondAttribute="bottom" constant="30" id="wwo-tD-Ize"/>
-                            <constraint firstItem="PTb-Qc-CJ3" firstAttribute="centerX" secondItem="Yex-YF-ldc" secondAttribute="centerX" id="zSx-jP-swg"/>
                         </constraints>
                     </view>
                     <connections>
@@ -286,7 +290,70 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGW-Re-Hg4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="313" y="466"/>
+            <point key="canvasLocation" x="881" y="466"/>
+        </scene>
+        <!--Onboarding Data TextVC-->
+        <scene sceneID="hgb-VV-bW7">
+            <objects>
+                <viewController storyboardIdentifier="NewPassword" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YKH-NQ-3e9" customClass="OnboardingDataTextVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IFJ-ts-mwt"/>
+                        <viewControllerLayoutGuide type="bottom" id="9d7-vf-4Rw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IJb-vd-PHs">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvf-gJ-V26">
+                                <rect key="frame" x="15" y="50" width="570" height="33"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="it will be used to log you in to you account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Daa-rd-kA4">
+                                <rect key="frame" x="35" y="93" width="530" height="20"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBY-dG-Dl9" customClass="DataTextField" customModule="Petsee" customModuleProvider="target">
+                                <rect key="frame" x="35" y="285" width="530" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="GuB-xi-jAC"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" red="0.10795355869999999" green="0.69905047720000002" blue="0.24602285069999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="YOUR PASSWORD"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="securedText" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Daa-rd-kA4" firstAttribute="top" secondItem="pvf-gJ-V26" secondAttribute="bottom" constant="10" id="5xD-RZ-3oz"/>
+                            <constraint firstItem="pvf-gJ-V26" firstAttribute="top" secondItem="IFJ-ts-mwt" secondAttribute="bottom" constant="30" id="65a-z0-Gex"/>
+                            <constraint firstItem="Daa-rd-kA4" firstAttribute="leading" secondItem="IJb-vd-PHs" secondAttribute="leadingMargin" constant="15" id="GBE-Me-xip"/>
+                            <constraint firstItem="pvf-gJ-V26" firstAttribute="leading" secondItem="IJb-vd-PHs" secondAttribute="leading" constant="15" id="R5r-Hu-waK"/>
+                            <constraint firstItem="BBY-dG-Dl9" firstAttribute="centerY" secondItem="IJb-vd-PHs" secondAttribute="centerY" id="Vld-cy-SMe"/>
+                            <constraint firstItem="BBY-dG-Dl9" firstAttribute="leading" secondItem="IJb-vd-PHs" secondAttribute="leadingMargin" constant="15" id="bmE-AB-bxh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BBY-dG-Dl9" secondAttribute="trailing" constant="15" id="ofL-BF-gIL"/>
+                            <constraint firstAttribute="trailing" secondItem="pvf-gJ-V26" secondAttribute="trailing" constant="15" id="pLd-B0-UVj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Daa-rd-kA4" secondAttribute="trailing" constant="15" id="vRg-EB-ZFY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="txtData" destination="BBY-dG-Dl9" id="kXG-Y2-dRY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EJA-l5-bUY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="249" y="466"/>
         </scene>
     </scenes>
 </document>
