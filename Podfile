@@ -14,6 +14,7 @@ end
 target 'PetseeNetwork' do
     pod 'Alamofire', '~> 3.3'
     pod 'Moya'
-    pod 'Moya-ObjectMapper'
+    pod 'Moya/RxSwift'
+    pod 'Moya-ObjectMapper/RxSwift'
 end
 

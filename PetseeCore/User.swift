@@ -27,9 +27,9 @@ public enum UserType: String {
     public var rating: Double?
     
     required public init?(_ map: Map) {
-        if map["id"].value() == nil {
-            return nil
-        }
+//        guard let _: String = map["id"].value() else {
+//            return nil
+//        }
     }
     
     public func mapping(map: Map) {
@@ -41,5 +41,6 @@ public enum UserType: String {
         image <- map["image"]
         rating <- map["rating"]
         ratingCount <- map["rating_count"]
+        token <- map["token"]
     }
 }

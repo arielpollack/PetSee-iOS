@@ -14,6 +14,7 @@
 		732F2EEC1CD7C6D800CB491D /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2EEB1CD7C6D800CB491D /* OnboardingVC.swift */; };
 		732F2EEE1CD8693900CB491D /* OnboardingDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2EED1CD8693900CB491D /* OnboardingDataVC.swift */; };
 		732F2EF01CD86C0100CB491D /* OnboardingDataTextVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2EEF1CD86C0100CB491D /* OnboardingDataTextVC.swift */; };
+		732F2EF21CD92CC600CB491D /* OnboardingDataUserTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2EF11CD92CC600CB491D /* OnboardingDataUserTypeVC.swift */; };
 		73F819891CD1E592001AC3FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819881CD1E592001AC3FB /* AppDelegate.swift */; };
 		73F8198E1CD1E592001AC3FB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198C1CD1E592001AC3FB /* Login.storyboard */; };
 		73F819901CD1E592001AC3FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198F1CD1E592001AC3FB /* Assets.xcassets */; };
@@ -89,6 +90,7 @@
 		732F2EEB1CD7C6D800CB491D /* OnboardingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		732F2EED1CD8693900CB491D /* OnboardingDataVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingDataVC.swift; sourceTree = "<group>"; };
 		732F2EEF1CD86C0100CB491D /* OnboardingDataTextVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingDataTextVC.swift; sourceTree = "<group>"; };
+		732F2EF11CD92CC600CB491D /* OnboardingDataUserTypeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingDataUserTypeVC.swift; sourceTree = "<group>"; };
 		73F819851CD1E592001AC3FB /* Petsee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petsee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73F819881CD1E592001AC3FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73F8198D1CD1E592001AC3FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				732F2EEB1CD7C6D800CB491D /* OnboardingVC.swift */,
 				732F2EED1CD8693900CB491D /* OnboardingDataVC.swift */,
 				732F2EEF1CD86C0100CB491D /* OnboardingDataTextVC.swift */,
+				732F2EF11CD92CC600CB491D /* OnboardingDataUserTypeVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				732F2EEA1CD7BFFE00CB491D /* PetseeButton.swift in Sources */,
 				732F2EF01CD86C0100CB491D /* OnboardingDataTextVC.swift in Sources */,
 				73F819891CD1E592001AC3FB /* AppDelegate.swift in Sources */,
+				732F2EF21CD92CC600CB491D /* OnboardingDataUserTypeVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

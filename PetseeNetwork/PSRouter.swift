@@ -12,7 +12,8 @@ import Moya
 
 enum PetseeAuth {
     case Signup(email: String, password: String, name: String?, type: UserType)
-    case Login(email: String, password: String) // email, password
+    case Login(email: String, password: String)
+    case CheckEmailExist(email: String)
 }
 
 extension PetseeAuth: TargetType {
@@ -23,10 +24,17 @@ extension PetseeAuth: TargetType {
             return "/auth/signup"
         case .Login:
             return "/auth/login"
+        case .CheckEmailExist:
+            return "/auth/is_email_exist"
         }
     }
     var method: Moya.Method {
-        return .POST
+        switch self {
+        case .CheckEmailExist:
+            return .GET
+        default:
+            return .POST
+        }
     }
     var parameters: [String : AnyObject]? {
         switch self {
@@ -36,6 +44,8 @@ extension PetseeAuth: TargetType {
             return params
         case .Login(let email, let password):
             return ["email": email, "password": password]
+        case .CheckEmailExist(let email):
+            return ["email": email]
         }
     }
     var sampleData: NSData {

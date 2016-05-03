@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import PetseeCore
+import PetseeNetwork
 
 class OnboardingVC: UIPageViewController {
     
@@ -28,10 +30,53 @@ class OnboardingVC: UIPageViewController {
         return vc
     }()
     
+    lazy var typeVC: OnboardingDataVC = {
+        let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewControllerWithIdentifier("Type") as! OnboardingDataVC
+        vc.delegate = self
+        return vc
+    }()
+    
+    private var email: String!
+    private var password: String!
+    private var name: String?
+    private var type: UserType!
+    private var isExistingUser: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setViewControllers([emailVC], direction: .Forward, animated: false, completion: nil)
+        showNextViewController(emailVC, animated: false)
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
+    private func showNextViewController(vc: UIViewController, animated: Bool = true) {
+        setViewControllers([vc], direction: .Forward, animated: animated, completion: nil)
+    }
+    
+    private func login() {
+        PetseeAPI.sharedInstance.login(email, password: password) { user, error in
+            guard let user = user else {
+                return
+            }
+            
+            let alert = UIAlertController(title: "Hello \(user.name!)", message: nil, preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Close", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    private func signup() {
+        
+    }
+    
+    private func isValidEmail(testStr: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(testStr)
     }
 }
 
@@ -39,24 +84,42 @@ extension OnboardingVC: OnboardingDataDelegate {
     func dataViewControllerDidEnterData(controller: OnboardingDataVC, data: AnyObject?) {
         print(data)
         if controller == emailVC {
-            setViewControllers([nameVC], direction: .Forward, animated: true, completion: nil)
-            // 1. check if email exist in server
-            // 2. yes -> continue to password screen
-            // 3. no -> continue to sign up flow
+            email = data as! String
+            PetseeAPI.sharedInstance.checkIfEmailExist(email, completion: { exist in
+                if exist {
+                    self.isExistingUser = true
+                    self.showNextViewController(self.passwordVC)
+                } else {
+                    self.showNextViewController(self.nameVC)
+                }
+            })
         }
         if controller == nameVC {
-            setViewControllers([passwordVC], direction: .Forward, animated: true, completion: nil)
+            showNextViewController(passwordVC)
             // save user name and get password
         }
         if controller == passwordVC {
-            // login flow -> verify password in server
-            // signup flow -> continue to type selection
+            password = data as! String
+            if self.isExistingUser {
+                login()
+            } else {
+                showNextViewController(typeVC)
+            }
+        }
+        if controller == typeVC {
+            type = UserType(rawValue: data as! String)!
+            signup()
         }
     }
     
     func validateDataForController(controller: OnboardingDataVC, data: AnyObject?) -> Bool {
         if controller == emailVC {
-            // validate email
+            let email = data as! String // assume length is validated because it's a required field
+            return isValidEmail(email)
+        }
+        
+        if controller == passwordVC {
+            // validate password
         }
         
         return true

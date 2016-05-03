@@ -120,6 +120,15 @@ class DataTextField: UIView {
         }
     }
     
+    private func vibrateForInvalid() {
+        let animation = CABasicAnimation(keyPath: "position.x")
+        animation.duration = 0.06
+        animation.byValue = 10
+        animation.autoreverses = true
+        animation.repeatCount = 5
+        layer.addAnimation(animation, forKey: "Vibrate")
+    }
+    
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         let context = UIGraphicsGetCurrentContext()
@@ -140,6 +149,8 @@ extension DataTextField: UITextFieldDelegate {
         }
         if valid {
             delegate?.textFieldDidFinishEnteringData(self)
+        } else {
+            vibrateForInvalid()
         }
         return valid
     }

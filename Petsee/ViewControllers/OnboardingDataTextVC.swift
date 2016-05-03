@@ -19,12 +19,6 @@ class OnboardingDataTextVC: OnboardingDataVC {
         
         txtData?.delegate = self
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        txtData?.becomeFirstResponder()
-    }
 }
 
 extension OnboardingDataTextVC: DataTextFieldDelegate {
