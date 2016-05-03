@@ -15,6 +15,7 @@
 		732F2EEE1CD8693900CB491D /* OnboardingDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2EED1CD8693900CB491D /* OnboardingDataVC.swift */; };
 		732F2EF01CD86C0100CB491D /* OnboardingDataTextVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2EEF1CD86C0100CB491D /* OnboardingDataTextVC.swift */; };
 		732F2EF21CD92CC600CB491D /* OnboardingDataUserTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2EF11CD92CC600CB491D /* OnboardingDataUserTypeVC.swift */; };
+		732F2EF51CD94BA300CB491D /* UIColor+Addons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2EF41CD94BA300CB491D /* UIColor+Addons.swift */; };
 		73F819891CD1E592001AC3FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819881CD1E592001AC3FB /* AppDelegate.swift */; };
 		73F8198E1CD1E592001AC3FB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198C1CD1E592001AC3FB /* Login.storyboard */; };
 		73F819901CD1E592001AC3FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198F1CD1E592001AC3FB /* Assets.xcassets */; };
@@ -91,6 +92,7 @@
 		732F2EED1CD8693900CB491D /* OnboardingDataVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingDataVC.swift; sourceTree = "<group>"; };
 		732F2EEF1CD86C0100CB491D /* OnboardingDataTextVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingDataTextVC.swift; sourceTree = "<group>"; };
 		732F2EF11CD92CC600CB491D /* OnboardingDataUserTypeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingDataUserTypeVC.swift; sourceTree = "<group>"; };
+		732F2EF41CD94BA300CB491D /* UIColor+Addons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Addons.swift"; sourceTree = "<group>"; };
 		73F819851CD1E592001AC3FB /* Petsee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petsee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73F819881CD1E592001AC3FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73F8198D1CD1E592001AC3FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
@@ -177,6 +179,14 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		732F2EF31CD94B8500CB491D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				732F2EF41CD94BA300CB491D /* UIColor+Addons.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		73F8197C1CD1E592001AC3FB = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +212,7 @@
 		73F819871CD1E592001AC3FB /* Petsee */ = {
 			isa = PBXGroup;
 			children = (
+				732F2EF31CD94B8500CB491D /* Helpers */,
 				732F2EE61CD5175500CB491D /* ViewControllers */,
 				732F2EE51CD5174C00CB491D /* Views */,
 				73F819881CD1E592001AC3FB /* AppDelegate.swift */,
@@ -475,6 +486,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				732F2EF51CD94BA300CB491D /* UIColor+Addons.swift in Sources */,
 				732F2EEE1CD8693900CB491D /* OnboardingDataVC.swift in Sources */,
 				732F2EE81CD5178800CB491D /* DataTextField.swift in Sources */,
 				732F2EEC1CD7C6D800CB491D /* OnboardingVC.swift in Sources */,

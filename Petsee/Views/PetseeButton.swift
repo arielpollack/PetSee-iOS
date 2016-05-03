@@ -24,11 +24,14 @@ class PetseeButton: UIButton {
         case UIControlState.Selected:
             fallthrough
         case UIControlState.Highlighted:
-            self.backgroundColor = self.color.colorWithAlphaComponent(0.8)
+            backgroundColor = self.color.colorWithAlphaComponent(0.8)
         case UIControlState.Disabled:
-            self.backgroundColor = self.color.colorWithAlphaComponent(0.2)
+            backgroundColor = self.color.colorWithAlphaComponent(0.2)
         default:
-            self.backgroundColor = self.color
+            backgroundColor = self.color
         }
+        
+        layer.borderColor = color.darkerColor().CGColor
+        layer.borderWidth = 1
     }
 }

@@ -125,7 +125,7 @@ class DataTextField: UIView {
         animation.duration = 0.06
         animation.byValue = 10
         animation.autoreverses = true
-        animation.repeatCount = 5
+        animation.repeatCount = 3
         layer.addAnimation(animation, forKey: "Vibrate")
     }
     
