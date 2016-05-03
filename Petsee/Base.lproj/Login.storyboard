@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Onboarding Data TextVC-->
         <scene sceneID="XQ6-5V-9GT">
             <objects>
-                <viewController storyboardIdentifier="Email" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hAC-tS-rek" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Email" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hAC-tS-rek" customClass="OnboardingDataTextVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="08r-O9-mh4"/>
                         <viewControllerLayoutGuide type="bottom" id="IOX-fn-FXN"/>
@@ -29,7 +29,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xXn-N4-6oE" customClass="LoginTextField" customModule="Petsee" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xXn-N4-6oE" customClass="DataTextField" customModule="Petsee" customModuleProvider="target">
                                 <rect key="frame" x="35" y="285" width="530" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -41,7 +41,10 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="YOUR EMAIL"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="7"/>
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="keyboardType">
+                                        <integer key="value" value="7"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -58,15 +61,18 @@
                             <constraint firstItem="Aks-CC-F0U" firstAttribute="top" secondItem="08r-O9-mh4" secondAttribute="bottom" constant="30" id="zVl-Ne-qEs"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="txtData" destination="xXn-N4-6oE" id="umB-sF-xgb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Cg-Ix-CX5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-318" y="466"/>
         </scene>
-        <!--View Controller-->
+        <!--Onboarding Data TextVC-->
         <scene sceneID="Iyj-wq-iJQ">
             <objects>
-                <viewController id="1w4-Tx-aUJ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Name" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1w4-Tx-aUJ" customClass="OnboardingDataTextVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="chV-1i-XTf"/>
                         <viewControllerLayoutGuide type="bottom" id="Rx6-C4-Cbb"/>
@@ -87,7 +93,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QfC-tQ-a4L" customClass="LoginTextField" customModule="Petsee" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QfC-tQ-a4L" customClass="DataTextField" customModule="Petsee" customModuleProvider="target">
                                 <rect key="frame" x="35" y="285" width="530" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -99,7 +105,7 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="YOUR NAME"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="7"/>
+                                        <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -116,6 +122,12 @@
                             <constraint firstItem="0m3-Cy-Bir" firstAttribute="leading" secondItem="wHh-g6-RiL" secondAttribute="leadingMargin" constant="15" id="scP-QC-7o4"/>
                         </constraints>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isRequiredField" value="NO"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="txtData" destination="QfC-tQ-a4L" id="wt0-s8-Cs0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIM-mD-psf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -124,7 +136,7 @@
         <!--View Controller-->
         <scene sceneID="f3R-N7-XUX">
             <objects>
-                <viewController id="Tyv-Ir-g7B" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Type" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Tyv-Ir-g7B" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jWp-My-JrN"/>
                         <viewControllerLayoutGuide type="bottom" id="E8Z-Mb-Oir"/>
@@ -208,10 +220,10 @@
             </objects>
             <point key="canvasLocation" x="1585" y="466"/>
         </scene>
-        <!--View Controller-->
+        <!--Onboarding Data TextVC-->
         <scene sceneID="Ryd-A1-K2t">
             <objects>
-                <viewController id="M2Q-y6-Nct" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Password" useStoryboardIdentifierAsRestorationIdentifier="YES" id="M2Q-y6-Nct" customClass="OnboardingDataTextVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YRb-0j-o5e"/>
                         <viewControllerLayoutGuide type="bottom" id="xiL-97-m5H"/>
@@ -232,7 +244,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWV-bE-Qkb" customClass="LoginTextField" customModule="Petsee" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWV-bE-Qkb" customClass="DataTextField" customModule="Petsee" customModuleProvider="target">
                                 <rect key="frame" x="35" y="285" width="530" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -240,12 +252,13 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" red="0.10980392160000001" green="0.67843137249999996" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.10795355873497892" green="0.69905047724747471" blue="0.24602285066000223" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="YOUR PASSWORD"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="7"/>
+                                        <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="securedText" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -261,6 +274,9 @@
                             <constraint firstItem="PTb-Qc-CJ3" firstAttribute="centerX" secondItem="Yex-YF-ldc" secondAttribute="centerX" id="zSx-jP-swg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="txtData" destination="aWV-bE-Qkb" id="z5M-7n-zbs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGW-Re-Hg4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

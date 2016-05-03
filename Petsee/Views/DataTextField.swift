@@ -1,5 +1,5 @@
 //
-//  LoginTextField.swift
+//  DataTextField.swift
 //  Petsee
 //
 //  Created by Ariel Pollack on 30/04/2016.
@@ -8,8 +8,13 @@
 
 import UIKit
 
+@objc protocol DataTextFieldDelegate {
+    func textFieldDidFinishEnteringData(textField: DataTextField)
+    func validateTextFieldData(textField: DataTextField) -> Bool
+}
+
 @IBDesignable
-class LoginTextField: UIView {
+class DataTextField: UIView {
     
     @IBInspectable var color: UIColor! = UIColor.blackColor() {
         didSet {
@@ -17,7 +22,7 @@ class LoginTextField: UIView {
             self.setNeedsDisplay()
         }
     }
-    @IBInspectable var borderWidth: Float! = 3.0 {
+    @IBInspectable var borderWidth: Float = 3.0 {
         didSet {
             self.setNeedsDisplay()
         }
@@ -27,23 +32,50 @@ class LoginTextField: UIView {
             self.textField.secureTextEntry = self.securedText;
         }
     }
+    @IBInspectable var keyboardType: Int = UIKeyboardType.Default.rawValue {
+        didSet {
+            self.textField.keyboardType = UIKeyboardType(rawValue: self.keyboardType) ?? .Default
+        }
+    }
     @IBInspectable var placeholder: String = "" {
         didSet {
             self.label.text = placeholder;
         }
     }
     
+    weak var delegate: DataTextFieldDelegate? {
+        didSet {
+            self.textField.delegate = self
+        }
+    }
+    
     private lazy var label: UILabel = {
         let label = UILabel(frame: self.bounds)
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.italicSystemFontOfSize(18)
         self.addSubview(label)
+        
+        label.leadingAnchor.constraintEqualToAnchor(self.leadingAnchor).active = true
+        label.trailingAnchor.constraintEqualToAnchor(self.trailingAnchor).active = true
+        label.topAnchor.constraintEqualToAnchor(self.topAnchor).active = true
+        label.bottomAnchor.constraintEqualToAnchor(self.bottomAnchor, constant: 3).active = true
+        
         return label
     }()
     
     private lazy var textField: UITextField = {
         let txtField = UITextField(frame: self.bounds)
-        txtField.font = UIFont.boldSystemFontOfSize(18)
+        txtField.translatesAutoresizingMaskIntoConstraints = false
+        txtField.font = UIFont.boldSystemFontOfSize(20)
+        txtField.returnKeyType = .Done
+        txtField.autocorrectionType = .No
         self.addSubview(txtField)
+        
+        txtField.leadingAnchor.constraintEqualToAnchor(self.leadingAnchor).active = true
+        txtField.trailingAnchor.constraintEqualToAnchor(self.trailingAnchor).active = true
+        txtField.topAnchor.constraintEqualToAnchor(self.topAnchor).active = true
+        txtField.bottomAnchor.constraintEqualToAnchor(self.bottomAnchor, constant: 3).active = true
+        
         return txtField
     }()
     
@@ -96,5 +128,19 @@ class LoginTextField: UIView {
         CGContextMoveToPoint(context, 0, CGRectGetMaxY(rect) - (CGFloat(self.borderWidth) / 2.0))
         CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect) - (CGFloat(self.borderWidth) / 2.0))
         CGContextStrokePath(context)
+    }
+}
+
+extension DataTextField: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        guard let valid = delegate?.validateTextFieldData(self) else {
+            // if delegate not implemented, return true by default
+            delegate?.textFieldDidFinishEnteringData(self)
+            return true
+        }
+        if valid {
+            delegate?.textFieldDidFinishEnteringData(self)
+        }
+        return valid
     }
 }

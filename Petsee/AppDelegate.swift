@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let onboardingVC = OnboardingVC(nibName: nil, bundle: nil)
+        let onboardingVC = OnboardingVC(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window!.rootViewController = onboardingVC
         window!.makeKeyAndVisible()
