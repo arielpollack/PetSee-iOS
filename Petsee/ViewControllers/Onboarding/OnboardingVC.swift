@@ -10,7 +10,13 @@ import UIKit
 import PetseeCore
 import PetseeNetwork
 
+protocol OnboardingDelegate {
+    func didFinishLoginWithUser(user: User)
+}
+
 class OnboardingVC: UIPageViewController {
+    
+    var loginDelegate: OnboardingDelegate?
     
     lazy var emailVC: OnboardingDataVC = {
         let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewControllerWithIdentifier("Email") as! OnboardingDataVC
@@ -83,30 +89,25 @@ class OnboardingVC: UIPageViewController {
     
     private func login() {
         showActivityIndicator()
-        PetseeAPI.sharedInstance.login(email, password: password) { user, error in
+        PetseeAPI.login(email, password: password) { user, error in
             self.hideActivityIndicator()
             guard let user = user else {
                 return
             }
             
-            let hello = user.name ?? user.email!
-            let alert = UIAlertController(title: "Hello \(hello)", message: nil, preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "Close", style: .Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.loginDelegate?.didFinishLoginWithUser(user)
         }
     }
     
     private func signup() {
         showActivityIndicator()
-        PetseeAPI.sharedInstance.signup(email, password: password, name: name, type: type) { user, error in
+        PetseeAPI.signup(email, password: password, name: name, type: type) { user, error in
             self.hideActivityIndicator()
             guard let user = user else {
                 return
             }
             
-            let alert = UIAlertController(title: "Hello \(user.name!)", message: nil, preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "Close", style: .Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.loginDelegate?.didFinishLoginWithUser(user)
         }
     }
     
@@ -141,7 +142,7 @@ extension OnboardingVC: OnboardingDataDelegate {
         if controller == emailVC {
             email = data as! String
             showActivityIndicator()
-            PetseeAPI.sharedInstance.checkIfEmailExist(email, completion: { exist in
+            PetseeAPI.checkIfEmailExist(email, completion: { exist in
                 self.hideActivityIndicator()
                 if exist {
                     self.isExistingUser = true

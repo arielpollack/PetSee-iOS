@@ -12,7 +12,7 @@ import ObjectMapper
 public class Review: Mappable, Identifiable {
     
     public var id: Int!
-    public var rate: Double!
+    public var rate: Int!
     public var feedback: String?
     public var writer: User?
     public var user: User?

@@ -53,7 +53,7 @@ extension PetseeAuth: TargetType {
     }
 }
 
-enum PetseeUsers {
+enum PetseeActions {
     case UserPets(userId: Int)
     case UserReviews(userId: Int)
     
@@ -69,7 +69,7 @@ enum PetseeUsers {
     case AddRace(name: String)
 }
 
-extension PetseeUsers: TargetType {
+extension PetseeActions: TargetType {
     var baseURL: NSURL { return NSURL(string: "http://localhost:3000")! }
     var path: String {
         switch self {
