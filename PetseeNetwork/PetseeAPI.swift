@@ -13,13 +13,20 @@ import Moya
 import Moya_ObjectMapper
 
 public struct PetseeAPI {
-    let authProvider = RxMoyaProvider<PetseeAuth>()
-    let disposeBag = DisposeBag()
+    private lazy var authProvider = RxMoyaProvider<PetseeAuth>()
+    private let disposeBag = DisposeBag()
+    
+    private var authenticationToken: String?
     
     public static var sharedInstance = PetseeAPI()
     
-    public func checkIfEmailExist(email: String, completion: Bool->()) {
-        authProvider.request(.CheckEmailExist(email: email)).delaySubscription(1, scheduler: MainScheduler.instance).mapJSON().subscribe({ event in
+    public static func setAuthenticationToken(token: String?) {
+        sharedInstance.authenticationToken = token
+    }
+    
+    // MARK:- Authentication methods
+    public static func checkIfEmailExist(email: String, completion: Bool->()) {
+        sharedInstance.authProvider.request(.CheckEmailExist(email: email)).delaySubscription(1, scheduler: MainScheduler.instance).mapJSON().subscribe({ event in
             switch event {
             case .Next(let json):
                 completion(json["email_exist"] as! Bool)
@@ -29,11 +36,11 @@ public struct PetseeAPI {
             default:
                 break
             }
-        }).addDisposableTo(disposeBag)
+        }).addDisposableTo(sharedInstance.disposeBag)
     }
     
-    public func login(email: String, password: String, completion: (User?, String?)->()) {
-        authProvider.request(.Login(email: email, password: password)).delaySubscription(1, scheduler: MainScheduler.instance).mapObject(User).subscribe({ event in
+    public static func login(email: String, password: String, completion: (User?, String?)->()) {
+        sharedInstance.authProvider.request(.Login(email: email, password: password)).delaySubscription(1, scheduler: MainScheduler.instance).mapObject(User).subscribe({ event in
             switch event {
             case .Next(let user):
                 completion(user, nil)
@@ -43,11 +50,11 @@ public struct PetseeAPI {
             default:
                 break
             }
-        }).addDisposableTo(disposeBag)
+        }).addDisposableTo(sharedInstance.disposeBag)
     }
     
-    public func signup(email: String, password: String, name: String?, type: UserType, completion: (User?, String?)->()) {
-        authProvider.request(.Signup(email: email, password: password, name: name, type: type)).delaySubscription(1, scheduler: MainScheduler.instance).mapObject(User).subscribe({ event in
+    public static func signup(email: String, password: String, name: String?, type: UserType, completion: (User?, String?)->()) {
+        sharedInstance.authProvider.request(.Signup(email: email, password: password, name: name, type: type)).delaySubscription(1, scheduler: MainScheduler.instance).mapObject(User).subscribe({ event in
             switch event {
             case .Next(let user):
                 completion(user, nil)
@@ -57,6 +64,20 @@ public struct PetseeAPI {
             default:
                 break
             }
-        }).addDisposableTo(disposeBag)
+        }).addDisposableTo(sharedInstance.disposeBag)
+    }
+    
+    // MARK:- Private
+    private func authenticatedEndpointClosure<T: TargetType>() -> (T -> Endpoint<T>) {
+        return { target in
+            let endpoint = Endpoint<T>(URL: target.baseURL.URLByAppendingPathComponent(target.path).absoluteString,
+                                       sampleResponseClosure: { EndpointSampleResponse.NetworkResponse(200, target.sampleData) },
+                                       method: target.method,
+                                       parameters: target.parameters)
+            guard let token = self.authenticationToken else {
+                return endpoint
+            }
+            return endpoint.endpointByAddingHTTPHeaderFields(["Authorization" : "Token token=\(token)"])
+        }
     }
 }
