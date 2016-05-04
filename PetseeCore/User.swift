@@ -26,6 +26,8 @@ public enum UserType: String {
     public var ratingCount: Int?
     public var rating: Double?
     
+    private var map: JSON?
+    
     required public init?(_ map: Map) {
         if map.JSONDictionary["id"] == nil {
             return nil
@@ -42,5 +44,22 @@ public enum UserType: String {
         rating <- map["rating"]
         ratingCount <- map["rating_count"]
         token <- map["token"]
+        
+        #if DEBUG
+            self.map = map.JSONDictionary
+        #endif
+    }
+}
+
+extension User: CustomStringConvertible {
+    public var description: String {
+        if let map = self.map {
+            return map.description
+        }
+        
+        let comps: [String: AnyObject] = ["id": id,
+                                          "name": name ?? "empty",
+                                          "email": email ?? "empty"]
+        return comps.description
     }
 }

@@ -21,6 +21,8 @@ protocol AuthManagerProtocol {
 class AuthManager: AuthManagerProtocol {
     var authenticatedUser: User?
     
+    static var sharedInstance = AuthManager()
+    
     func isLoggedIn() -> Bool {
         return authenticatedUser != nil
     }

@@ -20,6 +20,8 @@ public class Pet: Mappable, Identifiable {
     public var isTrained: Bool!
     public var birthday: NSDate!
     
+    private var map: JSON?
+    
     required public init?(_ map: Map) {
         
     }
@@ -32,5 +34,22 @@ public class Pet: Mappable, Identifiable {
         image <- map["image"]
         isTrained <- map["is_trained"]
         birthday <- map["birthday"]
+        
+        #if DEBUG
+            self.map = map.JSONDictionary
+        #endif
+    }
+}
+
+extension Pet: CustomStringConvertible {
+    public var description: String {
+        if let map = self.map {
+            return map.description
+        }
+        
+        let comps = ["name": name,
+                     "race": race,
+                     "color": color]
+        return comps.description
     }
 }

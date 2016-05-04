@@ -19,6 +19,8 @@ public class Review: Mappable, Identifiable {
     public var createdAt: NSDate?
     public var updatedAt: NSDate?
     
+    private var map: JSON?
+    
     required public init?(_ map: Map) {
         
     }
@@ -30,5 +32,23 @@ public class Review: Mappable, Identifiable {
         user <- map["user"]
         createdAt <- map["created_at"]
         updatedAt <- map["updated_at"]
+        
+        #if DEBUG
+            self.map = map.JSONDictionary
+        #endif
+    }
+}
+
+extension Review: CustomStringConvertible {
+    public var description: String {
+        if let map = self.map {
+            return map.description
+        }
+        
+        let comps: JSON = ["rate": rate,
+                           "id": id,
+                           "user": user?.id ?? 0,
+                           "writer": writer?.id ?? 0]
+        return comps.description
     }
 }
