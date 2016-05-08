@@ -23,15 +23,24 @@ class AuthManager: AuthManagerProtocol {
     
     static var sharedInstance = AuthManager()
     
+    init() {
+        authenticatedUser = UserDefaultsManager.authenticatedUser
+        if let user = authenticatedUser {
+            PetseeAPI.setAuthenticationToken(user.token!)
+        }
+    }
+    
     func isLoggedIn() -> Bool {
         return authenticatedUser != nil
     }
     
     func setAuthenticatedUser(user: User) {
         authenticatedUser = user
+        UserDefaultsManager.userToken = user.token
     }
     
     func clearAuthenticatedUser() {
         authenticatedUser = nil
+        UserDefaultsManager.userToken = nil
     }
 }

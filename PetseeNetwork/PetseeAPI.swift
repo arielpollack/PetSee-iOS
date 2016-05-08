@@ -57,6 +57,17 @@ public struct PetseeAPI {
         executeRequest(sharedInstance.actionsProvider, target: target, arrayType: Pet.self, completion: completion)
     }
     
+    public static func addPet(pet: Pet, completion: (Pet?,String?)->()) {
+        let target = PetseeActions.AddPet(pet)
+        executeRequest(sharedInstance.actionsProvider, target: target, objectType: Pet.self, completion: completion)
+    }
+    
+    public static func updatePet(pet: Pet, completion: (Pet?,String?)->()) {
+        let target = PetseeActions.UpdatePet(pet)
+        executeRequest(sharedInstance.actionsProvider, target: target, objectType: Pet.self, completion: completion)
+    }
+    
+    // MARK:- Reviews
     public static func userReviews(userId: Int, completion: ([Review]?,String?)->()) {
         let target = PetseeActions.UserReviews(userId: userId)
         executeRequest(sharedInstance.actionsProvider, target: target, arrayType: Review.self, completion: completion)

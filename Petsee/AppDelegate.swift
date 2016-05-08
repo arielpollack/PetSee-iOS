@@ -17,13 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var authManager: AuthManagerProtocol!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        //
         authManager = AuthManager.sharedInstance
         
-        let onboardingVC = OnboardingVC(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
-        onboardingVC.loginDelegate = self
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window!.rootViewController = onboardingVC
+        
+        if authManager.isLoggedIn() {
+            let user = authManager.authenticatedUser!
+            let userVC = UIStoryboard(name: "Client", bundle: nil).instantiateViewControllerWithIdentifier("Profile") as! UserProfile
+            userVC.user = user
+            window!.rootViewController = userVC.embededInNavigationController()
+        } else {
+            let onboardingVC = OnboardingVC(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+            onboardingVC.loginDelegate = self
+            window!.rootViewController = onboardingVC
+        }
         window!.makeKeyAndVisible()
         return true
     }
@@ -34,12 +41,15 @@ extension AppDelegate: OnboardingDelegate {
         authManager.setAuthenticatedUser(user)
         if let token = user.token {
             PetseeAPI.setAuthenticationToken(token)
-            print(user)
-        }
-        
-        // test pets endpoint
-        PetseeAPI.myPets { pets, error in
-            print(pets)
+            UserDefaultsManager.authenticatedUser = user
+            
+            let userVC = UIStoryboard(name: "Client", bundle: nil).instantiateViewControllerWithIdentifier("Profile") as! UserProfile
+            userVC.user = user
+            
+            let transition = CATransition()
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromRight
+            self.window?.setRootViewController(userVC, transition: transition)
         }
     }
 }

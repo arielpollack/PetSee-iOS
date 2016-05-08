@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias JSON = [String: AnyObject]
+public typealias JSON = [String: AnyObject]
 
 public protocol Identifiable: Equatable {
     var id: Int! { get set }

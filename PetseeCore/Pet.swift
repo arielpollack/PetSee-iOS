@@ -13,7 +13,7 @@ public class Pet: Mappable, Identifiable {
     
     public var id: Int!
     public var name: String!
-    public var race: String!
+    public var race: Race!
     public var color: String!
     public var about: String?
     public var image: String?
