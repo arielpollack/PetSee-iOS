@@ -13,7 +13,7 @@ import PetseeNetwork
 
 class UserProfile: UIViewController, UIScrollViewDelegate {
     
-    @IBOutlet var containingView: UIView!
+    @IBOutlet weak var containingView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var lblUserName: UILabel!
@@ -68,23 +68,14 @@ class UserProfile: UIViewController, UIScrollViewDelegate {
             self.lblReviewNumber.text = "\(reviews.count) Reviews"
             
             // show only first 3 reviews
-            var views = [UIView]()
             for review in reviews[0...2] {
-                let reviewLabel = UILabel()
-                reviewLabel.numberOfLines = 0
-                reviewLabel.font = UIFont.italicSystemFontOfSize(15)
-                reviewLabel.text = review.feedback
-                reviewLabel.hidden = true
-                views.append(reviewLabel)
-                self.stackView.addArrangedSubview(reviewLabel)
+                let reviewCell = ReviewCell.cell()
+                reviewCell.frame = CGRectMake(0, 0, self.view.bounds.width, 200)
+                reviewCell.configureWithReview(review)
+                self.stackView.addArrangedSubview(reviewCell)
             }
-            UIView.animateWithDuration(0.2, animations: {
-                views.forEach({  $0.hidden = false })
-            }, completion: { finished in
-                if finished {
-                    self.scrollView.layoutIfNeeded()
-                }
-            })
+            
+            self.scrollView.layoutIfNeeded()
         }
     }
     
