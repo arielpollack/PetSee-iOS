@@ -22,6 +22,10 @@ public class Pet: Mappable, Identifiable {
     
     private var map: JSON?
     
+    public init() {
+        
+    }
+    
     required public init?(_ map: Map) {
         
     }

@@ -22,10 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         if authManager.isLoggedIn() {
-            let user = authManager.authenticatedUser!
-            let userVC = UIStoryboard(name: "Client", bundle: nil).instantiateViewControllerWithIdentifier("Profile") as! UserProfile
-            userVC.user = user
-            window!.rootViewController = userVC.embededInNavigationController()
+            let userVC = UIStoryboard(name: "Client", bundle: nil).instantiateInitialViewController()
+            window!.rootViewController = userVC
         } else {
             let onboardingVC = OnboardingVC(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
             onboardingVC.loginDelegate = self

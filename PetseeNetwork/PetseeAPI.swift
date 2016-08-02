@@ -62,6 +62,11 @@ public struct PetseeAPI {
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: Pet.self, completion: completion)
     }
     
+    public static func uploadImage(imageData: NSData, completion: (AnyObject?,String?)->()) {
+        let target = PetseeActions.UploadImage(imageData)
+        executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
+    }
+    
     public static func updatePet(pet: Pet, completion: (Pet?,String?)->()) {
         let target = PetseeActions.UpdatePet(pet)
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: Pet.self, completion: completion)

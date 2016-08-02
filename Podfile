@@ -4,7 +4,9 @@
  use_frameworks!
 
 target 'Petsee' do
-    
+    pod 'AlamofireImage', '~> 2.0'
+    pod 'XLForm', '~> 3.0'
+    pod 'ImagePicker'
 end
 
 target 'PetseeCore' do

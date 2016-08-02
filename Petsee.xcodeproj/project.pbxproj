@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24684D04C90596411356CAEF /* Pods_Petsee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC867EBA1BEE481170B231B /* Pods_Petsee.framework */; };
 		287D5F4389B13D598E76BE1E /* Pods_PetseeNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B745F75D3E4C5C32F49E84 /* Pods_PetseeNetwork.framework */; };
 		3DD40AA2D629E56CB6C5FE9A /* Pods_PetseeCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246705114E32F4903C37B912 /* Pods_PetseeCore.framework */; };
 		732F2EE81CD5178800CB491D /* DataTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2EE71CD5178800CB491D /* DataTextField.swift */; };
@@ -27,6 +28,11 @@
 		73CB93FF1CDE9E9C00EE0BBE /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CB93FE1CDE9E9C00EE0BBE /* UserDefaultsManager.swift */; };
 		73CB94011CDEFD2900EE0BBE /* UIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CB94001CDEFD2900EE0BBE /* UIViewController+Additions.swift */; };
 		73CB94031CDF0B2300EE0BBE /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CB94021CDF0B2300EE0BBE /* ReviewCell.swift */; };
+		73DB8B7A1D510E0200BD95E5 /* MyServicesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DB8B791D510E0200BD95E5 /* MyServicesVC.swift */; };
+		73DB8B7C1D510E0C00BD95E5 /* MyPetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DB8B7B1D510E0C00BD95E5 /* MyPetsVC.swift */; };
+		73DB8B7E1D510ECA00BD95E5 /* PetsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DB8B7D1D510ECA00BD95E5 /* PetsStore.swift */; };
+		73DB8B801D512B4E00BD95E5 /* AddPetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DB8B7F1D512B4E00BD95E5 /* AddPetVC.swift */; };
+		73DB8B821D51321800BD95E5 /* libCloudinary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DB8B811D51321800BD95E5 /* libCloudinary.a */; };
 		73F819891CD1E592001AC3FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819881CD1E592001AC3FB /* AppDelegate.swift */; };
 		73F8198E1CD1E592001AC3FB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198C1CD1E592001AC3FB /* Login.storyboard */; };
 		73F819901CD1E592001AC3FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198F1CD1E592001AC3FB /* Assets.xcassets */; };
@@ -115,6 +121,18 @@
 		73CB93FE1CDE9E9C00EE0BBE /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		73CB94001CDEFD2900EE0BBE /* UIViewController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Additions.swift"; sourceTree = "<group>"; };
 		73CB94021CDF0B2300EE0BBE /* ReviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
+		73DB8B791D510E0200BD95E5 /* MyServicesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyServicesVC.swift; sourceTree = "<group>"; };
+		73DB8B7B1D510E0C00BD95E5 /* MyPetsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPetsVC.swift; sourceTree = "<group>"; };
+		73DB8B7D1D510ECA00BD95E5 /* PetsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetsStore.swift; sourceTree = "<group>"; };
+		73DB8B7F1D512B4E00BD95E5 /* AddPetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPetVC.swift; sourceTree = "<group>"; };
+		73DB8B811D51321800BD95E5 /* libCloudinary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCloudinary.a; sourceTree = "<group>"; };
+		73DB8B851D51323A00BD95E5 /* CLCloudinary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLCloudinary.h; sourceTree = "<group>"; };
+		73DB8B861D51323A00BD95E5 /* CLEagerTransformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLEagerTransformation.h; sourceTree = "<group>"; };
+		73DB8B871D51323A00BD95E5 /* CLLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLLayer.h; sourceTree = "<group>"; };
+		73DB8B881D51323A00BD95E5 /* Cloudinary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cloudinary.h; sourceTree = "<group>"; };
+		73DB8B891D51323A00BD95E5 /* CLTransformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTransformation.h; sourceTree = "<group>"; };
+		73DB8B8A1D51323A00BD95E5 /* CLUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUploader.h; sourceTree = "<group>"; };
+		73DB8B8B1D5134E100BD95E5 /* Petsee-bridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Petsee-bridgingHeader.h"; sourceTree = "<group>"; };
 		73F819851CD1E592001AC3FB /* Petsee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petsee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73F819881CD1E592001AC3FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73F8198D1CD1E592001AC3FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
@@ -139,7 +157,10 @@
 		73F819D81CD4A021001AC3FB /* PetseeAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetseeAuth.swift; sourceTree = "<group>"; };
 		74B8BE4B2158A24A643401C6 /* Pods-PetseeCore.remote.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetseeCore.remote.xcconfig"; path = "Pods/Target Support Files/Pods-PetseeCore/Pods-PetseeCore.remote.xcconfig"; sourceTree = "<group>"; };
 		835C65D63270579EC293C31D /* Pods-PetseeCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetseeCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetseeCore/Pods-PetseeCore.release.xcconfig"; sourceTree = "<group>"; };
+		ABC867EBA1BEE481170B231B /* Pods_Petsee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Petsee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA5ADA6FEE90D0688BD05357 /* Pods-Petsee.remote.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petsee.remote.xcconfig"; path = "Pods/Target Support Files/Pods-Petsee/Pods-Petsee.remote.xcconfig"; sourceTree = "<group>"; };
 		C6B745F75D3E4C5C32F49E84 /* Pods_PetseeNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetseeNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA7CD872F80A09C853DD5182 /* Pods-Petsee.local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petsee.local.xcconfig"; path = "Pods/Target Support Files/Pods-Petsee/Pods-Petsee.local.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +170,8 @@
 			files = (
 				73F819A61CD1E5E0001AC3FB /* PetseeCore.framework in Frameworks */,
 				73F819B81CD1E5F1001AC3FB /* PetseeNetwork.framework in Frameworks */,
+				24684D04C90596411356CAEF /* Pods_Petsee.framework in Frameworks */,
+				73DB8B821D51321800BD95E5 /* libCloudinary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,8 +198,10 @@
 		3618863996777A4E61838700 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				73DB8B811D51321800BD95E5 /* libCloudinary.a */,
 				246705114E32F4903C37B912 /* Pods_PetseeCore.framework */,
 				C6B745F75D3E4C5C32F49E84 /* Pods_PetseeNetwork.framework */,
+				ABC867EBA1BEE481170B231B /* Pods_Petsee.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -195,6 +220,7 @@
 		732F2EE61CD5175500CB491D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				73DB8B741D51035900BD95E5 /* Home */,
 				732F2F0C1CDE541F00CB491D /* User profile */,
 				732F2EF61CDA8FDC00CB491D /* Onboarding */,
 			);
@@ -227,6 +253,7 @@
 			children = (
 				732F2F021CDA90AA00CB491D /* AuthManager.swift */,
 				73CB93FE1CDE9E9C00EE0BBE /* UserDefaultsManager.swift */,
+				73DB8B7D1D510ECA00BD95E5 /* PetsStore.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -238,6 +265,37 @@
 			);
 			name = "User profile";
 			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		73DB8B741D51035900BD95E5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				73DB8B791D510E0200BD95E5 /* MyServicesVC.swift */,
+				73DB8B7B1D510E0C00BD95E5 /* MyPetsVC.swift */,
+				73DB8B7F1D512B4E00BD95E5 /* AddPetVC.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		73DB8B831D51322300BD95E5 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				73DB8B841D51323A00BD95E5 /* Cloudinary */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		73DB8B841D51323A00BD95E5 /* Cloudinary */ = {
+			isa = PBXGroup;
+			children = (
+				73DB8B851D51323A00BD95E5 /* CLCloudinary.h */,
+				73DB8B861D51323A00BD95E5 /* CLEagerTransformation.h */,
+				73DB8B871D51323A00BD95E5 /* CLLayer.h */,
+				73DB8B881D51323A00BD95E5 /* Cloudinary.h */,
+				73DB8B891D51323A00BD95E5 /* CLTransformation.h */,
+				73DB8B8A1D51323A00BD95E5 /* CLUploader.h */,
+			);
+			path = Cloudinary;
 			sourceTree = "<group>";
 		};
 		73F8197C1CD1E592001AC3FB = {
@@ -265,6 +323,7 @@
 		73F819871CD1E592001AC3FB /* Petsee */ = {
 			isa = PBXGroup;
 			children = (
+				73DB8B831D51322300BD95E5 /* Vendor */,
 				732F2F011CDA908E00CB491D /* Managers */,
 				732F2EF31CD94B8500CB491D /* Helpers */,
 				732F2EE61CD5175500CB491D /* ViewControllers */,
@@ -276,6 +335,7 @@
 				73F819941CD1E592001AC3FB /* Info.plist */,
 				732F2F041CDBE29400CB491D /* Client.storyboard */,
 				732F2F0A1CDE519100CB491D /* ServiceProvider.storyboard */,
+				73DB8B8B1D5134E100BD95E5 /* Petsee-bridgingHeader.h */,
 			);
 			path = Petsee;
 			sourceTree = "<group>";
@@ -321,6 +381,8 @@
 				74B8BE4B2158A24A643401C6 /* Pods-PetseeCore.remote.xcconfig */,
 				0489625BA459DD423840A3DE /* Pods-PetseeNetwork.local.xcconfig */,
 				2E6744B8C543B9F79B03B20F /* Pods-PetseeNetwork.remote.xcconfig */,
+				CA7CD872F80A09C853DD5182 /* Pods-Petsee.local.xcconfig */,
+				BA5ADA6FEE90D0688BD05357 /* Pods-Petsee.remote.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -351,10 +413,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73F819971CD1E592001AC3FB /* Build configuration list for PBXNativeTarget "Petsee" */;
 			buildPhases = (
+				0DDDC03C3162D60B77B94327 /* Check Pods Manifest.lock */,
 				73F819811CD1E592001AC3FB /* Sources */,
 				73F819821CD1E592001AC3FB /* Frameworks */,
 				73F819831CD1E592001AC3FB /* Resources */,
 				73F819AB1CD1E5E0001AC3FB /* Embed Frameworks */,
+				7BD45806707BDB2A710C4AE3 /* Embed Pods Frameworks */,
+				F4DEF9733A87175C075ECB92 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -480,6 +545,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0DDDC03C3162D60B77B94327 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		4EF51FF628ABDEA949FF508A /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -493,6 +573,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7BD45806707BDB2A710C4AE3 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Petsee/Pods-Petsee-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C1D57239DEB82C2E715223E1 /* Copy Pods Resources */ = {
@@ -525,6 +620,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		F4DEF9733A87175C075ECB92 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Petsee/Pods-Petsee-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FCDE63F5A42FB893E5AD8509 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -548,18 +658,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				732F2EFC1CDA8FDC00CB491D /* OnboardingDataUserTypeVC.swift in Sources */,
+				73DB8B7A1D510E0200BD95E5 /* MyServicesVC.swift in Sources */,
 				732F2EFE1CDA8FDC00CB491D /* OnboardingVC.swift in Sources */,
 				73CB93FF1CDE9E9C00EE0BBE /* UserDefaultsManager.swift in Sources */,
+				73DB8B7C1D510E0C00BD95E5 /* MyPetsVC.swift in Sources */,
 				73CB94011CDEFD2900EE0BBE /* UIViewController+Additions.swift in Sources */,
 				732F2EFB1CDA8FDC00CB491D /* OnboardingDataTextVC.swift in Sources */,
 				732F2EF51CD94BA300CB491D /* UIColor+Addons.swift in Sources */,
 				732F2EE81CD5178800CB491D /* DataTextField.swift in Sources */,
 				732F2F0E1CDE550B00CB491D /* UserProfile.swift in Sources */,
+				73DB8B801D512B4E00BD95E5 /* AddPetVC.swift in Sources */,
 				732F2F001CDA902100CB491D /* UIWindow+Transition.swift in Sources */,
 				732F2EEA1CD7BFFE00CB491D /* PetseeButton.swift in Sources */,
 				73F819891CD1E592001AC3FB /* AppDelegate.swift in Sources */,
 				732F2EFD1CDA8FDC00CB491D /* OnboardingDataVC.swift in Sources */,
 				732F2F031CDA90AA00CB491D /* AuthManager.swift in Sources */,
+				73DB8B7E1D510ECA00BD95E5 /* PetsStore.swift in Sources */,
 				73CB94031CDF0B2300EE0BBE /* ReviewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -677,15 +791,20 @@
 		};
 		73F819CD1CD1FF22001AC3FB /* local */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA7CD872F80A09C853DD5182 /* Pods-Petsee.local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Petsee/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pollack.petsee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Petsee/Petsee-bridgingHeader.h";
 			};
 			name = local;
 		};
@@ -778,14 +897,19 @@
 		};
 		73F819D11CD1FF29001AC3FB /* remote */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA5ADA6FEE90D0688BD05357 /* Pods-Petsee.remote.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Petsee/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pollack.petsee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Petsee/Petsee-bridgingHeader.h";
 			};
 			name = remote;
 		};
