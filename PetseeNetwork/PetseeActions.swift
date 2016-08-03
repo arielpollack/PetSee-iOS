@@ -20,6 +20,7 @@ enum PetseeActions {
     case AddPet(Pet)
     case UpdatePet(Pet)
     case UploadImage(NSData)
+    case Races(String)
     
     case MyReviews
     
@@ -45,6 +46,8 @@ extension PetseeActions: TargetType {
             return "/users/pets/\(pet.id)"
         case .UploadImage:
             return "/users/pets/upload_image"
+        case .Races:
+            return "/races"
         case .MyReviews:
             return "/users/reviews/my_reviews"
         case .SearchRace(let query):
@@ -69,6 +72,8 @@ extension PetseeActions: TargetType {
             return .PUT
         case .UploadImage:
             return .POST
+        case .Races:
+            return .GET
         case .MyReviews:
             return .GET
         case .SearchRace:
@@ -93,6 +98,8 @@ extension PetseeActions: TargetType {
             return ["review": ["rate": rate, "feedback": feedback ?? ""]]
         case .UploadImage(let imageData):
             return ["image": imageData.base64EncodedStringWithOptions([])]
+        case .Races(let term):
+            return ["query": term]
         default:
             return nil
         }

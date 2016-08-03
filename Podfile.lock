@@ -21,6 +21,7 @@ PODS:
   - ObjectMapper (1.2.0)
   - Result (2.0.0)
   - RxSwift (2.4)
+  - SVProgressHUD (2.0.3)
   - XLForm (3.2.0)
 
 DEPENDENCIES:
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - Moya-ObjectMapper/RxSwift
   - Moya/RxSwift
   - ObjectMapper
+  - SVProgressHUD
   - XLForm (~> 3.0)
 
 SPEC CHECKSUMS:
@@ -42,6 +44,7 @@ SPEC CHECKSUMS:
   ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
   Result: 9e75e1111c774c6ac594e14907b15057053a7959
   RxSwift: 67b9ef4e8b34fb394e200e754c6a09cc16559f94
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   XLForm: 2250b4e96ab8ffa5f3355838c79edd90de451782
 
 COCOAPODS: 0.39.0

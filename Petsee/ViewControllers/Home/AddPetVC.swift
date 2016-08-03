@@ -21,6 +21,8 @@ class AddPetVC: XLFormViewController {
         }
     }
     
+    private var pet = Pet()
+    
     required init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
         self.initializeForm()
@@ -37,12 +39,16 @@ class AddPetVC: XLFormViewController {
         form.addFormSection(section)
         
         var row = XLFormRowDescriptor(tag: "name", rowType: XLFormRowDescriptorTypeText, title: "Name")
+        row.required = true
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: "birthday", rowType: XLFormRowDescriptorTypeDate, title: "Birth date")
         section.addFormRow(row)
         
-        row = XLFormRowDescriptor(tag: "race", rowType: XLFormRowDescriptorTypeText, title: "Race")
+        row = XLFormRowDescriptor(tag: "race", rowType: XLFormRowDescriptorTypeSelectorPush, title: "Race")
+        row.action.viewControllerStoryboardId = "RaceChoose"
+        row.valueTransformer = RaceFormValueTransformer.self
+        row.required = true
         section.addFormRow(row)
         
         self.form = form
@@ -56,7 +62,10 @@ class AddPetVC: XLFormViewController {
     }
     
     @IBAction func saveTapped(sender: AnyObject) {
-        
+        let values = form.formValues()
+        pet.name = values["name"] as! String
+        pet.birthday = values["birthday"] as? NSDate
+        pet.race = values["race"] as! Race
     }
 }
 
@@ -67,19 +76,21 @@ extension AddPetVC: ImagePickerDelegate {
     }
     
     func doneButtonDidPress(imagePicker: ImagePickerController, images: [UIImage]) {
-        let image = images.first!
-        if let imageData = UIImageJPEGRepresentation(image, 0.7) {
-            PetseeAPI.uploadImage(imageData) { res, error in
-                guard let url = res?["url"] as? String else {
-                    return
+        imagePicker.dismissViewControllerAnimated(true) {
+            let image = images.first!
+            if let imageData = UIImageJPEGRepresentation(image, 0.7) {
+                PetseeAPI.uploadImage(imageData) { res, error in
+                    guard let url = res?["url"] as? String else {
+                        return
+                    }
+                    
+                    self.pet.image = url
                 }
-                
-                print(url)
             }
         }
     }
     
     func cancelButtonDidPress(imagePicker: ImagePickerController) {
-        
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
     }
 }

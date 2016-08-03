@@ -7,6 +7,7 @@ target 'Petsee' do
     pod 'AlamofireImage', '~> 2.0'
     pod 'XLForm', '~> 3.0'
     pod 'ImagePicker'
+    pod 'SVProgressHUD'
 end
 
 target 'PetseeCore' do

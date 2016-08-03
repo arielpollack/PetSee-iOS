@@ -33,6 +33,7 @@
 		73DB8B7E1D510ECA00BD95E5 /* PetsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DB8B7D1D510ECA00BD95E5 /* PetsStore.swift */; };
 		73DB8B801D512B4E00BD95E5 /* AddPetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DB8B7F1D512B4E00BD95E5 /* AddPetVC.swift */; };
 		73DB8B821D51321800BD95E5 /* libCloudinary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DB8B811D51321800BD95E5 /* libCloudinary.a */; };
+		73DB8B8D1D51BA7F00BD95E5 /* RaceChooseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DB8B8C1D51BA7F00BD95E5 /* RaceChooseVC.swift */; };
 		73F819891CD1E592001AC3FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819881CD1E592001AC3FB /* AppDelegate.swift */; };
 		73F8198E1CD1E592001AC3FB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198C1CD1E592001AC3FB /* Login.storyboard */; };
 		73F819901CD1E592001AC3FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198F1CD1E592001AC3FB /* Assets.xcassets */; };
@@ -133,6 +134,7 @@
 		73DB8B891D51323A00BD95E5 /* CLTransformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTransformation.h; sourceTree = "<group>"; };
 		73DB8B8A1D51323A00BD95E5 /* CLUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUploader.h; sourceTree = "<group>"; };
 		73DB8B8B1D5134E100BD95E5 /* Petsee-bridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Petsee-bridgingHeader.h"; sourceTree = "<group>"; };
+		73DB8B8C1D51BA7F00BD95E5 /* RaceChooseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceChooseVC.swift; sourceTree = "<group>"; };
 		73F819851CD1E592001AC3FB /* Petsee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petsee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73F819881CD1E592001AC3FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73F8198D1CD1E592001AC3FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				73DB8B791D510E0200BD95E5 /* MyServicesVC.swift */,
 				73DB8B7B1D510E0C00BD95E5 /* MyPetsVC.swift */,
 				73DB8B7F1D512B4E00BD95E5 /* AddPetVC.swift */,
+				73DB8B8C1D51BA7F00BD95E5 /* RaceChooseVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 				73DB8B7C1D510E0C00BD95E5 /* MyPetsVC.swift in Sources */,
 				73CB94011CDEFD2900EE0BBE /* UIViewController+Additions.swift in Sources */,
 				732F2EFB1CDA8FDC00CB491D /* OnboardingDataTextVC.swift in Sources */,
+				73DB8B8D1D51BA7F00BD95E5 /* RaceChooseVC.swift in Sources */,
 				732F2EF51CD94BA300CB491D /* UIColor+Addons.swift in Sources */,
 				732F2EE81CD5178800CB491D /* DataTextField.swift in Sources */,
 				732F2F0E1CDE550B00CB491D /* UserProfile.swift in Sources */,

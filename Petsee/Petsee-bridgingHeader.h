@@ -7,3 +7,4 @@
 //
 
 #import "Cloudinary.h"
+#import <SVProgressHUD/SVProgressHUD.h>
