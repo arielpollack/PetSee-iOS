@@ -57,3 +57,9 @@ extension Pet: CustomStringConvertible {
         return comps.description
     }
 }
+
+extension Pet: Equatable {}
+
+public func ==(lhs: Pet, rhs: Pet) -> Bool {
+    return lhs.id == rhs.id
+}

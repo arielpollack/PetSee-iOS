@@ -55,4 +55,12 @@ class PetsStore {
             })
         }
     }
+    
+    func addPet(pet: Pet) {
+        guard !pets.contains(pet) else {
+            return
+        }
+        
+        pets.append(pet)
+    }
 }

@@ -11,6 +11,7 @@ import XLForm
 import ImagePicker
 import PetseeCore
 import PetseeNetwork
+import SVProgressHUD
 
 class AddPetVC: XLFormViewController {
 
@@ -66,6 +67,20 @@ class AddPetVC: XLFormViewController {
         pet.name = values["name"] as! String
         pet.birthday = values["birthday"] as? NSDate
         pet.race = values["race"] as! Race
+        
+        SVProgressHUD.show()
+        PetseeAPI.addPet(pet) { pet, error in
+            SVProgressHUD.dismiss()
+            
+            guard let pet = pet else {
+                // error
+                return
+            }
+            
+            // save pet locally
+            PetsStore.sharedManager.addPet(pet)
+            
+        }
     }
 }
 

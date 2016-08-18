@@ -17,7 +17,7 @@ class RaceChooseVC: UITableViewController, XLFormRowDescriptorViewController {
     var rowDescriptor: XLFormRowDescriptor!
     
     private var races = [Race]()
-    
+                
     override func viewDidLoad() {
         super.viewDidLoad()
         
