@@ -1,0 +1,50 @@
+PODS:
+  - Alamofire (3.3.1)
+  - AlamofireImage (2.4.1):
+    - Alamofire (~> 3.3)
+  - ImagePicker (1.4.0)
+  - Moya (6.4.0):
+    - Moya/Core (= 6.4.0)
+  - Moya-ObjectMapper/Core (1.2):
+    - Moya (~> 6.3)
+    - ObjectMapper (~> 1.2)
+  - Moya-ObjectMapper/RxSwift (1.2):
+    - Moya-ObjectMapper/Core
+    - Moya/RxSwift (~> 6.3)
+    - RxSwift (~> 2.2)
+  - Moya/Core (6.4.0):
+    - Alamofire (~> 3.0)
+    - Result (~> 2.0)
+  - Moya/RxSwift (6.4.0):
+    - Moya/Core
+    - RxSwift (~> 2.0)
+  - ObjectMapper (1.2.0)
+  - Result (2.0.0)
+  - RxSwift (2.4)
+  - SVProgressHUD (2.0.3)
+  - XLForm (3.2.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.3)
+  - AlamofireImage (~> 2.0)
+  - ImagePicker
+  - Moya
+  - Moya-ObjectMapper/RxSwift
+  - Moya/RxSwift
+  - ObjectMapper
+  - SVProgressHUD
+  - XLForm (~> 3.0)
+
+SPEC CHECKSUMS:
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  AlamofireImage: 3ccf3347d9ea24580dc11fb892770a0be6a29826
+  ImagePicker: 6659ccdd4737bfa14ed3b4aa7ffe18b193d92a0c
+  Moya: 4d526954c8afd79820991393d40d7d8af756ceee
+  Moya-ObjectMapper: 565c1e9e1e79bdf72e18fa8fa01a0741d042fa34
+  ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
+  Result: 9e75e1111c774c6ac594e14907b15057053a7959
+  RxSwift: 67b9ef4e8b34fb394e200e754c6a09cc16559f94
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  XLForm: 2250b4e96ab8ffa5f3355838c79edd90de451782
+
+COCOAPODS: 0.39.0

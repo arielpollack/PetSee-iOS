@@ -46,7 +46,9 @@ class RaceChooseVC: UITableViewController, XLFormRowDescriptorViewController {
         
         let race = races[indexPath.row]
         cell.textLabel?.text = race.name
-        cell.imageView?.af_setImageWithURL(NSURL(string: race.image)!)
+        if let image = race.image {
+            cell.imageView?.af_setImageWithURL(NSURL(string: image)!)
+        }
         
         return cell
     }

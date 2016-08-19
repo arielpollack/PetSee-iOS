@@ -87,9 +87,9 @@ extension PetseeActions: TargetType {
         switch self {
         case .AddPet(let pet):
             var params = pet.toJSON()
-            params.removeValueForKey("race")
+            params["race"] = nil
             params["race_id"] = pet.race.id
-            return ["pet": pet.toJSON()]
+            return ["pet": params]
         case .UpdatePet(let pet):
             return ["pet": pet.toJSON()]
         case .AddRace(let name):

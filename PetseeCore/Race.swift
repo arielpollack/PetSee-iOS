@@ -12,7 +12,7 @@ import ObjectMapper
 public class Race: Mappable, Identifiable {
     public var id: Int!
     public var name: String!
-    public var image: String!
+    public var image: String?
     
     required public init?(_ map: Map) {
         

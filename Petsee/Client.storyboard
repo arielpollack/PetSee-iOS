@@ -103,21 +103,21 @@ Member Since April 2016</string>
                                     <color key="textColor" red="0.26970880679999998" green="0.26970880679999998" blue="0.26970880679999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="25 old BSc student in Tel Aviv" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMX-6a-KHF">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" ambiguous="YES" misplaced="YES" text="25 old BSc student in Tel Aviv" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMX-6a-KHF">
                                     <rect key="frame" x="15" y="143" width="292" height="20"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <color key="textColor" red="0.18615845959999999" green="0.18615845959999999" blue="0.18615845959999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gYx-Lg-egr" userLabel="border">
+                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gYx-Lg-egr" userLabel="border">
                                     <rect key="frame" x="15" y="168" width="292" height="0.0"/>
                                     <color key="backgroundColor" red="0.701171875" green="0.701171875" blue="0.701171875" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="0.5" id="cDY-YW-C0D"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 Reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDB-RH-TMe">
-                                    <rect key="frame" x="15" y="173" width="292" height="75"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="3 Reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDB-RH-TMe">
+                                    <rect key="frame" x="15" y="173" width="292" height="76"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="lfb-C6-ONl"/>
                                     </constraints>
@@ -168,7 +168,7 @@ Member Since April 2016</string>
         <!--My PetsVC-->
         <scene sceneID="YQA-Jy-yvj">
             <objects>
-                <viewController id="P12-qm-t2g" customClass="MyPetsVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="P12-qm-t2g" customClass="MyPetsVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nWJ-Jd-IAr"/>
                         <viewControllerLayoutGuide type="bottom" id="UQc-TF-hUJ"/>
@@ -182,14 +182,14 @@ Member Since April 2016</string>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Pet" textLabel="WgQ-wz-5Sr" style="IBUITableViewCellStyleDefault" id="T7e-p1-U7J">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="50"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T7e-p1-U7J" id="hBi-Vv-wfY">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WgQ-wz-5Sr">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="49"/>
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="49.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -314,11 +314,11 @@ Member Since April 2016</string>
                                 <rect key="frame" x="0.0" y="72" width="600" height="57"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mg7-C9-lak" id="NSn-Oa-cGv">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="56"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="56.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="z82-jZ-5Vi">
-                                            <rect key="frame" x="15" y="0.0" width="570" height="56"/>
+                                            <rect key="frame" x="15" y="0.0" width="570" height="56.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -338,10 +338,10 @@ Member Since April 2016</string>
             </objects>
             <point key="canvasLocation" x="5103" y="-723"/>
         </scene>
-        <!--View Controller-->
+        <!--PetVC-->
         <scene sceneID="NJC-TQ-Q0a">
             <objects>
-                <viewController id="0ce-lF-WXx" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Pet" automaticallyAdjustsScrollViewInsets="NO" id="0ce-lF-WXx" customClass="PetVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mLR-hd-hm8"/>
                         <viewControllerLayoutGuide type="bottom" id="1qX-NH-kls"/>
@@ -350,28 +350,42 @@ Member Since April 2016</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Ki-xV-snL">
-                                <rect key="frame" x="30" y="50" width="45" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="6kc-tf-7qg"/>
-                                    <constraint firstAttribute="height" constant="45" id="Bq9-4f-VLk"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYf-gp-FtC">
-                                <rect key="frame" x="90" y="62" width="42" height="21"/>
+                                <rect key="frame" x="90" y="108" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZl-9e-Ytn">
+                                <rect key="frame" x="30" y="35" width="46" height="46"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                <state key="normal" image="exit"/>
+                                <connections>
+                                    <action selector="exitTapped" destination="0ce-lF-WXx" eventType="touchUpInside" id="Kqv-Q6-kHD"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NjO-Bz-szB">
+                                <rect key="frame" x="30" y="96" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="mFM-hP-cle"/>
+                                    <constraint firstAttribute="width" constant="45" id="qRF-sz-ECl"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9Ki-xV-snL" firstAttribute="top" secondItem="mLR-hd-hm8" secondAttribute="bottom" constant="30" id="GQI-5g-bS2"/>
-                            <constraint firstItem="gYf-gp-FtC" firstAttribute="leading" secondItem="9Ki-xV-snL" secondAttribute="trailing" constant="15" id="Lm4-0A-QyJ"/>
-                            <constraint firstItem="gYf-gp-FtC" firstAttribute="centerY" secondItem="9Ki-xV-snL" secondAttribute="centerY" id="SWE-jf-pXz"/>
-                            <constraint firstItem="9Ki-xV-snL" firstAttribute="leading" secondItem="fYK-TD-Gqv" secondAttribute="leading" constant="30" id="mre-eB-F1E"/>
+                            <constraint firstItem="NjO-Bz-szB" firstAttribute="leading" secondItem="fYK-TD-Gqv" secondAttribute="leading" constant="30" id="1N2-kI-5eu"/>
+                            <constraint firstItem="NjO-Bz-szB" firstAttribute="top" secondItem="QZl-9e-Ytn" secondAttribute="bottom" constant="15" id="5Cp-iH-KVU"/>
+                            <constraint firstItem="QZl-9e-Ytn" firstAttribute="leading" secondItem="fYK-TD-Gqv" secondAttribute="leading" constant="30" id="ALC-fp-bAy"/>
+                            <constraint firstItem="gYf-gp-FtC" firstAttribute="centerY" secondItem="NjO-Bz-szB" secondAttribute="centerY" id="JE4-jx-DHt"/>
+                            <constraint firstItem="gYf-gp-FtC" firstAttribute="leading" secondItem="NjO-Bz-szB" secondAttribute="trailing" constant="15" id="O4A-mI-PSv"/>
+                            <constraint firstItem="QZl-9e-Ytn" firstAttribute="top" secondItem="mLR-hd-hm8" secondAttribute="bottom" constant="15" id="VPR-uW-O4g"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imgPetThumbnail" destination="NjO-Bz-szB" id="nDL-aJ-BRO"/>
+                        <outlet property="lblPetName" destination="gYf-gp-FtC" id="cgp-IW-6Oh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Mg-4t-HLS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -434,6 +448,7 @@ Member Since April 2016</string>
         </scene>
     </scenes>
     <resources>
+        <image name="exit" width="30" height="30"/>
         <image name="my-pets-icon" width="24" height="24"/>
         <image name="pet-profile-placeholder" width="66" height="66"/>
         <image name="service-icon" width="30" height="25"/>

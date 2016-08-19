@@ -15,13 +15,30 @@ class MyPetsVC: UIViewController {
     @IBOutlet weak var petsTableView: UITableView!
     
     private var pets = [Pet]()
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
+        reloadPets()
+    }
+    
+    private func reloadPets() {
         PetsStore.sharedManager.fetchAllPets { pets in
             self.pets = pets
             self.petsTableView.reloadData()
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let petVC = segue.destinationViewController as? PetVC else {
+            return
+        }
+        
+        guard let selectedIndexPath = petsTableView.indexPathForSelectedRow else {
+            return
+        }
+        
+        petVC.pet = pets[selectedIndexPath.row]
     }
 }
 

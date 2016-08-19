@@ -72,14 +72,14 @@ class AddPetVC: XLFormViewController {
         PetseeAPI.addPet(pet) { pet, error in
             SVProgressHUD.dismiss()
             
-            guard let pet = pet else {
+            guard let pet = pet where error == nil else {
                 // error
                 return
             }
             
             // save pet locally
             PetsStore.sharedManager.addPet(pet)
-            
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
 }

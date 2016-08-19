@@ -31,6 +31,7 @@ public class Pet: Mappable, Identifiable {
     }
     
     public func mapping(map: Map) {
+        id <- map["id"]
         name <- map["name"]
         race <- map["race"]
         color <- map["color"]
