@@ -56,6 +56,7 @@
 		73F819D71CD49F86001AC3FB /* PetseeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819D61CD49F86001AC3FB /* PetseeAPI.swift */; };
 		73F819D91CD4A021001AC3FB /* PetseeAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819D81CD4A021001AC3FB /* PetseeAuth.swift */; };
 		B0803F731D67A6FF00AADA00 /* PetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0803F721D67A6FF00AADA00 /* PetVC.swift */; };
+		B0803F751D67B27D00AADA00 /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0803F741D67B27D00AADA00 /* ServiceRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +163,7 @@
 		835C65D63270579EC293C31D /* Pods-PetseeCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetseeCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetseeCore/Pods-PetseeCore.release.xcconfig"; sourceTree = "<group>"; };
 		ABC867EBA1BEE481170B231B /* Pods_Petsee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Petsee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0803F721D67A6FF00AADA00 /* PetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetVC.swift; sourceTree = "<group>"; };
+		B0803F741D67B27D00AADA00 /* ServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
 		BA5ADA6FEE90D0688BD05357 /* Pods-Petsee.remote.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petsee.remote.xcconfig"; path = "Pods/Target Support Files/Pods-Petsee/Pods-Petsee.remote.xcconfig"; sourceTree = "<group>"; };
 		C6B745F75D3E4C5C32F49E84 /* Pods_PetseeNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetseeNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA7CD872F80A09C853DD5182 /* Pods-Petsee.local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petsee.local.xcconfig"; path = "Pods/Target Support Files/Pods-Petsee/Pods-Petsee.local.xcconfig"; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				73F819C01CD1EE6C001AC3FB /* Pet.swift */,
 				73F819C21CD1F001001AC3FB /* Review.swift */,
 				73F819C41CD1F0C3001AC3FB /* Service.swift */,
+				B0803F741D67B27D00AADA00 /* ServiceRequest.swift */,
 				73F819C61CD1F11E001AC3FB /* Client.swift */,
 				73F819C81CD1F130001AC3FB /* ServiceProvider.swift */,
 				73F819CA1CD1F293001AC3FB /* ServiceProviderSkill.swift */,
@@ -695,6 +698,7 @@
 				73F819BF1CD1EC9A001AC3FB /* User.swift in Sources */,
 				73F819C51CD1F0C3001AC3FB /* Service.swift in Sources */,
 				732F2F091CDE3E0300CB491D /* Race.swift in Sources */,
+				B0803F751D67B27D00AADA00 /* ServiceRequest.swift in Sources */,
 				73F819C11CD1EE6C001AC3FB /* Pet.swift in Sources */,
 				73F819D51CD2541E001AC3FB /* Identifiable.swift in Sources */,
 				73F819C71CD1F11E001AC3FB /* Client.swift in Sources */,

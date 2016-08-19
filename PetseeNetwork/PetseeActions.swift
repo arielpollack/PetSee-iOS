@@ -26,6 +26,17 @@ enum PetseeActions {
     
     case SearchRace(query: String)
     case AddRace(name: String)
+    
+    case MyServices
+    case AddService(service: Service)
+    case GetServiceRequests(service: Service)
+    
+    case RequestServiceProvider(service: Service, provider: ServiceProvider)
+    
+    // service provider methods
+    case ApproveServiceRequest(serviceRequest: ServiceRequest)
+    case DenyServiceRequest(serviceRequest: ServiceRequest)
+
 }
 
 extension PetseeActions: TargetType {
@@ -54,6 +65,18 @@ extension PetseeActions: TargetType {
             return "/races?query=" + query.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
         case .AddRace:
             return "/races"
+        case .MyServices:
+            return "/services"
+        case .AddService:
+            return "/services"
+        case .GetServiceRequests(let service):
+            return "/services/\(service.id)/requests"
+        case .RequestServiceProvider(let service, _):
+            return "/services/\(service.id)/requests"
+        case .ApproveServiceRequest(let serviceRequest):
+            return "/service_request/\(serviceRequest.id)/approve"
+        case .DenyServiceRequest(let serviceRequest):
+            return "/service_request/\(serviceRequest.id)/deny"
         }
     }
     var method: Moya.Method {
@@ -80,7 +103,18 @@ extension PetseeActions: TargetType {
             return .GET
         case .AddRace:
             return .POST
-            
+        case .MyServices:
+            return .GET
+        case .AddService:
+            return .POST
+        case .GetServiceRequests:
+            return .GET
+        case .RequestServiceProvider:
+            return .POST
+        case .ApproveServiceRequest:
+            return .PUT
+        case .DenyServiceRequest:
+            return .PUT
         }
     }
     var parameters: [String : AnyObject]? {
@@ -100,6 +134,11 @@ extension PetseeActions: TargetType {
             return ["image": imageData.base64EncodedStringWithOptions([])]
         case .Races(let term):
             return ["query": term]
+        case .AddService(let service):
+            return ["service": service.toJSON()]
+        case .RequestServiceProvider(_, let provider):
+            return ["service_provider_id": provider.id]
+        
         default:
             return nil
         }
