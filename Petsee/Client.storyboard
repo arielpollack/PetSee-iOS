@@ -584,14 +584,21 @@ Member Since April 2016</string>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S1Y-JQ-UI6">
-                                            <rect key="frame" x="15" y="40" width="290" height="132"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S1Y-JQ-UI6">
+                                            <rect key="frame" x="15" y="40" width="290" height="133"/>
+                                            <color key="backgroundColor" red="0.75686274509999996" green="0.75686274509999996" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                         </imageView>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="gKZ-MM-zk5">
+                                            <rect key="frame" x="150" y="97" width="20" height="20"/>
+                                            <color key="color" red="0.30350378789999999" green="0.30350378789999999" blue="0.30350378789999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="uO6-RL-ofm" firstAttribute="top" secondItem="fJZ-7n-0Pc" secondAttribute="top" constant="11" id="42U-Lc-LG3"/>
+                                        <constraint firstItem="gKZ-MM-zk5" firstAttribute="centerY" secondItem="S1Y-JQ-UI6" secondAttribute="centerY" id="4h5-W2-pjO"/>
                                         <constraint firstItem="uO6-RL-ofm" firstAttribute="leading" secondItem="fJZ-7n-0Pc" secondAttribute="leading" constant="15" id="66T-Mi-PQc"/>
                                         <constraint firstAttribute="bottom" secondItem="S1Y-JQ-UI6" secondAttribute="bottom" constant="11" id="Cht-Gs-ooP"/>
+                                        <constraint firstItem="gKZ-MM-zk5" firstAttribute="centerX" secondItem="S1Y-JQ-UI6" secondAttribute="centerX" id="UXc-N2-jp6"/>
                                         <constraint firstItem="S1Y-JQ-UI6" firstAttribute="leading" secondItem="fJZ-7n-0Pc" secondAttribute="leading" constant="15" id="fEV-wU-0sj"/>
                                         <constraint firstItem="S1Y-JQ-UI6" firstAttribute="top" secondItem="uO6-RL-ofm" secondAttribute="bottom" constant="8" id="qbf-KT-gkG"/>
                                         <constraint firstAttribute="trailing" secondItem="S1Y-JQ-UI6" secondAttribute="trailing" constant="15" id="s4V-JN-Vsb"/>
@@ -599,6 +606,7 @@ Member Since April 2016</string>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="imgTripRoute" destination="S1Y-JQ-UI6" id="RKv-ol-zl2"/>
+                                    <outlet property="loader" destination="gKZ-MM-zk5" id="Tgm-8Y-NW5"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Button" rowHeight="56" id="373-jz-1oW" userLabel="Button" customClass="ServiceButtonCell" customModule="Petsee" customModuleProvider="target">

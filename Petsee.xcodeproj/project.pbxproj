@@ -29,6 +29,7 @@
 		73AEC7BF1D68E4EA001FDF83 /* ObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AEC7BE1D68E4EA001FDF83 /* ObjectStore.swift */; };
 		73AEC7C11D68F120001FDF83 /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AEC7C01D68F120001FDF83 /* ServiceCell.swift */; };
 		73AEC7C31D68FAD5001FDF83 /* ServiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AEC7C21D68FAD5001FDF83 /* ServiceVC.swift */; };
+		73AEC7C51D690900001FDF83 /* GoogleMapsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AEC7C41D690900001FDF83 /* GoogleMapsService.swift */; };
 		73CB93FF1CDE9E9C00EE0BBE /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CB93FE1CDE9E9C00EE0BBE /* UserDefaultsManager.swift */; };
 		73CB94011CDEFD2900EE0BBE /* UIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CB94001CDEFD2900EE0BBE /* UIViewController+Additions.swift */; };
 		73CB94031CDF0B2300EE0BBE /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CB94021CDF0B2300EE0BBE /* ReviewCell.swift */; };
@@ -129,6 +130,7 @@
 		73AEC7BE1D68E4EA001FDF83 /* ObjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStore.swift; sourceTree = "<group>"; };
 		73AEC7C01D68F120001FDF83 /* ServiceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 		73AEC7C21D68FAD5001FDF83 /* ServiceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceVC.swift; sourceTree = "<group>"; };
+		73AEC7C41D690900001FDF83 /* GoogleMapsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsService.swift; sourceTree = "<group>"; };
 		73CB93FE1CDE9E9C00EE0BBE /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		73CB94001CDEFD2900EE0BBE /* UIViewController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Additions.swift"; sourceTree = "<group>"; };
 		73CB94021CDF0B2300EE0BBE /* ReviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				73DB8B7D1D510ECA00BD95E5 /* PetsStore.swift */,
 				73AEC7BC1D68E4CD001FDF83 /* ServicesStore.swift */,
 				73AEC7BE1D68E4EA001FDF83 /* ObjectStore.swift */,
+				73AEC7C41D690900001FDF83 /* GoogleMapsService.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 				732F2EFE1CDA8FDC00CB491D /* OnboardingVC.swift in Sources */,
 				73CB93FF1CDE9E9C00EE0BBE /* UserDefaultsManager.swift in Sources */,
 				73DB8B7C1D510E0C00BD95E5 /* MyPetsVC.swift in Sources */,
+				73AEC7C51D690900001FDF83 /* GoogleMapsService.swift in Sources */,
 				73CB94011CDEFD2900EE0BBE /* UIViewController+Additions.swift in Sources */,
 				732F2EFB1CDA8FDC00CB491D /* OnboardingDataTextVC.swift in Sources */,
 				73DB8B8D1D51BA7F00BD95E5 /* RaceChooseVC.swift in Sources */,

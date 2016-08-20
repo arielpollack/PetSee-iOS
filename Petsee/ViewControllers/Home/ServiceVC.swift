@@ -115,6 +115,7 @@ class ServiceVC: UITableViewController {
 class ServiceTripRouteCell: UITableViewCell {
     
     @IBOutlet weak var imgTripRoute: UIImageView!
+    @IBOutlet weak var loader: UIActivityIndicatorView!
     
     var service: Service!
     
