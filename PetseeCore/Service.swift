@@ -15,11 +15,51 @@ public class Service: Mappable , Identifiable {
         case Pending = "pending"
         case Started = "started"
         case Ended = "ended"
+        case Cancelled = "cancelled"
+        
+        public var readableString: String {
+            get {
+                switch self {
+                case .Pending:
+                    return "Pending"
+                case .Started:
+                    return "In Progress"
+                case .Ended:
+                    return "Ended"
+                case .Cancelled:
+                    return "Cancelled"
+                }
+            }
+        }
+        
+        public var presentingColor: UIColor {
+            switch self {
+            case .Pending:
+                return UIColor.orangeColor()
+            case .Started:
+                return UIColor.greenColor()
+            case .Ended:
+                return UIColor.greenColor()
+            case .Cancelled:
+                return UIColor.redColor()
+            }
+        }
     }
     
     public enum Type: String {
         case Walking = "dogwalk"
         case Sitting = "dogsit"
+        
+        public var readableString: String {
+            get {
+                switch self {
+                case .Sitting:
+                    return "Dogsit"
+                case .Walking:
+                    return "Dogwalk"
+                }
+            }
+        }
     }
     
     public var id: Int!
@@ -39,8 +79,9 @@ public class Service: Mappable , Identifiable {
         client <- map["client"]
         serviceProvider <- map["service_provider"]
         pet <- map["pet"]
-        startDate <- map["time_start"]
-        endDate <- map["time_end"]
+        startDate <- (map["time_start"], DateTransform())
+        endDate <- (map["time_end"], DateTransform())
         type <- map["type"]
+        status <- map["status"]
     }
 }

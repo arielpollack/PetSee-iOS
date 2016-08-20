@@ -23,7 +23,7 @@ class MyPetsVC: UIViewController {
     }
     
     private func reloadPets() {
-        PetsStore.sharedManager.fetchAllPets { pets in
+        PetsStore.sharedStore.fetchAll { pets in
             self.pets = pets
             self.petsTableView.reloadData()
         }

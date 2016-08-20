@@ -7,18 +7,51 @@
 //
 
 import UIKit
+import PetseeCore
+import PetseeNetwork
 
 class MyServicesVC: UIViewController {
 
+    @IBOutlet var servicesTableView: UITableView!
+    
+    var services = [Service]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        loadServices()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func loadServices() {
+        ServicesStore.sharedStore.fetchAll { services in
+            self.services = services
+            self.servicesTableView.reloadData()
+        }
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let serviceVC = segue.destinationViewController as? ServiceVC else {
+            return
+        }
+        guard let indexPath = servicesTableView.indexPathForSelectedRow else {
+            return
+        }
+        
+        serviceVC.service = services[indexPath.row]
+    }
 }
+
+
+extension MyServicesVC: UITableViewDataSource {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return services.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Service") as! ServiceCell
+        cell.service = services[indexPath.row]
+        return cell
+    }
+}
+

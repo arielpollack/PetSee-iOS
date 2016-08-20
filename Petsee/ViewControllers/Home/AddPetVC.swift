@@ -78,7 +78,7 @@ class AddPetVC: XLFormViewController {
             }
             
             // save pet locally
-            PetsStore.sharedManager.addPet(pet)
+            PetsStore.sharedStore.add(pet)
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
