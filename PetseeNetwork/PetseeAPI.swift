@@ -89,6 +89,27 @@ public struct PetseeAPI {
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: Review.self, completion: completion)
     }
     
+    // MARK:- Services
+    public static func myServices(completion: ([Service]?,String?)->()) {
+        let target = PetseeActions.MyServices
+        executeRequest(sharedInstance.actionsProvider, target: target, arrayType: Service.self, completion: completion)
+    }
+    
+    public static func addService(service: Service, completion: (Service?,String?)->()) {
+        let target = PetseeActions.AddService(service: service)
+        executeRequest(sharedInstance.actionsProvider, target: target, objectType: Service.self, completion: completion)
+    }
+    
+    public static func getServiceRequests(service: Service, completion: ([ServiceRequest]?,String?)->()) {
+        let target = PetseeActions.GetServiceRequests(service: service)
+        executeRequest(sharedInstance.actionsProvider, target: target, arrayType: ServiceRequest.self, completion: completion)
+    }
+    
+    public static func requestServiceProvider(service: Service, serviceProvider: ServiceProvider, completion: (ServiceRequest?,String?)->()) {
+        let target = PetseeActions.RequestServiceProvider(service: service, provider: serviceProvider)
+        executeRequest(sharedInstance.actionsProvider, target: target, objectType: ServiceRequest.self, completion: completion)
+    }
+    
     // MARK:- Private
     private static func executeRequest<TT: TargetType>(provider: RxMoyaProvider<TT>, target: TT, completion: (AnyObject?, String?)->()) {
         let observable = observableRequest(provider, target: target).mapJSON()
