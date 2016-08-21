@@ -68,6 +68,7 @@ class ServiceVC: UITableViewController {
                 
             case .TripRoute:
                 let cell = tableView.dequeueReusableCellWithIdentifier("Map") as! ServiceTripRouteCell
+                cell.service = service
                 return cell
                 
             case .CancelButton:
@@ -81,6 +82,18 @@ class ServiceVC: UITableViewController {
             case .WriteReviewButton:
                 let cell = tableView.dequeueReusableCellWithIdentifier("Button") as! ServiceButtonCell
                 return cell
+            }
+        }
+        
+        func height() -> CGFloat {
+            switch self {
+            case .TripRoute:
+                return 230
+            case .CancelButton, .WriteReviewButton, .FindServiceProviderButton:
+                return 60
+                
+            default:
+                return 44
             }
         }
     }
@@ -110,6 +123,21 @@ class ServiceVC: UITableViewController {
         
         return cellType.cell(service, tableView: tableView)
     }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let cellType: CellType
+        
+        switch service.status! {
+        case .Pending:
+            cellType = CellType.PendingCells[indexPath.row]
+        case .Started, .Ended:
+            cellType = CellType.ActiveCells[indexPath.row]
+        case .Cancelled:
+            cellType = CellType.CancelledCells[indexPath.row]
+        }
+        
+        return cellType.height()
+    }
 }
 
 class ServiceTripRouteCell: UITableViewCell {
@@ -117,14 +145,27 @@ class ServiceTripRouteCell: UITableViewCell {
     @IBOutlet weak var imgTripRoute: UIImageView!
     @IBOutlet weak var loader: UIActivityIndicatorView!
     
-    var service: Service!
-    
-    private func loadTripRoute() {
-        
+    var service: Service! {
+        didSet {
+            self.loadTripRoute()
+        }
     }
     
-    private func loadGoogleImage() {
-        
+    private func loadTripRoute() {
+        PetseeAPI.locationsForService(service) { locations, error in
+            if let locations = locations {
+                self.loadGoogleImage(locations)
+            } else {
+                self.loader.stopAnimating()
+            }
+        }
+    }
+    
+    private func loadGoogleImage(locations: [Location]) {
+        GoogleMapsService.imageMapForLocations(imgTripRoute.bounds.size, locations: locations) { image in
+            self.imgTripRoute.image = image
+            self.loader.stopAnimating()
+        }
     }
 }
 

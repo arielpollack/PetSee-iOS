@@ -7,11 +7,29 @@
 //
 
 import Foundation
+import PetseeCore
+import Alamofire
+import AlamofireImage
 
 struct GoogleMapsService {
     
-    let apiKey = "AIzaSyCWWlHGtPXbeu-WedlJ6TQxVAYXlzqIr7A"
+    static private let apiKey = "AIzaSyCWWlHGtPXbeu-WedlJ6TQxVAYXlzqIr7A"
     
     // add methods for loading a map from locations:
     // https://developers.google.com/maps/documentation/static-maps/intro#Paths
+    
+    static func imageMapForLocations(size: CGSize, locations: [Location], completion: UIImage?->()) {
+        let sortedLocations = locations.sort { $0.timestamp.compare($1.timestamp) == .OrderedAscending }
+        
+        let scale = UIScreen.mainScreen().scale
+        let scaledSize = CGSizeMake(size.width * scale, size.height * scale)
+        
+        let baseUrl = "https://maps.googleapis.com/maps/api/staticmap?key=\(apiKey)&size=\(Int(scaledSize.width))x\(Int(scaledSize.height))&path=color:0x0000ff|weight:5"
+        var url: String = sortedLocations.reduce(baseUrl) { return $0 + "|\($1.latitude),\($1.longitude)" }
+        url = url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        
+        Alamofire.request(.GET, url).responseImage { response in
+            completion(response.result.value)
+        }
+    }
 }

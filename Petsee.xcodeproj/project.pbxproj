@@ -24,6 +24,7 @@
 		732F2F091CDE3E0300CB491D /* Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2F081CDE3E0300CB491D /* Race.swift */; };
 		732F2F0B1CDE519100CB491D /* ServiceProvider.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 732F2F0A1CDE519100CB491D /* ServiceProvider.storyboard */; };
 		732F2F0E1CDE550B00CB491D /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2F0D1CDE550B00CB491D /* UserProfile.swift */; };
+		735AECF21D6A3EBF0048E1E8 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735AECF11D6A3EBF0048E1E8 /* Location.swift */; };
 		737EDA951CDFCF92001B36D1 /* ReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 737EDA941CDFCF92001B36D1 /* ReviewCell.xib */; };
 		73AEC7BD1D68E4CD001FDF83 /* ServicesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AEC7BC1D68E4CD001FDF83 /* ServicesStore.swift */; };
 		73AEC7BF1D68E4EA001FDF83 /* ObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AEC7BE1D68E4EA001FDF83 /* ObjectStore.swift */; };
@@ -125,6 +126,7 @@
 		732F2F081CDE3E0300CB491D /* Race.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
 		732F2F0A1CDE519100CB491D /* ServiceProvider.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ServiceProvider.storyboard; sourceTree = "<group>"; };
 		732F2F0D1CDE550B00CB491D /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		735AECF11D6A3EBF0048E1E8 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		737EDA941CDFCF92001B36D1 /* ReviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewCell.xib; sourceTree = "<group>"; };
 		73AEC7BC1D68E4CD001FDF83 /* ServicesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesStore.swift; sourceTree = "<group>"; };
 		73AEC7BE1D68E4EA001FDF83 /* ObjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStore.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				73F819CA1CD1F293001AC3FB /* ServiceProviderSkill.swift */,
 				73F819D41CD2541E001AC3FB /* Identifiable.swift */,
 				732F2F081CDE3E0300CB491D /* Race.swift */,
+				735AECF11D6A3EBF0048E1E8 /* Location.swift */,
 			);
 			path = PetseeCore;
 			sourceTree = "<group>";
@@ -714,6 +717,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73F819C91CD1F130001AC3FB /* ServiceProvider.swift in Sources */,
+				735AECF21D6A3EBF0048E1E8 /* Location.swift in Sources */,
 				73F819CB1CD1F293001AC3FB /* ServiceProviderSkill.swift in Sources */,
 				73F819BF1CD1EC9A001AC3FB /* User.swift in Sources */,
 				73F819C51CD1F0C3001AC3FB /* Service.swift in Sources */,

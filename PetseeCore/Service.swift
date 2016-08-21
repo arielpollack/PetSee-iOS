@@ -76,6 +76,7 @@ public class Service: Mappable , Identifiable {
     }
     
     public func mapping(map: Map) {
+        id <- map["id"]
         client <- map["client"]
         serviceProvider <- map["service_provider"]
         pet <- map["pet"]

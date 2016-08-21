@@ -117,7 +117,7 @@ Member Since April 2016</string>
                                         <constraint firstAttribute="height" constant="0.5" id="cDY-YW-C0D"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="3 Reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDB-RH-TMe">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 Reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDB-RH-TMe">
                                     <rect key="frame" x="15" y="173" width="292" height="75"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="lfb-C6-ONl"/>

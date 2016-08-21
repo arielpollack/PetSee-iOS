@@ -110,6 +110,16 @@ public struct PetseeAPI {
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: ServiceRequest.self, completion: completion)
     }
     
+    public static func locationsForService(service: Service, completion: ([Location]?,String?)->()) {
+        let target = PetseeActions.LocationsForService(service: service)
+        executeRequest(sharedInstance.actionsProvider, target: target, arrayType: Location.self, completion: completion)
+    }
+    
+    public static func addLocationForService(latitude: Double, longitude: Double, service: Service, completion: (Location?,String?)->()) {
+        let target = PetseeActions.AddLocationForService(service: service, latitude: latitude, longitude: longitude)
+        executeRequest(sharedInstance.actionsProvider, target: target, objectType: Location.self, completion: completion)
+    }
+    
     // MARK:- Private
     private static func executeRequest<TT: TargetType>(provider: RxMoyaProvider<TT>, target: TT, completion: (AnyObject?, String?)->()) {
         let observable = observableRequest(provider, target: target).mapJSON()

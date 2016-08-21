@@ -26,6 +26,7 @@ public class ServiceRequest: Mappable, Identifiable {
     }
     
     public func mapping(map: Map) {
+        id <- map["id"]
         serviceProvider <- map["service_provider"]
         status <- map["status"]
     }

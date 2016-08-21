@@ -37,6 +37,8 @@ enum PetseeActions {
     case ApproveServiceRequest(serviceRequest: ServiceRequest)
     case DenyServiceRequest(serviceRequest: ServiceRequest)
 
+    case LocationsForService(service: Service)
+    case AddLocationForService(service: Service, latitude: Double, longitude: Double)
 }
 
 extension PetseeActions: TargetType {
@@ -77,6 +79,10 @@ extension PetseeActions: TargetType {
             return "/service_request/\(serviceRequest.id)/approve"
         case .DenyServiceRequest(let serviceRequest):
             return "/service_request/\(serviceRequest.id)/deny"
+        case .LocationsForService(let service):
+            return "/services/\(service.id)/locations"
+        case .AddLocationForService(let service, _, _):
+            return "/services/\(service.id)/add_location"
         }
     }
     var method: Moya.Method {
@@ -115,6 +121,10 @@ extension PetseeActions: TargetType {
             return .PUT
         case .DenyServiceRequest:
             return .PUT
+        case .LocationsForService:
+            return .GET
+        case .AddLocationForService:
+            return .POST
         }
     }
     var parameters: [String : AnyObject]? {
@@ -138,7 +148,8 @@ extension PetseeActions: TargetType {
             return ["service": service.toJSON()]
         case .RequestServiceProvider(_, let provider):
             return ["service_provider_id": provider.id]
-        
+        case .AddLocationForService(_, let latitude, let longitude):
+            return ["latitude": latitude, "longitude": longitude]
         default:
             return nil
         }
