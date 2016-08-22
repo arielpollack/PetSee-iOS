@@ -17,7 +17,7 @@ enum PetseeAuth {
 }
 
 extension PetseeAuth: TargetType {
-    var baseURL: NSURL { return NSURL(string: "http://localhost:3000/auth")! }
+    var baseURL: NSURL { return NSURL(string: "https://petsee.herokuapp.com/auth")! }
     var path: String {
         switch self {
         case .Signup:

@@ -137,7 +137,7 @@ public struct PetseeAPI {
     }
     
     private static func observableRequest<TT: TargetType>(provider: RxMoyaProvider<TT>, target: TT) -> RxSwift.Observable<Moya.Response> {
-        return provider.request(target).delaySubscription(1, scheduler: MainScheduler.instance)
+        return provider.request(target)//.delaySubscription(1, scheduler: MainScheduler.instance)
     }
     
     private static func handleEvent<T>(event: Event<T>, completion: (T?, String?)->()) {

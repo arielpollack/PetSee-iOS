@@ -11,10 +11,14 @@ target 'Petsee' do
 end
 
 target 'PetseeCore' do
+    link_with 'Petsee'
+
     pod 'ObjectMapper'
 end
 
 target 'PetseeNetwork' do
+    link_with 'Petsee'
+
     pod 'Alamofire', '~> 3.3'
     pod 'Moya'
     pod 'Moya/RxSwift'

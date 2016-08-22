@@ -42,7 +42,7 @@ enum PetseeActions {
 }
 
 extension PetseeActions: TargetType {
-    var baseURL: NSURL { return NSURL(string: "http://localhost:3000")! }
+    var baseURL: NSURL { return NSURL(string: "https://petsee.herokuapp.com")! }
     var path: String {
         switch self {
         case .UserPets(let userId):
