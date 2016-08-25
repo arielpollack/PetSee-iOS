@@ -16,10 +16,24 @@ class RaceChooseVC: UITableViewController, XLFormRowDescriptorViewController {
 
     var rowDescriptor: XLFormRowDescriptor!
     
+    private lazy var searchBar: UISearchBar = {
+        let bar = UISearchBar(frame: CGRectMake(0, 0, self.view.bounds.width, 44))
+        bar.delegate = self
+        return bar
+    }()
+    
     private var races = [Race]()
+    private var filteredRaces = [Race]()
+    private var isSearchMode = false
+    
+    private var dataSource: [Race] {
+        return isSearchMode ? filteredRaces : races
+    }
                 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.tableHeaderView = searchBar
         
         fetchRaces()
     }
@@ -38,13 +52,13 @@ class RaceChooseVC: UITableViewController, XLFormRowDescriptorViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return races.count
+        return dataSource.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Race")!
         
-        let race = races[indexPath.row]
+        let race = dataSource[indexPath.row]
         cell.textLabel?.text = race.name
         if let image = race.image {
             cell.imageView?.af_setImageWithURL(NSURL(string: image)!)
@@ -54,8 +68,26 @@ class RaceChooseVC: UITableViewController, XLFormRowDescriptorViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        rowDescriptor.value = races[indexPath.row]
+        rowDescriptor.value = dataSource[indexPath.row]
         navigationController?.popViewControllerAnimated(true)
+    }
+}
+
+extension RaceChooseVC: UISearchBarDelegate {
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        let text = searchText.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).lowercaseString
+        if text.characters.count == 0 {
+            isSearchMode = false
+        } else {
+            isSearchMode = true
+            filteredRaces = races.filter { $0.name.lowercaseString.containsString(text) }
+        }
+        tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        isSearchMode = false
+        tableView.reloadData()
     }
 }
 
