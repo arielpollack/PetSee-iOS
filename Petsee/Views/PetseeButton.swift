@@ -31,7 +31,9 @@ class PetseeButton: UIButton {
             backgroundColor = self.color
         }
         
-        layer.borderColor = color.darkerColor().CGColor
-        layer.borderWidth = 1
+        layer.shadowColor = color.darker().CGColor
+        layer.shadowOffset = CGSizeMake(0, 2)
+        layer.shadowRadius = 0
+        layer.shadowOpacity = 1
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 import PetseeCore
 import PetseeNetwork
+import AlamofireImage
 
 class ServiceVC: UITableViewController {
     
@@ -25,12 +26,13 @@ class ServiceVC: UITableViewController {
         case EndDate
         case Type
         case TripRoute
+        case Space
         case WriteReviewButton
         case CancelButton
         case FindServiceProviderButton
         
-        static let PendingCells: [CellType] = [.Status, .StartDate, .EndDate, .FindServiceProviderButton, .CancelButton]
-        static let ActiveCells: [CellType] = [.Status, .StartDate, .EndDate, .Type, .TripRoute, .WriteReviewButton]
+        static let PendingCells: [CellType] = [.Status, .StartDate, .EndDate, .Space, .FindServiceProviderButton, .CancelButton]
+        static let ActiveCells: [CellType] = [.Status, .StartDate, .EndDate, .Type, .TripRoute, .Space, .WriteReviewButton]
         static let CancelledCells: [CellType] = [.Status, .Type, .StartDate, .EndDate]
         
         static let dateFormatter: NSDateFormatter = {
@@ -71,16 +73,25 @@ class ServiceVC: UITableViewController {
                 cell.service = service
                 return cell
                 
+            case .Space:
+                return tableView.dequeueReusableCellWithIdentifier("Space")!
+                
             case .CancelButton:
                 let cell = tableView.dequeueReusableCellWithIdentifier("Button") as! ServiceButtonCell
+                cell.color = UIColor(hex: "c0392b")!
+                cell.title = "Cancel Service"
                 return cell
                 
             case .FindServiceProviderButton:
                 let cell = tableView.dequeueReusableCellWithIdentifier("Button") as! ServiceButtonCell
+                cell.color = UIColor(hex: "3498db")!
+                cell.title = "Find Your Dogwalker"
                 return cell
                 
             case .WriteReviewButton:
                 let cell = tableView.dequeueReusableCellWithIdentifier("Button") as! ServiceButtonCell
+                cell.color = UIColor(hex: "2ecc71")!
+                cell.title = "Write a Review"
                 return cell
             }
         }
@@ -90,11 +101,33 @@ class ServiceVC: UITableViewController {
             case .TripRoute:
                 return 230
             case .CancelButton, .WriteReviewButton, .FindServiceProviderButton:
-                return 60
+                return 50
+            case .Space:
+                return 24
                 
             default:
                 return 44
             }
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadViews()
+    }
+    
+    private func loadViews() {
+        lblServiceProviderName.text = service.serviceProvider?.name ?? "Not chosen"
+        lblPetName.text = service.pet.name
+        if let image = service.serviceProvider?.image {
+            let url = NSURL(string: image)!
+            imgServiceProvider.af_setImageWithURL(url)
+        } else {
+            imgServiceProvider.image = UIImage(named: "question_mark")
+        }
+        if let image = service.pet.image {
+            let url = NSURL(string: image)!
+            imgPet.af_setImageWithURL(url)
         }
     }
     
@@ -171,4 +204,50 @@ class ServiceTripRouteCell: UITableViewCell {
 
 class ServiceButtonCell: UITableViewCell {
     
+    @IBOutlet weak var button: PetseeButton! {
+        didSet {
+            button.addTarget(self, action: #selector(didTap), forControlEvents: .TouchUpInside)
+        }
+    }
+    
+    var title: String? {
+        didSet {
+            button.setTitle(title, forState: .Normal)
+        }
+    }
+    
+    var color: UIColor = UIColor.greenColor() {
+        didSet {
+            button.color = color
+        }
+    }
+    
+    var action: (() -> ())?
+    
+    func didTap() {
+        action?()
+    }
+    
+    override func prepareForReuse() {
+        action = nil
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
