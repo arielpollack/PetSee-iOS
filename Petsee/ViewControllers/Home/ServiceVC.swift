@@ -86,6 +86,11 @@ class ServiceVC: UITableViewController {
                 let cell = tableView.dequeueReusableCellWithIdentifier("Button") as! ServiceButtonCell
                 cell.color = UIColor(hex: "3498db")!
                 cell.title = "Find Your Dogwalker"
+                cell.action = {
+                    let vc = UIStoryboard(name: "Client", bundle: nil).instantiateViewControllerWithIdentifier("FindServiceProviderVC") as! FindServiceProviderVC
+                    vc.service = service
+                    UIViewController.topMostViewController()?.presentViewController(vc, animated: true, completion: nil)
+                }
                 return cell
                 
             case .WriteReviewButton:

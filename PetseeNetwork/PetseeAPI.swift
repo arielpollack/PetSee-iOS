@@ -105,6 +105,11 @@ public struct PetseeAPI {
         executeRequest(sharedInstance.actionsProvider, target: target, arrayType: ServiceRequest.self, completion: completion)
     }
     
+    public static func getAvailableServiceProviders(service: Service, completion: ([ServiceProvider]?,String?)->()) {
+        let target = PetseeActions.GetAvailableServiceProviders(service: service)
+        executeRequest(sharedInstance.actionsProvider, target: target, arrayType: ServiceProvider.self, completion: completion)
+    }
+    
     public static func requestServiceProvider(service: Service, serviceProvider: ServiceProvider, completion: (ServiceRequest?,String?)->()) {
         let target = PetseeActions.RequestServiceProvider(service: service, provider: serviceProvider)
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: ServiceRequest.self, completion: completion)

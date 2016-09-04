@@ -12,4 +12,15 @@ extension UIViewController {
     func embededInNavigationController() -> UINavigationController {
         return UINavigationController(rootViewController: self)
     }
+    
+    class func topMostViewController() -> UIViewController? {
+        if var topController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            
+            return topController
+        }
+        return nil
+    }
 }

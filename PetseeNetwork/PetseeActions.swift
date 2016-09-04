@@ -30,6 +30,7 @@ enum PetseeActions {
     case MyServices
     case AddService(service: Service)
     case GetServiceRequests(service: Service)
+    case GetAvailableServiceProviders(service: Service)
     
     case RequestServiceProvider(service: Service, provider: ServiceProvider)
     
@@ -72,6 +73,8 @@ extension PetseeActions: TargetType {
             return "/services"
         case .AddService:
             return "/services"
+        case .GetAvailableServiceProviders(let service):
+            return "/services/\(service.id)/service_providers_for_service"
         case .GetServiceRequests(let service):
             return "/services/\(service.id)/requests"
         case .RequestServiceProvider(let service, _):
@@ -126,6 +129,8 @@ extension PetseeActions: TargetType {
             return .GET
         case .AddLocationForService:
             return .POST
+        case .GetAvailableServiceProviders:
+            return .GET
         }
     }
     var parameters: [String : AnyObject]? {

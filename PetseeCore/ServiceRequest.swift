@@ -15,6 +15,17 @@ public class ServiceRequest: Mappable, Identifiable {
         case Pending = "pending"
         case Approved = "approved"
         case Denied = "denied"
+        
+        public var readableString: String {
+            switch self {
+            case .Pending:
+                return "Pending"
+            case .Approved:
+                return "Approved"
+            case .Denied:
+                return "Denied"
+            }
+        }
     }
     
     public var id: Int!
