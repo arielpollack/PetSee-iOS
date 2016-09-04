@@ -8,6 +8,7 @@ target 'Petsee' do
     pod 'XLForm', '~> 3.0'
     pod 'ImagePicker'
     pod 'SVProgressHUD'
+    pod 'HCSStarRatingView', '~> 1.4.5'
 end
 
 target 'PetseeCore' do

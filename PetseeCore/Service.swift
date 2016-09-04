@@ -71,6 +71,10 @@ public class Service: Mappable , Identifiable {
     public var status: Status!
     public var type: Type!
     
+    public init() {
+        
+    }
+    
     required public init?(_ map: Map) {
         
     }

@@ -86,6 +86,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "local" ]]; then
   install_framework "Pods-Petsee/Alamofire.framework"
   install_framework "Pods-Petsee/AlamofireImage.framework"
+  install_framework "Pods-Petsee/HCSStarRatingView.framework"
   install_framework "Pods-Petsee/ImagePicker.framework"
   install_framework "Pods-Petsee/SVProgressHUD.framework"
   install_framework "Pods-Petsee/XLForm.framework"
@@ -93,6 +94,7 @@ fi
 if [[ "$CONFIGURATION" == "remote" ]]; then
   install_framework "Pods-Petsee/Alamofire.framework"
   install_framework "Pods-Petsee/AlamofireImage.framework"
+  install_framework "Pods-Petsee/HCSStarRatingView.framework"
   install_framework "Pods-Petsee/ImagePicker.framework"
   install_framework "Pods-Petsee/SVProgressHUD.framework"
   install_framework "Pods-Petsee/XLForm.framework"

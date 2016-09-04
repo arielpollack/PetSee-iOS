@@ -16,9 +16,9 @@ class MyServicesVC: UIViewController {
     
     var services = [Service]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         loadServices()
     }
 

@@ -82,6 +82,10 @@ class AddPetVC: XLFormViewController {
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
+    
+    @IBAction func cancelTapped() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }
 
 extension AddPetVC: ImagePickerDelegate {

@@ -33,6 +33,7 @@ class ServiceCell: UITableViewCell {
     private func loadServiceInfo() {
         lblPetName.text = service.pet.name
         lblStatus.text = service.status.readableString
+        lblStatus.textColor = service.status.presentingColor
         lblType.text = service.type.readableString
         lblDate.text = ServiceCell.dateFormatter.stringFromDate(service.startDate)
         

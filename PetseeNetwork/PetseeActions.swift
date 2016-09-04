@@ -42,7 +42,8 @@ enum PetseeActions {
 }
 
 extension PetseeActions: TargetType {
-    var baseURL: NSURL { return NSURL(string: "https://petsee.herokuapp.com")! }
+//    var baseURL: NSURL { return NSURL(string: "https://petsee.herokuapp.com")! }
+    var baseURL: NSURL { return NSURL(string: "http://localhost:3000")! }
     var path: String {
         switch self {
         case .UserPets(let userId):
@@ -145,7 +146,10 @@ extension PetseeActions: TargetType {
         case .Races(let term):
             return ["query": term]
         case .AddService(let service):
-            return ["service": service.toJSON()]
+            var params = service.toJSON()
+            params["pet_id"] = service.pet.id
+            params["pet"] = nil
+            return params
         case .RequestServiceProvider(_, let provider):
             return ["service_provider_id": provider.id]
         case .AddLocationForService(_, let latitude, let longitude):

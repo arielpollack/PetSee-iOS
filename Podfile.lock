@@ -2,6 +2,7 @@ PODS:
   - Alamofire (3.3.1)
   - AlamofireImage (2.4.1):
     - Alamofire (~> 3.3)
+  - HCSStarRatingView (1.4.5)
   - ImagePicker (1.4.0)
   - Moya (6.4.0):
     - Moya/Core (= 6.4.0)
@@ -27,6 +28,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.3)
   - AlamofireImage (~> 2.0)
+  - HCSStarRatingView (~> 1.4.5)
   - ImagePicker
   - Moya
   - Moya-ObjectMapper/RxSwift
@@ -38,6 +40,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   AlamofireImage: 3ccf3347d9ea24580dc11fb892770a0be6a29826
+  HCSStarRatingView: bff3f89314d3b5013ce826ea11897d3129ff6b8c
   ImagePicker: 6659ccdd4737bfa14ed3b4aa7ffe18b193d92a0c
   Moya: 4d526954c8afd79820991393d40d7d8af756ceee
   Moya-ObjectMapper: 565c1e9e1e79bdf72e18fa8fa01a0741d042fa34

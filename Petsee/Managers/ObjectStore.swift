@@ -57,6 +57,18 @@ class ObjectStore<T: Equatable> {
         }
     }
     
+    func fetchPredicate(predicate: T->Bool, completion: [T]->()) {
+        fetchAll { objects in
+            var results = [T]()
+            for object in objects {
+                if predicate(object) {
+                    results.append(object)
+                }
+            }
+            completion(results)
+        }
+    }
+    
     func add(object: T) {
         guard !objects.contains(object) else {
             return
