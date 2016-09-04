@@ -87,7 +87,15 @@ class ServiceVC: UITableViewController {
                 cell.action = {
                     let vc = UIStoryboard(name: "Client", bundle: nil).instantiateViewControllerWithIdentifier("FindServiceProviderVC") as! FindServiceProviderVC
                     vc.service = service
-                    UIViewController.topMostViewController()?.presentViewController(vc, animated: true, completion: nil)
+                    if let destVC = UIViewController.topMostViewController() {
+                        if let navController = destVC as? UINavigationController {
+                            navController.pushViewController(vc, animated: true)
+                        } else if let navController = destVC.navigationController {
+                            navController.pushViewController(vc, animated: true)
+                        } else {
+                            destVC.presentViewController(vc, animated: true, completion: nil)
+                        }
+                    }
                 }
                 return cell
                 

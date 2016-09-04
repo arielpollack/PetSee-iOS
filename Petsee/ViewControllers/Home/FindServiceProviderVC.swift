@@ -20,7 +20,12 @@ class ServiceProviderCell: UITableViewCell {
     @IBOutlet weak var imgThumbnail: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblReviewsCount: UILabel!
-    @IBOutlet weak var ratingStars: HCSStarRatingView!
+    @IBOutlet weak var ratingStars: HCSStarRatingView! {
+        didSet {
+            ratingStars.minimumValue = 0
+            ratingStars.enabled = false
+        }
+    }
     @IBOutlet weak var btnSendRequest: UIButton!
     
     var serviceProvider: ServiceProvider! {
@@ -79,16 +84,6 @@ class FindServiceProviderVC: UIViewController {
     }
     
     private func loadServiceProvidersAndRequests() {
-        PetseeAPI.getServiceRequests(service) { requests, error in
-            guard let requests = requests where error == nil else {
-                // show error
-                return
-            }
-            
-            self.serviceRequests = requests
-            self.tableView.reloadData()
-        }
-        
         PetseeAPI.getAvailableServiceProviders(service) { providers, error in
             guard let providers = providers where error == nil else {
                 // show error
@@ -96,7 +91,28 @@ class FindServiceProviderVC: UIViewController {
             }
             
             self.serviceProviders = providers
+            self.loadServiceRequests()
+        }
+    }
+    
+    private func loadServiceRequests() {
+        PetseeAPI.getServiceRequests(service) { requests, error in
+            guard let requests = requests where error == nil else {
+                // show error
+                return
+            }
+            
+            self.serviceRequests = requests
+            self.filterApproachedServiceProviders()
             self.tableView.reloadData()
+        }
+    }
+    
+    private func filterApproachedServiceProviders() {
+        for request in serviceRequests {
+            if let index = serviceProviders.indexOf(request.serviceProvider) {
+                serviceProviders.removeAtIndex(index)
+            }
         }
     }
 }
@@ -165,17 +181,11 @@ extension FindServiceProviderVC: ServiceProviderCellDelegate {
     }
     
     private func addServiceRequest(request: ServiceRequest) {
-        tableView.beginUpdates()
-        
         if let index = serviceProviders.indexOf(request.serviceProvider) {
-            tableView.moveRowAtIndexPath(NSIndexPath(forRow: index, inSection: 1), toIndexPath: NSIndexPath(forRow: serviceRequests.count, inSection: 0))
             serviceProviders.removeAtIndex(index)
-        } else {
-            let indexPath = NSIndexPath(forRow: serviceRequests.count, inSection: 0)
-            tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
     
         serviceRequests.append(request)
-        tableView.endUpdates()
+        tableView.reloadData()
     }
 }
