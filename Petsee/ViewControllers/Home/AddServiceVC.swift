@@ -9,8 +9,6 @@
 import UIKit
 import XLForm
 import ImagePicker
-import PetseeCore
-import PetseeNetwork
 import SVProgressHUD
 
 class AddServiceVC: XLFormViewController {

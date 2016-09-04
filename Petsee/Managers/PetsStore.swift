@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import PetseeCore
-import PetseeNetwork
 
 struct PetsStore {
     

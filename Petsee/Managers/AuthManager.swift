@@ -6,8 +6,6 @@
 //  Copyright © 2016 Ariel Pollack. All rights reserved.
 //
 
-import PetseeCore
-import PetseeNetwork
 
 protocol AuthManagerProtocol {
     var authenticatedUser: User? { get }

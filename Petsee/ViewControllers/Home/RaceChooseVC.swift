@@ -8,8 +8,6 @@
 
 import UIKit
 import XLForm
-import PetseeCore
-import PetseeNetwork
 import AlamofireImage
 
 class RaceChooseVC: UITableViewController, XLFormRowDescriptorViewController {

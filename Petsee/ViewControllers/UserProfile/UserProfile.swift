@@ -8,8 +8,6 @@
 
 import UIKit
 import Alamofire
-import PetseeCore
-import PetseeNetwork
 
 class UserProfile: UIViewController, UIScrollViewDelegate {
     

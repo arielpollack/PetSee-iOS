@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PetseeCore
 import Alamofire
 import AlamofireImage
 

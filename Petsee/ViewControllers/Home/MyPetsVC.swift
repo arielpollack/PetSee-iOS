@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PetseeCore
 import AlamofireImage
 
 class MyPetsVC: UIViewController {

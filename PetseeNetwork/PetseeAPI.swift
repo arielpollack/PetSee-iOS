@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PetseeCore
 import RxSwift
 import ObjectMapper
 import Moya

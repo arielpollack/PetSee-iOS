@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PetseeCore
 
 class ReviewCell: UIView {
     

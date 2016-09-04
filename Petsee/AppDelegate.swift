@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import PetseeCore
-import PetseeNetwork
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import PetseeCore
-import PetseeNetwork
 
 protocol OnboardingDelegate {
     func didFinishLoginWithUser(user: User)

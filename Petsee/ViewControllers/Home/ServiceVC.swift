@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import PetseeCore
-import PetseeNetwork
 import AlamofireImage
 
 class ServiceVC: UITableViewController {

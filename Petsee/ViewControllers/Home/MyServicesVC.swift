@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import PetseeCore
-import PetseeNetwork
 
 class MyServicesVC: UIViewController {
 

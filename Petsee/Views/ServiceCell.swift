@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PetseeCore
 import AlamofireImage
 
 class ServiceCell: UITableViewCell {

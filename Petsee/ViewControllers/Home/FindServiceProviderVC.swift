@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import PetseeCore
-import PetseeNetwork
 import AlamofireImage
 import HCSStarRatingView
 import SVProgressHUD
@@ -115,10 +113,10 @@ extension FindServiceProviderVC: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1 || !haveServiceRequests() {
-            return serviceRequests.count
+            return serviceProviders.count
         }
         
-        return serviceProviders.count
+        return serviceRequests.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -126,13 +124,13 @@ extension FindServiceProviderVC: UITableViewDataSource {
         cell.delegate = self
         
         if indexPath.section == 1 || !haveServiceRequests() {
-            let request = serviceRequests[indexPath.row]
-            cell.serviceRequest = request
-            cell.serviceProvider = request.serviceProvider
-        } else {
             let provider = serviceProviders[indexPath.row]
             cell.serviceProvider = provider
             cell.serviceRequest = nil
+        } else {
+            let request = serviceRequests[indexPath.row]
+            cell.serviceRequest = request
+            cell.serviceProvider = request.serviceProvider
         }
         
         return cell
