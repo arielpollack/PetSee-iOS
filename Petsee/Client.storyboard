@@ -16,17 +16,17 @@
                         <viewControllerLayoutGuide type="bottom" id="nBQ-LL-cxT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fgI-EO-YXS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JpY-IK-3cV">
-                                <rect key="frame" x="0.0" y="20" width="600" height="160"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="160"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="Uwv-fX-aP2"/>
                                 </constraints>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vad-SX-IhH">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <connections>
                                     <outlet property="delegate" destination="FMD-kh-oQr" id="n8e-wy-977"/>
                                 </connections>
@@ -46,7 +46,6 @@
                     <connections>
                         <outlet property="containingView" destination="6XU-kb-D7B" id="4RI-6W-w9k"/>
                         <outlet property="imgUserImage" destination="JpY-IK-3cV" id="Aw3-Vl-Zhh"/>
-                        <outlet property="lblAbout" destination="zMX-6a-KHF" id="JPe-vf-kon"/>
                         <outlet property="lblMoreInfo" destination="jhG-jw-D76" id="cqI-Vj-fa0"/>
                         <outlet property="lblReviewNumber" destination="KDB-RH-TMe" id="80L-3g-8Sr"/>
                         <outlet property="lblUserName" destination="u2L-CX-18M" id="5w3-vD-06l"/>
@@ -97,30 +96,8 @@ Member Since April 2016</string>
                                         <constraint firstAttribute="height" constant="0.5" id="Fce-WB-WdI"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Ariel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jde-il-4Vo">
-                                    <rect key="frame" x="15" y="108" width="292" height="30"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="30" id="OkX-iY-0ea"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                    <color key="textColor" red="0.26970880679999998" green="0.26970880679999998" blue="0.26970880679999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="25 old BSc student in Tel Aviv" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMX-6a-KHF">
-                                    <rect key="frame" x="15" y="143" width="292" height="20"/>
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                    <color key="textColor" red="0.18615845959999999" green="0.18615845959999999" blue="0.18615845959999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gYx-Lg-egr" userLabel="border">
-                                    <rect key="frame" x="15" y="168" width="292" height="0.0"/>
-                                    <color key="backgroundColor" red="0.701171875" green="0.701171875" blue="0.701171875" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="0.5" id="cDY-YW-C0D"/>
-                                    </constraints>
-                                </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 Reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDB-RH-TMe">
-                                    <rect key="frame" x="15" y="173" width="292" height="75"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="3 Reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDB-RH-TMe">
+                                    <rect key="frame" x="15" y="108" width="292" height="140"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="lfb-C6-ONl"/>
                                     </constraints>
@@ -840,7 +817,7 @@ Member Since April 2016</string>
         <!--Find Service ProviderVC-->
         <scene sceneID="BVr-6n-XgW">
             <objects>
-                <viewController storyboardIdentifier="FindServiceProviderVC" id="G3j-DG-doN" customClass="FindServiceProviderVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FindServiceProviderVC" automaticallyAdjustsScrollViewInsets="NO" id="G3j-DG-doN" customClass="FindServiceProviderVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1II-MF-0vd"/>
                         <viewControllerLayoutGuide type="bottom" id="Tkq-uw-EvE"/>
@@ -929,6 +906,7 @@ Member Since April 2016</string>
                                             <outlet property="lblName" destination="jc0-dv-Nfe" id="1pj-HQ-55S"/>
                                             <outlet property="lblReviewsCount" destination="6Bs-yU-MBn" id="Q5w-ly-Axe"/>
                                             <outlet property="ratingStars" destination="kdS-Ic-AgT" id="U8b-qn-fQS"/>
+                                            <segue destination="FMD-kh-oQr" kind="show" identifier="ShowUser" id="8ss-Lb-aHd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HCSStarRatingView
 
 class ReviewCell: UIView {
     
@@ -15,7 +16,7 @@ class ReviewCell: UIView {
     @IBOutlet weak var lblFeedback: UILabel!
     @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var lblCreatedAt: UILabel!
-    @IBOutlet weak var lblRate: UILabel!
+    @IBOutlet weak var reviewStars: HCSStarRatingView!
     
     private struct Static {
         static var dateFormatter: NSDateFormatter = {
@@ -35,10 +36,21 @@ class ReviewCell: UIView {
     func configureWithReview(review: Review) {
         self.review = review
         
-        imgUser.image = UIImage(named: "dummy-profile")
+        if let image = review.writer?.image, url = NSURL(string: image) {
+            imgUser.af_setImageWithURL(url)
+        } else {
+            imgUser.af_cancelImageRequest()
+            imgUser.image = nil
+        }
         lblFeedback.text = review.feedback
         lblUserName.text = review.writer?.name
         lblCreatedAt.text = Static.dateFormatter.stringFromDate(review.createdAt)
-        lblRate.text = "\(review.rate)"
+        reviewStars.value = CGFloat(review.rate)
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        reviewStars.enabled = false
     }
 }

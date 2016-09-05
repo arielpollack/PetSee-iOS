@@ -16,7 +16,6 @@ class UserProfile: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var lblMoreInfo: UILabel!
-    @IBOutlet weak var lblAbout: UILabel!
     @IBOutlet weak var lblReviewNumber: UILabel!
     @IBOutlet weak var imgUserImage: UIImageView!
     @IBOutlet weak var userImageHeight: NSLayoutConstraint!
@@ -53,9 +52,14 @@ class UserProfile: UIViewController, UIScrollViewDelegate {
     
     private func setupUser() {
         lblUserName.text = user.name
-        lblAbout.text = user.about
+        lblMoreInfo.text = user.about
         lblReviewNumber.text = "Loading reviews..."
-        imgUserImage.image = UIImage(named: "dummy-profile")
+        
+        if let image = user.image, url = NSURL(string: image) {
+            imgUserImage.af_setImageWithURL(url)
+        } else {
+            imgUserImage.image = UIImage(named: "user-placeholder")
+        }
         
         PetseeAPI.userReviews(user.id) { (reviews, error) in
             guard let reviews = reviews where reviews.count > 0 else {

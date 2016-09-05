@@ -11,6 +11,12 @@ import AlamofireImage
 
 class ServiceVC: UITableViewController {
     
+    struct Notification {
+        static let FindServiceProviderTapped = "ShowFindServiceProviderTappedNotification"
+        static let WriteReviewTapped = "WriteReviewTappedNotification"
+        static let CancelServiceTapped = "Notification.CancelServiceTappedNotification"
+    }
+    
     @IBOutlet weak var imgServiceProvider: UIImageView!
     @IBOutlet weak var imgPet: UIImageView!
     @IBOutlet weak var lblServiceProviderName: UILabel!
@@ -30,6 +36,7 @@ class ServiceVC: UITableViewController {
         case FindServiceProviderButton
         
         static let PendingCells: [CellType] = [.Status, .StartDate, .EndDate, .Space, .FindServiceProviderButton, .CancelButton]
+        static let ConfirmedCells: [CellType] = [.Status, .StartDate, .EndDate, .Space, .CancelButton]
         static let ActiveCells: [CellType] = [.Status, .StartDate, .EndDate, .Type, .TripRoute, .Space, .WriteReviewButton]
         static let CancelledCells: [CellType] = [.Status, .Type, .StartDate, .EndDate]
         
@@ -78,6 +85,9 @@ class ServiceVC: UITableViewController {
                 let cell = tableView.dequeueReusableCellWithIdentifier("Button") as! ServiceButtonCell
                 cell.color = UIColor(hex: "c0392b")!
                 cell.title = "Cancel Service"
+                cell.action = {
+                    NSNotificationCenter.defaultCenter().postNotificationName(Notification.CancelServiceTapped, object: service)
+                }
                 return cell
                 
             case .FindServiceProviderButton:
@@ -85,17 +95,7 @@ class ServiceVC: UITableViewController {
                 cell.color = UIColor(hex: "3498db")!
                 cell.title = "Find Your Dogwalker"
                 cell.action = {
-                    let vc = UIStoryboard(name: "Client", bundle: nil).instantiateViewControllerWithIdentifier("FindServiceProviderVC") as! FindServiceProviderVC
-                    vc.service = service
-                    if let destVC = UIViewController.topMostViewController() {
-                        if let navController = destVC as? UINavigationController {
-                            navController.pushViewController(vc, animated: true)
-                        } else if let navController = destVC.navigationController {
-                            navController.pushViewController(vc, animated: true)
-                        } else {
-                            destVC.presentViewController(vc, animated: true, completion: nil)
-                        }
-                    }
+                    NSNotificationCenter.defaultCenter().postNotificationName(Notification.FindServiceProviderTapped, object: service)
                 }
                 return cell
                 
@@ -103,6 +103,9 @@ class ServiceVC: UITableViewController {
                 let cell = tableView.dequeueReusableCellWithIdentifier("Button") as! ServiceButtonCell
                 cell.color = UIColor(hex: "2ecc71")!
                 cell.title = "Write a Review"
+                cell.action = {
+                    NSNotificationCenter.defaultCenter().postNotificationName(Notification.WriteReviewTapped, object: service)
+                }
                 return cell
             }
         }
@@ -125,6 +128,10 @@ class ServiceVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadViews()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(findServiceProviderTapped), name: Notification.FindServiceProviderTapped, object: service)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(writeReviewTapped), name: Notification.WriteReviewTapped, object: service)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cancelServiceTapped), name: Notification.CancelServiceTapped, object: service)
     }
     
     private func loadViews() {
@@ -140,12 +147,31 @@ class ServiceVC: UITableViewController {
             let url = NSURL(string: image)!
             imgPet.af_setImageWithURL(url)
         }
+        tableView.reloadData()
     }
     
+    func findServiceProviderTapped() {
+        let vc = UIStoryboard(name: "Client", bundle: nil).instantiateViewControllerWithIdentifier("FindServiceProviderVC") as! FindServiceProviderVC
+        vc.service = service
+        vc.delegate = self
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func writeReviewTapped() {
+        
+    }
+    
+    func cancelServiceTapped() {
+        
+    }
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch service.status! {
         case .Pending:
             return CellType.PendingCells.count
+        case .Confirmed:
+            return CellType.ConfirmedCells.count
         case .Started, .Ended:
             return CellType.ActiveCells.count
         case .Cancelled:
@@ -159,6 +185,8 @@ class ServiceVC: UITableViewController {
         switch service.status! {
         case .Pending:
             cellType = CellType.PendingCells[indexPath.row]
+        case .Confirmed:
+            cellType = CellType.ConfirmedCells[indexPath.row]
         case .Started, .Ended:
             cellType = CellType.ActiveCells[indexPath.row]
         case .Cancelled:
@@ -174,6 +202,8 @@ class ServiceVC: UITableViewController {
         switch service.status! {
         case .Pending:
             cellType = CellType.PendingCells[indexPath.row]
+        case .Confirmed:
+            cellType = CellType.ConfirmedCells[indexPath.row]
         case .Started, .Ended:
             cellType = CellType.ActiveCells[indexPath.row]
         case .Cancelled:
@@ -181,6 +211,13 @@ class ServiceVC: UITableViewController {
         }
         
         return cellType.height()
+    }
+}
+
+extension ServiceVC: FindServiceProviderVCDelegate {
+    
+    func didChooseServiceProvider() {
+        loadViews()
     }
 }
 

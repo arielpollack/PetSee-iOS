@@ -13,6 +13,7 @@ public class Service: Mappable , Identifiable {
     
     public enum Status: String {
         case Pending = "pending"
+        case Confirmed = "confirmed"
         case Started = "started"
         case Ended = "ended"
         case Cancelled = "cancelled"
@@ -22,6 +23,8 @@ public class Service: Mappable , Identifiable {
                 switch self {
                 case .Pending:
                     return "Pending"
+                case .Confirmed:
+                    return "Confirmed"
                 case .Started:
                     return "In Progress"
                 case .Ended:
@@ -36,6 +39,8 @@ public class Service: Mappable , Identifiable {
             switch self {
             case .Pending:
                 return UIColor.orangeColor()
+            case .Confirmed:
+                return UIColor.blueColor()
             case .Started:
                 return UIColor.greenColor()
             case .Ended:

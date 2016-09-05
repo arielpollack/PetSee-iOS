@@ -8,69 +8,16 @@
 
 import UIKit
 import AlamofireImage
-import HCSStarRatingView
 import SVProgressHUD
 
-protocol ServiceProviderCellDelegate: NSObjectProtocol {
-    func sendRequestForServiceProvider(provider: ServiceProvider)
-}
-
-class ServiceProviderCell: UITableViewCell {
-    
-    @IBOutlet weak var imgThumbnail: UIImageView!
-    @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblReviewsCount: UILabel!
-    @IBOutlet weak var ratingStars: HCSStarRatingView! {
-        didSet {
-            ratingStars.minimumValue = 0
-            ratingStars.enabled = false
-        }
-    }
-    @IBOutlet weak var btnSendRequest: UIButton!
-    
-    var serviceProvider: ServiceProvider! {
-        didSet {
-            loadServiceProviderInfo()
-        }
-    }
-    var serviceRequest: ServiceRequest? {
-        didSet {
-            loadServiceRequestInfo()
-        }
-    }
-    
-    weak var delegate: ServiceProviderCellDelegate?
-    
-    private func loadServiceProviderInfo() {
-        lblName.text = serviceProvider.name
-        ratingStars.value = CGFloat(serviceProvider.rating ?? 0)
-        lblReviewsCount.text = "(\(serviceProvider.ratingCount ?? 0) reviews)"
-        if let image = serviceProvider.image, url = NSURL(string: image) {
-            imgThumbnail.af_setImageWithURL(url)
-        } else {
-            imgThumbnail.af_cancelImageRequest()
-            imgThumbnail.image = nil
-        }
-    }
-    
-    private func loadServiceRequestInfo() {
-        if let request = serviceRequest {
-            btnSendRequest.setTitle(request.status.readableString, forState: .Normal)
-            btnSendRequest.enabled = false
-        } else {
-            btnSendRequest.setTitle("Send Request", forState: .Normal)
-            btnSendRequest.enabled = true
-        }
-    }
-    
-    @IBAction func sendRequestTapped() {
-        delegate?.sendRequestForServiceProvider(serviceProvider)
-    }
+protocol FindServiceProviderVCDelegate: NSObjectProtocol {
+    func didChooseServiceProvider()
 }
 
 class FindServiceProviderVC: UIViewController {
     
     var service: Service!
+    weak var delegate: FindServiceProviderVCDelegate?
     
     private var serviceRequests = [ServiceRequest]()
     private var serviceProviders = [ServiceProvider]()
@@ -112,6 +59,16 @@ class FindServiceProviderVC: UIViewController {
         for request in serviceRequests {
             if let index = serviceProviders.indexOf(request.serviceProvider) {
                 serviceProviders.removeAtIndex(index)
+            }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let vc = segue.destinationViewController as? UserProfile, let indexPath = tableView.indexPathForSelectedRow {
+            if indexPath.section == 1 || !haveServiceRequests() {
+                vc.user = serviceProviders[indexPath.row]
+            } else {
+                vc.user = serviceRequests[indexPath.row].serviceProvider
             }
         }
     }
@@ -177,6 +134,22 @@ extension FindServiceProviderVC: ServiceProviderCellDelegate {
             }
             
             self.addServiceRequest(request)
+        }
+    }
+    
+    func chooseServiceRequest(request: ServiceRequest) {
+        PetseeAPI.chooseServiceRequest(service, serviceRequest: request) { object, error in
+//            guard error == nil else {
+//                // show error
+//                return
+//            }
+            
+            self.service.serviceProvider = request.serviceProvider
+            self.service.status = .Confirmed
+            ServicesStore.sharedStore.replace(self.service)
+            
+            self.delegate?.didChooseServiceProvider()
+            self.navigationController?.popViewControllerAnimated(true)
         }
     }
     

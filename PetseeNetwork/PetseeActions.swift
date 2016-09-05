@@ -30,6 +30,7 @@ enum PetseeActions {
     case AddService(service: Service)
     case GetServiceRequests(service: Service)
     case GetAvailableServiceProviders(service: Service)
+    case ChooseServiceRequest(service: Service, request: ServiceRequest)
     
     case RequestServiceProvider(service: Service, provider: ServiceProvider)
     
@@ -42,8 +43,8 @@ enum PetseeActions {
 }
 
 extension PetseeActions: TargetType {
-//    var baseURL: NSURL { return NSURL(string: "https://petsee.herokuapp.com")! }
-    var baseURL: NSURL { return NSURL(string: "http://localhost:3000")! }
+    var baseURL: NSURL { return NSURL(string: "https://petsee.herokuapp.com")! }
+//    var baseURL: NSURL { return NSURL(string: "http://localhost:3000")! }
     var path: String {
         switch self {
         case .UserPets(let userId):
@@ -78,6 +79,8 @@ extension PetseeActions: TargetType {
             return "/services/\(service.id)/requests"
         case .RequestServiceProvider(let service, _):
             return "/services/\(service.id)/requests"
+        case .ChooseServiceRequest(let service, _):
+            return "/services/\(service.id)/choose_service_provider"
         case .ApproveServiceRequest(let serviceRequest):
             return "/service_request/\(serviceRequest.id)/approve"
         case .DenyServiceRequest(let serviceRequest):
@@ -120,6 +123,8 @@ extension PetseeActions: TargetType {
             return .GET
         case .RequestServiceProvider:
             return .POST
+        case .ChooseServiceRequest:
+            return .PUT
         case .ApproveServiceRequest:
             return .PUT
         case .DenyServiceRequest:
@@ -156,6 +161,8 @@ extension PetseeActions: TargetType {
             return params
         case .RequestServiceProvider(_, let provider):
             return ["service_provider_id": provider.id]
+        case .ChooseServiceRequest(_, let request):
+            return ["service_request_id": request.id]
         case .AddLocationForService(_, let latitude, let longitude):
             return ["latitude": latitude, "longitude": longitude]
         default:
