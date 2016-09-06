@@ -24,6 +24,12 @@ class FindServiceProviderVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        title = "Find a \(service.type.readableString)er"
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         

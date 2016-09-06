@@ -12,7 +12,12 @@ import HCSStarRatingView
 class ReviewCell: UIView {
     
     private var review: Review!
-    @IBOutlet weak var imgUser: UIImageView!
+    @IBOutlet weak var imgUser: UIImageView! {
+        didSet {
+            imgUser.layer.cornerRadius = imgUser.bounds.height / 2
+            imgUser.layer.masksToBounds = true
+        }
+    }
     @IBOutlet weak var lblFeedback: UILabel!
     @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var lblCreatedAt: UILabel!
@@ -40,7 +45,7 @@ class ReviewCell: UIView {
             imgUser.af_setImageWithURL(url)
         } else {
             imgUser.af_cancelImageRequest()
-            imgUser.image = nil
+            imgUser.image = UIImage(named: "person-placeholder")
         }
         lblFeedback.text = review.feedback
         lblUserName.text = review.writer?.name

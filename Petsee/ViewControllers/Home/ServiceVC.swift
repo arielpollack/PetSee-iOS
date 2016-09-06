@@ -93,7 +93,7 @@ class ServiceVC: UITableViewController {
             case .FindServiceProviderButton:
                 let cell = tableView.dequeueReusableCellWithIdentifier("Button") as! ServiceButtonCell
                 cell.color = UIColor(hex: "3498db")!
-                cell.title = "Find Your Dogwalker"
+                cell.title = "Find Your \(service.type.readableString)er"
                 cell.action = {
                     NSNotificationCenter.defaultCenter().postNotificationName(Notification.FindServiceProviderTapped, object: service)
                 }

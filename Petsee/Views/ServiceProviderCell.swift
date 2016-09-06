@@ -16,7 +16,12 @@ protocol ServiceProviderCellDelegate: NSObjectProtocol {
 
 class ServiceProviderCell: UITableViewCell {
     
-    @IBOutlet weak var imgThumbnail: UIImageView!
+    @IBOutlet weak var imgThumbnail: UIImageView! {
+        didSet {
+            imgThumbnail.layer.cornerRadius = imgThumbnail.bounds.height / 2
+            imgThumbnail.layer.masksToBounds = true
+        }
+    }
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblReviewsCount: UILabel!
     @IBOutlet weak var ratingStars: HCSStarRatingView! {
@@ -46,9 +51,6 @@ class ServiceProviderCell: UITableViewCell {
         lblReviewsCount.text = "(\(serviceProvider.ratingCount ?? 0) reviews)"
         if let image = serviceProvider.image, url = NSURL(string: image) {
             imgThumbnail.af_setImageWithURL(url)
-        } else {
-            imgThumbnail.af_cancelImageRequest()
-            imgThumbnail.image = nil
         }
     }
     
@@ -73,5 +75,12 @@ class ServiceProviderCell: UITableViewCell {
         } else {
             delegate?.sendRequestForServiceProvider(serviceProvider)
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        imgThumbnail.image = UIImage(named: "person-placeholder")
+        imgThumbnail.af_cancelImageRequest()
     }
 }
