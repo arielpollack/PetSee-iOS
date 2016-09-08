@@ -51,6 +51,9 @@
 		73DB8B7E1D510ECA00BD95E5 /* PetsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DB8B7D1D510ECA00BD95E5 /* PetsStore.swift */; };
 		73DB8B801D512B4E00BD95E5 /* AddPetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DB8B7F1D512B4E00BD95E5 /* AddPetVC.swift */; };
 		73DB8B8D1D51BA7F00BD95E5 /* RaceChooseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DB8B8C1D51BA7F00BD95E5 /* RaceChooseVC.swift */; };
+		73F596801D81E99000459552 /* SelectLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F5967F1D81E99000459552 /* SelectLocationVC.swift */; };
+		73F596821D81EA1C00459552 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F596811D81EA1C00459552 /* MapKit.framework */; };
+		73F596841D81EA2300459552 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F596831D81EA2300459552 /* CoreLocation.framework */; };
 		73F64B471D7E0DC900CCE77D /* ServiceProviderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F64B461D7E0DC900CCE77D /* ServiceProviderCell.swift */; };
 		73F819891CD1E592001AC3FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819881CD1E592001AC3FB /* AppDelegate.swift */; };
 		73F8198E1CD1E592001AC3FB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198C1CD1E592001AC3FB /* Login.storyboard */; };
@@ -114,6 +117,9 @@
 		73DB8B8A1D51323A00BD95E5 /* CLUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUploader.h; sourceTree = "<group>"; };
 		73DB8B8B1D5134E100BD95E5 /* Petsee-bridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Petsee-bridgingHeader.h"; sourceTree = "<group>"; };
 		73DB8B8C1D51BA7F00BD95E5 /* RaceChooseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceChooseVC.swift; sourceTree = "<group>"; };
+		73F5967F1D81E99000459552 /* SelectLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLocationVC.swift; sourceTree = "<group>"; };
+		73F596811D81EA1C00459552 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		73F596831D81EA2300459552 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		73F64B461D7E0DC900CCE77D /* ServiceProviderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderCell.swift; sourceTree = "<group>"; };
 		73F819851CD1E592001AC3FB /* Petsee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petsee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73F819881CD1E592001AC3FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +146,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73F596841D81EA2300459552 /* CoreLocation.framework in Frameworks */,
+				73F596821D81EA1C00459552 /* MapKit.framework in Frameworks */,
 				735C371F1D7CCDF30063FCD8 /* libCloudinary.a in Frameworks */,
 				40E6E609E3FF9B79F75BAE93 /* Pods_Petsee.framework in Frameworks */,
 			);
@@ -159,6 +167,8 @@
 		3618863996777A4E61838700 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				73F596831D81EA2300459552 /* CoreLocation.framework */,
+				73F596811D81EA1C00459552 /* MapKit.framework */,
 				735C371E1D7CCDF30063FCD8 /* libCloudinary.a */,
 				264EAB42B7BE3F8C24F65279 /* Pods_Petsee.framework */,
 			);
@@ -242,6 +252,7 @@
 				73DB8B8C1D51BA7F00BD95E5 /* RaceChooseVC.swift */,
 				73AEC7C21D68FAD5001FDF83 /* ServiceVC.swift */,
 				737762561D7CB5C2000E33FB /* FindServiceProviderVC.swift */,
+				73F5967F1D81E99000459552 /* SelectLocationVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -503,6 +514,7 @@
 				73AEC7C31D68FAD5001FDF83 /* ServiceVC.swift in Sources */,
 				732F2F031CDA90AA00CB491D /* AuthManager.swift in Sources */,
 				73DB8B7E1D510ECA00BD95E5 /* PetsStore.swift in Sources */,
+				73F596801D81E99000459552 /* SelectLocationVC.swift in Sources */,
 				73CB94031CDF0B2300EE0BBE /* ReviewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

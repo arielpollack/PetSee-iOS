@@ -207,7 +207,7 @@ Member Since April 2016</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uvH-NJ-HfE">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uvH-NJ-HfE">
                                                     <rect key="frame" x="15" y="15" width="52" height="52"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="uvH-NJ-HfE" secondAttribute="height" id="Rtq-cc-UhO"/>
@@ -297,7 +297,7 @@ Member Since April 2016</string>
         <!--Add ServiceVC-->
         <scene sceneID="fl4-jJ-c5O">
             <objects>
-                <viewController id="uSY-j4-ogg" customClass="AddServiceVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="uSY-j4-ogg" customClass="AddServiceVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kGM-Bc-zyB"/>
                         <viewControllerLayoutGuide type="bottom" id="vtr-Iu-3ny"/>
@@ -306,9 +306,9 @@ Member Since April 2016</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ocA-2q-69H">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ocA-2q-69H">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -320,6 +320,11 @@ Member Since April 2016</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8yl-8n-7Cf">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="4HY-N6-pJl">
+                            <connections>
+                                <action selector="cancelTapped:" destination="uSY-j4-ogg" id="dqo-Lo-kTt"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="HdI-iE-PEg">
                             <connections>
                                 <action selector="saveTapped:" destination="uSY-j4-ogg" id="AXu-mG-Yjk"/>
@@ -588,7 +593,7 @@ Member Since April 2016</string>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Kcp-Ct-hCU">
                                             <rect key="frame" x="0.0" y="0.0" width="56" height="74"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3fV-XU-yC0">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3fV-XU-yC0">
                                                     <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
                                                     <color key="backgroundColor" red="0.73725490199999999" green="0.73333333329999995" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -616,7 +621,7 @@ Member Since April 2016</string>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Y3S-en-45X">
                                             <rect key="frame" x="107" y="0.0" width="56" height="74"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QWU-OV-yTc">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QWU-OV-yTc">
                                                     <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
                                                     <color key="backgroundColor" red="0.73725490199999999" green="0.73333333329999995" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>

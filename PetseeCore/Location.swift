@@ -19,6 +19,10 @@ public class Location: Mappable {
         
     }
     
+    public init() {
+        
+    }
+    
     public func mapping(map: Map) {
         latitude <- map["latitude"]
         longitude <- map["longitude"]

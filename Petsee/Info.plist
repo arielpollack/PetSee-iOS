@@ -38,5 +38,11 @@
     <dict>
         <key>NSAllowsArbitraryLoads</key><true/>
     </dict>
+    <!-- for requestAlwaysAuthorization -->
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Know where you are</string>
+    <!-- for requestWhenInUseAuthorization -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Know where you are</string>
 </dict>
 </plist>

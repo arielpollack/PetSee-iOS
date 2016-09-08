@@ -11,7 +11,12 @@ import AlamofireImage
 
 class ServiceCell: UITableViewCell {
     
-    @IBOutlet weak var imgPetThumbnail: UIImageView!
+    @IBOutlet weak var imgPetThumbnail: UIImageView! {
+        didSet {
+            imgPetThumbnail.layer.cornerRadius = imgPetThumbnail.bounds.height / 2
+            imgPetThumbnail.layer.masksToBounds = true
+        }
+    }
     @IBOutlet weak var lblPetName: UILabel!
     @IBOutlet weak var lblStatus: UILabel!
     @IBOutlet weak var lblDate: UILabel!

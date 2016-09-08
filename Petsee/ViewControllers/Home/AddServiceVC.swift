@@ -10,6 +10,7 @@ import UIKit
 import XLForm
 import ImagePicker
 import SVProgressHUD
+import CoreLocation
 
 class AddServiceVC: XLFormViewController {
     
@@ -51,14 +52,31 @@ class AddServiceVC: XLFormViewController {
         row.required = true
         section.addFormRow(row)
         
+        row = XLFormRowDescriptor(tag: "location", rowType: XLFormRowDescriptorTypeSelectorPush, title: "Pickup Location")
+        row.action.viewControllerClass = SelectLocationVC.self
+        row.valueTransformer = CLLocationValueTrasformer.self
+        row.required = true
+        section.addFormRow(row)
+        
         self.form = form
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.tableFooterView = UIView()
     }
     
     @IBAction func saveTapped(sender: AnyObject) {
         let values = form.formValues()
         
-        service.startDate = values["start_date"] as? NSDate
-        service.endDate = values["end_date"] as? NSDate
+        service.startDate = values["start_date"] as! NSDate
+        service.endDate = values["end_date"] as! NSDate
+        let locationValues = values["location"] as! CLLocation
+        let location = Location()
+        location.latitude = locationValues.coordinate.latitude
+        location.longitude = locationValues.coordinate.longitude
+        service.location = location
         
         let typeString = values["type"] as! String
         switch typeString {
@@ -79,6 +97,10 @@ class AddServiceVC: XLFormViewController {
             self.service.pet = pet
             self.sendToServer()
         }
+    }
+    
+    @IBAction func cancelTapped(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     private func sendToServer() {

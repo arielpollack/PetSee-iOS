@@ -39,8 +39,7 @@ extension AppDelegate: OnboardingDelegate {
             PetseeAPI.setAuthenticationToken(token)
             UserDefaultsManager.authenticatedUser = user
             
-            let userVC = UIStoryboard(name: "Client", bundle: nil).instantiateViewControllerWithIdentifier("Profile") as! UserProfile
-            userVC.user = user
+            let userVC = UIStoryboard(name: "Client", bundle: nil).instantiateInitialViewController()!
             
             let transition = CATransition()
             transition.type = kCATransitionPush

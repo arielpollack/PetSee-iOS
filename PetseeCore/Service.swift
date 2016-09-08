@@ -74,6 +74,7 @@ public class Service: Mappable , Identifiable {
     public var startDate: NSDate!
     public var endDate: NSDate!
     public var status: Status!
+    public var location: Location!
     public var type: Type!
     
     public init() {
@@ -93,5 +94,6 @@ public class Service: Mappable , Identifiable {
         endDate <- (map["time_end"], DateTransform())
         type <- map["type"]
         status <- map["status"]
+        location <- map["location"]
     }
 }
