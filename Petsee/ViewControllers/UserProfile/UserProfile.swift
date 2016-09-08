@@ -38,6 +38,10 @@ class UserProfile: UIViewController, UIScrollViewDelegate {
         scrollView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[sv]|", options: .AlignAllCenterX, metrics: nil, views: ["sv": containingView]))
         containingView.widthAnchor.constraintEqualToAnchor(scrollView.widthAnchor, multiplier: 1).active = true
         
+        if user == nil {
+            user = AuthManager.sharedInstance.authenticatedUser!
+        }
+        
         setupUser()
         setupUserImage()
     }

@@ -94,6 +94,11 @@ public struct PetseeAPI {
         executeRequest(sharedInstance.actionsProvider, target: target, arrayType: Service.self, completion: completion)
     }
     
+    public static func myServiceRequests(completion: ([ServiceRequest]?,String?)->()) {
+        let target = PetseeActions.MyServiceRequests
+        executeRequest(sharedInstance.actionsProvider, target: target, arrayType: ServiceRequest.self, completion: completion)
+    }
+    
     public static func addService(service: Service, completion: (Service?,String?)->()) {
         let target = PetseeActions.AddService(service: service)
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: Service.self, completion: completion)

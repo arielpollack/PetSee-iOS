@@ -19,7 +19,6 @@
 		732F2F001CDA902100CB491D /* UIWindow+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2EFF1CDA902100CB491D /* UIWindow+Transition.swift */; };
 		732F2F031CDA90AA00CB491D /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2F021CDA90AA00CB491D /* AuthManager.swift */; };
 		732F2F051CDBE29400CB491D /* Client.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 732F2F041CDBE29400CB491D /* Client.storyboard */; };
-		732F2F0B1CDE519100CB491D /* ServiceProvider.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 732F2F0A1CDE519100CB491D /* ServiceProvider.storyboard */; };
 		732F2F0E1CDE550B00CB491D /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2F0D1CDE550B00CB491D /* UserProfile.swift */; };
 		735C37101D7CCC300063FCD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819BE1CD1EC9A001AC3FB /* User.swift */; };
 		735C37111D7CCC300063FCD8 /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819C01CD1EE6C001AC3FB /* Pet.swift */; };
@@ -54,6 +53,8 @@
 		73F596801D81E99000459552 /* SelectLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F5967F1D81E99000459552 /* SelectLocationVC.swift */; };
 		73F596821D81EA1C00459552 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F596811D81EA1C00459552 /* MapKit.framework */; };
 		73F596841D81EA2300459552 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F596831D81EA2300459552 /* CoreLocation.framework */; };
+		73F596871D82080D00459552 /* ServiceRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F596861D82080D00459552 /* ServiceRequestCell.swift */; };
+		73F596891D8209BC00459552 /* ServiceProviderRequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F596881D8209BC00459552 /* ServiceProviderRequestsVC.swift */; };
 		73F64B471D7E0DC900CCE77D /* ServiceProviderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F64B461D7E0DC900CCE77D /* ServiceProviderCell.swift */; };
 		73F819891CD1E592001AC3FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819881CD1E592001AC3FB /* AppDelegate.swift */; };
 		73F8198E1CD1E592001AC3FB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198C1CD1E592001AC3FB /* Login.storyboard */; };
@@ -91,7 +92,6 @@
 		732F2F041CDBE29400CB491D /* Client.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Client.storyboard; sourceTree = "<group>"; };
 		732F2F061CDE3D8300CB491D /* PetseeActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetseeActions.swift; sourceTree = "<group>"; };
 		732F2F081CDE3E0300CB491D /* Race.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
-		732F2F0A1CDE519100CB491D /* ServiceProvider.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ServiceProvider.storyboard; sourceTree = "<group>"; };
 		732F2F0D1CDE550B00CB491D /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		735AECF11D6A3EBF0048E1E8 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		735C371E1D7CCDF30063FCD8 /* libCloudinary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCloudinary.a; sourceTree = "<group>"; };
@@ -120,6 +120,8 @@
 		73F5967F1D81E99000459552 /* SelectLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLocationVC.swift; sourceTree = "<group>"; };
 		73F596811D81EA1C00459552 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		73F596831D81EA2300459552 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		73F596861D82080D00459552 /* ServiceRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestCell.swift; sourceTree = "<group>"; };
+		73F596881D8209BC00459552 /* ServiceProviderRequestsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderRequestsVC.swift; sourceTree = "<group>"; };
 		73F64B461D7E0DC900CCE77D /* ServiceProviderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderCell.swift; sourceTree = "<group>"; };
 		73F819851CD1E592001AC3FB /* Petsee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petsee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73F819881CD1E592001AC3FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				737EDA941CDFCF92001B36D1 /* ReviewCell.xib */,
 				73AEC7C01D68F120001FDF83 /* ServiceCell.swift */,
 				73F64B461D7E0DC900CCE77D /* ServiceProviderCell.swift */,
+				73F596861D82080D00459552 /* ServiceRequestCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 		732F2EE61CD5175500CB491D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				73F596851D8207EE00459552 /* ServiceProvider */,
 				73DB8B741D51035900BD95E5 /* Home */,
 				732F2F0C1CDE541F00CB491D /* User profile */,
 				732F2EF61CDA8FDC00CB491D /* Onboarding */,
@@ -278,6 +282,14 @@
 			path = Cloudinary;
 			sourceTree = "<group>";
 		};
+		73F596851D8207EE00459552 /* ServiceProvider */ = {
+			isa = PBXGroup;
+			children = (
+				73F596881D8209BC00459552 /* ServiceProviderRequestsVC.swift */,
+			);
+			path = ServiceProvider;
+			sourceTree = "<group>";
+		};
 		73F8197C1CD1E592001AC3FB = {
 			isa = PBXGroup;
 			children = (
@@ -312,7 +324,6 @@
 				73F819911CD1E592001AC3FB /* LaunchScreen.storyboard */,
 				73F819941CD1E592001AC3FB /* Info.plist */,
 				732F2F041CDBE29400CB491D /* Client.storyboard */,
-				732F2F0A1CDE519100CB491D /* ServiceProvider.storyboard */,
 				73DB8B8B1D5134E100BD95E5 /* Petsee-bridgingHeader.h */,
 			);
 			path = Petsee;
@@ -411,7 +422,6 @@
 			files = (
 				73F819931CD1E592001AC3FB /* LaunchScreen.storyboard in Resources */,
 				73F819901CD1E592001AC3FB /* Assets.xcassets in Resources */,
-				732F2F0B1CDE519100CB491D /* ServiceProvider.storyboard in Resources */,
 				73F8198E1CD1E592001AC3FB /* Login.storyboard in Resources */,
 				732F2F051CDBE29400CB491D /* Client.storyboard in Resources */,
 				737EDA951CDFCF92001B36D1 /* ReviewCell.xib in Resources */,
@@ -497,6 +507,7 @@
 				735C37131D7CCC300063FCD8 /* Service.swift in Sources */,
 				732F2EF51CD94BA300CB491D /* UIColor+Addons.swift in Sources */,
 				732F2EE81CD5178800CB491D /* DataTextField.swift in Sources */,
+				73F596891D8209BC00459552 /* ServiceProviderRequestsVC.swift in Sources */,
 				732F2F0E1CDE550B00CB491D /* UserProfile.swift in Sources */,
 				73DB8B801D512B4E00BD95E5 /* AddPetVC.swift in Sources */,
 				732F2F001CDA902100CB491D /* UIWindow+Transition.swift in Sources */,
@@ -506,6 +517,7 @@
 				735C37101D7CCC300063FCD8 /* User.swift in Sources */,
 				732F2EFD1CDA8FDC00CB491D /* OnboardingDataVC.swift in Sources */,
 				735C37111D7CCC300063FCD8 /* Pet.swift in Sources */,
+				73F596871D82080D00459552 /* ServiceRequestCell.swift in Sources */,
 				735C37151D7CCC300063FCD8 /* Client.swift in Sources */,
 				73F64B471D7E0DC900CCE77D /* ServiceProviderCell.swift in Sources */,
 				B0803F731D67A6FF00AADA00 /* PetVC.swift in Sources */,

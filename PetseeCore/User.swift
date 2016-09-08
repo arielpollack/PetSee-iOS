@@ -25,6 +25,7 @@ public enum UserType: String {
     public var image: String?
     public var ratingCount: Int?
     public var rating: Double?
+    public var type: UserType?
     
     private var map: JSON?
     
@@ -44,6 +45,7 @@ public enum UserType: String {
         rating <- map["rating"]
         ratingCount <- map["rating_count"]
         token <- map["token"]
+        type <- map["type"]
         
         #if DEBUG
             self.map = map.JSONDictionary

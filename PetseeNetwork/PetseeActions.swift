@@ -35,6 +35,7 @@ enum PetseeActions {
     case RequestServiceProvider(service: Service, provider: ServiceProvider)
     
     // service provider methods
+    case MyServiceRequests
     case ApproveServiceRequest(serviceRequest: ServiceRequest)
     case DenyServiceRequest(serviceRequest: ServiceRequest)
 
@@ -81,6 +82,8 @@ extension PetseeActions: TargetType {
             return "/services/\(service.id)/requests"
         case .ChooseServiceRequest(let service, _):
             return "/services/\(service.id)/choose_service_provider"
+        case .MyServiceRequests:
+            return "/services/my_requests"
         case .ApproveServiceRequest(let serviceRequest):
             return "/service_request/\(serviceRequest.id)/approve"
         case .DenyServiceRequest(let serviceRequest):
@@ -125,6 +128,8 @@ extension PetseeActions: TargetType {
             return .POST
         case .ChooseServiceRequest:
             return .PUT
+        case .MyServiceRequests:
+            return .GET
         case .ApproveServiceRequest:
             return .PUT
         case .DenyServiceRequest:

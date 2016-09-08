@@ -7,7 +7,7 @@
         <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
     </dependencies>
     <scenes>
-        <!--User Profile-->
+        <!--Profile-->
         <scene sceneID="Uea-Ce-zuQ">
             <objects>
                 <viewController storyboardIdentifier="Profile" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FMD-kh-oQr" customClass="UserProfile" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
@@ -25,7 +25,7 @@
                                     <constraint firstAttribute="height" constant="160" id="Uwv-fX-aP2"/>
                                 </constraints>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vad-SX-IhH">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vad-SX-IhH">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <connections>
                                     <outlet property="delegate" destination="FMD-kh-oQr" id="n8e-wy-977"/>
@@ -43,6 +43,7 @@
                             <constraint firstItem="JpY-IK-3cV" firstAttribute="leading" secondItem="fgI-EO-YXS" secondAttribute="leading" id="wNC-x7-Sct"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="user_profile_icon" id="Kl4-KE-6I6"/>
                     <connections>
                         <outlet property="activityIndicator" destination="Zrf-xr-Qfx" id="lfY-78-X4l"/>
                         <outlet property="containingView" destination="6XU-kb-D7B" id="4RI-6W-w9k"/>
@@ -478,7 +479,7 @@ Member Since April 2016</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nZr-Vd-M9M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3053" y="-699"/>
+            <point key="canvasLocation" x="3865" y="-699"/>
         </scene>
         <!--Race ChooseVC-->
         <scene sceneID="s7s-Pt-6OS">
@@ -520,7 +521,7 @@ Member Since April 2016</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9GR-NN-hyh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5103" y="-723"/>
+            <point key="canvasLocation" x="5915" y="-723"/>
         </scene>
         <!--PetVC-->
         <scene sceneID="NJC-TQ-Q0a">
@@ -782,7 +783,7 @@ Member Since April 2016</string>
         <!--Tab Bar Controller-->
         <scene sceneID="gwB-Ss-UQo">
             <objects>
-                <tabBarController id="0lN-ru-zfQ" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="ClientStarter" id="0lN-ru-zfQ" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="3MW-9L-mtv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -833,7 +834,7 @@ Member Since April 2016</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tcY-uG-f1c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2601" y="-699"/>
+            <point key="canvasLocation" x="3413" y="-699"/>
         </scene>
         <!--Services-->
         <scene sceneID="wBP-of-xmW">
@@ -1044,6 +1045,147 @@ Member Since April 2016</string>
             </objects>
             <point key="canvasLocation" x="2176" y="2103"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="aRV-52-YSE">
+            <objects>
+                <tabBarController storyboardIdentifier="ServiceProviderStarter" id="chg-fX-LTJ" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="HBW-LS-R5b">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="4e5-Nj-ZpA" kind="relationship" relationship="viewControllers" id="tne-cj-dxw"/>
+                        <segue destination="ZQy-EU-qe1" kind="relationship" relationship="viewControllers" id="Vzj-EP-EE5"/>
+                        <segue destination="FMD-kh-oQr" kind="relationship" relationship="viewControllers" id="RvR-hR-V4C"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ErI-JS-Drp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1316" y="-480"/>
+        </scene>
+        <!--Service Provider RequestsVC-->
+        <scene sceneID="tlm-Mn-07L">
+            <objects>
+                <viewController storyboardIdentifier="ServiceProviderRequestsVC" automaticallyAdjustsScrollViewInsets="NO" id="SC1-Xw-9gT" customClass="ServiceProviderRequestsVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="J7A-Od-m5g"/>
+                        <viewControllerLayoutGuide type="bottom" id="n1T-Dm-jFb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pvb-EA-jbP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="80" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="5Nc-W1-juN">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ServiceRequest" rowHeight="80" id="MY3-WW-bRT" customClass="ServiceRequestCell" customModule="Petsee" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="320" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MY3-WW-bRT" id="y14-Vy-n0O">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jrm-kJ-BGS">
+                                                    <rect key="frame" x="15" y="15" width="49" height="49"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="jrm-kJ-BGS" secondAttribute="height" id="7rT-yL-R1k"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Johnny Depp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4p-4o-k3O">
+                                                    <rect key="frame" x="72" y="22" width="91" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="naI-E3-1HO" customClass="HCSStarRatingView">
+                                                    <rect key="frame" x="72" y="40" width="70" height="20"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="6c3-cX-KrS"/>
+                                                        <constraint firstAttribute="height" constant="20" id="dbb-k9-nAW"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
+                                                            <real key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                                            <real key="value" value="3"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="spacing">
+                                                            <real key="value" value="2"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(18 reviews)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzS-cw-DmY">
+                                                    <rect key="frame" x="147" y="43" width="72" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="naI-E3-1HO" firstAttribute="top" secondItem="X4p-4o-k3O" secondAttribute="bottom" id="08U-Xt-US6"/>
+                                                <constraint firstItem="X4p-4o-k3O" firstAttribute="leading" secondItem="jrm-kJ-BGS" secondAttribute="trailing" constant="8" id="43B-vq-Qh2"/>
+                                                <constraint firstAttribute="bottom" secondItem="jrm-kJ-BGS" secondAttribute="bottom" constant="15" id="EiB-kQ-p1C"/>
+                                                <constraint firstItem="jrm-kJ-BGS" firstAttribute="top" secondItem="y14-Vy-n0O" secondAttribute="top" constant="15" id="KIS-Pf-3VW"/>
+                                                <constraint firstItem="jrm-kJ-BGS" firstAttribute="leading" secondItem="y14-Vy-n0O" secondAttribute="leading" constant="15" id="QdU-BG-VES"/>
+                                                <constraint firstItem="X4p-4o-k3O" firstAttribute="bottom" secondItem="jrm-kJ-BGS" secondAttribute="centerY" id="RyY-yx-Pzy"/>
+                                                <constraint firstItem="rzS-cw-DmY" firstAttribute="leading" secondItem="naI-E3-1HO" secondAttribute="trailing" constant="5" id="dVJ-PJ-WHF"/>
+                                                <constraint firstItem="rzS-cw-DmY" firstAttribute="centerY" secondItem="naI-E3-1HO" secondAttribute="centerY" constant="1" id="dua-yq-UXj"/>
+                                                <constraint firstItem="naI-E3-1HO" firstAttribute="leading" secondItem="jrm-kJ-BGS" secondAttribute="trailing" constant="8" id="mmn-nl-pkU"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="SC1-Xw-9gT" id="60E-8f-5G1"/>
+                                    <outlet property="delegate" destination="SC1-Xw-9gT" id="aYd-Ef-HDp"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="5Nc-W1-juN" secondAttribute="trailing" id="16g-np-IXG"/>
+                            <constraint firstItem="5Nc-W1-juN" firstAttribute="leading" secondItem="pvb-EA-jbP" secondAttribute="leading" id="bAt-E0-xvz"/>
+                            <constraint firstItem="5Nc-W1-juN" firstAttribute="top" secondItem="J7A-Od-m5g" secondAttribute="bottom" id="j9k-bU-QDE"/>
+                            <constraint firstItem="n1T-Dm-jFb" firstAttribute="top" secondItem="5Nc-W1-juN" secondAttribute="bottom" id="tew-lJ-Bvt"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="894-w8-uCy"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="tableRequests" destination="5Nc-W1-juN" id="QfQ-5u-ycm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mhU-sH-A4x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="685" y="-886"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="C3A-Rx-qbG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZQy-EU-qe1" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="bf4-8G-hbQ"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bop-bx-zGh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SC1-Xw-9gT" kind="relationship" relationship="rootViewController" id="QC1-k0-ct7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="at2-Ir-Mgd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="285" y="-886"/>
+        </scene>
     </scenes>
     <resources>
         <image name="exit" width="30" height="30"/>
@@ -1051,8 +1193,11 @@ Member Since April 2016</string>
         <image name="pet-profile-placeholder" width="66" height="66"/>
         <image name="plus" width="35" height="35"/>
         <image name="service-icon" width="30" height="25"/>
+        <image name="user_profile_icon" width="22" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="tne-cj-dxw"/>
+        <segue reference="RvR-hR-V4C"/>
         <segue reference="Bjg-a1-iN3"/>
     </inferredMetricsTieBreakers>
 </document>

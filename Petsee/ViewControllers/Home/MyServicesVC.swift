@@ -14,6 +14,14 @@ class MyServicesVC: UIViewController {
     
     var services = [Service]()
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if AuthManager.sharedInstance.authenticatedUser!.type == .ServiceProvider {
+            navigationItem.rightBarButtonItem = nil
+        }
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         

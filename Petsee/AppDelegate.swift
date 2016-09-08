@@ -20,8 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         if authManager.isLoggedIn() {
-            let userVC = UIStoryboard(name: "Client", bundle: nil).instantiateInitialViewController()
-            window!.rootViewController = userVC
+            window!.rootViewController = userViewController()
         } else {
             let onboardingVC = OnboardingVC(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
             onboardingVC.loginDelegate = self
@@ -29,6 +28,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         window!.makeKeyAndVisible()
         return true
+    }
+    
+    private func userViewController() -> UIViewController {
+        let userVC: UIViewController
+        switch AuthManager.sharedInstance.authenticatedUser!.type! {
+        case .Client:
+            userVC = UIStoryboard(name: "Client", bundle: nil).instantiateViewControllerWithIdentifier("ClientStarter")
+        case .ServiceProvider:
+            userVC = UIStoryboard(name: "Client", bundle: nil).instantiateViewControllerWithIdentifier("ServiceProviderStarter")
+        }
+        return userVC
     }
 }
 
@@ -39,8 +49,7 @@ extension AppDelegate: OnboardingDelegate {
             PetseeAPI.setAuthenticationToken(token)
             UserDefaultsManager.authenticatedUser = user
             
-            let userVC = UIStoryboard(name: "Client", bundle: nil).instantiateInitialViewController()!
-            
+            let userVC = self.userViewController()
             let transition = CATransition()
             transition.type = kCATransitionPush
             transition.subtype = kCATransitionFromRight
@@ -48,4 +57,3 @@ extension AppDelegate: OnboardingDelegate {
         }
     }
 }
-
