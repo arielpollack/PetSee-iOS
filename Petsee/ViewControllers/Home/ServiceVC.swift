@@ -33,7 +33,7 @@ class ServiceVC: UITableViewController {
  
     var service: Service! {
         didSet {
-            isClient = service.client == AuthManager.sharedInstance.authenticatedUser
+            isClient = service.serviceProvider == nil || service.client == AuthManager.sharedInstance.authenticatedUser
         }
     }
     private var isClient = true

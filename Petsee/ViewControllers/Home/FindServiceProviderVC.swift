@@ -145,10 +145,10 @@ extension FindServiceProviderVC: ServiceProviderCellDelegate {
     
     func chooseServiceRequest(request: ServiceRequest) {
         PetseeAPI.chooseServiceRequest(service, serviceRequest: request) { object, error in
-//            guard error == nil else {
-//                // show error
-//                return
-//            }
+            guard error == nil else {
+                // show error
+                return
+            }
             
             self.service.serviceProvider = request.serviceProvider
             self.service.status = .Confirmed

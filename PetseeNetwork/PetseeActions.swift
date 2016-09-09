@@ -12,6 +12,7 @@ import Moya
 enum PetseeActions {
     case UserPets(userId: Int)
     case UserReviews(userId: Int)
+    case UpdateUser(image: String?)
     
     case CreateReview(userId: Int, rate: Int, feedback: String?)
     
@@ -54,6 +55,8 @@ extension PetseeActions: TargetType {
             return "/users/\(userId)/pets"
         case .UserReviews(let userId):
             return "/users/\(userId)/reviews"
+        case .UpdateUser:
+            return "/users"
         case .CreateReview(let userId, _, _):
             return "/users/\(userId)/reviews"
         case .MyPets:
@@ -106,6 +109,8 @@ extension PetseeActions: TargetType {
             return .GET
         case .UserReviews:
             return .GET
+        case .UpdateUser:
+            return .PUT
         case .CreateReview:
             return .POST
         case .MyPets:
@@ -154,6 +159,10 @@ extension PetseeActions: TargetType {
     }
     var parameters: [String : AnyObject]? {
         switch self {
+        case .UpdateUser(let image):
+            var params = JSON()
+            params["image"] = image
+            return params
         case .AddPet(let pet):
             var params = pet.toJSON()
             params["race"] = nil

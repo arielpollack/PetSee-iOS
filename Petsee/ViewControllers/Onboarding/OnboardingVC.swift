@@ -34,6 +34,12 @@ class OnboardingVC: UIPageViewController {
         return vc
     }()
     
+    lazy var photoVC: OnboardingDataVC = {
+        let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewControllerWithIdentifier("Photo") as! OnboardingDataVC
+        vc.delegate = self
+        return vc
+    }()
+    
     lazy var typeVC: OnboardingDataVC = {
         let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewControllerWithIdentifier("Type") as! OnboardingDataVC
         vc.delegate = self
@@ -68,6 +74,7 @@ class OnboardingVC: UIPageViewController {
     private var email: String!
     private var password: String!
     private var name: String?
+    private var imageData: NSData?
     private var type: UserType!
     private var isExistingUser: Bool = false
     
@@ -106,6 +113,22 @@ class OnboardingVC: UIPageViewController {
             }
             
             self.loginDelegate?.didFinishLoginWithUser(user)
+            
+            // upload image after login
+            if let data = self.imageData {
+                PetseeAPI.uploadImage(data, completion: { res, error in
+                    guard let url = res?["url"] as? String else {
+                        return
+                    }
+                    
+                    user.image = url
+                    PetseeAPI.updateUser(user, completion: { user, error in
+                        if let user = user where error == nil {
+                            AuthManager.sharedInstance.authenticatedUser = user
+                        }
+                    })
+                })
+            }
         }
     }
     
@@ -159,8 +182,12 @@ extension OnboardingVC: OnboardingDataDelegate {
             if self.isExistingUser {
                 login()
             } else {
-                showNextViewController(typeVC)
+                showNextViewController(photoVC)
             }
+        }
+        else if controller == photoVC {
+            imageData = data as? NSData
+            showNextViewController(typeVC)
         }
         else if controller == typeVC {
             type = UserType(rawValue: data as! String)!
