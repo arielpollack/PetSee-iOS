@@ -134,6 +134,16 @@ public struct PetseeAPI {
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: Location.self, completion: completion)
     }
     
+    public static func approveServiceRequest(request: ServiceRequest, completion: (AnyObject?,String?)->()) {
+        let target = PetseeActions.ApproveServiceRequest(serviceRequest: request)
+        executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
+    }
+    
+    public static func denyServiceRequest(request: ServiceRequest, completion: (AnyObject?,String?)->()) {
+        let target = PetseeActions.DenyServiceRequest(serviceRequest: request)
+        executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
+    }
+    
     // MARK:- Private
     private static func executeRequest<TT: TargetType>(provider: RxMoyaProvider<TT>, target: TT, completion: (AnyObject?, String?)->()) {
         let observable = observableRequest(provider, target: target).mapJSON()

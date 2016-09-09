@@ -31,4 +31,17 @@ struct GoogleMapsService {
             completion(response.result.value)
         }
     }
+    
+    static func imageMapForLocation(size: CGSize, location: Location, completion: UIImage?->()) {
+        let scale = UIScreen.mainScreen().scale
+        let scaledSize = CGSizeMake(size.width * scale, size.height * scale)
+        
+        let locationString = "\(location.latitude),\(location.longitude)"
+        var baseUrl = "https://maps.googleapis.com/maps/api/staticmap?key=\(apiKey)&size=\(Int(scaledSize.width))x\(Int(scaledSize.height))&center=\(locationString)&markers=color:blue|\(locationString)"
+        baseUrl = baseUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        
+        Alamofire.request(.GET, baseUrl).responseImage { response in
+            completion(response.result.value)
+        }
+    }
 }

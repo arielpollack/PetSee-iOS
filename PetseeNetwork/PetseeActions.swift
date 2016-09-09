@@ -85,9 +85,9 @@ extension PetseeActions: TargetType {
         case .MyServiceRequests:
             return "/services/my_requests"
         case .ApproveServiceRequest(let serviceRequest):
-            return "/service_request/\(serviceRequest.id)/approve"
+            return "/services/\(serviceRequest.service!.id)/approve"
         case .DenyServiceRequest(let serviceRequest):
-            return "/service_request/\(serviceRequest.id)/deny"
+            return "/services/\(serviceRequest.service!.id)/deny"
         case .LocationsForService(let service):
             return "/services/\(service.id)/locations"
         case .AddLocationForService(let service, _, _):
@@ -172,6 +172,10 @@ extension PetseeActions: TargetType {
             return ["service_request_id": request.id]
         case .AddLocationForService(_, let latitude, let longitude):
             return ["latitude": latitude, "longitude": longitude]
+        case .ApproveServiceRequest(let serviceRequest):
+            return ["request_id": serviceRequest.id]
+        case .DenyServiceRequest(let serviceRequest):
+            return ["request_id": serviceRequest.id]
         default:
             return nil
         }
