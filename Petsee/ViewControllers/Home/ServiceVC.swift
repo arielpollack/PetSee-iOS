@@ -31,12 +31,10 @@ class ServiceVC: UITableViewController {
     @IBOutlet weak var lblServiceProviderName: UILabel!
     @IBOutlet weak var lblPetName: UILabel!
  
-    var service: Service! {
-        didSet {
-            isClient = service.serviceProvider == nil || service.client == AuthManager.sharedInstance.authenticatedUser
-        }
-    }
-    private var isClient = true
+    var service: Service!
+    private var isClient: Bool = {
+        return AuthManager.sharedInstance.authenticatedUser!.type == .Client
+    }()
     weak var delegate: ServiceVCDelegate?
     
     var cellTypes = [CellType]()
