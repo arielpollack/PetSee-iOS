@@ -12,11 +12,12 @@ import SVProgressHUD
 class ServiceProviderRequestsVC: UIViewController {
     
     @IBOutlet weak var tableRequests: UITableView!
+    @IBOutlet var emptyStateView: UIView!
     
     private var requests = [ServiceRequest]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         PetseeAPI.myServiceRequests { requests, error in
             guard let requests = requests where error == nil else {
@@ -26,6 +27,8 @@ class ServiceProviderRequestsVC: UIViewController {
             
             self.requests = requests
             self.tableRequests.reloadData()
+            
+            self.showEmptyStateIfNeeded()
         }
     }
     
@@ -65,6 +68,16 @@ class ServiceProviderRequestsVC: UIViewController {
         tableRequests.beginUpdates()
         tableRequests.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         tableRequests.endUpdates()
+        
+        showEmptyStateIfNeeded()
+    }
+    
+    private func showEmptyStateIfNeeded() {
+        if requests.count == 0 {
+            tableRequests.backgroundView = emptyStateView
+        } else {
+            tableRequests.backgroundView = nil
+        }
     }
 }
 

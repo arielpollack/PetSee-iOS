@@ -31,7 +31,12 @@ class ServiceVC: UITableViewController {
     @IBOutlet weak var lblServiceProviderName: UILabel!
     @IBOutlet weak var lblPetName: UILabel!
  
-    var service: Service!
+    var service: Service! {
+        didSet {
+            isClient = service.client == AuthManager.sharedInstance.authenticatedUser
+        }
+    }
+    private var isClient = true
     weak var delegate: ServiceVCDelegate?
     
     var cellTypes = [CellType]()
@@ -192,7 +197,7 @@ class ServiceVC: UITableViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(startServiceTapped), name: Notification.StartServiceTapped, object: service)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(endServiceTapped), name: Notification.EndServiceTapped, object: service)
         
-        if service.client == AuthManager.sharedInstance.authenticatedUser {
+        if isClient {
             // I'm th client
             switch service.status! {
             case .Pending:
@@ -237,14 +242,22 @@ class ServiceVC: UITableViewController {
     }
     
     private func loadViews() {
-        lblServiceProviderName.text = service.serviceProvider?.name ?? "Not chosen"
-        lblPetName.text = service.pet.name
-        if let image = service.serviceProvider?.image {
+        let user: User?
+        if isClient {
+            user = service.serviceProvider
+        } else {
+            user = AuthManager.sharedInstance.authenticatedUser
+        }
+        lblServiceProviderName.text = user?.name ?? "Not chosen"
+        if let image = user?.image {
             let url = NSURL(string: image)!
             imgServiceProvider.af_setImageWithURL(url)
         } else {
-            imgServiceProvider.image = UIImage(named: "question_mark")
+            imgServiceProvider.image = UIImage(named: "user_profile_icon")
         }
+        
+        lblPetName.text = service.pet.name
+        
         if let image = service.pet.image {
             let url = NSURL(string: image)!
             imgPet.af_setImageWithURL(url)

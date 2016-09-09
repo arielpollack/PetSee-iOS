@@ -178,7 +178,7 @@ Member Since April 2016</string>
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="647" y="349"/>
+            <point key="canvasLocation" x="1467" y="-1867"/>
         </scene>
         <!--My ServicesVC-->
         <scene sceneID="2S1-Mf-P49">
@@ -293,7 +293,7 @@ Member Since April 2016</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ANT-cp-1jv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2176" y="687"/>
+            <point key="canvasLocation" x="2064" y="443"/>
         </scene>
         <!--Add ServiceVC-->
         <scene sceneID="fl4-jJ-c5O">
@@ -338,7 +338,7 @@ Member Since April 2016</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pui-DD-IUB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2609" y="1421"/>
+            <point key="canvasLocation" x="2558" y="1177"/>
         </scene>
         <!--My PetsVC-->
         <scene sceneID="YQA-Jy-yvj">
@@ -409,7 +409,7 @@ Member Since April 2016</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wNv-db-JoO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2176" y="26"/>
+            <point key="canvasLocation" x="2064" y="-886"/>
         </scene>
         <!--Add Pet-->
         <scene sceneID="zT0-QX-r7x">
@@ -479,7 +479,7 @@ Member Since April 2016</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nZr-Vd-M9M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3865" y="-699"/>
+            <point key="canvasLocation" x="2972" y="-578"/>
         </scene>
         <!--Race ChooseVC-->
         <scene sceneID="s7s-Pt-6OS">
@@ -574,7 +574,7 @@ Member Since April 2016</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Mg-4t-HLS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2609" y="26"/>
+            <point key="canvasLocation" x="2558" y="-1262"/>
         </scene>
         <!--ServiceVC-->
         <scene sceneID="eRq-Ha-U0t">
@@ -816,7 +816,7 @@ Member Since April 2016</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bF6-1j-fWt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2609" y="687"/>
+            <point key="canvasLocation" x="2558" y="443"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gwB-Ss-UQo">
@@ -835,7 +835,7 @@ Member Since April 2016</string>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BzK-Kd-raB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1316" y="333"/>
+            <point key="canvasLocation" x="2204" y="-1867"/>
         </scene>
         <!--Pets-->
         <scene sceneID="2UO-CI-RWS">
@@ -854,7 +854,7 @@ Member Since April 2016</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZT-7j-u07" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1776" y="26"/>
+            <point key="canvasLocation" x="1664" y="-886"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pgt-tc-Mtz">
@@ -872,7 +872,7 @@ Member Since April 2016</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tcY-uG-f1c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3413" y="-699"/>
+            <point key="canvasLocation" x="2558" y="-578"/>
         </scene>
         <!--Services-->
         <scene sceneID="wBP-of-xmW">
@@ -891,7 +891,7 @@ Member Since April 2016</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mya-ZH-b3D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1776" y="687"/>
+            <point key="canvasLocation" x="1664" y="443"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6ZQ-vu-9PA">
@@ -909,7 +909,7 @@ Member Since April 2016</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jBU-ub-FpH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2176" y="1421"/>
+            <point key="canvasLocation" x="2064" y="1177"/>
         </scene>
         <!--Find Service ProviderVC-->
         <scene sceneID="BVr-6n-XgW">
@@ -1081,7 +1081,7 @@ Member Since April 2016</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qWU-I7-8j3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2176" y="2103"/>
+            <point key="canvasLocation" x="2972" y="443"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="aRV-52-YSE">
@@ -1101,7 +1101,7 @@ Member Since April 2016</string>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ErI-JS-Drp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1316" y="-480"/>
+            <point key="canvasLocation" x="760" y="-1867"/>
         </scene>
         <!--Service Provider RequestsVC-->
         <scene sceneID="tlm-Mn-07L">
@@ -1244,10 +1244,29 @@ Member Since April 2016</string>
                     <navigationItem key="navigationItem" id="894-w8-uCy"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="emptyStateView" destination="6PB-5n-V5I" id="OPu-QZ-w6a"/>
                         <outlet property="tableRequests" destination="5Nc-W1-juN" id="QfQ-5u-ycm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mhU-sH-A4x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="6PB-5n-V5I">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No requests at this moment..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHp-Ir-EqD">
+                            <rect key="frame" x="7" y="53" width="226" height="21"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="qHp-Ir-EqD" firstAttribute="centerX" secondItem="6PB-5n-V5I" secondAttribute="centerX" id="F2I-hh-Aw1"/>
+                        <constraint firstItem="qHp-Ir-EqD" firstAttribute="centerY" secondItem="6PB-5n-V5I" secondAttribute="centerY" id="ZUl-nU-mIj"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="685" y="-886"/>
         </scene>
@@ -1282,8 +1301,8 @@ Member Since April 2016</string>
         <image name="x" width="14" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tne-cj-dxw"/>
-        <segue reference="RvR-hR-V4C"/>
         <segue reference="Bjg-a1-iN3"/>
+        <segue reference="BK8-0q-mrT"/>
+        <segue reference="8ss-Lb-aHd"/>
     </inferredMetricsTieBreakers>
 </document>
