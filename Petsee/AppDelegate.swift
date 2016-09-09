@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if authManager.isLoggedIn() {
             window!.rootViewController = userViewController()
+            
+            LocationHandler.sharedManager.startLocationUpdates()
         } else {
             let onboardingVC = OnboardingVC(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
             onboardingVC.loginDelegate = self

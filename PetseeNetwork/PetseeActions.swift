@@ -38,6 +38,8 @@ enum PetseeActions {
     case MyServiceRequests
     case ApproveServiceRequest(serviceRequest: ServiceRequest)
     case DenyServiceRequest(serviceRequest: ServiceRequest)
+    case StartService(service: Service)
+    case EndService(service: Service)
 
     case LocationsForService(service: Service)
     case AddLocationForService(service: Service, latitude: Double, longitude: Double)
@@ -92,6 +94,10 @@ extension PetseeActions: TargetType {
             return "/services/\(service.id)/locations"
         case .AddLocationForService(let service, _, _):
             return "/services/\(service.id)/add_location"
+        case .StartService(let service):
+            return "/services/\(service.id)/start"
+        case .EndService(let service):
+            return "/services/\(service.id)/end"
         }
     }
     var method: Moya.Method {
@@ -140,6 +146,10 @@ extension PetseeActions: TargetType {
             return .POST
         case .GetAvailableServiceProviders:
             return .GET
+        case .StartService:
+            return .PUT
+        case .EndService:
+            return .PUT
         }
     }
     var parameters: [String : AnyObject]? {

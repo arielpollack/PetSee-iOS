@@ -197,6 +197,34 @@ class ServiceVC: UITableViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(startServiceTapped), name: Notification.StartServiceTapped, object: service)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(endServiceTapped), name: Notification.EndServiceTapped, object: service)
         
+        loadServiceInfo()
+    }
+    
+    private func loadViews() {
+        let user: User?
+        if isClient {
+            user = service.serviceProvider
+        } else {
+            user = AuthManager.sharedInstance.authenticatedUser
+        }
+        lblServiceProviderName.text = user?.name ?? "Not chosen"
+        if let image = user?.image {
+            let url = NSURL(string: image)!
+            imgServiceProvider.af_setImageWithURL(url)
+        } else {
+            imgServiceProvider.image = UIImage(named: "user_profile_icon")
+        }
+        
+        lblPetName.text = service.pet.name
+        
+        if let image = service.pet.image {
+            let url = NSURL(string: image)!
+            imgPet.af_setImageWithURL(url)
+        }
+        tableView.reloadData()
+    }
+    
+    private func loadServiceInfo() {
         if isClient {
             // I'm th client
             switch service.status! {
@@ -239,29 +267,7 @@ class ServiceVC: UITableViewController {
                 break
             }
         }
-    }
-    
-    private func loadViews() {
-        let user: User?
-        if isClient {
-            user = service.serviceProvider
-        } else {
-            user = AuthManager.sharedInstance.authenticatedUser
-        }
-        lblServiceProviderName.text = user?.name ?? "Not chosen"
-        if let image = user?.image {
-            let url = NSURL(string: image)!
-            imgServiceProvider.af_setImageWithURL(url)
-        } else {
-            imgServiceProvider.image = UIImage(named: "user_profile_icon")
-        }
         
-        lblPetName.text = service.pet.name
-        
-        if let image = service.pet.image {
-            let url = NSURL(string: image)!
-            imgPet.af_setImageWithURL(url)
-        }
         tableView.reloadData()
     }
     
@@ -290,11 +296,33 @@ class ServiceVC: UITableViewController {
     }
     
     func startServiceTapped() {
-        
+        PetseeAPI.startService(service) { _, error in
+            guard error == nil else {
+                // TODO: show error
+                return
+            }
+            
+            self.service.status = .Started
+            self.loadServiceInfo()
+            
+            // start location tracking
+            LocationHandler.sharedManager.startTrackingService(self.service)
+        }
     }
     
     func endServiceTapped() {
-        
+        PetseeAPI.endService(service) { _, error in
+            guard error == nil else {
+                // TODO: show error
+                return
+            }
+            
+            self.service.status = .Ended
+            self.loadServiceInfo()
+            
+            // start location tracking
+            LocationHandler.sharedManager.stopTrackingService(self.service)
+        }
     }
     
     func showError(error: String) {
@@ -335,19 +363,35 @@ class ServiceTripRouteCell: UITableViewCell {
     }
     
     private func loadTripRoute() {
-        PetseeAPI.locationsForService(service) { locations, error in
+        PetseeAPI.locationsForService(service) { [weak self] locations, error in
             if let locations = locations {
-                self.loadGoogleImage(locations)
+                self?.loadGoogleImage(locations)
             } else {
-                self.loader.stopAnimating()
+                self?.loader.stopAnimating()
             }
         }
     }
     
     private func loadGoogleImage(locations: [Location]) {
-        GoogleMapsService.imageMapForLocations(imgTripRoute.bounds.size, locations: locations) { image in
-            self.imgTripRoute.image = image
-            self.loader.stopAnimating()
+        GoogleMapsService.imageMapForLocations(imgTripRoute.bounds.size, locations: locations) { [weak self] image in
+            self?.imgTripRoute.image = image
+            self?.loader.stopAnimating()
+            
+            self?.scheduleNextUpdate()
+        }
+    }
+    
+    private func scheduleNextUpdate() {
+        // if it's ended locations won't be updated anymore
+        if service.status == .Ended {
+            return
+        }
+        
+        print("scheduled next route reload")
+        
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.loadTripRoute()
         }
     }
 }
@@ -392,22 +436,3 @@ class ServiceButtonCell: UITableViewCell {
         action = nil
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

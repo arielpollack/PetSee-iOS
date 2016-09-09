@@ -129,7 +129,7 @@ public struct PetseeAPI {
         executeRequest(sharedInstance.actionsProvider, target: target, arrayType: Location.self, completion: completion)
     }
     
-    public static func addLocationForService(latitude: Double, longitude: Double, service: Service, completion: (Location?,String?)->()) {
+    public static func addLocationForService(latitude: Double, longitude: Double, service: Service, completion: (Location?,String?)->() = { _,_ in }) {
         let target = PetseeActions.AddLocationForService(service: service, latitude: latitude, longitude: longitude)
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: Location.self, completion: completion)
     }
@@ -141,6 +141,16 @@ public struct PetseeAPI {
     
     public static func denyServiceRequest(request: ServiceRequest, completion: (AnyObject?,String?)->()) {
         let target = PetseeActions.DenyServiceRequest(serviceRequest: request)
+        executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
+    }
+    
+    public static func startService(service: Service, completion: (AnyObject?,String?)->()) {
+        let target = PetseeActions.StartService(service: service)
+        executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
+    }
+    
+    public static func endService(service: Service, completion: (AnyObject?,String?)->()) {
+        let target = PetseeActions.EndService(service: service)
         executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
     }
     

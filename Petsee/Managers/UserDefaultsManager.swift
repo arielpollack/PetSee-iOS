@@ -11,22 +11,25 @@ import ObjectMapper
 
 struct UserDefaultsManager {
     
-    private static let userTokenKey = "ps_user_token"
-    private static let authenticatedUserKey = "ps_authenticated_user"
+    private struct Keys {
+        static let userTokenKey = "ps_user_token"
+        static let authenticatedUserKey = "ps_authenticated_user"
+        static let lastTrackedServices = "ps_last_tracked_services"
+    }
     
     static var userToken: String? {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey(userTokenKey) as? String
+            return NSUserDefaults.standardUserDefaults().objectForKey(Keys.userTokenKey) as? String
         }
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: userTokenKey)
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: Keys.userTokenKey)
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
     
     static var authenticatedUser: User? {
         get {
-            guard let json = NSUserDefaults.standardUserDefaults().objectForKey(authenticatedUserKey) as? JSON else {
+            guard let json = NSUserDefaults.standardUserDefaults().objectForKey(Keys.authenticatedUserKey) as? JSON else {
                 return nil
             }
             guard let user = User(JSON: json) else {
@@ -37,12 +40,35 @@ struct UserDefaultsManager {
         }
         set {
             guard let user = newValue else {
-                NSUserDefaults.standardUserDefaults().setObject(nil, forKey: authenticatedUserKey)
+                NSUserDefaults.standardUserDefaults().setObject(nil, forKey: Keys.authenticatedUserKey)
                 NSUserDefaults.standardUserDefaults().synchronize()
                 return
             }
             let json = user.toJSON()
-            NSUserDefaults.standardUserDefaults().setObject(json, forKey: authenticatedUserKey)
+            NSUserDefaults.standardUserDefaults().setObject(json, forKey: Keys.authenticatedUserKey)
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
+    
+    static var lastTrackedServices: [Service] {
+        get {
+            guard let jsonArray = NSUserDefaults.standardUserDefaults().objectForKey(Keys.lastTrackedServices) as? [JSON] else {
+                return []
+            }
+            var services = [Service]()
+            for json in jsonArray {
+                if let service = Service(JSON: json) {
+                    services.append(service)
+                }
+            }
+            return services
+        }
+        set {
+            var servicesJSON = [JSON]()
+            for service in newValue {
+                servicesJSON.append(service.toJSON())
+            }
+            NSUserDefaults.standardUserDefaults().setObject(servicesJSON, forKey: Keys.lastTrackedServices)
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
