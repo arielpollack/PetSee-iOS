@@ -188,7 +188,7 @@ extension PetseeActions: TargetType {
         case .RequestServiceProvider(_, let provider):
             return ["service_provider_id": provider.id]
         case .ChooseServiceRequest(_, let request):
-            return ["service_request_id": request.id]
+            return ["request_id": request.id]
         case .AddLocationForService(_, let latitude, let longitude):
             return ["latitude": latitude, "longitude": longitude]
         case .ApproveServiceRequest(let serviceRequest):
