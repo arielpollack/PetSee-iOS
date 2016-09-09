@@ -29,6 +29,7 @@ public class ServiceRequest: Mappable, Identifiable {
     }
     
     public var id: Int!
+    public var service: Service?
     public var serviceProvider: ServiceProvider!
     public var status: Status!
     
@@ -39,6 +40,7 @@ public class ServiceRequest: Mappable, Identifiable {
     public func mapping(map: Map) {
         id <- map["id"]
         serviceProvider <- map["service_provider"]
+        service <- map["service"]
         status <- map["status"]
     }
 }

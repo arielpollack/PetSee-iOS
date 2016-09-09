@@ -394,6 +394,11 @@
 					73F819841CD1E592001AC3FB = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 5H49663M79;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -612,7 +617,7 @@
 					"$(PROJECT_DIR)",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -DDEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pollack.petsee;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ios.petsee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Petsee/Petsee-bridgingHeader.h";
 			};
