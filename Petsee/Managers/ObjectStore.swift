@@ -77,6 +77,14 @@ class ObjectStore<T: Equatable> {
         objects.append(object)
     }
     
+    func remove(object: T) {
+        guard let index = objects.indexOf(object) else {
+            return
+        }
+        
+        objects.removeAtIndex(index)
+    }
+    
     func replace(object: T) {
         if let index = objects.indexOf(object) {
             objects[index] = object

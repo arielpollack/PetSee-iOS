@@ -32,6 +32,7 @@ enum PetseeActions {
     case GetServiceRequests(service: Service)
     case GetAvailableServiceProviders(service: Service)
     case ChooseServiceRequest(service: Service, request: ServiceRequest)
+    case CancelService(service: Service)
     
     case RequestServiceProvider(service: Service, provider: ServiceProvider)
     
@@ -79,6 +80,8 @@ extension PetseeActions: TargetType {
             return "/services"
         case .AddService:
             return "/services"
+        case .CancelService(let service):
+            return "/services/\(service.id)/cancel"
         case .GetAvailableServiceProviders(let service):
             return "/services/\(service.id)/available_service_providers"
         case .GetServiceRequests(let service):
@@ -133,6 +136,8 @@ extension PetseeActions: TargetType {
             return .GET
         case .AddService:
             return .POST
+        case .CancelService:
+            return .DELETE
         case .GetServiceRequests:
             return .GET
         case .RequestServiceProvider:

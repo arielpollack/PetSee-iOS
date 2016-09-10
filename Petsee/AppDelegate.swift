@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         authManager = AuthManager.sharedInstance
+        
+        setDefaultAppearance()
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
@@ -30,6 +33,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         window!.makeKeyAndVisible()
         return true
+    }
+    
+    private func setDefaultAppearance() {
+        SVProgressHUD.setDefaultMaskType(.Black)
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
+        ]
+        UINavigationBar.appearance().barTintColor = UIColor(hex: "#2196F3")
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
     }
     
     private func userViewController() -> UIViewController {

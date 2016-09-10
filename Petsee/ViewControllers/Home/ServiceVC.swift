@@ -8,6 +8,7 @@
 
 import UIKit
 import AlamofireImage
+import SVProgressHUD
 
 protocol ServiceVCDelegate: NSObjectProtocol {
     func serviceViewControllerDidApprove(controller: ServiceVC, service: Service)
@@ -282,7 +283,17 @@ class ServiceVC: UITableViewController {
     }
     
     func cancelServiceTapped() {
-        
+        SVProgressHUD.show()
+        PetseeAPI.cancelService(service) { _, error in
+            SVProgressHUD.dismiss()
+            guard error == nil else {
+                // show error
+                return
+            }
+            
+            ServicesStore.sharedStore.remove(self.service)
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
     
     func approveServiceRequestTapped() {

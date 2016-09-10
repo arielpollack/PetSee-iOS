@@ -139,6 +139,11 @@ public struct PetseeAPI {
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: Location.self, completion: completion)
     }
     
+    public static func cancelService(service: Service, completion: (AnyObject?,String?)->()) {
+        let target = PetseeActions.CancelService(service: service)
+        executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
+    }
+    
     public static func approveServiceRequest(request: ServiceRequest, completion: (AnyObject?,String?)->()) {
         let target = PetseeActions.ApproveServiceRequest(serviceRequest: request)
         executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
