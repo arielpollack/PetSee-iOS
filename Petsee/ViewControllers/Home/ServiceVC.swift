@@ -274,7 +274,7 @@ class ServiceVC: UITableViewController {
     
     func writeReviewTapped() {
         let reviewVC = storyboard?.instantiateViewControllerWithIdentifier("AddReviewVC") as! AddReviewVC
-        reviewVC.user = service.serviceProvider!
+        reviewVC.user = isClient ? service.serviceProvider! : service.client
         navigationController?.pushViewController(reviewVC, animated: true)
     }
     
