@@ -288,7 +288,7 @@ Member Since April 2016</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ANT-cp-1jv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2064" y="443"/>
+            <point key="canvasLocation" x="2876" y="443"/>
         </scene>
         <!--New Service-->
         <scene sceneID="fl4-jJ-c5O">
@@ -910,7 +910,7 @@ Member Since April 2016</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bF6-1j-fWt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2558" y="443"/>
+            <point key="canvasLocation" x="3370" y="443"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gwB-Ss-UQo">
@@ -968,6 +968,75 @@ Member Since April 2016</string>
             </objects>
             <point key="canvasLocation" x="2558" y="-578"/>
         </scene>
+        <!--Add ReviewVC-->
+        <scene sceneID="ONE-iP-6aV">
+            <objects>
+                <viewController storyboardIdentifier="AddReviewVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RAR-xb-3aZ" customClass="AddReviewVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dDO-gj-DEJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="huy-Ei-YMg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="km8-CE-lx6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EOz-rX-1Ld" customClass="HCSStarRatingView">
+                                <rect key="frame" x="40" y="94" width="240" height="75"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="elI-zk-BC5"/>
+                                    <constraint firstAttribute="width" constant="240" id="g83-za-kLq"/>
+                                </constraints>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Haj-uX-HHR">
+                                <rect key="frame" x="15" y="179" width="290" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="Uu1-Wl-a39"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="RAR-xb-3aZ" id="bR0-Hs-mRk"/>
+                                </connections>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What can you say on {name}?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ky-eb-nAt">
+                                <rect key="frame" x="15" y="179" width="215" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.73725490199999999" green="0.73333333329999995" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6Ky-eb-nAt" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Haj-uX-HHR" secondAttribute="trailing" id="6Vt-AU-MAF"/>
+                            <constraint firstItem="6Ky-eb-nAt" firstAttribute="top" secondItem="Haj-uX-HHR" secondAttribute="top" id="Lp0-zG-XIb"/>
+                            <constraint firstAttribute="trailing" secondItem="Haj-uX-HHR" secondAttribute="trailing" constant="15" id="Ya0-Fv-XXj"/>
+                            <constraint firstItem="Haj-uX-HHR" firstAttribute="top" secondItem="EOz-rX-1Ld" secondAttribute="bottom" constant="10" id="ZGn-oG-ipw"/>
+                            <constraint firstItem="EOz-rX-1Ld" firstAttribute="top" secondItem="dDO-gj-DEJ" secondAttribute="bottom" constant="30" id="ZuR-di-V4M"/>
+                            <constraint firstItem="Haj-uX-HHR" firstAttribute="leading" secondItem="km8-CE-lx6" secondAttribute="leading" constant="15" id="b0F-Lb-yqh"/>
+                            <constraint firstItem="EOz-rX-1Ld" firstAttribute="centerX" secondItem="km8-CE-lx6" secondAttribute="centerX" id="f8s-3K-2sb"/>
+                            <constraint firstItem="6Ky-eb-nAt" firstAttribute="leading" secondItem="Haj-uX-HHR" secondAttribute="leading" id="oEl-En-PCu"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="YQV-Au-wBj">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="qky-LZ-1QB">
+                            <connections>
+                                <action selector="submitTapped" destination="RAR-xb-3aZ" id="k0k-9c-s5b"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="lblPlaceholder" destination="6Ky-eb-nAt" id="u5H-0R-SG4"/>
+                        <outlet property="reviewStars" destination="EOz-rX-1Ld" id="SdV-jK-ejz"/>
+                        <outlet property="txtFeedback" destination="Haj-uX-HHR" id="ZP9-s8-Nla"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x8Y-AB-jo8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1189" y="512"/>
+        </scene>
         <!--Services-->
         <scene sceneID="wBP-of-xmW">
             <objects>
@@ -985,7 +1054,7 @@ Member Since April 2016</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mya-ZH-b3D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1664" y="443"/>
+            <point key="canvasLocation" x="2476" y="443"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6ZQ-vu-9PA">
@@ -1175,7 +1244,7 @@ Member Since April 2016</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qWU-I7-8j3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2972" y="443"/>
+            <point key="canvasLocation" x="3784" y="443"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="aRV-52-YSE">
@@ -1382,6 +1451,25 @@ Member Since April 2016</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="at2-Ir-Mgd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="285" y="-886"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dZV-uH-j0o">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vg3-bw-Bsi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IHQ-FP-boY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RAR-xb-3aZ" kind="relationship" relationship="rootViewController" id="w6g-3K-lZo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NLt-Ai-So6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="745" y="512"/>
         </scene>
     </scenes>
     <resources>

@@ -87,9 +87,19 @@ public struct PetseeAPI {
         executeRequest(sharedInstance.actionsProvider, target: target, arrayType: Review.self, completion: completion)
     }
     
+    public static func myReviewOnUser(user: User, completion: (Review?,String?)->()) {
+        let target = PetseeActions.MyReviewOnUser(user: user)
+        executeRequest(sharedInstance.actionsProvider, target: target, objectType: Review.self, completion: completion)
+    }
+    
     public static func createReview(review: Review, completion: (Review?,String?)->()) {
         assert(review.user != nil, "Must set a user")
-        let target = PetseeActions.CreateReview(userId: review.user!.id, rate: review.rate, feedback: review.feedback)
+        let target: PetseeActions
+        if review.id == nil {
+            target = PetseeActions.CreateReview(userId: review.user!.id, rate: review.rate, feedback: review.feedback)
+        } else {
+            target = PetseeActions.UpdateReview(reviewId: review.id, rate: review.rate, feedback: review.feedback)
+        }
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: Review.self, completion: completion)
     }
     

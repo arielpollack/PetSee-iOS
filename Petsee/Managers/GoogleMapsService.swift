@@ -27,6 +27,8 @@ struct GoogleMapsService {
         var url: String = sortedLocations.reduce(baseUrl) { return $0 + "|\($1.latitude),\($1.longitude)" }
         url = url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
         
+        print("loading google map url: \(url)")
+        
         Alamofire.request(.GET, url).responseImage { response in
             completion(response.result.value)
         }
@@ -39,6 +41,8 @@ struct GoogleMapsService {
         let locationString = "\(location.latitude),\(location.longitude)"
         var baseUrl = "https://maps.googleapis.com/maps/api/staticmap?key=\(apiKey)&size=\(Int(scaledSize.width))x\(Int(scaledSize.height))&center=\(locationString)&markers=color:blue|\(locationString)"
         baseUrl = baseUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        
+        print("loading google map url: \(baseUrl)")
         
         Alamofire.request(.GET, baseUrl).responseImage { response in
             completion(response.result.value)

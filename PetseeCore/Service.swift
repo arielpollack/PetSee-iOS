@@ -82,7 +82,9 @@ public class Service: Mappable , Identifiable {
     }
     
     required public init?(_ map: Map) {
-        
+        if map.JSONDictionary["id"] == nil {
+            return nil
+        }
     }
     
     public func mapping(map: Map) {

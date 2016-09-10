@@ -15,6 +15,7 @@ enum PetseeActions {
     case UpdateUser(image: String?)
     
     case CreateReview(userId: Int, rate: Int, feedback: String?)
+    case UpdateReview(reviewId: Int, rate: Int, feedback: String?)
     
     case MyPets
     case AddPet(Pet)
@@ -23,6 +24,7 @@ enum PetseeActions {
     case Races(String)
     
     case MyReviews
+    case MyReviewOnUser(user: User)
     
     case SearchRace(query: String)
     case AddRace(name: String)
@@ -60,6 +62,10 @@ extension PetseeActions: TargetType {
             return "/users"
         case .CreateReview(let userId, _, _):
             return "/users/\(userId)/reviews"
+        case .UpdateReview(_, _, _):
+            return "/users/reviews/update_existing_review"
+        case .MyReviewOnUser(let user):
+            return "/users/\(user.id)/reviews/review_about_user"
         case .MyPets:
             fallthrough
         case .AddPet:
@@ -116,6 +122,8 @@ extension PetseeActions: TargetType {
             return .PUT
         case .CreateReview:
             return .POST
+        case .UpdateReview:
+            return .PUT
         case .MyPets:
             return .GET
         case .AddPet:
@@ -127,6 +135,8 @@ extension PetseeActions: TargetType {
         case .Races:
             return .GET
         case .MyReviews:
+            return .GET
+        case .MyReviewOnUser:
             return .GET
         case .SearchRace:
             return .GET
@@ -178,7 +188,9 @@ extension PetseeActions: TargetType {
         case .AddRace(let name):
             return ["race": ["name": name]]
         case .CreateReview(_, let rate, let feedback):
-            return ["review": ["rate": rate, "feedback": feedback ?? ""]]
+            return ["rate": rate, "feedback": feedback ?? ""]
+        case .UpdateReview(let reviewId, let rate, let feedback):
+            return ["review_id": reviewId, "rate": rate, "feedback": feedback ?? ""]
         case .UploadImage(let imageData):
             return ["image": imageData.base64EncodedStringWithOptions([])]
         case .Races(let term):

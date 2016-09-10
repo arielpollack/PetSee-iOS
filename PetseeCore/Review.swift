@@ -22,8 +22,12 @@ public class Review: Mappable, Identifiable {
     private var map: JSON?
     
     required public init?(_ map: Map) {
-        
+        if map.JSONDictionary["id"] == nil {
+            return nil
+        }
     }
+    
+    public init() {}
     
     public func mapping(map: Map) {
         let dateFormatter = NSDateFormatter()

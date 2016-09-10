@@ -200,12 +200,7 @@ class ServiceVC: UITableViewController {
     }
     
     private func loadViews() {
-        let user: User?
-        if isClient {
-            user = service.serviceProvider
-        } else {
-            user = AuthManager.sharedInstance.authenticatedUser
-        }
+        let user = service.serviceProvider
         lblServiceProviderName.text = user?.name ?? "Not chosen"
         if let image = user?.image {
             let url = NSURL(string: image)!
@@ -220,7 +215,6 @@ class ServiceVC: UITableViewController {
             let url = NSURL(string: image)!
             imgPet.af_setImageWithURL(url)
         }
-        tableView.reloadData()
     }
     
     private func loadServiceInfo() {
@@ -279,7 +273,9 @@ class ServiceVC: UITableViewController {
     }
     
     func writeReviewTapped() {
-        
+        let reviewVC = storyboard?.instantiateViewControllerWithIdentifier("AddReviewVC") as! AddReviewVC
+        reviewVC.user = service.serviceProvider!
+        navigationController?.pushViewController(reviewVC, animated: true)
     }
     
     func cancelServiceTapped() {
@@ -357,6 +353,7 @@ extension ServiceVC: FindServiceProviderVCDelegate {
     
     func didChooseServiceProvider() {
         loadViews()
+        loadServiceInfo()
     }
 }
 
@@ -374,7 +371,11 @@ class ServiceTripRouteCell: UITableViewCell {
     private func loadTripRoute() {
         PetseeAPI.locationsForService(service) { [weak self] locations, error in
             if let locations = locations {
-                self?.loadGoogleImage(locations)
+                if locations.count > 0 {
+                    self?.loadGoogleImage(locations)
+                } else {
+                    self?.loadGoogleImage([self!.service.location])
+                }
             } else {
                 self?.loader.stopAnimating()
             }

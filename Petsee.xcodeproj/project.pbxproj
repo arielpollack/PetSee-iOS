@@ -63,6 +63,7 @@
 		73F819901CD1E592001AC3FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198F1CD1E592001AC3FB /* Assets.xcassets */; };
 		73F819931CD1E592001AC3FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F819911CD1E592001AC3FB /* LaunchScreen.storyboard */; };
 		B0803F731D67A6FF00AADA00 /* PetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0803F721D67A6FF00AADA00 /* PetVC.swift */; };
+		B0D4B34F1D843AC6008154BF /* AddReviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D4B34E1D843AC6008154BF /* AddReviewVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -145,6 +146,7 @@
 		73F819D81CD4A021001AC3FB /* PetseeAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetseeAuth.swift; sourceTree = "<group>"; };
 		B0803F721D67A6FF00AADA00 /* PetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetVC.swift; sourceTree = "<group>"; };
 		B0803F741D67B27D00AADA00 /* ServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
+		B0D4B34E1D843AC6008154BF /* AddReviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReviewVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +265,7 @@
 				73AEC7C21D68FAD5001FDF83 /* ServiceVC.swift */,
 				737762561D7CB5C2000E33FB /* FindServiceProviderVC.swift */,
 				73F5967F1D81E99000459552 /* SelectLocationVC.swift */,
+				B0D4B34E1D843AC6008154BF /* AddReviewVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0D4B34F1D843AC6008154BF /* AddReviewVC.swift in Sources */,
 				732F2EFC1CDA8FDC00CB491D /* OnboardingDataUserTypeVC.swift in Sources */,
 				735C37191D7CCC300063FCD8 /* Race.swift in Sources */,
 				735C37171D7CCC300063FCD8 /* ServiceProviderSkill.swift in Sources */,
