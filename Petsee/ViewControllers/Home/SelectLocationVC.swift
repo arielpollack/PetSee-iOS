@@ -97,7 +97,12 @@ class SelectLocationVC : UIViewController, XLFormRowDescriptorViewController, MK
         region = mapView.regionThatFits(region)
         mapView.region = region
         mapView.setCenterCoordinate(value, animated: false)
-        title = String(format: "%0.4f, %0.4f", mapView.centerCoordinate.latitude, mapView.centerCoordinate.longitude)
+        didChooseLocation(value)
+    }
+    
+    private func didChooseLocation(coordinate: CLLocationCoordinate2D) {
+        rowDescriptor?.value = CLLocation(latitude:coordinate.latitude, longitude:coordinate.longitude)
+        self.title = String(format: "%0.4f, %0.4f", coordinate.latitude, coordinate.longitude)
     }
     
     //MARK - - MKMapViewDelegate
@@ -117,9 +122,8 @@ class SelectLocationVC : UIViewController, XLFormRowDescriptorViewController, MK
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
         if (newState == .Ending){
-            if let rowDescriptor = rowDescriptor, let annotation = view.annotation {
-                rowDescriptor.value = CLLocation(latitude:annotation.coordinate.latitude, longitude:annotation.coordinate.longitude)
-                self.title = String(format: "%0.4f, %0.4f", annotation.coordinate.latitude, annotation.coordinate.longitude)
+            if let annotation = view.annotation {
+                didChooseLocation(annotation.coordinate)
             }
         }
     }
