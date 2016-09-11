@@ -12,35 +12,11 @@ import Fabric
 import Crashlytics
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder {
 
     var window: UIWindow?
     var authManager: AuthManagerProtocol!
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        authManager = AuthManager.sharedInstance
-        
-        setDefaultAppearance()
-        
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        
-        if authManager.isLoggedIn() {
-            window!.rootViewController = userViewController()
-            
-            LocationHandler.sharedManager.startLocationUpdates()
-        } else {
-            let onboardingVC = OnboardingVC(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
-            onboardingVC.loginDelegate = self
-            window!.rootViewController = onboardingVC
-        }
-        window!.makeKeyAndVisible()
-        
-        Fabric.with([Crashlytics.self])
-        
-        return true
-    }
-    
     private func setDefaultAppearance() {
         SVProgressHUD.setDefaultMaskType(.Black)
         UINavigationBar.appearance().titleTextAttributes = [
@@ -61,10 +37,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return userVC
     }
+    
+    private func registerForPushNotifications() {
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+    }
+}
+
+extension AppDelegate: UIApplicationDelegate {
+    
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        authManager = AuthManager.sharedInstance
+        
+        setDefaultAppearance()
+        
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        if authManager.isLoggedIn() {
+            window!.rootViewController = userViewController()
+            LocationHandler.sharedManager.startLocationUpdates()
+            registerForPushNotifications()
+        } else {
+            let onboardingVC = OnboardingVC(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+            onboardingVC.loginDelegate = self
+            window!.rootViewController = onboardingVC
+        }
+        window!.makeKeyAndVisible()
+        
+        Fabric.with([Crashlytics.self])
+        
+        return true
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        var token = deviceToken.description.stringByReplacingOccurrencesOfString("-", withString: "")
+        token = token.stringByReplacingOccurrencesOfString("<", withString: "")
+        token = token.stringByReplacingOccurrencesOfString(">", withString: "")
+        token = token.stringByReplacingOccurrencesOfString(" ", withString: "")
+
+        print(token)
+        PetseeAPI.updateDeviceToken(token) { _, error in
+            
+        }
+    }
 }
 
 extension AppDelegate: OnboardingDelegate {
+    
     func didFinishLoginWithUser(user: User) {
+        registerForPushNotifications()
         authManager.setAuthenticatedUser(user)
         if let token = user.token {
             PetseeAPI.setAuthenticationToken(token)

@@ -139,6 +139,16 @@ public struct PetseeAPI {
         executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
     }
     
+    public static func updateDeviceToken(token: String, completion: (AnyObject?,String?)->()) {
+        let target = PetseeActions.UpdateUserToken(token: token)
+        executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
+    }
+    
+    public static func clearNotificationsCount(completion: (AnyObject?,String?)->() = { _,_ in }) {
+        let target = PetseeActions.ClearNotificationsCount
+        executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
+    }
+    
     public static func locationsForService(service: Service, completion: ([Location]?,String?)->()) {
         let target = PetseeActions.LocationsForService(service: service)
         executeRequest(sharedInstance.actionsProvider, target: target, arrayType: Location.self, completion: completion)

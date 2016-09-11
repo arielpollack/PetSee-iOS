@@ -13,6 +13,8 @@ enum PetseeActions {
     case UserPets(userId: Int)
     case UserReviews(userId: Int)
     case UpdateUser(image: String?)
+    case UpdateUserToken(token: String)
+    case ClearNotificationsCount
     
     case CreateReview(userId: Int, rate: Int, feedback: String?)
     case UpdateReview(reviewId: Int, rate: Int, feedback: String?)
@@ -60,6 +62,10 @@ extension PetseeActions: TargetType {
             return "/users/\(userId)/reviews"
         case .UpdateUser:
             return "/users"
+        case UpdateUserToken:
+            return "/users/device_token"
+        case ClearNotificationsCount:
+            return "/users/reset_badge_count"
         case .CreateReview(let userId, _, _):
             return "/users/\(userId)/reviews"
         case .UpdateReview(_, _, _):
@@ -120,6 +126,10 @@ extension PetseeActions: TargetType {
             return .GET
         case .UpdateUser:
             return .PUT
+        case UpdateUserToken:
+            return .PUT
+        case ClearNotificationsCount:
+            return .PUT
         case .CreateReview:
             return .POST
         case .UpdateReview:
@@ -178,6 +188,8 @@ extension PetseeActions: TargetType {
             var params = JSON()
             params["image"] = image
             return params
+        case UpdateUserToken(let token):
+            return ["token": token]
         case .AddPet(let pet):
             var params = pet.toJSON()
             params["race"] = nil
