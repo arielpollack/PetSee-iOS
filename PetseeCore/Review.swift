@@ -34,6 +34,7 @@ public class Review: Mappable, Identifiable {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         let dateFormatterTransform = DateFormatterTransform(dateFormatter: dateFormatter)
 
+        id <- map["id"]
         rate <- map["rate"]
         feedback <- map["feedback"]
         writer <- map["writer"]

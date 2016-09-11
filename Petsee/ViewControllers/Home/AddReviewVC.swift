@@ -32,6 +32,12 @@ class AddReviewVC: UIViewController {
         preloadReview()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        txtFeedback.becomeFirstResponder()
+    }
+    
     private func preloadReview() {
         SVProgressHUD.show()
         PetseeAPI.myReviewOnUser(user) { review, error in
