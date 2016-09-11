@@ -48,6 +48,16 @@ class AppDelegate: UIResponder {
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         PetseeAPI.clearNotificationsCount()
     }
+    
+    private func reloadUser() {
+        PetseeAPI.getUser { user, error in
+            guard let user = user where error == nil else {
+                return
+            }
+            AuthManager.sharedInstance.setAuthenticatedUser(user)
+            UserDefaultsManager.authenticatedUser = user
+        }
+    }
 }
 
 extension AppDelegate: UIApplicationDelegate {
@@ -63,6 +73,7 @@ extension AppDelegate: UIApplicationDelegate {
         if authManager.isLoggedIn() {
             window!.rootViewController = userViewController()
             LocationHandler.sharedManager.startLocationUpdates()
+            reloadUser()
             registerForPushNotifications()
             clearNotificationsCount()
         } else {

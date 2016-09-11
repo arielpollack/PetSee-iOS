@@ -55,6 +55,11 @@ public struct PetseeAPI {
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: User.self, completion: completion)
     }
     
+    public static func getUser(completion: (User?,String?)->()) {
+        let target = PetseeActions.GetUser
+        executeRequest(sharedInstance.actionsProvider, target: target, objectType: User.self, completion: completion)
+    }
+    
     // MARK:- Pets
     public static func myPets(completion: ([Pet]?,String?)->()) {
         let target = PetseeActions.MyPets

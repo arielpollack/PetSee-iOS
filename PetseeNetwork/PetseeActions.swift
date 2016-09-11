@@ -12,6 +12,7 @@ import Moya
 enum PetseeActions {
     case UserPets(userId: Int)
     case UserReviews(userId: Int)
+    case GetUser
     case UpdateUser(image: String?)
     case UpdateUserToken(token: String)
     case ClearNotificationsCount
@@ -56,6 +57,8 @@ extension PetseeActions: TargetType {
 //    var baseURL: NSURL { return NSURL(string: "http://localhost:3000")! }
     var path: String {
         switch self {
+        case .GetUser:
+            return "/users"
         case .UserPets(let userId):
             return "/users/\(userId)/pets"
         case .UserReviews(let userId):
@@ -120,6 +123,8 @@ extension PetseeActions: TargetType {
     }
     var method: Moya.Method {
         switch self {
+        case .GetUser:
+            return .GET
         case .UserPets:
             return .GET
         case .UserReviews:
