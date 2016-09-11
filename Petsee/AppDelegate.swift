@@ -43,6 +43,11 @@ class AppDelegate: UIResponder {
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
         UIApplication.sharedApplication().registerForRemoteNotifications()
     }
+    
+    private func clearNotificationsCount() {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        PetseeAPI.clearNotificationsCount()
+    }
 }
 
 extension AppDelegate: UIApplicationDelegate {
@@ -59,6 +64,7 @@ extension AppDelegate: UIApplicationDelegate {
             window!.rootViewController = userViewController()
             LocationHandler.sharedManager.startLocationUpdates()
             registerForPushNotifications()
+            clearNotificationsCount()
         } else {
             let onboardingVC = OnboardingVC(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
             onboardingVC.loginDelegate = self

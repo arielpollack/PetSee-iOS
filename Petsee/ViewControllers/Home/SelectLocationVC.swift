@@ -43,7 +43,7 @@ class MapAnnotation : NSObject, MKAnnotation {
     }
 }
 
-@objc(MapViewController)
+@objc(SelectLocationVC)
 class SelectLocationVC : UIViewController, XLFormRowDescriptorViewController, MKMapViewDelegate {
     
     var rowDescriptor: XLFormRowDescriptor?
@@ -79,10 +79,10 @@ class SelectLocationVC : UIViewController, XLFormRowDescriptorViewController, MK
         super.viewDidAppear(animated)
         
         locationManager.delegate = self
-        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+        if CLLocationManager.authorizationStatus() == .AuthorizedAlways {
             mapView.showsUserLocation = true
         } else {
-            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
         }
     }
     
