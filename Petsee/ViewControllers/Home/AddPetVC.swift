@@ -62,6 +62,9 @@ class AddPetVC: XLFormViewController {
     }
     
     @IBAction func addPhotoTapped() {
+        // image picker configuration
+        Configuration.recordLocation = false
+        
         let imagePicker = ImagePickerController()
         imagePicker.imageLimit = 1
         imagePicker.delegate = self

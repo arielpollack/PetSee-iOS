@@ -1,5 +1,5 @@
 //
-//  LocationManager.swift
+//  LocationHandler.swift
 //  Petsee
 //
 //  Created by Ariel Pollack on 09/09/2016.

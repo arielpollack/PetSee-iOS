@@ -35,7 +35,7 @@
 		735C371C1D7CCC390063FCD8 /* PetseeAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F819D81CD4A021001AC3FB /* PetseeAuth.swift */; };
 		735C371D1D7CCC390063FCD8 /* PetseeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F2F061CDE3D8300CB491D /* PetseeActions.swift */; };
 		735C371F1D7CCDF30063FCD8 /* libCloudinary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 735C371E1D7CCDF30063FCD8 /* libCloudinary.a */; };
-		7370B3291D8321E700E99A79 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7370B3281D8321E700E99A79 /* LocationManager.swift */; };
+		7370B3291D8321E700E99A79 /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7370B3281D8321E700E99A79 /* LocationHandler.swift */; };
 		7370B32B1D8335BA00E99A79 /* OnboardingDataPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7370B32A1D8335BA00E99A79 /* OnboardingDataPhotoVC.swift */; };
 		737762571D7CB5C2000E33FB /* FindServiceProviderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737762561D7CB5C2000E33FB /* FindServiceProviderVC.swift */; };
 		737EDA951CDFCF92001B36D1 /* ReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 737EDA941CDFCF92001B36D1 /* ReviewCell.xib */; };
@@ -101,7 +101,7 @@
 		732F2F0D1CDE550B00CB491D /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		735AECF11D6A3EBF0048E1E8 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		735C371E1D7CCDF30063FCD8 /* libCloudinary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCloudinary.a; sourceTree = "<group>"; };
-		7370B3281D8321E700E99A79 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		7370B3281D8321E700E99A79 /* LocationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationHandler.swift; sourceTree = "<group>"; };
 		7370B32A1D8335BA00E99A79 /* OnboardingDataPhotoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingDataPhotoVC.swift; sourceTree = "<group>"; };
 		737762561D7CB5C2000E33FB /* FindServiceProviderVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindServiceProviderVC.swift; sourceTree = "<group>"; };
 		737EDA941CDFCF92001B36D1 /* ReviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewCell.xib; sourceTree = "<group>"; };
@@ -248,7 +248,7 @@
 				73AEC7BC1D68E4CD001FDF83 /* ServicesStore.swift */,
 				73AEC7BE1D68E4EA001FDF83 /* ObjectStore.swift */,
 				73AEC7C41D690900001FDF83 /* GoogleMapsService.swift */,
-				7370B3281D8321E700E99A79 /* LocationManager.swift */,
+				7370B3281D8321E700E99A79 /* LocationHandler.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -555,7 +555,7 @@
 				732F2F001CDA902100CB491D /* UIWindow+Transition.swift in Sources */,
 				732F2EEA1CD7BFFE00CB491D /* PetseeButton.swift in Sources */,
 				73AEC7C11D68F120001FDF83 /* ServiceCell.swift in Sources */,
-				7370B3291D8321E700E99A79 /* LocationManager.swift in Sources */,
+				7370B3291D8321E700E99A79 /* LocationHandler.swift in Sources */,
 				73F819891CD1E592001AC3FB /* AppDelegate.swift in Sources */,
 				735C37101D7CCC300063FCD8 /* User.swift in Sources */,
 				732F2EFD1CDA8FDC00CB491D /* OnboardingDataVC.swift in Sources */,
