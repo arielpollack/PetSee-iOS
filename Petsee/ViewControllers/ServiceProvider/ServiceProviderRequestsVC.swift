@@ -32,6 +32,10 @@ class ServiceProviderRequestsVC: UIViewController {
         }
     }
     
+    @IBAction func closeTapped(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     func approveServiceRequest(request: ServiceRequest, completion: Bool->() = { _ in }) {
         SVProgressHUD.show()
         PetseeAPI.approveServiceRequest(request) { _, error in

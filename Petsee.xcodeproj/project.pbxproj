@@ -62,6 +62,9 @@
 		73F8198E1CD1E592001AC3FB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198C1CD1E592001AC3FB /* Login.storyboard */; };
 		73F819901CD1E592001AC3FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73F8198F1CD1E592001AC3FB /* Assets.xcassets */; };
 		73F819931CD1E592001AC3FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F819911CD1E592001AC3FB /* LaunchScreen.storyboard */; };
+		B005EB3C1D85634800A7C23B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B005EB3A1D85634800A7C23B /* Fabric.framework */; };
+		B005EB3D1D85634800A7C23B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B005EB3B1D85634800A7C23B /* Crashlytics.framework */; };
+		B006340C1D8568FB002B2D58 /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006340B1D8568FB002B2D58 /* InboxView.swift */; };
 		B0803F731D67A6FF00AADA00 /* PetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0803F721D67A6FF00AADA00 /* PetVC.swift */; };
 		B0D4B34F1D843AC6008154BF /* AddReviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D4B34E1D843AC6008154BF /* AddReviewVC.swift */; };
 /* End PBXBuildFile section */
@@ -144,6 +147,9 @@
 		73F819D41CD2541E001AC3FB /* Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		73F819D61CD49F86001AC3FB /* PetseeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetseeAPI.swift; sourceTree = "<group>"; };
 		73F819D81CD4A021001AC3FB /* PetseeAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetseeAuth.swift; sourceTree = "<group>"; };
+		B005EB3A1D85634800A7C23B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		B005EB3B1D85634800A7C23B /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		B006340B1D8568FB002B2D58 /* InboxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
 		B0803F721D67A6FF00AADA00 /* PetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetVC.swift; sourceTree = "<group>"; };
 		B0803F741D67B27D00AADA00 /* ServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
 		B0D4B34E1D843AC6008154BF /* AddReviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReviewVC.swift; sourceTree = "<group>"; };
@@ -155,8 +161,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				73F596841D81EA2300459552 /* CoreLocation.framework in Frameworks */,
+				B005EB3C1D85634800A7C23B /* Fabric.framework in Frameworks */,
 				73F596821D81EA1C00459552 /* MapKit.framework in Frameworks */,
 				735C371F1D7CCDF30063FCD8 /* libCloudinary.a in Frameworks */,
+				B005EB3D1D85634800A7C23B /* Crashlytics.framework in Frameworks */,
 				40E6E609E3FF9B79F75BAE93 /* Pods_Petsee.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -193,6 +201,7 @@
 				73AEC7C01D68F120001FDF83 /* ServiceCell.swift */,
 				73F64B461D7E0DC900CCE77D /* ServiceProviderCell.swift */,
 				73F596861D82080D00459552 /* ServiceRequestCell.swift */,
+				B006340B1D8568FB002B2D58 /* InboxView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -273,6 +282,8 @@
 		73DB8B831D51322300BD95E5 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				B005EB3A1D85634800A7C23B /* Fabric.framework */,
+				B005EB3B1D85634800A7C23B /* Crashlytics.framework */,
 				73DB8B841D51323A00BD95E5 /* Cloudinary */,
 			);
 			path = Vendor;
@@ -380,6 +391,7 @@
 				73F819AB1CD1E5E0001AC3FB /* Embed Frameworks */,
 				A73E29D38C83501682B1FE7B /* Embed Pods Frameworks */,
 				6D20D1E86223856693793444 /* Copy Pods Resources */,
+				B005EB391D85631B00A7C23B /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -475,6 +487,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Petsee/Pods-Petsee-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B005EB391D85631B00A7C23B /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 3f7bbfba7a0473b3db1c7656259cb997ea21e05a ac0e322a298624f43e5d5a5549aaa6050b2bf5e522a8a3b1e3d84a963fe11894";
+		};
 		FC3502CD79236F8F6C9A5F9F /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -507,6 +533,7 @@
 				7323279F1D7C91DB006071D9 /* AddServiceVC.swift in Sources */,
 				735C37121D7CCC300063FCD8 /* Review.swift in Sources */,
 				737762571D7CB5C2000E33FB /* FindServiceProviderVC.swift in Sources */,
+				B006340C1D8568FB002B2D58 /* InboxView.swift in Sources */,
 				73CB93FF1CDE9E9C00EE0BBE /* UserDefaultsManager.swift in Sources */,
 				735C371B1D7CCC390063FCD8 /* PetseeAPI.swift in Sources */,
 				73DB8B7C1D510E0C00BD95E5 /* MyPetsVC.swift in Sources */,
@@ -622,7 +649,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				CURRENT_PROJECT_VERSION = 2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Petsee/Vendor",
+				);
 				INFOPLIST_FILE = Petsee/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -632,8 +663,9 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.petsee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "5ad67a06-a63f-40bc-bece-074c62219e0e";
 				SWIFT_OBJC_BRIDGING_HEADER = "Petsee/Petsee-bridgingHeader.h";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = local;
 		};

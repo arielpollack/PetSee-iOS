@@ -8,6 +8,8 @@
 
 import UIKit
 import SVProgressHUD
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var authManager: AuthManagerProtocol!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
         authManager = AuthManager.sharedInstance
         
         setDefaultAppearance()
@@ -32,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window!.rootViewController = onboardingVC
         }
         window!.makeKeyAndVisible()
+        
+        Fabric.with([Crashlytics.self])
+        
         return true
     }
     
