@@ -11,6 +11,7 @@ import ObjectMapper
 
 class ServiceProvider: User {
     
+    var hourlyRate: Int!
     var skills: [ServiceProviderSkill]?
     
     required init?(_ map: Map) {
@@ -21,5 +22,6 @@ class ServiceProvider: User {
         super.mapping(map)
         
         skills <- map["skills"]
+        hourlyRate <- map["hourly_rate"]
     }
 }

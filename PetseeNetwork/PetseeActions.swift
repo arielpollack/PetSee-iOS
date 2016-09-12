@@ -226,6 +226,7 @@ extension PetseeActions: TargetType {
             var params = service.toJSON()
             params["lat"] = service.location.latitude
             params["lng"] = service.location.longitude
+            params["address"] = service.location.address
             params["pet_id"] = service.pet.id
             params["pet"] = nil
             return params

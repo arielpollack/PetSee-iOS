@@ -46,6 +46,7 @@ class ServiceVC: UITableViewController {
         case StartDate
         case EndDate
         case Type
+        case Address
         case TripRoute
         case Space
         case WriteReviewButton
@@ -89,6 +90,13 @@ class ServiceVC: UITableViewController {
                 let cell = tableView.dequeueReusableCellWithIdentifier("Detail")!
                 cell.textLabel?.text = "Type"
                 cell.detailTextLabel?.text = service.type.readableString
+                cell.detailTextLabel?.textColor = UIColor.darkTextColor()
+                return cell
+                
+            case .Address:
+                let cell = tableView.dequeueReusableCellWithIdentifier("Detail")!
+                cell.textLabel?.text = "Address"
+                cell.detailTextLabel?.text = service.location.address
                 cell.detailTextLabel?.textColor = UIColor.darkTextColor()
                 return cell
                 
@@ -227,23 +235,29 @@ class ServiceVC: UITableViewController {
     }
     
     private func loadServiceInfo() {
+        let maybeAddress: [CellType]
+        if let _ = service.location.address {
+            maybeAddress = [.Address]
+        } else {
+            maybeAddress = []
+        }
         if isClient {
             // I'm th client
             switch service.status! {
             case .Pending:
                 // Did not choose service provider yet
-                cellTypes = CellType.BasicCells + [.Space, .FindServiceProviderButton, .CancelButton]
+                cellTypes = CellType.BasicCells + maybeAddress + [.Space, .FindServiceProviderButton, .CancelButton]
                 
             case .Confirmed:
                 // Waiting for the service to start on it's date
-                cellTypes = CellType.BasicCells + [.Space, .CancelButton]
+                cellTypes = CellType.BasicCells + maybeAddress + [.Space, .CancelButton]
                 
             case .Started, .Ended:
                 // In progress / ended
-                cellTypes = CellType.BasicCells + [.TripRoute, .Space, .WriteReviewButton]
+                cellTypes = CellType.BasicCells + maybeAddress + [.TripRoute, .Space, .WriteReviewButton]
                 
             case .Cancelled:
-                cellTypes = CellType.BasicCells
+                cellTypes = CellType.BasicCells + maybeAddress
                 
             }
         } else {
@@ -251,19 +265,19 @@ class ServiceVC: UITableViewController {
             switch service.status! {
             case .Pending:
                 // waiting for my confirmation
-                cellTypes = CellType.BasicCells + [.LocationCell, .Space, .ApproveButton, .DenyButton]
+                cellTypes = CellType.BasicCells + maybeAddress + [.LocationCell, .Space, .ApproveButton, .DenyButton]
                 
             case .Confirmed:
                 // I need to start it
-                cellTypes = CellType.BasicCells + [.LocationCell, .Space, .StartService]
+                cellTypes = CellType.BasicCells + maybeAddress + [.LocationCell, .Space, .StartService]
                 
             case .Started:
                 // I need to end it
-                cellTypes = CellType.BasicCells + [.TripRoute, .Space, .EndService]
+                cellTypes = CellType.BasicCells + maybeAddress + [.TripRoute, .Space, .EndService]
                 
             case .Ended:
                 // just view the details
-                cellTypes = CellType.BasicCells + [.TripRoute, .Space, .WriteReviewButton]
+                cellTypes = CellType.BasicCells + maybeAddress + [.TripRoute, .Space, .WriteReviewButton]
                 
             default:
                 break
@@ -430,6 +444,8 @@ class ServiceButtonCell: UITableViewCell {
     @IBOutlet weak var button: PetseeButton! {
         didSet {
             button.addTarget(self, action: #selector(didTap), forControlEvents: .TouchUpInside)
+            button.layer.cornerRadius = button.bounds.height / 2
+//            button.layer.masksToBounds = true
         }
     }
     

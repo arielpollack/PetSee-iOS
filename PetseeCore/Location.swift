@@ -13,6 +13,7 @@ class Location: Mappable {
     
     var latitude: Double!
     var longitude: Double!
+    var address: String?
     var timestamp: NSDate!
     
     required init?(_ map: Map) {
@@ -26,6 +27,7 @@ class Location: Mappable {
     func mapping(map: Map) {
         latitude <- map["latitude"]
         longitude <- map["longitude"]
+        address <- map["address"]
         timestamp <- (map["timestamp"], DateTransform())
     }
 }

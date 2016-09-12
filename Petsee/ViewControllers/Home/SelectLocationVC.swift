@@ -9,8 +9,9 @@
 import UIKit
 import MapKit
 import XLForm
+import SVProgressHUD
 
-class CLLocationValueTrasformer : NSValueTransformer {
+class LocationValueTrasformer : NSValueTransformer {
     
     override class func transformedValueClass() -> AnyClass {
         return NSString.self
@@ -21,8 +22,8 @@ class CLLocationValueTrasformer : NSValueTransformer {
     }
     
     override func transformedValue(value: AnyObject?) -> AnyObject? {
-        if let valueData = value, let location = valueData as? CLLocation{
-            return String(format: "%0.4f, %0.4f", location.coordinate.latitude, location.coordinate.longitude)
+        if let valueData = value, let location = valueData as? Location {
+            return location.address ?? String(format: "%0.4f, %0.4f", location.latitude, location.longitude)
         }
         return nil
     }
@@ -30,7 +31,7 @@ class CLLocationValueTrasformer : NSValueTransformer {
 
 class MapAnnotation : NSObject, MKAnnotation {
     
-    @objc var coordinate : CLLocationCoordinate2D
+    dynamic var coordinate : CLLocationCoordinate2D
     
     override init() {
         coordinate = CLLocationCoordinate2D(latitude: -33.0, longitude: -56.0)
@@ -51,7 +52,7 @@ class SelectLocationVC : UIViewController, XLFormRowDescriptorViewController, MK
         let mapView = MKMapView(frame: self.view.frame)
         mapView.autoresizingMask = [UIViewAutoresizing.FlexibleHeight, UIViewAutoresizing.FlexibleWidth]
         return mapView
-        }()
+    }()
     
     var annotation: MapAnnotation?
     
@@ -69,8 +70,16 @@ class SelectLocationVC : UIViewController, XLFormRowDescriptorViewController, MK
         view.addSubview(mapView)
         mapView.delegate = self
         
-        if let value = rowDescriptor?.value as? CLLocation {
-            setUserLocation(value.coordinate)
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handleGesture))
+        panGesture.delegate = self
+        mapView.addGestureRecognizer(panGesture)
+        
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handleGesture))
+        pinchGesture.delegate = self
+        mapView.addGestureRecognizer(pinchGesture)
+        
+        if let value = rowDescriptor?.value as? Location {
+            setUserLocation(CLLocationCoordinate2D(latitude: value.latitude, longitude: value.longitude))
         }
     }
     
@@ -101,8 +110,18 @@ class SelectLocationVC : UIViewController, XLFormRowDescriptorViewController, MK
     }
     
     private func didChooseLocation(coordinate: CLLocationCoordinate2D) {
-        rowDescriptor?.value = CLLocation(latitude:coordinate.latitude, longitude:coordinate.longitude)
-        self.title = String(format: "%0.4f, %0.4f", coordinate.latitude, coordinate.longitude)
+        let location = Location()
+        
+        location.latitude = coordinate.latitude
+        location.longitude = coordinate.longitude
+        
+        SVProgressHUD.show()
+        GoogleMapsService.addressForLocation(location) { [weak self] address in
+            SVProgressHUD.dismiss()
+            location.address = address
+            self?.rowDescriptor?.value = location
+            self?.title = address ?? String(format: "%0.4f, %0.4f", coordinate.latitude, coordinate.longitude)
+        }
     }
     
     //MARK - - MKMapViewDelegate
@@ -120,18 +139,26 @@ class SelectLocationVC : UIViewController, XLFormRowDescriptorViewController, MK
         return nil
     }
     
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
-        if (newState == .Ending){
-            if let annotation = view.annotation {
-                didChooseLocation(annotation.coordinate)
-            }
-        }
-    }
-    
     func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
         setUserLocation(userLocation.coordinate)
     }
     
+    // MARK: handle gestures
+    
+    func handleGesture(gesture: UIGestureRecognizer) {
+        annotation?.coordinate = mapView.centerCoordinate
+        
+        if [.Ended, .Cancelled].contains(gesture.state) {
+            didChooseLocation(mapView.centerCoordinate)
+        }
+    }
+}
+
+extension SelectLocationVC: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 }
 
 extension SelectLocationVC: CLLocationManagerDelegate {

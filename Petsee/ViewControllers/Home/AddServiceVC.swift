@@ -59,7 +59,7 @@ class AddServiceVC: XLFormViewController {
         
         row = XLFormRowDescriptor(tag: "location", rowType: XLFormRowDescriptorTypeSelectorPush, title: "Pickup Location")
         row.action.viewControllerClass = SelectLocationVC.self
-        row.valueTransformer = CLLocationValueTrasformer.self
+        row.valueTransformer = LocationValueTrasformer.self
         row.required = true
         section.addFormRow(row)
         
@@ -109,11 +109,7 @@ class AddServiceVC: XLFormViewController {
         
         service.startDate = values["start_date"] as! NSDate
         service.endDate = values["end_date"] as! NSDate
-        let locationValues = values["location"] as! CLLocation
-        let location = Location()
-        location.latitude = locationValues.coordinate.latitude
-        location.longitude = locationValues.coordinate.longitude
-        service.location = location
+        service.location = values["location"] as! Location
         
         let typeString = values["type"] as! String
         switch typeString {

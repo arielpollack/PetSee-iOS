@@ -31,6 +31,7 @@ class ServiceProviderCell: UITableViewCell {
         }
     }
     @IBOutlet weak var btnSendRequest: UIButton!
+    @IBOutlet weak var lblHourlyRate: UILabel!
     
     var serviceProvider: ServiceProvider! {
         didSet {
@@ -43,12 +44,19 @@ class ServiceProviderCell: UITableViewCell {
         }
     }
     
+    static let rateFormatter: NSNumberFormatter = {
+        let nf = NSNumberFormatter()
+        nf.numberStyle = .CurrencyStyle
+        return nf
+    }()
+    
     weak var delegate: ServiceProviderCellDelegate?
     
     private func loadServiceProviderInfo() {
         lblName.text = serviceProvider.name
         ratingStars.value = CGFloat(serviceProvider.rating ?? 0)
         lblReviewsCount.text = "(\(serviceProvider.ratingCount ?? 0) reviews)"
+        lblHourlyRate.text = ServiceProviderCell.rateFormatter.stringFromNumber(NSNumber(integer: serviceProvider.hourlyRate))
         if let image = serviceProvider.image, url = NSURL(string: image) {
             imgThumbnail.af_setImageWithURL(url)
         }

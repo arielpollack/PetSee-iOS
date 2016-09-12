@@ -48,4 +48,22 @@ struct GoogleMapsService {
             completion(response.result.value)
         }
     }
+    
+    static func addressForLocation(location: Location, completion: String?->()) {
+        
+        let locationString = "\(location.latitude),\(location.longitude)"
+        var baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?key=\(apiKey)&latlng=\(locationString)&result_type=street_address"
+        baseUrl = baseUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        
+        Alamofire.request(.GET, baseUrl).responseJSON { response in
+            if let json = response.result.value as? JSON,
+                let results = json["results"] as? [JSON],
+                let result = results.first,
+                let address = result["formatted_address"] as? String {
+                completion(address)
+            } else {
+                completion(nil)
+            }
+        }
+    }
 }
