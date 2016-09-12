@@ -9,33 +9,33 @@
 import Foundation
 import ObjectMapper
 
-public enum UserType: String {
+enum UserType: String {
     case Client = "Client"
     case ServiceProvider = "ServiceProvider"
 }
 
- public class User: Mappable, Identifiable {
+ class User: Mappable, Identifiable {
     
-    public var id: Int!
-    public var email: String?
-    public var token: String?
-    public var name: String?
-    public var phone: String?
-    public var about: String?
-    public var image: String?
-    public var ratingCount: Int?
-    public var rating: Double?
-    public var type: UserType?
+    var id: Int!
+    var email: String?
+    var token: String?
+    var name: String?
+    var phone: String?
+    var about: String?
+    var image: String?
+    var ratingCount: Int?
+    var rating: Double?
+    var type: UserType?
     
     private var map: JSON?
     
-    required public init?(_ map: Map) {
+    required init?(_ map: Map) {
         if map.JSONDictionary["id"] == nil {
             return nil
         }
     }
     
-    public func mapping(map: Map) {
+    func mapping(map: Map) {
         id <- map["id"]
         email <- map["email"]
         name <- map["name"]
@@ -54,7 +54,7 @@ public enum UserType: String {
 }
 
 extension User: CustomStringConvertible {
-    public var description: String {
+    var description: String {
         if let map = self.map {
             return map.description
         }

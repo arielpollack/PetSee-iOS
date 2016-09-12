@@ -9,30 +9,30 @@
 import Foundation
 import ObjectMapper
 
-public class Pet: Mappable, Identifiable {
+class Pet: Mappable, Identifiable {
     
-    public var id: Int!
-    public var name: String!
-    public var race: Race!
-    public var color: String!
-    public var about: String?
-    public var image: String?
-    public var isTrained: Bool!
-    public var birthday: NSDate!
+    var id: Int!
+    var name: String!
+    var race: Race!
+    var color: String!
+    var about: String?
+    var image: String?
+    var isTrained: Bool!
+    var birthday: NSDate!
     
     private var map: JSON?
     
-    public init() {
+    init() {
         
     }
     
-    required public init?(_ map: Map) {
+    required init?(_ map: Map) {
         if map.JSONDictionary["id"] == nil {
             return nil
         }
     }
     
-    public func mapping(map: Map) {
+    func mapping(map: Map) {
         id <- map["id"]
         name <- map["name"]
         race <- map["race"]
@@ -49,7 +49,7 @@ public class Pet: Mappable, Identifiable {
 }
 
 extension Pet: CustomStringConvertible {
-    public var description: String {
+    var description: String {
         if let map = self.map {
             return map.description
         }
@@ -63,6 +63,6 @@ extension Pet: CustomStringConvertible {
 
 extension Pet: Equatable {}
 
-public func ==(lhs: Pet, rhs: Pet) -> Bool {
+func ==(lhs: Pet, rhs: Pet) -> Bool {
     return lhs.id == rhs.id
 }

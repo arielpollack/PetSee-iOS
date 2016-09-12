@@ -9,27 +9,27 @@
 import Foundation
 import ObjectMapper
 
-public class Review: Mappable, Identifiable {
+class Review: Mappable, Identifiable {
     
-    public var id: Int!
-    public var rate: Int!
-    public var feedback: String?
-    public var writer: User?
-    public var user: User?
-    public var createdAt: NSDate!
-    public var updatedAt: NSDate!
+    var id: Int!
+    var rate: Int!
+    var feedback: String?
+    var writer: User?
+    var user: User?
+    var createdAt: NSDate!
+    var updatedAt: NSDate!
     
     private var map: JSON?
     
-    required public init?(_ map: Map) {
+    required init?(_ map: Map) {
         if map.JSONDictionary["id"] == nil {
             return nil
         }
     }
     
-    public init() {}
+    init() {}
     
-    public func mapping(map: Map) {
+    func mapping(map: Map) {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         let dateFormatterTransform = DateFormatterTransform(dateFormatter: dateFormatter)
@@ -49,7 +49,7 @@ public class Review: Mappable, Identifiable {
 }
 
 extension Review: CustomStringConvertible {
-    public var description: String {
+    var description: String {
         if let map = self.map {
             return map.description
         }

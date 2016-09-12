@@ -9,19 +9,19 @@
 import Foundation
 import ObjectMapper
 
-public class ServiceProviderSkill: Mappable {
+class ServiceProviderSkill: Mappable {
     
-    public var name: String!
-    public var yearsOfExperience: Int?
-    public var details: String?
+    var name: String!
+    var yearsOfExperience: Int?
+    var details: String?
     
-    required public init?(_ map: Map) {
+    required init?(_ map: Map) {
         if map["name"].value() == nil {
             return nil
         }
     }
     
-    public func mapping(map: Map) {
+    func mapping(map: Map) {
         name <- map["name"]
         yearsOfExperience <- map["years_of_experience"]
         details <- map["details"]

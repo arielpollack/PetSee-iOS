@@ -9,16 +9,16 @@
 import Foundation
 import ObjectMapper
 
-public class Service: Mappable , Identifiable {
+class Service: Mappable , Identifiable {
     
-    public enum Status: String {
+    enum Status: String {
         case Pending = "pending"
         case Confirmed = "confirmed"
         case Started = "started"
         case Ended = "ended"
         case Cancelled = "cancelled"
         
-        public var readableString: String {
+        var readableString: String {
             get {
                 switch self {
                 case .Pending:
@@ -35,7 +35,7 @@ public class Service: Mappable , Identifiable {
             }
         }
         
-        public var presentingColor: UIColor {
+        var presentingColor: UIColor {
             switch self {
             case .Pending:
                 return UIColor.orangeColor()
@@ -51,11 +51,11 @@ public class Service: Mappable , Identifiable {
         }
     }
     
-    public enum Type: String {
+    enum Type: String {
         case Walking = "dogwalk"
         case Sitting = "dogsit"
         
-        public var readableString: String {
+        var readableString: String {
             get {
                 switch self {
                 case .Sitting:
@@ -67,27 +67,27 @@ public class Service: Mappable , Identifiable {
         }
     }
     
-    public var id: Int!
-    public var client: Client!
-    public var serviceProvider: ServiceProvider?
-    public var pet: Pet!
-    public var startDate: NSDate!
-    public var endDate: NSDate!
-    public var status: Status!
-    public var location: Location!
-    public var type: Type!
+    var id: Int!
+    var client: Client!
+    var serviceProvider: ServiceProvider?
+    var pet: Pet!
+    var startDate: NSDate!
+    var endDate: NSDate!
+    var status: Status!
+    var location: Location!
+    var type: Type!
     
-    public init() {
+    init() {
         
     }
     
-    required public init?(_ map: Map) {
+    required init?(_ map: Map) {
         if map.JSONDictionary["id"] == nil {
             return nil
         }
     }
     
-    public func mapping(map: Map) {
+    func mapping(map: Map) {
         id <- map["id"]
         client <- map["client"]
         serviceProvider <- map["service_provider"]

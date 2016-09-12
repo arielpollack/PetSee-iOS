@@ -9,18 +9,18 @@
 import Foundation
 import ObjectMapper
 
-public class Race: Mappable, Identifiable {
-    public var id: Int!
-    public var name: String!
-    public var image: String?
+class Race: Mappable, Identifiable {
+    var id: Int!
+    var name: String!
+    var image: String?
     
-    required public init?(_ map: Map) {
+    required init?(_ map: Map) {
         if map.JSONDictionary["id"] == nil {
             return nil
         }
     }
     
-    public func mapping(map: Map) {
+    func mapping(map: Map) {
         id <- map["id"]
         name <- map["name"]
         image <- map["image"]
@@ -28,7 +28,7 @@ public class Race: Mappable, Identifiable {
 }
 
 extension Race: CustomStringConvertible {
-    public var description: String {
+    var description: String {
         return name
     }
 }

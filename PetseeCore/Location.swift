@@ -9,21 +9,21 @@
 import Foundation
 import ObjectMapper
 
-public class Location: Mappable {
+class Location: Mappable {
     
-    public var latitude: Double!
-    public var longitude: Double!
-    public var timestamp: NSDate!
+    var latitude: Double!
+    var longitude: Double!
+    var timestamp: NSDate!
     
-    required public init?(_ map: Map) {
+    required init?(_ map: Map) {
         
     }
     
-    public init() {
+    init() {
         
     }
     
-    public func mapping(map: Map) {
+    func mapping(map: Map) {
         latitude <- map["latitude"]
         longitude <- map["longitude"]
         timestamp <- (map["timestamp"], DateTransform())

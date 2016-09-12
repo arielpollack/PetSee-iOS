@@ -9,15 +9,15 @@
 import Foundation
 import ObjectMapper
 
-public class ServiceProvider: User {
+class ServiceProvider: User {
     
-    public var skills: [ServiceProviderSkill]?
+    var skills: [ServiceProviderSkill]?
     
-    required public init?(_ map: Map) {
+    required init?(_ map: Map) {
         super.init(map)
     }
     
-    override public func mapping(map: Map) {
+    override func mapping(map: Map) {
         super.mapping(map)
         
         skills <- map["skills"]

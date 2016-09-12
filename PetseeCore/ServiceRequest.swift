@@ -9,14 +9,14 @@
 import Foundation
 import ObjectMapper
 
-public class ServiceRequest: Mappable, Identifiable {
+class ServiceRequest: Mappable, Identifiable {
     
-    public enum Status: String {
+    enum Status: String {
         case Pending = "pending"
         case Approved = "approved"
         case Denied = "denied"
         
-        public var readableString: String {
+        var readableString: String {
             switch self {
             case .Pending:
                 return "Pending"
@@ -28,18 +28,18 @@ public class ServiceRequest: Mappable, Identifiable {
         }
     }
     
-    public var id: Int!
-    public var service: Service?
-    public var serviceProvider: ServiceProvider!
-    public var status: Status!
+    var id: Int!
+    var service: Service?
+    var serviceProvider: ServiceProvider!
+    var status: Status!
     
-    required public init?(_ map: Map) {
+    required init?(_ map: Map) {
         if map.JSONDictionary["id"] == nil {
             return nil
         }
     }
     
-    public func mapping(map: Map) {
+    func mapping(map: Map) {
         id <- map["id"]
         serviceProvider <- map["service_provider"]
         service <- map["service"]

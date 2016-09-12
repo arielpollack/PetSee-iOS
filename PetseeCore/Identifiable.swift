@@ -8,11 +8,11 @@
 
 import Foundation
 
-public typealias JSON = [String: AnyObject]
+typealias JSON = [String: AnyObject]
 
-public protocol Identifiable: Equatable {
+protocol Identifiable: Equatable {
     var id: Int! { get set }
 }
-public func ==<T where T: Identifiable>(lhs: T, rhs: T) -> Bool {
+func ==<T where T: Identifiable>(lhs: T, rhs: T) -> Bool {
     return lhs.id == rhs.id
 }

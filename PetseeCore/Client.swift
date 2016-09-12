@@ -8,6 +8,6 @@
 
 import Foundation
 
-public class Client: User {
+class Client: User {
     
 }
