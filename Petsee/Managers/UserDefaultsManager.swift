@@ -15,6 +15,7 @@ struct UserDefaultsManager {
         static let userTokenKey = "ps_user_token"
         static let authenticatedUserKey = "ps_authenticated_user"
         static let lastTrackedServices = "ps_last_tracked_services"
+        static let lastNotificationsUpdate = "ps_last_notifications_update"
     }
     
     static var userToken: String? {
@@ -69,6 +70,17 @@ struct UserDefaultsManager {
                 servicesJSON.append(service.toJSON())
             }
             NSUserDefaults.standardUserDefaults().setObject(servicesJSON, forKey: Keys.lastTrackedServices)
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
+    
+    static var lastNotificationsUpdate: NSDate {
+        get {
+            let date = NSUserDefaults.standardUserDefaults().objectForKey(Keys.lastNotificationsUpdate) as? NSDate
+            return date ?? NSDate()
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: Keys.lastNotificationsUpdate)
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }

@@ -12,7 +12,7 @@ import ObjectMapper
 import Moya
 import Moya_ObjectMapper
 
-public struct PetseeAPI {
+struct PetseeAPI {
     private lazy var authProvider = RxMoyaProvider<PetseeAuth>()
     private lazy var actionsProvider: RxMoyaProvider<PetseeActions> = {
         return RxMoyaProvider<PetseeActions>(endpointClosure: self.authenticatedEndpointClosure())
@@ -22,14 +22,14 @@ public struct PetseeAPI {
     
     private var authenticationToken: String?
     
-    public static var sharedInstance = PetseeAPI()
+    static var sharedInstance = PetseeAPI()
     
-    public static func setAuthenticationToken(token: String?) {
+    static func setAuthenticationToken(token: String?) {
         sharedInstance.authenticationToken = token
     }
     
     // MARK:- Authentication methods
-    public static func checkIfEmailExist(email: String, completion: Bool->()) {
+    static func checkIfEmailExist(email: String, completion: Bool->()) {
         executeRequest(sharedInstance.authProvider, target: .CheckEmailExist(email: email)) { object, error in
             guard let json = object else {
                 completion(false)
@@ -40,64 +40,69 @@ public struct PetseeAPI {
         }
     }
     
-    public static func login(email: String, password: String, completion: (User?, String?)->()) {
+    static func login(email: String, password: String, completion: (User?, String?)->()) {
         let target = PetseeAuth.Login(email: email, password: password)
         executeRequest(sharedInstance.authProvider, target: target, objectType: User.self, completion: completion)
     }
     
-    public static func signup(email: String, password: String, name: String?, type: UserType, completion: (User?, String?)->()) {
+    static func signup(email: String, password: String, name: String?, type: UserType, completion: (User?, String?)->()) {
         let target = PetseeAuth.Signup(email: email, password: password, name: name, type: type)
         executeRequest(sharedInstance.authProvider, target: target, objectType: User.self, completion: completion)
     }
     
-    public static func updateUser(user: User, completion: (User?,String?)->()) {
+    static func updateUser(user: User, completion: (User?,String?)->()) {
         let target = PetseeActions.UpdateUser(image: user.image)
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: User.self, completion: completion)
     }
     
-    public static func getUser(completion: (User?,String?)->()) {
+    static func getUser(completion: (User?,String?)->()) {
         let target = PetseeActions.GetUser
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: User.self, completion: completion)
     }
     
+    static func getNotifications(completion: ([Notification]?,String?)->()) {
+        let target = PetseeActions.GetNotifications
+        executeRequest(sharedInstance.actionsProvider, target: target, arrayType: Notification.self, completion: completion)
+    }
+    
     // MARK:- Pets
-    public static func myPets(completion: ([Pet]?,String?)->()) {
+    static func myPets(completion: ([Pet]?,String?)->()) {
         let target = PetseeActions.MyPets
         executeRequest(sharedInstance.actionsProvider, target: target, arrayType: Pet.self, completion: completion)
     }
     
-    public static func addPet(pet: Pet, completion: (Pet?,String?)->()) {
+    static func addPet(pet: Pet, completion: (Pet?,String?)->()) {
         let target = PetseeActions.AddPet(pet)
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: Pet.self, completion: completion)
     }
     
-    public static func uploadImage(imageData: NSData, completion: (AnyObject?,String?)->()) {
+    static func uploadImage(imageData: NSData, completion: (AnyObject?,String?)->()) {
         let target = PetseeActions.UploadImage(imageData)
         executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
     }
     
-    public static func updatePet(pet: Pet, completion: (Pet?,String?)->()) {
+    static func updatePet(pet: Pet, completion: (Pet?,String?)->()) {
         let target = PetseeActions.UpdatePet(pet)
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: Pet.self, completion: completion)
     }
     
-    public static func fetchRaces(term: String, completion: ([Race]?,String?)->()) {
+    static func fetchRaces(term: String, completion: ([Race]?,String?)->()) {
         let target = PetseeActions.Races(term)
         executeRequest(sharedInstance.actionsProvider, target: target, arrayType: Race.self, completion: completion)
     }
     
     // MARK:- Reviews
-    public static func userReviews(userId: Int, completion: ([Review]?,String?)->()) {
+    static func userReviews(userId: Int, completion: ([Review]?,String?)->()) {
         let target = PetseeActions.UserReviews(userId: userId)
         executeRequest(sharedInstance.actionsProvider, target: target, arrayType: Review.self, completion: completion)
     }
     
-    public static func myReviewOnUser(user: User, completion: (Review?,String?)->()) {
+    static func myReviewOnUser(user: User, completion: (Review?,String?)->()) {
         let target = PetseeActions.MyReviewOnUser(user: user)
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: Review.self, completion: completion)
     }
     
-    public static func createReview(review: Review, completion: (Review?,String?)->()) {
+    static func createReview(review: Review, completion: (Review?,String?)->()) {
         assert(review.user != nil, "Must set a user")
         let target: PetseeActions
         if review.id == nil {
@@ -109,82 +114,82 @@ public struct PetseeAPI {
     }
     
     // MARK:- Services
-    public static func myServices(completion: ([Service]?,String?)->()) {
+    static func myServices(completion: ([Service]?,String?)->()) {
         let target = PetseeActions.MyServices
         executeRequest(sharedInstance.actionsProvider, target: target, arrayType: Service.self, completion: completion)
     }
     
-    public static func myServiceRequests(completion: ([ServiceRequest]?,String?)->()) {
+    static func myServiceRequests(completion: ([ServiceRequest]?,String?)->()) {
         let target = PetseeActions.MyServiceRequests
         executeRequest(sharedInstance.actionsProvider, target: target, arrayType: ServiceRequest.self, completion: completion)
     }
     
-    public static func addService(service: Service, completion: (Service?,String?)->()) {
+    static func addService(service: Service, completion: (Service?,String?)->()) {
         let target = PetseeActions.AddService(service: service)
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: Service.self, completion: completion)
     }
     
-    public static func getServiceRequests(service: Service, completion: ([ServiceRequest]?,String?)->()) {
+    static func getServiceRequests(service: Service, completion: ([ServiceRequest]?,String?)->()) {
         let target = PetseeActions.GetServiceRequests(service: service)
         executeRequest(sharedInstance.actionsProvider, target: target, arrayType: ServiceRequest.self, completion: completion)
     }
     
-    public static func getAvailableServiceProviders(service: Service, completion: ([ServiceProvider]?,String?)->()) {
+    static func getAvailableServiceProviders(service: Service, completion: ([ServiceProvider]?,String?)->()) {
         let target = PetseeActions.GetAvailableServiceProviders(service: service)
         executeRequest(sharedInstance.actionsProvider, target: target, arrayType: ServiceProvider.self, completion: completion)
     }
     
-    public static func requestServiceProvider(service: Service, serviceProvider: ServiceProvider, completion: (ServiceRequest?,String?)->()) {
+    static func requestServiceProvider(service: Service, serviceProvider: ServiceProvider, completion: (ServiceRequest?,String?)->()) {
         let target = PetseeActions.RequestServiceProvider(service: service, provider: serviceProvider)
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: ServiceRequest.self, completion: completion)
     }
     
-    public static func chooseServiceRequest(service: Service, serviceRequest: ServiceRequest, completion: (AnyObject?,String?)->()) {
+    static func chooseServiceRequest(service: Service, serviceRequest: ServiceRequest, completion: (AnyObject?,String?)->()) {
         let target = PetseeActions.ChooseServiceRequest(service: service, request: serviceRequest)
         executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
     }
     
-    public static func updateDeviceToken(token: String, completion: (AnyObject?,String?)->()) {
+    static func updateDeviceToken(token: String, completion: (AnyObject?,String?)->()) {
         let target = PetseeActions.UpdateUserToken(token: token)
         executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
     }
     
-    public static func clearNotificationsCount(completion: (AnyObject?,String?)->() = { _,_ in }) {
+    static func clearNotificationsCount(completion: (AnyObject?,String?)->() = { _,_ in }) {
         let target = PetseeActions.ClearNotificationsCount
         executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
     }
     
-    public static func locationsForService(service: Service, completion: ([Location]?,String?)->()) {
+    static func locationsForService(service: Service, completion: ([Location]?,String?)->()) {
         let target = PetseeActions.LocationsForService(service: service)
         executeRequest(sharedInstance.actionsProvider, target: target, arrayType: Location.self, completion: completion)
     }
     
-    public static func addLocationForService(latitude: Double, longitude: Double, service: Service, completion: (Location?,String?)->() = { _,_ in }) {
+    static func addLocationForService(latitude: Double, longitude: Double, service: Service, completion: (Location?,String?)->() = { _,_ in }) {
         let target = PetseeActions.AddLocationForService(service: service, latitude: latitude, longitude: longitude)
         executeRequest(sharedInstance.actionsProvider, target: target, objectType: Location.self, completion: completion)
     }
     
-    public static func cancelService(service: Service, completion: (AnyObject?,String?)->()) {
+    static func cancelService(service: Service, completion: (AnyObject?,String?)->()) {
         let target = PetseeActions.CancelService(service: service)
         executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
     }
     
-    public static func approveServiceRequest(request: ServiceRequest, completion: (AnyObject?,String?)->()) {
+    static func approveServiceRequest(request: ServiceRequest, completion: (AnyObject?,String?)->()) {
         let target = PetseeActions.ApproveServiceRequest(serviceRequest: request)
         executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
     }
     
-    public static func denyServiceRequest(request: ServiceRequest, completion: (AnyObject?,String?)->()) {
+    static func denyServiceRequest(request: ServiceRequest, completion: (AnyObject?,String?)->()) {
         let target = PetseeActions.DenyServiceRequest(serviceRequest: request)
         executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
     }
     
-    public static func startService(service: Service, completion: (AnyObject?,String?)->()) {
+    static func startService(service: Service, completion: (AnyObject?,String?)->()) {
         let target = PetseeActions.StartService(service: service)
         executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
     }
     
-    public static func endService(service: Service, completion: (AnyObject?,String?)->()) {
+    static func endService(service: Service, completion: (AnyObject?,String?)->()) {
         let target = PetseeActions.EndService(service: service)
         executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
     }

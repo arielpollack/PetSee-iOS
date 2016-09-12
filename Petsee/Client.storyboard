@@ -181,7 +181,7 @@ Member Since April 2016</string>
             </objects>
             <point key="canvasLocation" x="1467" y="-1867"/>
         </scene>
-        <!--My ServicesVC-->
+        <!--My Services-->
         <scene sceneID="2S1-Mf-P49">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="9NB-mV-boK" customClass="MyServicesVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
@@ -276,7 +276,7 @@ Member Since April 2016</string>
                             <constraint firstAttribute="trailing" secondItem="plX-gu-uEh" secondAttribute="trailing" id="gAb-r6-Iah"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="h7f-0V-zIJ">
+                    <navigationItem key="navigationItem" title="My Services" id="h7f-0V-zIJ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hT5-ks-Xql">
                             <connections>
                                 <segue destination="vce-Ql-ZxH" kind="presentation" id="obS-Rb-Wpg"/>
@@ -336,7 +336,7 @@ Member Since April 2016</string>
             </objects>
             <point key="canvasLocation" x="2558" y="1177"/>
         </scene>
-        <!--My PetsVC-->
+        <!--My Pets-->
         <scene sceneID="YQA-Jy-yvj">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="P12-qm-t2g" customClass="MyPetsVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
@@ -387,7 +387,7 @@ Member Since April 2016</string>
                             <constraint firstItem="2Jo-ei-azD" firstAttribute="leading" secondItem="BkC-kr-zfv" secondAttribute="leading" id="k63-rI-pju"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="7sL-sv-zeM">
+                    <navigationItem key="navigationItem" title="My Pets" id="7sL-sv-zeM">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ht4-TN-ARo">
                             <connections>
                                 <segue destination="dMh-wy-OUi" kind="presentation" id="kh5-Fb-xAK"/>

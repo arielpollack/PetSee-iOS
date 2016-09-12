@@ -66,6 +66,7 @@
 		B005EB3D1D85634800A7C23B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B005EB3B1D85634800A7C23B /* Crashlytics.framework */; };
 		B006340C1D8568FB002B2D58 /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006340B1D8568FB002B2D58 /* InboxView.swift */; };
 		B0803F731D67A6FF00AADA00 /* PetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0803F721D67A6FF00AADA00 /* PetVC.swift */; };
+		B08FA4E61D86D15600C37CE8 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08FA4E51D86D15600C37CE8 /* Notification.swift */; };
 		B0D4B34F1D843AC6008154BF /* AddReviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D4B34E1D843AC6008154BF /* AddReviewVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -152,6 +153,7 @@
 		B006340B1D8568FB002B2D58 /* InboxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
 		B0803F721D67A6FF00AADA00 /* PetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetVC.swift; sourceTree = "<group>"; };
 		B0803F741D67B27D00AADA00 /* ServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
+		B08FA4E51D86D15600C37CE8 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		B0D4B34E1D843AC6008154BF /* AddReviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReviewVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -363,6 +365,7 @@
 				73F819D41CD2541E001AC3FB /* Identifiable.swift */,
 				732F2F081CDE3E0300CB491D /* Race.swift */,
 				735AECF11D6A3EBF0048E1E8 /* Location.swift */,
+				B08FA4E51D86D15600C37CE8 /* Notification.swift */,
 			);
 			path = PetseeCore;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				73DB8B7C1D510E0C00BD95E5 /* MyPetsVC.swift in Sources */,
 				735C37141D7CCC300063FCD8 /* ServiceRequest.swift in Sources */,
 				735C37161D7CCC300063FCD8 /* ServiceProvider.swift in Sources */,
+				B08FA4E61D86D15600C37CE8 /* Notification.swift in Sources */,
 				73AEC7C51D690900001FDF83 /* GoogleMapsService.swift in Sources */,
 				735C371A1D7CCC300063FCD8 /* Location.swift in Sources */,
 				735C37181D7CCC300063FCD8 /* Identifiable.swift in Sources */,
