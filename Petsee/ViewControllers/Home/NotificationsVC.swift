@@ -63,3 +63,15 @@ extension NotificationsVC: UITableViewDataSource {
         return cell
     }
 }
+
+
+extension NotificationsVC: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let notification = notifications[indexPath.row]
+        DeepLinkManager.openNotification(notification, fromViewController: self, push: true)
+    }
+}

@@ -671,10 +671,10 @@ Member Since April 2016</string>
             </objects>
             <point key="canvasLocation" x="2558" y="-1262"/>
         </scene>
-        <!--ServiceVC-->
+        <!--Service Details-->
         <scene sceneID="eRq-Ha-U0t">
             <objects>
-                <tableViewController storyboardIdentifier="ServiceVC" hidesBottomBarWhenPushed="YES" id="6tp-q6-x55" customClass="ServiceVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ServiceVC" title="Service Details" hidesBottomBarWhenPushed="YES" id="6tp-q6-x55" customClass="ServiceVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="XS0-gT-0Kn">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -936,7 +936,7 @@ Member Since April 2016</string>
         <!--Notifications-->
         <scene sceneID="6W8-sr-3cg">
             <objects>
-                <viewController id="99v-bT-lNj" customClass="NotificationsVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="99v-bT-lNj" customClass="NotificationsVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cLt-LQ-OoE"/>
                         <viewControllerLayoutGuide type="bottom" id="g10-m8-crH"/>
@@ -1009,6 +1009,7 @@ Member Since April 2016</string>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="99v-bT-lNj" id="gmN-eY-Vqt"/>
+                                    <outlet property="delegate" destination="99v-bT-lNj" id="o3B-lh-vBX"/>
                                 </connections>
                             </tableView>
                         </subviews>

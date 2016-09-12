@@ -36,11 +36,23 @@ class Notification: Mappable, Identifiable {
     func mapping(map: Map) {
         id <- map["id"]
         text <- map["text"]
-        type <- map["notification_type"]
+        type <- map["type"]
         read <- map["read"]
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
         createdAt <- (map["created_at"], DateFormatterTransform(dateFormatter: dateFormatter))
+        
+        switch type! {
+        case .RequestYourService:
+            var request: ServiceRequest?
+            request <- map["object"]
+            object = request
+            
+        default:
+            var service: Service?
+            service <- map["object"]
+            object = service
+        }
     }
 }

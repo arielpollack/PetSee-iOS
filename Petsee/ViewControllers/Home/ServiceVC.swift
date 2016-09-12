@@ -37,6 +37,7 @@ class ServiceVC: UITableViewController {
         return AuthManager.sharedInstance.authenticatedUser!.type == .Client
     }()
     weak var delegate: ServiceVCDelegate?
+    var showServiceProvidersOnOpen = false
     
     var cellTypes = [CellType]()
     
@@ -197,6 +198,14 @@ class ServiceVC: UITableViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(endServiceTapped), name: Notification.EndServiceTapped, object: service)
         
         loadServiceInfo()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if showServiceProvidersOnOpen {
+            findServiceProviderTapped()
+        }
     }
     
     private func loadViews() {
