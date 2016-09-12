@@ -73,15 +73,4 @@ struct UserDefaultsManager {
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
-    
-    static var lastNotificationsUpdate: NSDate {
-        get {
-            let date = NSUserDefaults.standardUserDefaults().objectForKey(Keys.lastNotificationsUpdate) as? NSDate
-            return date ?? NSDate()
-        }
-        set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: Keys.lastNotificationsUpdate)
-            NSUserDefaults.standardUserDefaults().synchronize()
-        }
-    }
 }

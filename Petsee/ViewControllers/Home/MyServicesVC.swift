@@ -44,6 +44,10 @@ class MyServicesVC: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        // reload from server
+        ServicesStore.sharedStore.loadObjects()
+        
+        // load from local storage
         loadServices()
     }
 

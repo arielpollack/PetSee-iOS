@@ -65,6 +65,11 @@ struct PetseeAPI {
         executeRequest(sharedInstance.actionsProvider, target: target, arrayType: Notification.self, completion: completion)
     }
     
+    static func clearNotifications(completion: (AnyObject?,String?)->() = {_,_ in}) {
+        let target = PetseeActions.ClearNotificationsRead
+        executeRequest(sharedInstance.actionsProvider, target: target, completion: completion)
+    }
+    
     // MARK:- Pets
     static func myPets(completion: ([Pet]?,String?)->()) {
         let target = PetseeActions.MyPets

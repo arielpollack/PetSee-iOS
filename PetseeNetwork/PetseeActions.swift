@@ -17,6 +17,7 @@ enum PetseeActions {
     case UpdateUserToken(token: String)
     case ClearNotificationsCount
     case GetNotifications
+    case ClearNotificationsRead
     
     case CreateReview(userId: Int, rate: Int, feedback: String?)
     case UpdateReview(reviewId: Int, rate: Int, feedback: String?)
@@ -60,6 +61,8 @@ extension PetseeActions: TargetType {
         switch self {
         case .GetNotifications:
             return "/notifications"
+        case .ClearNotificationsRead:
+            return "/notifications/read_all"
         case .GetUser:
             return "/users"
         case .UserPets(let userId):
@@ -128,6 +131,8 @@ extension PetseeActions: TargetType {
         switch self {
         case .GetNotifications:
             return .GET
+        case .ClearNotificationsRead:
+            return .PUT
         case .GetUser:
             return .GET
         case .UserPets:

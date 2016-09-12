@@ -23,6 +23,7 @@ class Notification: Mappable, Identifiable {
     var id: Int!
     var text: String!
     var type: Type!
+    var read: Bool!
     var object: AnyObject?
     var createdAt: NSDate!
     
@@ -36,6 +37,7 @@ class Notification: Mappable, Identifiable {
         id <- map["id"]
         text <- map["text"]
         type <- map["notification_type"]
+        read <- map["read"]
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"

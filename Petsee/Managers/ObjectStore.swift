@@ -36,7 +36,7 @@ class ObjectStore<T: Equatable> {
         }
     }
     
-    private func loadObjects() {
+    func loadObjects() {
         objectsLoader { objects, error in
             self.fetchQueue.suspended = true
             guard let objects = objects else {

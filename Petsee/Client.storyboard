@@ -474,7 +474,7 @@ Member Since April 2016</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nZr-Vd-M9M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2972" y="-578"/>
+            <point key="canvasLocation" x="3504" y="-578"/>
         </scene>
         <!--Race ChooseVC-->
         <scene sceneID="s7s-Pt-6OS">
@@ -516,7 +516,7 @@ Member Since April 2016</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9GR-NN-hyh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5915" y="-723"/>
+            <point key="canvasLocation" x="6447" y="-723"/>
         </scene>
         <!--PetVC-->
         <scene sceneID="NJC-TQ-Q0a">
@@ -913,10 +913,10 @@ Member Since April 2016</string>
             </objects>
             <point key="canvasLocation" x="3370" y="443"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--HomeVC-->
         <scene sceneID="gwB-Ss-UQo">
             <objects>
-                <tabBarController storyboardIdentifier="ClientStarter" id="0lN-ru-zfQ" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="ClientStarter" id="0lN-ru-zfQ" customClass="HomeVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="3MW-9L-mtv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -925,12 +925,104 @@ Member Since April 2016</string>
                     </tabBar>
                     <connections>
                         <segue destination="4e5-Nj-ZpA" kind="relationship" relationship="viewControllers" id="BK8-0q-mrT"/>
+                        <segue destination="XjH-Jj-C5a" kind="relationship" relationship="viewControllers" id="YOj-iZ-SCk"/>
                         <segue destination="sBp-jv-umA" kind="relationship" relationship="viewControllers" id="314-3F-sqB"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BzK-Kd-raB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2204" y="-1867"/>
+        </scene>
+        <!--Notifications-->
+        <scene sceneID="6W8-sr-3cg">
+            <objects>
+                <viewController id="99v-bT-lNj" customClass="NotificationsVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cLt-LQ-OoE"/>
+                        <viewControllerLayoutGuide type="bottom" id="g10-m8-crH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="L9U-wE-q9F">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="EC0-tS-8ry">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Notification" id="fOG-7j-LZC" customClass="NotificationCell" customModule="Petsee" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fOG-7j-LZC" id="h1T-b6-J53">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mXu-pD-gMC">
+                                                    <rect key="frame" x="15" y="17" width="10" height="10"/>
+                                                    <color key="backgroundColor" red="0.19215686269999999" green="0.56078431370000004" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="10" id="KMT-tx-EYV"/>
+                                                        <constraint firstAttribute="width" constant="10" id="XoG-wh-zgd"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPW-2S-BWl">
+                                                    <rect key="frame" x="40" y="5" width="38" height="33"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Sept 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1CI-dk-7XV">
+                                                    <rect key="frame" x="247" y="5" width="58" height="33"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="HPW-2S-BWl" secondAttribute="bottom" constant="5" id="CO5-YG-ULS"/>
+                                                <constraint firstItem="mXu-pD-gMC" firstAttribute="leading" secondItem="h1T-b6-J53" secondAttribute="leading" constant="15" id="Kx6-nd-0B9"/>
+                                                <constraint firstItem="HPW-2S-BWl" firstAttribute="leading" secondItem="mXu-pD-gMC" secondAttribute="trailing" constant="15" id="PG6-7c-v63"/>
+                                                <constraint firstItem="mXu-pD-gMC" firstAttribute="centerY" secondItem="h1T-b6-J53" secondAttribute="centerY" id="Pl2-tg-GfZ"/>
+                                                <constraint firstItem="1CI-dk-7XV" firstAttribute="top" secondItem="h1T-b6-J53" secondAttribute="top" constant="5" id="RRi-7v-Xhn"/>
+                                                <constraint firstAttribute="bottom" secondItem="1CI-dk-7XV" secondAttribute="bottom" constant="5" id="gnK-DL-ETe"/>
+                                                <constraint firstItem="1CI-dk-7XV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HPW-2S-BWl" secondAttribute="trailing" constant="15" id="hSX-Pk-gN1"/>
+                                                <constraint firstAttribute="trailing" secondItem="1CI-dk-7XV" secondAttribute="trailing" constant="15" id="r7G-ee-TCK"/>
+                                                <constraint firstItem="HPW-2S-BWl" firstAttribute="top" secondItem="h1T-b6-J53" secondAttribute="top" constant="5" id="vDb-FK-zBz"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblCreated" destination="1CI-dk-7XV" id="mxQ-TY-sRd"/>
+                                            <outlet property="lblText" destination="HPW-2S-BWl" id="GrH-F0-mUx"/>
+                                            <outlet property="unreadView" destination="mXu-pD-gMC" id="fy3-8p-hE6"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="99v-bT-lNj" id="gmN-eY-Vqt"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="EC0-tS-8ry" secondAttribute="trailing" id="5hU-bl-tlK"/>
+                            <constraint firstItem="EC0-tS-8ry" firstAttribute="leading" secondItem="L9U-wE-q9F" secondAttribute="leading" id="E5k-Yf-C8O"/>
+                            <constraint firstItem="EC0-tS-8ry" firstAttribute="top" secondItem="cLt-LQ-OoE" secondAttribute="bottom" id="QGa-IK-9H4"/>
+                            <constraint firstItem="g10-m8-crH" firstAttribute="top" secondItem="EC0-tS-8ry" secondAttribute="bottom" id="Tie-Qt-69n"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Notifications" id="b7n-nz-QT8"/>
+                    <connections>
+                        <outlet property="tableNotifications" destination="EC0-tS-8ry" id="OIL-mQ-Ud8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ab7-Qi-gRK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1753" y="-204"/>
         </scene>
         <!--Pets-->
         <scene sceneID="2UO-CI-RWS">
@@ -967,7 +1059,7 @@ Member Since April 2016</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tcY-uG-f1c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2558" y="-578"/>
+            <point key="canvasLocation" x="3090" y="-578"/>
         </scene>
         <!--Add ReviewVC-->
         <scene sceneID="ONE-iP-6aV">
@@ -1247,10 +1339,10 @@ Member Since April 2016</string>
             </objects>
             <point key="canvasLocation" x="3784" y="443"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--HomeVC-->
         <scene sceneID="aRV-52-YSE">
             <objects>
-                <tabBarController storyboardIdentifier="ServiceProviderStarter" id="chg-fX-LTJ" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="ServiceProviderStarter" id="chg-fX-LTJ" customClass="HomeVC" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="HBW-LS-R5b">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -1259,6 +1351,7 @@ Member Since April 2016</string>
                     </tabBar>
                     <connections>
                         <segue destination="4e5-Nj-ZpA" kind="relationship" relationship="viewControllers" id="tne-cj-dxw"/>
+                        <segue destination="XjH-Jj-C5a" kind="relationship" relationship="viewControllers" id="O0s-DH-1AS"/>
                         <segue destination="FMD-kh-oQr" kind="relationship" relationship="viewControllers" id="RvR-hR-V4C"/>
                     </connections>
                 </tabBarController>
@@ -1478,10 +1571,30 @@ Member Since April 2016</string>
             </objects>
             <point key="canvasLocation" x="745" y="512"/>
         </scene>
+        <!--Updates-->
+        <scene sceneID="bvv-1f-bQ1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XjH-Jj-C5a" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Updates" image="notifications-icon" id="Nv4-xh-ndH"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="btX-0n-HDb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="99v-bT-lNj" kind="relationship" relationship="rootViewController" id="Dc1-fx-1qf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VfG-2h-Qg2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1221" y="-204"/>
+        </scene>
     </scenes>
     <resources>
         <image name="checkmark" width="14" height="12"/>
         <image name="my-pets-icon" width="24" height="24"/>
+        <image name="notifications-icon" width="23" height="25"/>
         <image name="pet-profile-placeholder" width="66" height="66"/>
         <image name="plus" width="35" height="35"/>
         <image name="service-icon" width="30" height="25"/>
@@ -1490,7 +1603,8 @@ Member Since April 2016</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="tne-cj-dxw"/>
+        <segue reference="RvR-hR-V4C"/>
+        <segue reference="O0s-DH-1AS"/>
         <segue reference="Bjg-a1-iN3"/>
-        <segue reference="8ss-Lb-aHd"/>
     </inferredMetricsTieBreakers>
 </document>
