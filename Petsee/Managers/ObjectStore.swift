@@ -36,9 +36,11 @@ class ObjectStore<T: Equatable> {
         }
     }
     
-    func loadObjects() {
+    func loadObjects(completion: ()->() = {}) {
         objectsLoader { objects, error in
             self.fetchQueue.suspended = true
+            completion()
+            
             guard let objects = objects else {
                 self.retryLoadingObjects()
                 return

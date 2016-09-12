@@ -26,7 +26,7 @@
                                     <constraint firstAttribute="height" constant="160" id="Uwv-fX-aP2"/>
                                 </constraints>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vad-SX-IhH">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vad-SX-IhH">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <connections>
                                     <outlet property="delegate" destination="FMD-kh-oQr" id="n8e-wy-977"/>
@@ -971,29 +971,34 @@ Member Since April 2016</string>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPW-2S-BWl">
-                                                    <rect key="frame" x="40" y="5" width="38" height="33"/>
+                                                    <rect key="frame" x="40" y="15" width="38" height="13"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Sept 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1CI-dk-7XV">
-                                                    <rect key="frame" x="247" y="5" width="58" height="33"/>
+                                                    <rect key="frame" x="247" y="15" width="58" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="HPW-2S-BWl" secondAttribute="bottom" constant="5" id="CO5-YG-ULS"/>
+                                                <constraint firstAttribute="bottom" secondItem="HPW-2S-BWl" secondAttribute="bottom" constant="15" id="CO5-YG-ULS"/>
                                                 <constraint firstItem="mXu-pD-gMC" firstAttribute="leading" secondItem="h1T-b6-J53" secondAttribute="leading" constant="15" id="Kx6-nd-0B9"/>
                                                 <constraint firstItem="HPW-2S-BWl" firstAttribute="leading" secondItem="mXu-pD-gMC" secondAttribute="trailing" constant="15" id="PG6-7c-v63"/>
                                                 <constraint firstItem="mXu-pD-gMC" firstAttribute="centerY" secondItem="h1T-b6-J53" secondAttribute="centerY" id="Pl2-tg-GfZ"/>
-                                                <constraint firstItem="1CI-dk-7XV" firstAttribute="top" secondItem="h1T-b6-J53" secondAttribute="top" constant="5" id="RRi-7v-Xhn"/>
+                                                <constraint firstItem="1CI-dk-7XV" firstAttribute="top" secondItem="h1T-b6-J53" secondAttribute="top" constant="15" id="RRi-7v-Xhn"/>
                                                 <constraint firstAttribute="bottom" secondItem="1CI-dk-7XV" secondAttribute="bottom" constant="5" id="gnK-DL-ETe"/>
                                                 <constraint firstItem="1CI-dk-7XV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HPW-2S-BWl" secondAttribute="trailing" constant="15" id="hSX-Pk-gN1"/>
                                                 <constraint firstAttribute="trailing" secondItem="1CI-dk-7XV" secondAttribute="trailing" constant="15" id="r7G-ee-TCK"/>
-                                                <constraint firstItem="HPW-2S-BWl" firstAttribute="top" secondItem="h1T-b6-J53" secondAttribute="top" constant="5" id="vDb-FK-zBz"/>
+                                                <constraint firstItem="HPW-2S-BWl" firstAttribute="top" secondItem="h1T-b6-J53" secondAttribute="top" constant="15" id="vDb-FK-zBz"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="gnK-DL-ETe"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="lblCreated" destination="1CI-dk-7XV" id="mxQ-TY-sRd"/>

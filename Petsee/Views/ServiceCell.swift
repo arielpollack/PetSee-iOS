@@ -24,7 +24,7 @@ class ServiceCell: UITableViewCell {
     
     static let dateFormatter: NSDateFormatter = {
         let df = NSDateFormatter()
-        df.dateFormat = "dd LLL yyyy"
+        df.dateFormat = "dd LLL, HH:mm"
         return df
     }()
     

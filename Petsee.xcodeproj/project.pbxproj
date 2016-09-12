@@ -71,8 +71,7 @@
 		B09F053F1D86D67B00A7BB26 /* NotificationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09F053E1D86D67B00A7BB26 /* NotificationsStore.swift */; };
 		B09F05411D86DA4700A7BB26 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09F05401D86DA4700A7BB26 /* NotificationCell.swift */; };
 		B09F05471D86E12800A7BB26 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09F05461D86E12800A7BB26 /* HomeVC.swift */; };
-		B09F054B1D86E97700A7BB26 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09F05491D86E97700A7BB26 /* NSDate+Extension.swift */; };
-		B09F054C1D86E97700A7BB26 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B09F054A1D86E97700A7BB26 /* NSDateTimeAgo.bundle */; };
+		B09F054E1D86EEF700A7BB26 /* NSDate+TimeAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09F054D1D86EEF700A7BB26 /* NSDate+TimeAgo.swift */; };
 		B0D4B34F1D843AC6008154BF /* AddReviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D4B34E1D843AC6008154BF /* AddReviewVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -164,8 +163,7 @@
 		B09F053E1D86D67B00A7BB26 /* NotificationsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsStore.swift; sourceTree = "<group>"; };
 		B09F05401D86DA4700A7BB26 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		B09F05461D86E12800A7BB26 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
-		B09F05491D86E97700A7BB26 /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
-		B09F054A1D86E97700A7BB26 /* NSDateTimeAgo.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NSDateTimeAgo.bundle; sourceTree = "<group>"; };
+		B09F054D1D86EEF700A7BB26 /* NSDate+TimeAgo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+TimeAgo.swift"; sourceTree = "<group>"; };
 		B0D4B34E1D843AC6008154BF /* AddReviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReviewVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -238,6 +236,7 @@
 				732F2EF41CD94BA300CB491D /* UIColor+Addons.swift */,
 				732F2EFF1CDA902100CB491D /* UIWindow+Transition.swift */,
 				73CB94001CDEFD2900EE0BBE /* UIViewController+Additions.swift */,
+				B09F054D1D86EEF700A7BB26 /* NSDate+TimeAgo.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -300,7 +299,6 @@
 		73DB8B831D51322300BD95E5 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				B09F05481D86E97700A7BB26 /* TimeAgo */,
 				B005EB3A1D85634800A7C23B /* Fabric.framework */,
 				B005EB3B1D85634800A7C23B /* Crashlytics.framework */,
 				73DB8B841D51323A00BD95E5 /* Cloudinary */,
@@ -397,15 +395,6 @@
 			path = PetseeNetwork;
 			sourceTree = "<group>";
 		};
-		B09F05481D86E97700A7BB26 /* TimeAgo */ = {
-			isa = PBXGroup;
-			children = (
-				B09F05491D86E97700A7BB26 /* NSDate+Extension.swift */,
-				B09F054A1D86E97700A7BB26 /* NSDateTimeAgo.bundle */,
-			);
-			path = TimeAgo;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -478,7 +467,6 @@
 				73F819931CD1E592001AC3FB /* LaunchScreen.storyboard in Resources */,
 				73F819901CD1E592001AC3FB /* Assets.xcassets in Resources */,
 				73F8198E1CD1E592001AC3FB /* Login.storyboard in Resources */,
-				B09F054C1D86E97700A7BB26 /* NSDateTimeAgo.bundle in Resources */,
 				732F2F051CDBE29400CB491D /* Client.storyboard in Resources */,
 				737EDA951CDFCF92001B36D1 /* ReviewCell.xib in Resources */,
 			);
@@ -592,10 +580,10 @@
 				73F819891CD1E592001AC3FB /* AppDelegate.swift in Sources */,
 				735C37101D7CCC300063FCD8 /* User.swift in Sources */,
 				732F2EFD1CDA8FDC00CB491D /* OnboardingDataVC.swift in Sources */,
-				B09F054B1D86E97700A7BB26 /* NSDate+Extension.swift in Sources */,
 				735C37111D7CCC300063FCD8 /* Pet.swift in Sources */,
 				73F596871D82080D00459552 /* ServiceRequestCell.swift in Sources */,
 				735C37151D7CCC300063FCD8 /* Client.swift in Sources */,
+				B09F054E1D86EEF700A7BB26 /* NSDate+TimeAgo.swift in Sources */,
 				73F64B471D7E0DC900CCE77D /* ServiceProviderCell.swift in Sources */,
 				B0803F731D67A6FF00AADA00 /* PetVC.swift in Sources */,
 				73AEC7BF1D68E4EA001FDF83 /* ObjectStore.swift in Sources */,

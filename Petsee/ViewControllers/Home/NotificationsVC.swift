@@ -14,6 +14,13 @@ class NotificationsVC: UIViewController {
     
     private var notifications = [Notification]()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableNotifications.estimatedRowHeight = 50
+        tableNotifications.rowHeight = UITableViewAutomaticDimension
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         

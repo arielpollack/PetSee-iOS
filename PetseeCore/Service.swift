@@ -92,10 +92,13 @@ class Service: Mappable , Identifiable {
         client <- map["client"]
         serviceProvider <- map["service_provider"]
         pet <- map["pet"]
-        startDate <- (map["time_start"], DateTransform())
-        endDate <- (map["time_end"], DateTransform())
         type <- map["type"]
         status <- map["status"]
         location <- map["location"]
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
+        startDate <- (map["time_start"], DateFormatterTransform(dateFormatter: dateFormatter))
+        endDate <- (map["time_end"], DateFormatterTransform(dateFormatter: dateFormatter))
     }
 }

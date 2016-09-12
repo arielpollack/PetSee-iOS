@@ -75,7 +75,6 @@ extension AppDelegate: UIApplicationDelegate {
             LocationHandler.sharedManager.startLocationUpdates()
             reloadUser()
             registerForPushNotifications()
-            clearNotificationsCount()
         } else {
             let onboardingVC = OnboardingVC(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
             onboardingVC.loginDelegate = self
@@ -86,6 +85,12 @@ extension AppDelegate: UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         
         return true
+    }
+    
+    func applicationDidBecomeActive(application: UIApplication) {
+        if AuthManager.sharedInstance.isLoggedIn() {
+            clearNotificationsCount()
+        }
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
