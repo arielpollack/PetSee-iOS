@@ -9,6 +9,7 @@
 import UIKit
 import AlamofireImage
 import SVProgressHUD
+import CoreLocation
 
 protocol ServiceVCDelegate: NSObjectProtocol {
     func serviceViewControllerDidApprove(controller: ServiceVC, service: Service)
@@ -48,6 +49,7 @@ class ServiceVC: UITableViewController {
         case Type
         case Address
         case TripRoute
+        case Distance
         case Space
         case WriteReviewButton
         case CancelButton
@@ -100,6 +102,29 @@ class ServiceVC: UITableViewController {
                 cell.detailTextLabel?.textColor = UIColor.darkTextColor()
                 return cell
                 
+            case .Distance:
+                let cell = tableView.dequeueReusableCellWithIdentifier("Detail")!
+                cell.textLabel?.text = "Distance"
+                cell.detailTextLabel?.text = "0km"
+                cell.detailTextLabel?.textColor = UIColor.darkTextColor()
+                PetseeAPI.locationsForService(service, completion: { [weak cell] (locations, error) in
+                    guard let locations = locations where locations.count > 0 else {
+                        return
+                    }
+                    
+                    let distance = locations.reduce(["sum": Int(0), "loc": locations.first!], combine: { obj, location in
+                        var sum = obj["sum"] as! Int
+                        let lastLocation = obj["loc"] as! Location
+                        let coord1 = CLLocation(latitude: lastLocation.latitude, longitude: lastLocation.longitude)
+                        let coord2 = CLLocation(latitude: location.latitude, longitude: location.longitude)
+                        sum += Int(coord2.distanceFromLocation(coord1))
+                        return ["sum": sum, "loc": location]
+                    })["sum"] as! Int
+                    
+                    cell?.detailTextLabel?.text = "\(Double(distance) / 1000)km"
+                })
+                return cell
+                
             case .TripRoute:
                 let cell = tableView.dequeueReusableCellWithIdentifier("Map") as! ServiceTripRouteCell
                 cell.service = service
@@ -138,7 +163,7 @@ class ServiceVC: UITableViewController {
             case .ApproveButton:
                 let cell = tableView.dequeueReusableCellWithIdentifier("Button") as! ServiceButtonCell
                 cell.color = UIColor(hex: "2ecc71")!
-                cell.title = "Approve Service Request"
+                cell.title = "Approve Request"
                 cell.action = {
                     NSNotificationCenter.defaultCenter().postNotificationName(Notification.ApproveServiceTapped, object: service)
                 }
@@ -147,7 +172,7 @@ class ServiceVC: UITableViewController {
             case .DenyButton:
                 let cell = tableView.dequeueReusableCellWithIdentifier("Button") as! ServiceButtonCell
                 cell.color = UIColor(hex: "c0392b")!
-                cell.title = "Deny Service Request"
+                cell.title = "Deny Request"
                 cell.action = {
                     NSNotificationCenter.defaultCenter().postNotificationName(Notification.DenyServiceTapped, object: service)
                 }
@@ -212,6 +237,7 @@ class ServiceVC: UITableViewController {
         super.viewDidAppear(animated)
         
         if showServiceProvidersOnOpen {
+            showServiceProvidersOnOpen = false
             findServiceProviderTapped()
         }
     }
@@ -254,7 +280,7 @@ class ServiceVC: UITableViewController {
                 
             case .Started, .Ended:
                 // In progress / ended
-                cellTypes = CellType.BasicCells + maybeAddress + [.TripRoute, .Space, .WriteReviewButton]
+                cellTypes = CellType.BasicCells + maybeAddress + [.TripRoute, .Distance, .Space, .WriteReviewButton]
                 
             case .Cancelled:
                 cellTypes = CellType.BasicCells + maybeAddress
@@ -273,11 +299,11 @@ class ServiceVC: UITableViewController {
                 
             case .Started:
                 // I need to end it
-                cellTypes = CellType.BasicCells + maybeAddress + [.TripRoute, .Space, .EndService]
+                cellTypes = CellType.BasicCells + maybeAddress + [.TripRoute, .Distance, .Space, .EndService]
                 
             case .Ended:
                 // just view the details
-                cellTypes = CellType.BasicCells + maybeAddress + [.TripRoute, .Space, .WriteReviewButton]
+                cellTypes = CellType.BasicCells + maybeAddress + [.TripRoute, .Distance, .Space, .WriteReviewButton]
                 
             default:
                 break

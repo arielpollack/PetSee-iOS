@@ -4,14 +4,13 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
     </dependencies>
     <scenes>
-        <!--Profile-->
+        <!--User Profile-->
         <scene sceneID="Uea-Ce-zuQ">
             <objects>
-                <viewController storyboardIdentifier="Profile" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FMD-kh-oQr" customClass="UserProfile" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Profile" title="User Profile" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FMD-kh-oQr" customClass="UserProfile" customModule="Petsee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gux-yQ-8LX"/>
                         <viewControllerLayoutGuide type="bottom" id="nBQ-LL-cxT"/>
@@ -21,12 +20,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JpY-IK-3cV">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="160"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="Uwv-fX-aP2"/>
                                 </constraints>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vad-SX-IhH">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vad-SX-IhH">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <connections>
                                     <outlet property="delegate" destination="FMD-kh-oQr" id="n8e-wy-977"/>
@@ -39,12 +38,12 @@
                             <constraint firstAttribute="trailing" secondItem="JpY-IK-3cV" secondAttribute="trailing" id="Inb-De-WoR"/>
                             <constraint firstItem="Vad-SX-IhH" firstAttribute="leading" secondItem="fgI-EO-YXS" secondAttribute="leading" id="QaZ-ge-rgt"/>
                             <constraint firstItem="Vad-SX-IhH" firstAttribute="top" secondItem="fgI-EO-YXS" secondAttribute="top" id="YzS-8p-vPp"/>
-                            <constraint firstItem="JpY-IK-3cV" firstAttribute="top" secondItem="fgI-EO-YXS" secondAttribute="topMargin" id="dx8-f2-1ZI"/>
                             <constraint firstItem="nBQ-LL-cxT" firstAttribute="top" secondItem="Vad-SX-IhH" secondAttribute="bottom" id="fJ3-Zj-M5y"/>
+                            <constraint firstItem="JpY-IK-3cV" firstAttribute="top" secondItem="Gux-yQ-8LX" secondAttribute="bottom" id="qPE-uk-fv5"/>
                             <constraint firstItem="JpY-IK-3cV" firstAttribute="leading" secondItem="fgI-EO-YXS" secondAttribute="leading" id="wNC-x7-Sct"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="user_profile_icon" id="Kl4-KE-6I6"/>
+                    <navigationItem key="navigationItem" id="81V-8q-SdG"/>
                     <connections>
                         <outlet property="activityIndicator" destination="Zrf-xr-Qfx" id="lfY-78-X4l"/>
                         <outlet property="containingView" destination="6XU-kb-D7B" id="4RI-6W-w9k"/>
@@ -179,7 +178,7 @@ Member Since April 2016</string>
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1467" y="-1867"/>
+            <point key="canvasLocation" x="1999" y="-1867"/>
         </scene>
         <!--My Services-->
         <scene sceneID="2S1-Mf-P49">
@@ -669,7 +668,7 @@ Member Since April 2016</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Mg-4t-HLS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2558" y="-1262"/>
+            <point key="canvasLocation" x="3090" y="-1262"/>
         </scene>
         <!--Service Details-->
         <scene sceneID="eRq-Ha-U0t">
@@ -933,7 +932,7 @@ Member Since April 2016</string>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BzK-Kd-raB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2204" y="-1867"/>
+            <point key="canvasLocation" x="2736" y="-1867"/>
         </scene>
         <!--Notifications-->
         <scene sceneID="6W8-sr-3cg">
@@ -1355,7 +1354,7 @@ Member Since April 2016</string>
                                             <outlet property="lblName" destination="jc0-dv-Nfe" id="1pj-HQ-55S"/>
                                             <outlet property="lblReviewsCount" destination="6Bs-yU-MBn" id="Q5w-ly-Axe"/>
                                             <outlet property="ratingStars" destination="kdS-Ic-AgT" id="U8b-qn-fQS"/>
-                                            <segue destination="FMD-kh-oQr" kind="show" identifier="ShowUser" id="8ss-Lb-aHd"/>
+                                            <segue destination="FMD-kh-oQr" kind="show" identifier="ShowUser" id="Q0g-qQ-z0X"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1395,7 +1394,7 @@ Member Since April 2016</string>
                     <connections>
                         <segue destination="4e5-Nj-ZpA" kind="relationship" relationship="viewControllers" id="tne-cj-dxw"/>
                         <segue destination="XjH-Jj-C5a" kind="relationship" relationship="viewControllers" id="O0s-DH-1AS"/>
-                        <segue destination="FMD-kh-oQr" kind="relationship" relationship="viewControllers" id="RvR-hR-V4C"/>
+                        <segue destination="Ex9-tX-pw1" kind="relationship" relationship="viewControllers" id="RvR-hR-V4C"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ErI-JS-Drp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1633,6 +1632,25 @@ Member Since April 2016</string>
             </objects>
             <point key="canvasLocation" x="1221" y="-204"/>
         </scene>
+        <!--Profile-->
+        <scene sceneID="X7I-1P-3eP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ex9-tX-pw1" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="user_profile_icon" id="Kl4-KE-6I6"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fgT-cQ-vIC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="FMD-kh-oQr" kind="relationship" relationship="rootViewController" id="vco-xs-a4j"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8U3-ll-lSx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1467" y="-1867"/>
+        </scene>
     </scenes>
     <resources>
         <image name="checkmark" width="14" height="12"/>
@@ -1648,6 +1666,6 @@ Member Since April 2016</string>
         <segue reference="tne-cj-dxw"/>
         <segue reference="O0s-DH-1AS"/>
         <segue reference="Bjg-a1-iN3"/>
-        <segue reference="8ss-Lb-aHd"/>
+        <segue reference="Q0g-qQ-z0X"/>
     </inferredMetricsTieBreakers>
 </document>
