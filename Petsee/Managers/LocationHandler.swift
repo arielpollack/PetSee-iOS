@@ -22,7 +22,7 @@ class LocationHandler: NSObject {
     lazy private var locationManager: CLLocationManager = {
         let m = CLLocationManager()
         m.delegate = self
-        m.desiredAccuracy = kCLLocationAccuracyBest
+        m.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         m.distanceFilter = 20
         return m
     }()
