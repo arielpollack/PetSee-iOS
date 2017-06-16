@@ -446,7 +446,7 @@ class ServiceTripRouteCell: UITableViewCell {
             return
         }
         
-        print("scheduled next route reload")
+        DLog("scheduled next route reload")
         
         let time = DispatchTime.now() + Double(Int64(10 * NSEC_PER_SEC)) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: time) {

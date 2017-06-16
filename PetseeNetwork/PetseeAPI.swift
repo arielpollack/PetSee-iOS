@@ -224,7 +224,7 @@ struct PetseeAPI {
         case .next(let object):
             completion(object, nil)
         case .error(let error):
-            print(error)
+            DLog(error)
             completion(nil, "something went wrong")
         default:
             break

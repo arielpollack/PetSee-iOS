@@ -72,7 +72,7 @@ class LocationHandler: NSObject {
             return
         }
         
-        print("starting location tracking")
+        DLog("starting location tracking")
         
         locationManager.startUpdatingLocation()
         locationManager.startMonitoringSignificantLocationChanges()
@@ -83,7 +83,7 @@ class LocationHandler: NSObject {
             return
         }
         
-        print("stopping location tracking")
+        DLog("stopping location tracking")
         
         locationManager.stopUpdatingLocation()
         locationManager.stopMonitoringSignificantLocationChanges()
@@ -93,7 +93,7 @@ class LocationHandler: NSObject {
         let coordinate = location.coordinate
         // we don't care about the callback
         PetseeAPI.addLocationForService(coordinate.latitude, longitude: coordinate.longitude, service: service, completion: { location, error in
-            print("updated location for service \(service.id)")
+            DLog("updated location for service \(service.id)")
         })
     }
     
@@ -102,7 +102,7 @@ class LocationHandler: NSObject {
             return
         }
         
-        print("started tracking service \(service.id)")
+        DLog("started tracking service \(service.id)")
         
         trackingServices.append(service)
         UserDefaultsManager.lastTrackedServices = trackingServices
@@ -114,7 +114,7 @@ class LocationHandler: NSObject {
             return
         }
         
-        print("stopped tracking service \(service.id)")
+        DLog("stopped tracking service \(service.id)")
         
         trackingServices.remove(at: trackingServices.index(of: service)!)
         UserDefaultsManager.lastTrackedServices = trackingServices

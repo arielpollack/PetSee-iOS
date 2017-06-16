@@ -67,6 +67,7 @@
 		B006340C1D8568FB002B2D58 /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006340B1D8568FB002B2D58 /* InboxView.swift */; };
 		B006908B1D88843A00BE132C /* michlala-xcode.gpx in Resources */ = {isa = PBXBuildFile; fileRef = B006908A1D88843A00BE132C /* michlala-xcode.gpx */; };
 		B006908D1D88895400BE132C /* near-michlala-xcode.gpx in Resources */ = {isa = PBXBuildFile; fileRef = B006908C1D88895400BE132C /* near-michlala-xcode.gpx */; };
+		B068B1761EF490EB00A8AF2A /* DLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068B1751EF490EB00A8AF2A /* DLog.swift */; };
 		B0803F731D67A6FF00AADA00 /* PetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0803F721D67A6FF00AADA00 /* PetVC.swift */; };
 		B08FA4E61D86D15600C37CE8 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08FA4E51D86D15600C37CE8 /* Notification.swift */; };
 		B09F053D1D86D5D100A7BB26 /* NotificationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09F053C1D86D5D100A7BB26 /* NotificationsVC.swift */; };
@@ -161,6 +162,7 @@
 		B006340B1D8568FB002B2D58 /* InboxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
 		B006908A1D88843A00BE132C /* michlala-xcode.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "michlala-xcode.gpx"; sourceTree = "<group>"; };
 		B006908C1D88895400BE132C /* near-michlala-xcode.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "near-michlala-xcode.gpx"; sourceTree = "<group>"; };
+		B068B1751EF490EB00A8AF2A /* DLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DLog.swift; sourceTree = "<group>"; };
 		B0803F721D67A6FF00AADA00 /* PetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetVC.swift; sourceTree = "<group>"; };
 		B0803F741D67B27D00AADA00 /* ServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
 		B08FA4E51D86D15600C37CE8 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				732F2EFF1CDA902100CB491D /* UIWindow+Transition.swift */,
 				73CB94001CDEFD2900EE0BBE /* UIViewController+Additions.swift */,
 				B09F054D1D86EEF700A7BB26 /* NSDate+TimeAgo.swift */,
+				B068B1751EF490EB00A8AF2A /* DLog.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				735C37121D7CCC300063FCD8 /* Review.swift in Sources */,
 				737762571D7CB5C2000E33FB /* FindServiceProviderVC.swift in Sources */,
 				B006340C1D8568FB002B2D58 /* InboxView.swift in Sources */,
+				B068B1761EF490EB00A8AF2A /* DLog.swift in Sources */,
 				73CB93FF1CDE9E9C00EE0BBE /* UserDefaultsManager.swift in Sources */,
 				B09F05471D86E12800A7BB26 /* HomeVC.swift in Sources */,
 				735C371B1D7CCC390063FCD8 /* PetseeAPI.swift in Sources */,

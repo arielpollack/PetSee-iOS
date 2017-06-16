@@ -99,7 +99,7 @@ extension AppDelegate: UIApplicationDelegate {
         token = token.replacingOccurrences(of: ">", with: "")
         token = token.replacingOccurrences(of: " ", with: "")
 
-        print(token)
+        DLog(token)
         PetseeAPI.updateDeviceToken(token) { _, error in
             
         }
