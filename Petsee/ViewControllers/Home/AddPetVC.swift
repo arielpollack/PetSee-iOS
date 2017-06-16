@@ -15,21 +15,21 @@ class AddPetVC: XLFormViewController {
 
     @IBOutlet weak var btnAddPhoto: UIButton! {
         didSet {
-            btnAddPhoto.layer.borderColor = UIColor(white: 0.5, alpha: 1).CGColor
+            btnAddPhoto.layer.borderColor = UIColor(white: 0.5, alpha: 1).cgColor
             btnAddPhoto.layer.borderWidth = 0.5
             btnAddPhoto.layer.masksToBounds = true
-            btnAddPhoto.imageView?.contentMode = .ScaleAspectFill
+            btnAddPhoto.imageView?.contentMode = .scaleAspectFill
         }
     }
     
-    private var pet = Pet()
+    fileprivate var pet = Pet()
     
     required init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
         self.initializeForm()
     }
     
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: Bundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         self.initializeForm()
     }
@@ -40,22 +40,22 @@ class AddPetVC: XLFormViewController {
         form.addFormSection(section)
         
         var row = XLFormRowDescriptor(tag: "name", rowType: XLFormRowDescriptorTypeText, title: "Name")
-        row.required = true
+        row.isRequired = true
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: "about", rowType: XLFormRowDescriptorTypeTextView, title: "About")
-        row.required = false
+        row.isRequired = false
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: "birthday", rowType: XLFormRowDescriptorTypeDate, title: "Birth date")
-        row.required = true
-        row.cellConfigAtConfigure["maximumDate"] = NSDate()
+        row.isRequired = true
+        row.cellConfigAtConfigure["maximumDate"] = Date()
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: "race", rowType: XLFormRowDescriptorTypeSelectorPush, title: "Race")
         row.action.viewControllerStoryboardId = "RaceChoose"
         row.valueTransformer = RaceFormValueTransformer.self
-        row.required = true
+        row.isRequired = true
         section.addFormRow(row)
         
         self.form = form
@@ -63,31 +63,32 @@ class AddPetVC: XLFormViewController {
     
     @IBAction func addPhotoTapped() {
         // image picker configuration
-        Configuration.recordLocation = false
-        
-        let imagePicker = ImagePickerController()
+        var config = Configuration()
+        config.recordLocation = false
+
+        let imagePicker = ImagePickerController(configuration: config)
         imagePicker.imageLimit = 1
         imagePicker.delegate = self
-        presentViewController(imagePicker, animated: true, completion: nil)
+        present(imagePicker, animated: true, completion: nil)
     }
     
-    private func showCellError(cell: XLFormBaseCell) {
+    fileprivate func showCellError(_ cell: XLFormBaseCell) {
         let animation =
             CABasicAnimation(keyPath: "position")
         animation.duration = 0.1
         animation.autoreverses = true
-        animation.fromValue = NSValue(CGPoint: CGPointMake(cell.center.x - 20.0, cell.center.y))
-        animation.toValue = NSValue(CGPoint: CGPointMake(cell.center.x + 20.0, cell.center.y))
-        cell.layer.addAnimation(animation, forKey: "position")
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: cell.center.x - 20.0, y: cell.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: cell.center.x + 20.0, y: cell.center.y))
+        cell.layer.add(animation, forKey: "position")
     }
     
-    @IBAction func saveTapped(sender: AnyObject) {
+    @IBAction func saveTapped(_ sender: AnyObject) {
         let validationErrors : Array<NSError> = formValidationErrors() as! Array<NSError>
         if (validationErrors.count > 0) {
             for error in validationErrors {
                 if let status = error.userInfo[XLValidationStatusErrorKey] as? XLFormValidationStatus,
-                    let row: XLFormRowDescriptor = form.formRowWithTag(status.rowDescriptor!.tag!) {
-                    let cell = row.cellForFormController(self)
+                    let row: XLFormRowDescriptor = form.formRow(withTag: status.rowDescriptor!.tag!) {
+                    let cell = row.cell(forForm: self)
                     showCellError(cell)
                 }
             }
@@ -97,51 +98,51 @@ class AddPetVC: XLFormViewController {
         let values = form.formValues()
         pet.name = values["name"] as! String
         pet.about = values["about"] as? String
-        pet.birthday = values["birthday"] as? NSDate
+        pet.birthday = values["birthday"] as? Date
         pet.race = values["race"] as! Race
         
         SVProgressHUD.show()
         PetseeAPI.addPet(pet) { pet, error in
             SVProgressHUD.dismiss()
             
-            guard let pet = pet where error == nil else {
+            guard let pet = pet, error == nil else {
                 // error
                 return
             }
             
             // save pet locally
             PetsStore.sharedStore.add(pet)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
     @IBAction func cancelTapped() {
-        let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { _ in
-            self.dismissViewControllerAnimated(true, completion: nil)
+        let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
 
 extension AddPetVC: ImagePickerDelegate {
 
-    func wrapperDidPress(imagePicker: ImagePickerController, images: [UIImage]) {
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         
     }
     
-    func doneButtonDidPress(imagePicker: ImagePickerController, images: [UIImage]) {
-        imagePicker.dismissViewControllerAnimated(true) {
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        imagePicker.dismiss(animated: true) {
             guard let image = images.first else {
                 return
             }
             
-            self.btnAddPhoto.setImage(image, forState: .Normal)
+            self.btnAddPhoto.setImage(image, for: .normal)
             
             if let imageData = UIImageJPEGRepresentation(image, 0.7) {
                 PetseeAPI.uploadImage(imageData) { res, error in
-                    guard let url = res?["url"] as? String else {
+                    guard let res = res as? JSON, let url = res["url"] as? String else {
                         return
                     }
                     
@@ -151,7 +152,7 @@ extension AddPetVC: ImagePickerDelegate {
         }
     }
     
-    func cancelButtonDidPress(imagePicker: ImagePickerController) {
-        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+        imagePicker.dismiss(animated: true, completion: nil)
     }
 }

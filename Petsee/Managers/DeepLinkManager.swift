@@ -10,7 +10,7 @@ import Foundation
 
 struct DeepLinkManager {
     
-    static func openNotification(notification: Notification, fromViewController fromVC: UIViewController, push: Bool = false) {
+    static func openNotification(_ notification: Notification, fromViewController fromVC: UIViewController, push: Bool = false) {
         
         let viewController: UIViewController
         var push = push
@@ -18,16 +18,16 @@ struct DeepLinkManager {
         let storyboard = UIStoryboard(name: "Client", bundle: nil)
         
         switch notification.type! {
-        case .RequestYourService:
-            viewController = storyboard.instantiateViewControllerWithIdentifier("ServiceRequests")
+        case .requestYourService:
+            viewController = storyboard.instantiateViewController(withIdentifier: "ServiceRequests")
             push = false // override push
             
-        case .ApprovedYourRequest:
+        case .approvedYourRequest:
             guard let service = notification.object as? Service else {
                 return
             }
             
-            let serviceVC = storyboard.instantiateViewControllerWithIdentifier("ServiceVC") as! ServiceVC
+            let serviceVC = storyboard.instantiateViewController(withIdentifier: "ServiceVC") as! ServiceVC
             serviceVC.showServiceProvidersOnOpen = true
             serviceVC.service = service
             viewController = serviceVC
@@ -38,7 +38,7 @@ struct DeepLinkManager {
                 return
             }
             
-            let serviceVC = storyboard.instantiateViewControllerWithIdentifier("ServiceVC") as! ServiceVC
+            let serviceVC = storyboard.instantiateViewController(withIdentifier: "ServiceVC") as! ServiceVC
             serviceVC.service = service
             viewController = serviceVC
         }
@@ -46,7 +46,7 @@ struct DeepLinkManager {
         if push {
             fromVC.navigationController?.pushViewController(viewController, animated: animated)
         } else {
-            fromVC.presentViewController(viewController, animated: animated, completion: nil)
+            fromVC.present(viewController, animated: animated, completion: nil)
         }
     }
 }

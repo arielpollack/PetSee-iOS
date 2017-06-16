@@ -11,8 +11,8 @@ import HCSStarRatingView
 import AlamofireImage
 
 protocol ServiceRequestCellDelegate: NSObjectProtocol {
-    func didApproveServiceRequest(request: ServiceRequest)
-    func didDenyServiceRequest(request: ServiceRequest)
+    func didApproveServiceRequest(_ request: ServiceRequest)
+    func didDenyServiceRequest(_ request: ServiceRequest)
 }
 
 class ServiceRequestCell: UITableViewCell {
@@ -27,7 +27,7 @@ class ServiceRequestCell: UITableViewCell {
     @IBOutlet weak var lblClientReviewCount: UILabel!
     @IBOutlet weak var reviewStars: HCSStarRatingView! {
         didSet {
-            reviewStars.enabled = false
+            reviewStars.isEnabled = false
         }
     }
     @IBOutlet weak var slidingViewTrailing: NSLayoutConstraint!
@@ -42,15 +42,15 @@ class ServiceRequestCell: UITableViewCell {
     }
     weak var delegate: ServiceRequestCellDelegate?
     
-    private func loadServiceRequest() {
+    fileprivate func loadServiceRequest() {
         let client = serviceRequest.service!.client
-        if let image = client.image, url = NSURL(string: image) {
-            imgClientThumb.af_setImageWithURL(url)
+        if let image = client?.image, let url = URL(string: image) {
+            imgClientThumb.af_setImage(withURL: url)
         }
         
-        lblClientName.text = client.name
-        lblClientReviewCount.text = "(\(client.ratingCount ?? 0) reviews)"
-        reviewStars.value = CGFloat(client.rating ?? 0)
+        lblClientName.text = client?.name
+        lblClientReviewCount.text = "(\(client?.ratingCount ?? 0) reviews)"
+        reviewStars.value = CGFloat(client?.rating ?? 0)
     }
     
     override func prepareForReuse() {
@@ -67,32 +67,32 @@ class ServiceRequestCell: UITableViewCell {
         contentView.addGestureRecognizer(gesture)
     }
     
-    override func setHighlighted(highlighted: Bool, animated: Bool) {}
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {}
     
-    override func setSelected(selected: Bool, animated: Bool) {}
+    override func setSelected(_ selected: Bool, animated: Bool) {}
     
-    private var startPanLocation: CGPoint?
-    func handlePan(sender: UIPanGestureRecognizer) {
+    fileprivate var startPanLocation: CGPoint?
+    func handlePan(_ sender: UIPanGestureRecognizer) {
         switch sender.state {
-        case .Began:
-            startPanLocation = sender.locationInView(contentView)
+        case .began:
+            startPanLocation = sender.location(in: contentView)
             
-        case .Changed:
-            let location = sender.locationInView(contentView)
+        case .changed:
+            let location = sender.location(in: contentView)
             let diff = location.x - startPanLocation!.x
             slidingViewTrailing.constant = -diff * (1 - abs(diff) / contentView.bounds.width / 3)
             if diff > 0 {
-                imgApprove.hidden = false
-                imgDeny.hidden = true
+                imgApprove.isHidden = false
+                imgDeny.isHidden = true
                 actionView.backgroundColor = UIColor(hex: "#27ae60")
             } else {
-                imgApprove.hidden = true
-                imgDeny.hidden = false
+                imgApprove.isHidden = true
+                imgDeny.isHidden = false
                 actionView.backgroundColor = UIColor(hex: "#c0392b")
             }
             
-        case .Ended:
-            let location = sender.locationInView(contentView)
+        case .ended:
+            let location = sender.location(in: contentView)
             let diff = location.x - startPanLocation!.x
             var approve = true
             var changed = true
@@ -105,7 +105,7 @@ class ServiceRequestCell: UITableViewCell {
                 changed = false
                 slidingViewTrailing.constant = 0
             }
-            UIView.animateWithDuration(0.2, animations: { 
+            UIView.animate(withDuration: 0.2, animations: { 
                 self.contentView.layoutIfNeeded()
             }, completion: { finished in
                 if finished && changed {

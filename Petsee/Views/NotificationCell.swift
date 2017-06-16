@@ -20,9 +20,9 @@ class NotificationCell: UITableViewCell {
         }
     }
     
-    private func loadNotification() {
+    fileprivate func loadNotification() {
         lblText.text = notification.text
         lblCreated.text = notification.createdAt.timeAgo
-        unreadView.hidden = notification.read
+        unreadView.isHidden = notification.read
     }
 }

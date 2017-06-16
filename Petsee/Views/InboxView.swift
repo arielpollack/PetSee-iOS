@@ -10,21 +10,21 @@ import UIKit
 
 class InboxView: UIView {
 
-    private lazy var imgInbox: UIButton = {
-        let iv = UIButton(type: .Custom)
+    fileprivate lazy var imgInbox: UIButton = {
+        let iv = UIButton(type: .custom)
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.setImage(UIImage(named: "inbox"), forState: .Normal)
+        iv.setImage(UIImage(named: "inbox"), for: UIControlState())
         return iv
     }()
     
-    private lazy var lblCount: UILabel = {
+    fileprivate lazy var lblCount: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.font = UIFont.systemFontOfSize(12)
-        lbl.textColor = UIColor.whiteColor()
-        lbl.textAlignment = .Center
-        lbl.backgroundColor = UIColor.redColor()
-        lbl.hidden = true
+        lbl.font = UIFont.systemFont(ofSize: 12)
+        lbl.textColor = UIColor.white
+        lbl.textAlignment = .center
+        lbl.backgroundColor = UIColor.red
+        lbl.isHidden = true
         lbl.layer.cornerRadius = 10
         lbl.layer.masksToBounds = true
         return lbl
@@ -40,31 +40,31 @@ class InboxView: UIView {
         loadViews()
     }
 
-    private func loadViews() {
+    fileprivate func loadViews() {
         addSubview(imgInbox)
         addSubview(lblCount)
         
-        imgInbox.leadingAnchor.constraintEqualToAnchor(leadingAnchor).active = true
-        imgInbox.trailingAnchor.constraintEqualToAnchor(trailingAnchor).active = true
-        imgInbox.topAnchor.constraintEqualToAnchor(topAnchor).active = true
-        imgInbox.bottomAnchor.constraintEqualToAnchor(bottomAnchor).active = true
+        imgInbox.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        imgInbox.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        imgInbox.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        imgInbox.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
-        lblCount.trailingAnchor.constraintEqualToAnchor(trailingAnchor, constant: 5).active = true
-        lblCount.topAnchor.constraintEqualToAnchor(topAnchor, constant: -5).active = true
-        lblCount.heightAnchor.constraintEqualToConstant(20).active = true
-        lblCount.widthAnchor.constraintEqualToConstant(20).active = true
+        lblCount.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 5).isActive = true
+        lblCount.topAnchor.constraint(equalTo: topAnchor, constant: -5).isActive = true
+        lblCount.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        lblCount.widthAnchor.constraint(equalToConstant: 20).isActive = true
     }
     
-    func setAction(target: AnyObject, action: Selector) {
-        imgInbox.addTarget(target, action: action, forControlEvents: .TouchUpInside)
+    func setAction(_ target: AnyObject, action: Selector) {
+        imgInbox.addTarget(target, action: action, for: .touchUpInside)
     }
     
-    func setBadgeCount(count: Int) {
+    func setBadgeCount(_ count: Int) {
         if count == 0 {
-            lblCount.hidden = true
+            lblCount.isHidden = true
         } else {
             lblCount.text = "\(count)"
-            lblCount.hidden = false
+            lblCount.isHidden = false
         }
     }
 }

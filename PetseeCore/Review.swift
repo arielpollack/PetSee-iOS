@@ -16,13 +16,13 @@ class Review: Mappable, Identifiable {
     var feedback: String?
     var writer: User?
     var user: User?
-    var createdAt: NSDate!
-    var updatedAt: NSDate!
+    var createdAt: Date!
+    var updatedAt: Date!
     
-    private var map: JSON?
+    fileprivate var map: JSON?
     
-    required init?(_ map: Map) {
-        if map.JSONDictionary["id"] == nil {
+    required init?(map: Map) {
+        if map.JSON["id"] == nil {
             return nil
         }
     }
@@ -30,7 +30,7 @@ class Review: Mappable, Identifiable {
     init() {}
     
     func mapping(map: Map) {
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         let dateFormatterTransform = DateFormatterTransform(dateFormatter: dateFormatter)
 
@@ -43,7 +43,7 @@ class Review: Mappable, Identifiable {
         updatedAt <- (map["updated_at"], dateFormatterTransform)
         
         #if DEBUG
-            self.map = map.JSONDictionary
+            self.map = map.JSON
         #endif
     }
 }
@@ -54,8 +54,8 @@ extension Review: CustomStringConvertible {
             return map.description
         }
         
-        let comps: JSON = ["rate": rate,
-                           "id": id,
+        let comps: JSON = ["rate": rate as AnyObject,
+                           "id": id as AnyObject,
                            "user": user?.id ?? 0,
                            "writer": writer?.id ?? 0]
         return comps.description

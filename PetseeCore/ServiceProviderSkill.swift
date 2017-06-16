@@ -15,7 +15,7 @@ class ServiceProviderSkill: Mappable {
     var yearsOfExperience: Int?
     var details: String?
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         if map["name"].value() == nil {
             return nil
         }

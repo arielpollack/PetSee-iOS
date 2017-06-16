@@ -9,8 +9,8 @@
 import UIKit
 
 protocol OnboardingDataDelegate: NSObjectProtocol {
-    func dataViewControllerDidEnterData(controller: OnboardingDataVC, data: AnyObject?)
-    func validateDataForController(controller: OnboardingDataVC, data: AnyObject?) -> Bool
+    func dataViewControllerDidEnterData(_ controller: OnboardingDataVC, data: Any?)
+    func validateDataForController(_ controller: OnboardingDataVC, data: Any?) -> Bool
 }
 
 

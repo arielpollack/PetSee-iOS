@@ -34,9 +34,9 @@ class UserProfile: UIViewController, UIScrollViewDelegate {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         scrollView.addSubview(containingView)
-        scrollView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[sv]|", options: .AlignAllCenterX, metrics: nil, views: ["sv": containingView]))
-        scrollView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[sv]|", options: .AlignAllCenterX, metrics: nil, views: ["sv": containingView]))
-        containingView.widthAnchor.constraintEqualToAnchor(scrollView.widthAnchor, multiplier: 1).active = true
+        scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[sv]|", options: .alignAllCenterX, metrics: nil, views: ["sv": containingView]))
+        scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[sv]|", options: .alignAllCenterX, metrics: nil, views: ["sv": containingView]))
+        containingView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1).isActive = true
         
         if user == nil {
             user = AuthManager.sharedInstance.authenticatedUser!
@@ -46,7 +46,7 @@ class UserProfile: UIViewController, UIScrollViewDelegate {
         setupUserImage()
     }
     
-    private func setupUserImage() {
+    fileprivate func setupUserImage() {
         var inset = scrollView.contentInset
         inset.top += 64 + UserImageOriginalHeight
         scrollView.contentInset = inset
@@ -54,18 +54,18 @@ class UserProfile: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        scrollView.contentSize = CGSizeMake(view.bounds.width, max(stackView.bounds.height, view.bounds.height - 64))
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: max(stackView.bounds.height, view.bounds.height - 64))
     }
     
-    private func setupUser() {
+    fileprivate func setupUser() {
         lblUserName.text = user.name
         lblMoreInfo.text = user.about
         lblReviewNumber.text = "Loading reviews..."
         reviewStars.value = CGFloat(user.rating ?? 0)
-        reviewStars.enabled = false
+        reviewStars.isEnabled = false
         
-        if let image = user.image, url = NSURL(string: image) {
-            imgUserImage.af_setImageWithURL(url)
+        if let image = user.image, let url = URL(string: image) {
+            imgUserImage.af_setImage(withURL: url)
         } else {
             imgUserImage.image = UIImage(named: "user-placeholder")
         }
@@ -73,12 +73,12 @@ class UserProfile: UIViewController, UIScrollViewDelegate {
         loadReviews()
     }
     
-    private func loadReviews() {
+    fileprivate func loadReviews() {
         activityIndicator.startAnimating()
         PetseeAPI.userReviews(user.id) { (reviews, error) in
             self.activityIndicator.stopAnimating()
             
-            guard let reviews = reviews where reviews.count > 0 else {
+            guard let reviews = reviews, reviews.count > 0 else {
                 self.lblReviewNumber.text = "No Reviews Yet..."
                 return
             }
@@ -88,7 +88,7 @@ class UserProfile: UIViewController, UIScrollViewDelegate {
             // show only first 10 reviews
             for review in reviews[0..<min(10, reviews.count)] {
                 let reviewCell = ReviewCell.cell()
-                reviewCell.frame = CGRectMake(0, 0, self.view.bounds.width, 200)
+                reviewCell.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 200)
                 reviewCell.configureWithReview(review)
                 self.stackView.addArrangedSubview(reviewCell)
             }
@@ -97,7 +97,7 @@ class UserProfile: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let topOffset = max(-scrollView.contentOffset.y, 0)
         scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(topOffset, 0, 0, 0)
         userImageHeight.constant = topOffset

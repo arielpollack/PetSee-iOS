@@ -18,16 +18,16 @@ class Pet: Mappable, Identifiable {
     var about: String?
     var image: String?
     var isTrained: Bool!
-    var birthday: NSDate!
+    var birthday: Date!
     
-    private var map: JSON?
+    fileprivate var map: JSON?
     
     init() {
         
     }
     
-    required init?(_ map: Map) {
-        if map.JSONDictionary["id"] == nil {
+    required init?(map: Map) {
+        if map.JSON["id"] == nil {
             return nil
         }
     }
@@ -43,7 +43,7 @@ class Pet: Mappable, Identifiable {
         birthday <- map["birthday"]
         
         #if DEBUG
-            self.map = map.JSONDictionary
+            self.map = map.JSON
         #endif
     }
 }
@@ -56,7 +56,7 @@ extension Pet: CustomStringConvertible {
         
         let comps = ["name": name,
                      "race": race,
-                     "color": color]
+                     "color": color] as [String : Any]
         return comps.description
     }
 }

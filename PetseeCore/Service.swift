@@ -38,20 +38,20 @@ class Service: Mappable , Identifiable {
         var presentingColor: UIColor {
             switch self {
             case .Pending:
-                return UIColor.orangeColor()
+                return UIColor.orange
             case .Confirmed:
-                return UIColor.blueColor()
+                return UIColor.blue
             case .Started:
-                return UIColor.greenColor()
+                return UIColor.green
             case .Ended:
-                return UIColor.greenColor()
+                return UIColor.green
             case .Cancelled:
-                return UIColor.redColor()
+                return UIColor.red
             }
         }
     }
     
-    enum Type: String {
+    enum `Type`: String {
         case Walking = "dogwalk"
         case Sitting = "dogsit"
         
@@ -71,8 +71,8 @@ class Service: Mappable , Identifiable {
     var client: Client!
     var serviceProvider: ServiceProvider?
     var pet: Pet!
-    var startDate: NSDate!
-    var endDate: NSDate!
+    var startDate: Date!
+    var endDate: Date!
     var status: Status!
     var location: Location!
     var type: Type!
@@ -81,8 +81,8 @@ class Service: Mappable , Identifiable {
         
     }
     
-    required init?(_ map: Map) {
-        if map.JSONDictionary["id"] == nil {
+    required init?(map: Map) {
+        if map.JSON["id"] == nil {
             return nil
         }
     }
@@ -96,7 +96,7 @@ class Service: Mappable , Identifiable {
         status <- map["status"]
         location <- map["location"]
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
         startDate <- (map["time_start"], DateFormatterTransform(dateFormatter: dateFormatter))
         endDate <- (map["time_end"], DateFormatterTransform(dateFormatter: dateFormatter))

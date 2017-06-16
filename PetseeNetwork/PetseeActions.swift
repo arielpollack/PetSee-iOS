@@ -10,219 +10,219 @@ import Foundation
 import Moya
 
 enum PetseeActions {
-    case UserPets(userId: Int)
-    case UserReviews(userId: Int)
-    case GetUser
-    case UpdateUser(image: String?)
-    case UpdateUserToken(token: String)
-    case ClearNotificationsCount
-    case GetNotifications
-    case ClearNotificationsRead
+    case userPets(userId: Int)
+    case userReviews(userId: Int)
+    case getUser
+    case updateUser(image: String?)
+    case updateUserToken(token: String)
+    case clearNotificationsCount
+    case getNotifications
+    case clearNotificationsRead
     
-    case CreateReview(userId: Int, rate: Int, feedback: String?)
-    case UpdateReview(reviewId: Int, rate: Int, feedback: String?)
+    case createReview(userId: Int, rate: Int, feedback: String?)
+    case updateReview(reviewId: Int, rate: Int, feedback: String?)
     
-    case MyPets
-    case AddPet(Pet)
-    case UpdatePet(Pet)
-    case UploadImage(NSData)
-    case Races(String)
+    case myPets
+    case addPet(Pet)
+    case updatePet(Pet)
+    case uploadImage(Data)
+    case races(String)
     
-    case MyReviews
-    case MyReviewOnUser(user: User)
+    case myReviews
+    case myReviewOnUser(user: User)
     
-    case SearchRace(query: String)
-    case AddRace(name: String)
+    case searchRace(query: String)
+    case addRace(name: String)
     
-    case MyServices
-    case AddService(service: Service)
-    case GetServiceRequests(service: Service)
-    case GetAvailableServiceProviders(service: Service)
-    case ChooseServiceRequest(service: Service, request: ServiceRequest)
-    case CancelService(service: Service)
+    case myServices
+    case addService(service: Service)
+    case getServiceRequests(service: Service)
+    case getAvailableServiceProviders(service: Service)
+    case chooseServiceRequest(service: Service, request: ServiceRequest)
+    case cancelService(service: Service)
     
-    case RequestServiceProvider(service: Service, provider: ServiceProvider)
+    case requestServiceProvider(service: Service, provider: ServiceProvider)
     
     // service provider methods
-    case MyServiceRequests
-    case ApproveServiceRequest(serviceRequest: ServiceRequest)
-    case DenyServiceRequest(serviceRequest: ServiceRequest)
-    case StartService(service: Service)
-    case EndService(service: Service)
+    case myServiceRequests
+    case approveServiceRequest(serviceRequest: ServiceRequest)
+    case denyServiceRequest(serviceRequest: ServiceRequest)
+    case startService(service: Service)
+    case endService(service: Service)
 
-    case LocationsForService(service: Service)
-    case AddLocationForService(service: Service, latitude: Double, longitude: Double)
+    case locationsForService(service: Service)
+    case addLocationForService(service: Service, latitude: Double, longitude: Double)
 }
 
 extension PetseeActions: TargetType {
-    var baseURL: NSURL { return NSURL(string: "https://petsee.herokuapp.com")! }
+    var baseURL: URL { return URL(string: "https://petsee.herokuapp.com")! }
 //    var baseURL: NSURL { return NSURL(string: "http://localhost:3000")! }
     var path: String {
         switch self {
-        case .GetNotifications:
+        case .getNotifications:
             return "/notifications"
-        case .ClearNotificationsRead:
+        case .clearNotificationsRead:
             return "/notifications/read_all"
-        case .GetUser:
+        case .getUser:
             return "/users"
-        case .UserPets(let userId):
+        case .userPets(let userId):
             return "/users/\(userId)/pets"
-        case .UserReviews(let userId):
+        case .userReviews(let userId):
             return "/users/\(userId)/reviews"
-        case .UpdateUser:
+        case .updateUser:
             return "/users"
-        case UpdateUserToken:
+        case .updateUserToken:
             return "/users/device_token"
-        case ClearNotificationsCount:
+        case .clearNotificationsCount:
             return "/users/reset_badge_count"
-        case .CreateReview(let userId, _, _):
+        case .createReview(let userId, _, _):
             return "/users/\(userId)/reviews"
-        case .UpdateReview(_, _, _):
+        case .updateReview(_, _, _):
             return "/users/reviews/update_existing_review"
-        case .MyReviewOnUser(let user):
+        case .myReviewOnUser(let user):
             return "/users/\(user.id)/reviews/review_about_user"
-        case .MyPets:
+        case .myPets:
             fallthrough
-        case .AddPet:
+        case .addPet:
             return "/users/pets"
-        case .UpdatePet(let pet):
+        case .updatePet(let pet):
             return "/users/pets/\(pet.id)"
-        case .UploadImage:
+        case .uploadImage:
             return "/users/pets/upload_image"
-        case .Races:
+        case .races:
             return "/races"
-        case .MyReviews:
+        case .myReviews:
             return "/users/reviews/my_reviews"
-        case .SearchRace(let query):
-            return "/races?query=" + query.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-        case .AddRace:
+        case .searchRace(let query):
+            return "/races?query=" + query.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        case .addRace:
             return "/races"
-        case .MyServices:
+        case .myServices:
             return "/services"
-        case .AddService:
+        case .addService:
             return "/services"
-        case .CancelService(let service):
+        case .cancelService(let service):
             return "/services/\(service.id)/cancel"
-        case .GetAvailableServiceProviders(let service):
+        case .getAvailableServiceProviders(let service):
             return "/services/\(service.id)/available_service_providers"
-        case .GetServiceRequests(let service):
+        case .getServiceRequests(let service):
             return "/services/\(service.id)/requests"
-        case .RequestServiceProvider(let service, _):
+        case .requestServiceProvider(let service, _):
             return "/services/\(service.id)/requests"
-        case .ChooseServiceRequest(let service, _):
+        case .chooseServiceRequest(let service, _):
             return "/services/\(service.id)/choose_service_provider"
-        case .MyServiceRequests:
+        case .myServiceRequests:
             return "/services/my_requests"
-        case .ApproveServiceRequest(let serviceRequest):
+        case .approveServiceRequest(let serviceRequest):
             return "/services/\(serviceRequest.service!.id)/approve"
-        case .DenyServiceRequest(let serviceRequest):
+        case .denyServiceRequest(let serviceRequest):
             return "/services/\(serviceRequest.service!.id)/deny"
-        case .LocationsForService(let service):
+        case .locationsForService(let service):
             return "/services/\(service.id)/locations"
-        case .AddLocationForService(let service, _, _):
+        case .addLocationForService(let service, _, _):
             return "/services/\(service.id)/add_location"
-        case .StartService(let service):
+        case .startService(let service):
             return "/services/\(service.id)/start"
-        case .EndService(let service):
+        case .endService(let service):
             return "/services/\(service.id)/end"
         }
     }
     var method: Moya.Method {
         switch self {
-        case .GetNotifications:
-            return .GET
-        case .ClearNotificationsRead:
-            return .PUT
-        case .GetUser:
-            return .GET
-        case .UserPets:
-            return .GET
-        case .UserReviews:
-            return .GET
-        case .UpdateUser:
-            return .PUT
-        case UpdateUserToken:
-            return .PUT
-        case ClearNotificationsCount:
-            return .PUT
-        case .CreateReview:
-            return .POST
-        case .UpdateReview:
-            return .PUT
-        case .MyPets:
-            return .GET
-        case .AddPet:
-            return .POST
-        case .UpdatePet:
-            return .PUT
-        case .UploadImage:
-            return .POST
-        case .Races:
-            return .GET
-        case .MyReviews:
-            return .GET
-        case .MyReviewOnUser:
-            return .GET
-        case .SearchRace:
-            return .GET
-        case .AddRace:
-            return .POST
-        case .MyServices:
-            return .GET
-        case .AddService:
-            return .POST
-        case .CancelService:
-            return .DELETE
-        case .GetServiceRequests:
-            return .GET
-        case .RequestServiceProvider:
-            return .POST
-        case .ChooseServiceRequest:
-            return .PUT
-        case .MyServiceRequests:
-            return .GET
-        case .ApproveServiceRequest:
-            return .PUT
-        case .DenyServiceRequest:
-            return .PUT
-        case .LocationsForService:
-            return .GET
-        case .AddLocationForService:
-            return .POST
-        case .GetAvailableServiceProviders:
-            return .GET
-        case .StartService:
-            return .PUT
-        case .EndService:
-            return .PUT
+        case .getNotifications:
+            return .get
+        case .clearNotificationsRead:
+            return .put
+        case .getUser:
+            return .get
+        case .userPets:
+            return .get
+        case .userReviews:
+            return .get
+        case .updateUser:
+            return .put
+        case .updateUserToken:
+            return .put
+        case .clearNotificationsCount:
+            return .put
+        case .createReview:
+            return .post
+        case .updateReview:
+            return .put
+        case .myPets:
+            return .get
+        case .addPet:
+            return .post
+        case .updatePet:
+            return .put
+        case .uploadImage:
+            return .post
+        case .races:
+            return .get
+        case .myReviews:
+            return .get
+        case .myReviewOnUser:
+            return .get
+        case .searchRace:
+            return .get
+        case .addRace:
+            return .post
+        case .myServices:
+            return .get
+        case .addService:
+            return .post
+        case .cancelService:
+            return .delete
+        case .getServiceRequests:
+            return .get
+        case .requestServiceProvider:
+            return .post
+        case .chooseServiceRequest:
+            return .put
+        case .myServiceRequests:
+            return .get
+        case .approveServiceRequest:
+            return .put
+        case .denyServiceRequest:
+            return .put
+        case .locationsForService:
+            return .get
+        case .addLocationForService:
+            return .post
+        case .getAvailableServiceProviders:
+            return .get
+        case .startService:
+            return .put
+        case .endService:
+            return .put
         }
     }
-    var parameters: [String : AnyObject]? {
+    var parameters: [String : Any]? {
         switch self {
-        case .UpdateUser(let image):
+        case .updateUser(let image):
             var params = JSON()
-            params["image"] = image
+            params["image"] = image as AnyObject
             return params
-        case UpdateUserToken(let token):
-            return ["token": token]
-        case .AddPet(let pet):
+        case .updateUserToken(let token):
+            return ["token": token as AnyObject]
+        case .addPet(let pet):
             var params = pet.toJSON()
             params["race"] = nil
             params["race_id"] = pet.race.id
             return ["pet": params]
-        case .UpdatePet(let pet):
+        case .updatePet(let pet):
             return ["pet": pet.toJSON()]
-        case .AddRace(let name):
+        case .addRace(let name):
             return ["race": ["name": name]]
-        case .CreateReview(_, let rate, let feedback):
-            return ["rate": rate, "feedback": feedback ?? ""]
-        case .UpdateReview(let reviewId, let rate, let feedback):
-            return ["review_id": reviewId, "rate": rate, "feedback": feedback ?? ""]
-        case .UploadImage(let imageData):
-            return ["image": imageData.base64EncodedStringWithOptions([])]
-        case .Races(let term):
-            return ["query": term]
-        case .AddService(let service):
+        case .createReview(_, let rate, let feedback):
+            return ["rate": rate as AnyObject, "feedback": feedback ?? ""]
+        case .updateReview(let reviewId, let rate, let feedback):
+            return ["review_id": reviewId as AnyObject, "rate": rate as AnyObject, "feedback": feedback ?? ""]
+        case .uploadImage(let imageData):
+            return ["image": imageData.base64EncodedString(options: []) as AnyObject]
+        case .races(let term):
+            return ["query": term as AnyObject]
+        case .addService(let service):
             var params = service.toJSON()
             params["lat"] = service.location.latitude
             params["lng"] = service.location.longitude
@@ -230,22 +230,36 @@ extension PetseeActions: TargetType {
             params["pet_id"] = service.pet.id
             params["pet"] = nil
             return params
-        case .RequestServiceProvider(_, let provider):
-            return ["service_provider_id": provider.id]
-        case .ChooseServiceRequest(_, let request):
-            return ["request_id": request.id]
-        case .AddLocationForService(_, let latitude, let longitude):
-            return ["latitude": latitude, "longitude": longitude]
-        case .ApproveServiceRequest(let serviceRequest):
-            return ["request_id": serviceRequest.id]
-        case .DenyServiceRequest(let serviceRequest):
-            return ["request_id": serviceRequest.id]
+        case .requestServiceProvider(_, let provider):
+            return ["service_provider_id": provider.id as AnyObject]
+        case .chooseServiceRequest(_, let request):
+            return ["request_id": request.id as AnyObject]
+        case .addLocationForService(_, let latitude, let longitude):
+            return ["latitude": latitude as AnyObject, "longitude": longitude as AnyObject]
+        case .approveServiceRequest(let serviceRequest):
+            return ["request_id": serviceRequest.id as AnyObject]
+        case .denyServiceRequest(let serviceRequest):
+            return ["request_id": serviceRequest.id as AnyObject]
         default:
             return nil
         }
     }
+
+    var parameterEncoding: ParameterEncoding {
+        switch self.method {
+        case .get:
+            return URLEncoding()
+        default:
+            return JSONEncoding()
+
+        }
+    }
+
+    var task: Task {
+        return .request
+    }
     
-    var sampleData: NSData {
-        return NSData()
+    var sampleData: Data {
+        return Data()
     }
 }

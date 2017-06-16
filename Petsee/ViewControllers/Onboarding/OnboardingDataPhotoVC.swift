@@ -15,22 +15,23 @@ class OnboardingDataPhotoVC: OnboardingDataVC {
     @IBOutlet weak var imgPhoto: UIButton!
     @IBOutlet weak var btnContinue: UIButton!
     
-    private var imageData: NSData?
+    fileprivate var imageData: Data?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        btnContinue.enabled = false
+        btnContinue.isEnabled = false
     }
     
     @IBAction func photoTapped() {
         // image picker configuration
-        Configuration.recordLocation = false
-        
-        let imagePicker = ImagePickerController()
+        var config = Configuration()
+        config.recordLocation = false
+
+        let imagePicker = ImagePickerController(configuration: config)
         imagePicker.imageLimit = 1
         imagePicker.delegate = self
-        presentViewController(imagePicker, animated: true, completion: nil)
+        present(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func continueTapped() {
@@ -41,25 +42,25 @@ class OnboardingDataPhotoVC: OnboardingDataVC {
 
 extension OnboardingDataPhotoVC: ImagePickerDelegate {
     
-    func wrapperDidPress(imagePicker: ImagePickerController, images: [UIImage]) {
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         
     }
     
-    func doneButtonDidPress(imagePicker: ImagePickerController, images: [UIImage]) {
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         guard let image = images.first else {
             return
         }
         
-        imagePicker.dismissViewControllerAnimated(true) {
+        imagePicker.dismiss(animated: true) {
             if let imageData = UIImageJPEGRepresentation(image, 0.7) {
-                self.imgPhoto.setImage(image, forState: .Normal)
+                self.imgPhoto.setImage(image, for: .normal)
                 self.imageData = imageData
-                self.btnContinue.enabled = true
+                self.btnContinue.isEnabled = true
             }
         }
     }
     
-    func cancelButtonDidPress(imagePicker: ImagePickerController) {
-        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+        imagePicker.dismiss(animated: true, completion: nil)
     }
 }

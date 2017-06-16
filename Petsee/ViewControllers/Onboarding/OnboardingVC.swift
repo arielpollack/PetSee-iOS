@@ -9,7 +9,7 @@
 import UIKit
 
 protocol OnboardingDelegate {
-    func didFinishLoginWithUser(user: User)
+    func didFinishLoginWithUser(_ user: User)
 }
 
 class OnboardingVC: UIPageViewController {
@@ -17,31 +17,31 @@ class OnboardingVC: UIPageViewController {
     var loginDelegate: OnboardingDelegate?
     
     lazy var emailVC: OnboardingDataVC = {
-        let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewControllerWithIdentifier("Email") as! OnboardingDataVC
+        let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "Email") as! OnboardingDataVC
         vc.delegate = self
         return vc
     }()
     
     lazy var passwordVC: OnboardingDataVC = {
-        let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewControllerWithIdentifier(self.isExistingUser ? "Password" : "NewPassword") as! OnboardingDataVC
+        let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: self.isExistingUser ? "Password" : "NewPassword") as! OnboardingDataVC
         vc.delegate = self
         return vc
     }()
     
     lazy var nameVC: OnboardingDataVC = {
-        let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewControllerWithIdentifier("Name") as! OnboardingDataVC
+        let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "Name") as! OnboardingDataVC
         vc.delegate = self
         return vc
     }()
     
     lazy var photoVC: OnboardingDataVC = {
-        let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewControllerWithIdentifier("Photo") as! OnboardingDataVC
+        let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "Photo") as! OnboardingDataVC
         vc.delegate = self
         return vc
     }()
     
     lazy var typeVC: OnboardingDataVC = {
-        let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewControllerWithIdentifier("Type") as! OnboardingDataVC
+        let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "Type") as! OnboardingDataVC
         vc.delegate = self
         return vc
     }()
@@ -50,33 +50,33 @@ class OnboardingVC: UIPageViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(white: 0, alpha: 0.2)
-        view.hidden = true
+        view.isHidden = true
         view.alpha = 0
         self.view.addSubview(view)
         
-        view.leadingAnchor.constraintEqualToAnchor(self.view.leadingAnchor).active = true
-        view.trailingAnchor.constraintEqualToAnchor(self.view.trailingAnchor).active = true
-        view.topAnchor.constraintEqualToAnchor(self.view.topAnchor).active = true
-        view.bottomAnchor.constraintEqualToAnchor(self.view.bottomAnchor).active = true
+        view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
-        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         indicator.translatesAutoresizingMaskIntoConstraints = false
-        indicator.color = UIColor.blackColor()
+        indicator.color = UIColor.black
         indicator.startAnimating()
         view.addSubview(indicator)
         
-        indicator.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
-        indicator.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true
+        indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
         return view
     }()
     
-    private var email: String!
-    private var password: String!
-    private var name: String?
-    private var imageData: NSData?
-    private var type: UserType!
-    private var isExistingUser: Bool = false
+    fileprivate var email: String!
+    fileprivate var password: String!
+    fileprivate var name: String?
+    fileprivate var imageData: Data?
+    fileprivate var type: UserType!
+    fileprivate var isExistingUser: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,15 +84,15 @@ class OnboardingVC: UIPageViewController {
         showNextViewController(emailVC, animated: false)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
     
-    private func showNextViewController(vc: UIViewController, animated: Bool = true) {
-        setViewControllers([vc], direction: .Forward, animated: animated, completion: nil)
+    fileprivate func showNextViewController(_ vc: UIViewController, animated: Bool = true) {
+        setViewControllers([vc], direction: .forward, animated: animated, completion: nil)
     }
     
-    private func login() {
+    fileprivate func login() {
         showActivityIndicator()
         PetseeAPI.login(email, password: password) { user, error in
             self.hideActivityIndicator()
@@ -104,7 +104,7 @@ class OnboardingVC: UIPageViewController {
         }
     }
     
-    private func signup() {
+    fileprivate func signup() {
         showActivityIndicator()
         PetseeAPI.signup(email, password: password, name: name, type: type) { user, error in
             self.hideActivityIndicator()
@@ -117,13 +117,13 @@ class OnboardingVC: UIPageViewController {
             // upload image after login
             if let data = self.imageData {
                 PetseeAPI.uploadImage(data, completion: { res, error in
-                    guard let url = res?["url"] as? String else {
+                    guard let res = res as? JSON, let url = res["url"] as? String else {
                         return
                     }
                     
                     user.image = url
                     PetseeAPI.updateUser(user, completion: { user, error in
-                        if let user = user where error == nil {
+                        if let user = user, error == nil {
                             AuthManager.sharedInstance.authenticatedUser = user
                         }
                     })
@@ -132,34 +132,33 @@ class OnboardingVC: UIPageViewController {
         }
     }
     
-    private func isValidEmail(testStr: String) -> Bool {
+    fileprivate func isValidEmail(_ testStr: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluateWithObject(testStr)
+        return emailTest.evaluate(with: testStr)
     }
     
-    private func showActivityIndicator() {
-        loadingView.hidden = false
-        UIView.animateWithDuration(0.2) { 
+    fileprivate func showActivityIndicator() {
+        loadingView.isHidden = false
+        UIView.animate(withDuration: 0.2, animations: { 
             self.loadingView.alpha = 1
-        }
+        }) 
     }
     
-    private func hideActivityIndicator() {
-        UIView.animateWithDuration(0.2, animations: { 
+    fileprivate func hideActivityIndicator() {
+        UIView.animate(withDuration: 0.2, animations: { 
             self.loadingView.alpha = 0
-        }) { finished in
+        }, completion: { finished in
             if finished {
-                self.loadingView.hidden = true
+                self.loadingView.isHidden = true
             }
-        }
+        }) 
     }
 }
 
 extension OnboardingVC: OnboardingDataDelegate {
-    func dataViewControllerDidEnterData(controller: OnboardingDataVC, data: AnyObject?) {
-        print(data)
+    func dataViewControllerDidEnterData(_ controller: OnboardingDataVC, data: Any?) {
         if controller == emailVC {
             email = data as! String
             showActivityIndicator()
@@ -186,7 +185,7 @@ extension OnboardingVC: OnboardingDataDelegate {
             }
         }
         else if controller == photoVC {
-            imageData = data as? NSData
+            imageData = data as? Data
             showNextViewController(typeVC)
         }
         else if controller == typeVC {
@@ -195,7 +194,7 @@ extension OnboardingVC: OnboardingDataDelegate {
         }
     }
     
-    func validateDataForController(controller: OnboardingDataVC, data: AnyObject?) -> Bool {
+    func validateDataForController(_ controller: OnboardingDataVC, data: Any?) -> Bool {
         if controller == emailVC {
             let email = data as! String // assume length is validated because it's a required field
             return isValidEmail(email)

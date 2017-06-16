@@ -23,12 +23,12 @@ class OnboardingDataTextVC: OnboardingDataVC {
 
 extension OnboardingDataTextVC: DataTextFieldDelegate {
     
-    func textFieldDidFinishEnteringData(textField: DataTextField) {
+    func textFieldDidFinishEnteringData(_ textField: DataTextField) {
         self.delegate?.dataViewControllerDidEnterData(self, data: textField.text)
     }
     
-    func validateTextFieldData(textField: DataTextField) -> Bool {
-        guard let text = textField.text where text.characters.count > 0 else {
+    func validateTextFieldData(_ textField: DataTextField) -> Bool {
+        guard let text = textField.text, text.characters.count > 0 else {
             return !isRequiredField
         }
         return delegate?.validateDataForController(self, data: text) ?? true

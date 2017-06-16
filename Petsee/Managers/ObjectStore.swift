@@ -10,35 +10,35 @@ import Foundation
 
 class ObjectStore<T: Equatable> {
     
-    private var objects = [T]()
+    fileprivate var objects = [T]()
     
-    private let fetchQueue: NSOperationQueue = {
-        let queue = NSOperationQueue()
+    fileprivate let fetchQueue: OperationQueue = {
+        let queue = OperationQueue()
         queue.name = "com.petsee.\(T.self)Store.fetchQueue"
-        queue.suspended = true
+        queue.isSuspended = true
         queue.maxConcurrentOperationCount = 1
         return queue
     }()
     
-    typealias LoaderFunction = (([T]?, String?) -> ()) -> ()
+    typealias LoaderFunction = (@escaping ([T]?, String?) -> ()) -> ()
     
-    private var objectsLoader: LoaderFunction
+    fileprivate var objectsLoader: LoaderFunction
     
-    init(loader: LoaderFunction) {
+    init(loader: @escaping LoaderFunction) {
         self.objectsLoader = loader
         self.loadObjects()
     }
     
-    private func retryLoadingObjects() {
-        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC))
-        dispatch_after(time, dispatch_get_main_queue()) {
+    fileprivate func retryLoadingObjects() {
+        let time = DispatchTime.now() + Double(Int64(2 * NSEC_PER_SEC)) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: time) {
             self.loadObjects()
         }
     }
     
-    func loadObjects(completion: ()->() = {}) {
+    func loadObjects(_ completion: @escaping ()->() = {}) {
         objectsLoader { objects, error in
-            self.fetchQueue.suspended = true
+            self.fetchQueue.isSuspended = true
             completion()
             
             guard let objects = objects else {
@@ -47,19 +47,19 @@ class ObjectStore<T: Equatable> {
             }
             
             self.objects = objects
-            self.fetchQueue.suspended = false
+            self.fetchQueue.isSuspended = false
         }
     }
     
-    func fetchAll(completion: [T]->()) {
-        self.fetchQueue.addOperationWithBlock {
-            NSOperationQueue.mainQueue().addOperationWithBlock({
+    func fetchAll(_ completion: @escaping ([T])->()) {
+        self.fetchQueue.addOperation {
+            OperationQueue.main.addOperation({
                 completion(self.objects)
             })
         }
     }
     
-    func fetchPredicate(predicate: T->Bool, completion: [T]->()) {
+    func fetchPredicate(_ predicate: @escaping (T)->Bool, completion: @escaping ([T])->()) {
         fetchAll { objects in
             var results = [T]()
             for object in objects {
@@ -71,7 +71,7 @@ class ObjectStore<T: Equatable> {
         }
     }
     
-    func add(object: T) {
+    func add(_ object: T) {
         guard !objects.contains(object) else {
             return
         }
@@ -79,16 +79,16 @@ class ObjectStore<T: Equatable> {
         objects.append(object)
     }
     
-    func remove(object: T) {
-        guard let index = objects.indexOf(object) else {
+    func remove(_ object: T) {
+        guard let index = objects.index(of: object) else {
             return
         }
         
-        objects.removeAtIndex(index)
+        objects.remove(at: index)
     }
     
-    func replace(object: T) {
-        if let index = objects.indexOf(object) {
+    func replace(_ object: T) {
+        if let index = objects.index(of: object) {
             objects[index] = object
         }
     }

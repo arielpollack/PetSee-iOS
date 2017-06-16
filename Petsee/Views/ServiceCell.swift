@@ -22,8 +22,8 @@ class ServiceCell: UITableViewCell {
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblType: UILabel!
     
-    static let dateFormatter: NSDateFormatter = {
-        let df = NSDateFormatter()
+    static let dateFormatter: DateFormatter = {
+        let df = DateFormatter()
         df.dateFormat = "dd LLL, HH:mm"
         return df
     }()
@@ -34,15 +34,15 @@ class ServiceCell: UITableViewCell {
         }
     }
     
-    private func loadServiceInfo() {
+    fileprivate func loadServiceInfo() {
         lblPetName.text = service.pet.name
         lblStatus.text = service.status.readableString
         lblStatus.textColor = service.status.presentingColor
         lblType.text = service.type.readableString
-        lblDate.text = ServiceCell.dateFormatter.stringFromDate(service.startDate)
+        lblDate.text = ServiceCell.dateFormatter.string(from: service.startDate)
         
-        if let imageString = service.pet.image, imageURL = NSURL(string: imageString) {
-            imgPetThumbnail.af_setImageWithURL(imageURL)
+        if let imageString = service.pet.image, let imageURL = URL(string: imageString) {
+            imgPetThumbnail.af_setImage(withURL: imageURL)
         } else {
             imgPetThumbnail.image = nil
             imgPetThumbnail.af_cancelImageRequest()

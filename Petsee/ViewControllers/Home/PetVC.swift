@@ -17,7 +17,7 @@ class PetVC: UIViewController {
     @IBOutlet weak var tableServices: UITableView!
     
     var pet: Pet!
-    private var services = [Service]()
+    fileprivate var services = [Service]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,14 +26,14 @@ class PetVC: UIViewController {
         lblAbout.text = pet.about
 
         imgPetThumbnail.image = UIImage(named: "pet-profile-placeholder")
-        if let imageString = pet.image, imageURL = NSURL(string: imageString) {
-            imgPetThumbnail.af_setImageWithURL(imageURL)
+        if let imageString = pet.image, let imageURL = URL(string: imageString) {
+            imgPetThumbnail.af_setImage(withURL: imageURL)
         }
         
         loadServices()
     }
     
-    private func loadServices() {
+    fileprivate func loadServices() {
         ServicesStore.sharedStore.fetchPredicate({$0.pet == self.pet}) { services in
             self.services = services
             self.tableServices.reloadData()
@@ -41,18 +41,18 @@ class PetVC: UIViewController {
     }
     
     @IBAction func exitTapped() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }
 
 extension PetVC: UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return services.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Service") as! ServiceCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Service") as! ServiceCell
         cell.service = services[indexPath.row]
         return cell
     }
@@ -61,10 +61,10 @@ extension PetVC: UITableViewDataSource {
 
 extension PetVC: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let service = services[indexPath.row]
-        let serviceVC = storyboard?.instantiateViewControllerWithIdentifier("ServiceVC") as! ServiceVC
+        let serviceVC = storyboard?.instantiateViewController(withIdentifier: "ServiceVC") as! ServiceVC
         serviceVC.service = service
         navigationController?.pushViewController(serviceVC, animated: true)
     }

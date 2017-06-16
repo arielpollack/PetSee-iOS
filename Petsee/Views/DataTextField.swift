@@ -9,14 +9,14 @@
 import UIKit
 
 @objc protocol DataTextFieldDelegate {
-    func textFieldDidFinishEnteringData(textField: DataTextField)
-    func validateTextFieldData(textField: DataTextField) -> Bool
+    func textFieldDidFinishEnteringData(_ textField: DataTextField)
+    func validateTextFieldData(_ textField: DataTextField) -> Bool
 }
 
 @IBDesignable
 class DataTextField: UIView {
     
-    @IBInspectable var color: UIColor! = UIColor.blackColor() {
+    @IBInspectable var color: UIColor! = UIColor.black {
         didSet {
             self.label.textColor = color
             self.setNeedsDisplay()
@@ -29,12 +29,12 @@ class DataTextField: UIView {
     }
     @IBInspectable var securedText: Bool = false {
         didSet {
-            self.textField.secureTextEntry = self.securedText;
+            self.textField.isSecureTextEntry = self.securedText;
         }
     }
-    @IBInspectable var keyboardType: Int = UIKeyboardType.Default.rawValue {
+    @IBInspectable var keyboardType: Int = UIKeyboardType.default.rawValue {
         didSet {
-            self.textField.keyboardType = UIKeyboardType(rawValue: self.keyboardType) ?? .Default
+            self.textField.keyboardType = UIKeyboardType(rawValue: self.keyboardType) ?? .default
         }
     }
     @IBInspectable var placeholder: String = "" {
@@ -49,32 +49,32 @@ class DataTextField: UIView {
         }
     }
     
-    private lazy var label: UILabel = {
+    fileprivate lazy var label: UILabel = {
         let label = UILabel(frame: self.bounds)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.italicSystemFontOfSize(18)
+        label.font = UIFont.italicSystemFont(ofSize: 18)
         self.addSubview(label)
         
-        label.leadingAnchor.constraintEqualToAnchor(self.leadingAnchor).active = true
-        label.trailingAnchor.constraintEqualToAnchor(self.trailingAnchor).active = true
-        label.topAnchor.constraintEqualToAnchor(self.topAnchor).active = true
-        label.bottomAnchor.constraintEqualToAnchor(self.bottomAnchor, constant: 3).active = true
+        label.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        label.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        label.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 3).isActive = true
         
         return label
     }()
     
-    private lazy var textField: UITextField = {
+    fileprivate lazy var textField: UITextField = {
         let txtField = UITextField(frame: self.bounds)
         txtField.translatesAutoresizingMaskIntoConstraints = false
-        txtField.font = UIFont.boldSystemFontOfSize(20)
-        txtField.returnKeyType = .Done
-        txtField.autocorrectionType = .No
+        txtField.font = UIFont.boldSystemFont(ofSize: 20)
+        txtField.returnKeyType = .done
+        txtField.autocorrectionType = .no
         self.addSubview(txtField)
         
-        txtField.leadingAnchor.constraintEqualToAnchor(self.leadingAnchor).active = true
-        txtField.trailingAnchor.constraintEqualToAnchor(self.trailingAnchor).active = true
-        txtField.topAnchor.constraintEqualToAnchor(self.topAnchor).active = true
-        txtField.bottomAnchor.constraintEqualToAnchor(self.bottomAnchor, constant: 3).active = true
+        txtField.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        txtField.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        txtField.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        txtField.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 3).isActive = true
         
         return txtField
     }()
@@ -96,11 +96,11 @@ class DataTextField: UIView {
     }
     
     func loadView() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UITextInputDelegate.textDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: textField)
+        NotificationCenter.default.addObserver(self, selector: #selector(UITextInputDelegate.textDidChange(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: textField)
     }
     
-    func textDidChange(notification: NSNotification) {
-        guard let text = textField.text where text.characters.count > 0 else {
+    func textDidChange(_ notification: Foundation.Notification) {
+        guard let text = textField.text, text.characters.count > 0 else {
             showPlaceholder()
             return
         }
@@ -108,48 +108,48 @@ class DataTextField: UIView {
         hidePlaceholder()
     }
     
-    private func showPlaceholder() {
-        UIView.animateWithDuration(0.1) { 
+    fileprivate func showPlaceholder() {
+        UIView.animate(withDuration: 0.1, animations: { 
             self.label.alpha = 1
-        }
+        }) 
     }
     
-    private func hidePlaceholder() {
-        UIView.animateWithDuration(0.1) {
+    fileprivate func hidePlaceholder() {
+        UIView.animate(withDuration: 0.1, animations: {
             self.label.alpha = 0
-        }
+        }) 
     }
     
-    private func vibrateForInvalid() {
+    fileprivate func vibrateForInvalid() {
         let animation = CABasicAnimation(keyPath: "position.x")
         animation.duration = 0.06
         animation.byValue = 10
         animation.autoreverses = true
         animation.repeatCount = 3
-        layer.addAnimation(animation, forKey: "Vibrate")
+        layer.add(animation, forKey: "Vibrate")
     }
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetLineWidth(context, CGFloat(self.borderWidth))
-        CGContextSetStrokeColorWithColor(context, self.color.CGColor)
-        CGContextMoveToPoint(context, 0, CGRectGetMaxY(rect) - (CGFloat(self.borderWidth) / 2.0))
-        CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect) - (CGFloat(self.borderWidth) / 2.0))
-        CGContextStrokePath(context)
+        context?.setLineWidth(CGFloat(self.borderWidth))
+        context?.setStrokeColor(self.color.cgColor)
+        context?.move(to: CGPoint(x: 0, y: rect.maxY - (CGFloat(self.borderWidth) / 2.0)))
+        context?.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY - (CGFloat(self.borderWidth) / 2.0)))
+        context?.strokePath()
     }
 }
 
 extension DataTextField: UITextFieldDelegate {
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let valid = delegate?.validateTextFieldData(self) else {
             // if delegate not implemented, return true by default
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.delegate?.textFieldDidFinishEnteringData(self)
             })
             return true
         }
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             if valid {
                 self.delegate?.textFieldDidFinishEnteringData(self)
             } else {

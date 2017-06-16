@@ -13,23 +13,23 @@ class MyPetsVC: UIViewController {
 
     @IBOutlet weak var petsTableView: UITableView!
     
-    private var pets = [Pet]()
+    fileprivate var pets = [Pet]()
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         reloadPets()
     }
     
-    private func reloadPets() {
+    fileprivate func reloadPets() {
         PetsStore.sharedStore.fetchAll { pets in
             self.pets = pets
             self.petsTableView.reloadData()
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let petVC = segue.destinationViewController as? PetVC else {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let petVC = segue.destination as? PetVC else {
             return
         }
         
@@ -43,19 +43,19 @@ class MyPetsVC: UIViewController {
 
 extension MyPetsVC: UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pets.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Pet")!
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Pet")!
         
         let pet = pets[indexPath.row]
         
         cell.textLabel?.text = pet.name
         
-        if let image = pet.image, let url = NSURL(string: image) {
-            cell.imageView?.af_setImageWithURL(url)
+        if let image = pet.image, let url = URL(string: image) {
+            cell.imageView?.af_setImage(withURL: url)
         } else {
             cell.imageView?.af_cancelImageRequest()
         }

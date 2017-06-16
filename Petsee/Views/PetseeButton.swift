@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 class PetseeButton: UIButton {
     
-    @IBInspectable var color: UIColor = UIColor.blackColor() {
+    @IBInspectable var color: UIColor = UIColor.black {
         didSet {
             self.setNeedsDisplay()
         }
@@ -21,18 +21,18 @@ class PetseeButton: UIButton {
         super.layoutSubviews()
         
         switch self.state {
-        case UIControlState.Selected:
+        case UIControlState.selected:
             fallthrough
-        case UIControlState.Highlighted:
-            backgroundColor = self.color.colorWithAlphaComponent(0.8)
-        case UIControlState.Disabled:
-            backgroundColor = self.color.colorWithAlphaComponent(0.2)
+        case UIControlState.highlighted:
+            backgroundColor = self.color.withAlphaComponent(0.8)
+        case UIControlState.disabled:
+            backgroundColor = self.color.withAlphaComponent(0.2)
         default:
             backgroundColor = self.color
         }
         
-        layer.shadowColor = color.darker().CGColor
-        layer.shadowOffset = CGSizeMake(0, 2)
+        layer.shadowColor = color.darker().cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowRadius = 0
         layer.shadowOpacity = 1
     }

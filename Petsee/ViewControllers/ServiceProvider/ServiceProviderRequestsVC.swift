@@ -14,13 +14,13 @@ class ServiceProviderRequestsVC: UIViewController {
     @IBOutlet weak var tableRequests: UITableView!
     @IBOutlet var emptyStateView: UIView!
     
-    private var requests = [ServiceRequest]()
+    fileprivate var requests = [ServiceRequest]()
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         PetseeAPI.myServiceRequests { requests, error in
-            guard let requests = requests where error == nil else {
+            guard let requests = requests, error == nil else {
                 // handle error
                 return
             }
@@ -32,11 +32,11 @@ class ServiceProviderRequestsVC: UIViewController {
         }
     }
     
-    @IBAction func closeTapped(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeTapped(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
     
-    func approveServiceRequest(request: ServiceRequest, completion: Bool->() = { _ in }) {
+    func approveServiceRequest(_ request: ServiceRequest, completion: @escaping (Bool)->() = { _ in }) {
         SVProgressHUD.show()
         PetseeAPI.approveServiceRequest(request) { _, error in
             SVProgressHUD.dismiss()
@@ -49,7 +49,7 @@ class ServiceProviderRequestsVC: UIViewController {
         }
     }
     
-    func denyServiceRequest(request: ServiceRequest, completion: Bool->() = { _ in }) {
+    func denyServiceRequest(_ request: ServiceRequest, completion: @escaping (Bool)->() = { _ in }) {
         SVProgressHUD.show()
         PetseeAPI.denyServiceRequest(request) { _, error in
             SVProgressHUD.dismiss()
@@ -62,21 +62,21 @@ class ServiceProviderRequestsVC: UIViewController {
         }
     }
     
-    func removeRequestFromTableView(request: ServiceRequest) {
-        guard let index = requests.indexOf(request) else {
+    func removeRequestFromTableView(_ request: ServiceRequest) {
+        guard let index = requests.index(of: request) else {
             return
         }
         
-        requests.removeAtIndex(index)
-        let indexPath = NSIndexPath(forRow: index, inSection: 0)
+        requests.remove(at: index)
+        let indexPath = IndexPath(row: index, section: 0)
         tableRequests.beginUpdates()
-        tableRequests.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        tableRequests.deleteRows(at: [indexPath], with: .fade)
         tableRequests.endUpdates()
         
         showEmptyStateIfNeeded()
     }
     
-    private func showEmptyStateIfNeeded() {
+    fileprivate func showEmptyStateIfNeeded() {
         if requests.count == 0 {
             tableRequests.backgroundView = emptyStateView
         } else {
@@ -86,12 +86,12 @@ class ServiceProviderRequestsVC: UIViewController {
 }
 
 extension ServiceProviderRequestsVC: UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return requests.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ServiceRequest") as! ServiceRequestCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ServiceRequest") as! ServiceRequestCell
         cell.serviceRequest = requests[indexPath.row]
         cell.delegate = self
         return cell
@@ -99,9 +99,9 @@ extension ServiceProviderRequestsVC: UITableViewDataSource {
 }
 
 extension ServiceProviderRequestsVC: UITableViewDelegate {
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let request = requests[indexPath.row]
-        let serviceVC = storyboard?.instantiateViewControllerWithIdentifier("ServiceVC") as! ServiceVC
+        let serviceVC = storyboard?.instantiateViewController(withIdentifier: "ServiceVC") as! ServiceVC
         serviceVC.service = request.service!
         serviceVC.delegate = self
         navigationController?.pushViewController(serviceVC, animated: true)
@@ -109,49 +109,49 @@ extension ServiceProviderRequestsVC: UITableViewDelegate {
 }
 
 extension ServiceProviderRequestsVC: ServiceRequestCellDelegate {
-    func didApproveServiceRequest(request: ServiceRequest) {
+    func didApproveServiceRequest(_ request: ServiceRequest) {
         approveServiceRequest(request)
     }
     
-    func didDenyServiceRequest(request: ServiceRequest) {
+    func didDenyServiceRequest(_ request: ServiceRequest) {
         denyServiceRequest(request)
     }
 }
 
 extension ServiceProviderRequestsVC: ServiceVCDelegate {
     
-    private func serviceRequestForService(service: Service) -> ServiceRequest? {
+    fileprivate func serviceRequestForService(_ service: Service) -> ServiceRequest? {
         let services = requests.map { $0.service! }
-        if let index = services.indexOf(service) {
+        if let index = services.index(of: service) {
             return requests[index]
         }
         return nil
     }
     
-    func serviceViewControllerDidApprove(controller: ServiceVC, service: Service) {
+    func serviceViewControllerDidApprove(_ controller: ServiceVC, service: Service) {
         guard let request = serviceRequestForService(service) else {
-            navigationController?.popViewControllerAnimated(true)
+            navigationController?.popViewController(animated: true)
             return
         }
         
         approveServiceRequest(request) { success in
             if success {
-                self.navigationController?.popViewControllerAnimated(true)
+                self.navigationController?.popViewController(animated: true)
             } else {
                 controller.showError("Couldn't approve service request")
             }
         }
     }
     
-    func serviceViewControllerDidDeny(controller: ServiceVC, service: Service) {
+    func serviceViewControllerDidDeny(_ controller: ServiceVC, service: Service) {
         guard let request = serviceRequestForService(service) else {
-            navigationController?.popViewControllerAnimated(true)
+            navigationController?.popViewController(animated: true)
             return
         }
         
         denyServiceRequest(request) { success in
             if success {
-                self.navigationController?.popViewControllerAnimated(true)
+                self.navigationController?.popViewController(animated: true)
             } else {
                 controller.showError("Couldn't deny service request")
             }

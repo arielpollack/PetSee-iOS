@@ -11,11 +11,11 @@ import UIKit
 extension UIColor {
     
     convenience init?(hex: String) {
-        let hexColor = hex.stringByReplacingOccurrencesOfString("#", withString: "")
+        let hexColor = hex.replacingOccurrences(of: "#", with: "")
         
-        let scanner = NSScanner(string: hexColor)
+        let scanner = Scanner(string: hexColor)
         var hexNum: UInt32 = 0
-        if !scanner.scanHexInt(&hexNum) {
+        if !scanner.scanHexInt32(&hexNum) {
             return nil
         }
         
@@ -25,16 +25,16 @@ extension UIColor {
         self.init(red: r, green: g, blue: b, alpha: 1)
     }
     
-    func image(size: CGSize) -> UIImage {
+    func image(_ size: CGSize) -> UIImage {
         UIGraphicsBeginImageContext(size)
         let context = UIGraphicsGetCurrentContext()
         
-        CGContextSetFillColorWithColor(context, CGColor)
-        CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height))
+        context?.setFillColor(self.cgColor)
+        context?.fill(CGRect(x: 0, y: 0, width: size.width, height: size.height))
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image
+        return image!
     }
     
     func darker() -> UIColor {
@@ -55,9 +55,9 @@ extension UIColor {
         
         let d = 0.299 * r + 0.587 * g + 0.114 * b;
         if (d < 0.5 && a > 0.5) {
-            return UIColor.whiteColor()
+            return UIColor.white
         } else {
-            return UIColor.blackColor()
+            return UIColor.black
         }
     }
 }

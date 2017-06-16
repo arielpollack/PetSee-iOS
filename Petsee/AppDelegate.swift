@@ -17,41 +17,41 @@ class AppDelegate: UIResponder {
     var window: UIWindow?
     var authManager: AuthManagerProtocol!
 
-    private func setDefaultAppearance() {
-        SVProgressHUD.setDefaultMaskType(.Black)
+    fileprivate func setDefaultAppearance() {
+        SVProgressHUD.setDefaultMaskType(.black)
         UINavigationBar.appearance().titleTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.whiteColor(),
-            NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
+            NSForegroundColorAttributeName: UIColor.white,
+            NSFontAttributeName: UIFont.systemFont(ofSize: 18, weight: UIFontWeightLight)
         ]
         UINavigationBar.appearance().barTintColor = UIColor(hex: "#2196F3")
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().tintColor = UIColor.white
     }
     
-    private func userViewController() -> UIViewController {
+    fileprivate func userViewController() -> UIViewController {
         let userVC: UIViewController
         switch AuthManager.sharedInstance.authenticatedUser!.type! {
         case .Client:
-            userVC = UIStoryboard(name: "Client", bundle: nil).instantiateViewControllerWithIdentifier("ClientStarter")
+            userVC = UIStoryboard(name: "Client", bundle: nil).instantiateViewController(withIdentifier: "ClientStarter")
         case .ServiceProvider:
-            userVC = UIStoryboard(name: "Client", bundle: nil).instantiateViewControllerWithIdentifier("ServiceProviderStarter")
+            userVC = UIStoryboard(name: "Client", bundle: nil).instantiateViewController(withIdentifier: "ServiceProviderStarter")
         }
         return userVC
     }
     
-    private func registerForPushNotifications() {
-        let notificationSettings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
-        UIApplication.sharedApplication().registerForRemoteNotifications()
+    fileprivate func registerForPushNotifications() {
+        let notificationSettings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
+        UIApplication.shared.registerForRemoteNotifications()
     }
     
-    private func clearNotificationsCount() {
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+    fileprivate func clearNotificationsCount() {
+        UIApplication.shared.applicationIconBadgeNumber = 0
         PetseeAPI.clearNotificationsCount()
     }
     
-    private func reloadUser() {
+    fileprivate func reloadUser() {
         PetseeAPI.getUser { user, error in
-            guard let user = user where error == nil else {
+            guard let user = user, error == nil else {
                 return
             }
             AuthManager.sharedInstance.setAuthenticatedUser(user)
@@ -62,13 +62,13 @@ class AppDelegate: UIResponder {
 
 extension AppDelegate: UIApplicationDelegate {
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         authManager = AuthManager.sharedInstance
         
         setDefaultAppearance()
         
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window = UIWindow(frame: UIScreen.main.bounds)
         
         if authManager.isLoggedIn() {
             window!.rootViewController = userViewController()
@@ -76,7 +76,7 @@ extension AppDelegate: UIApplicationDelegate {
             reloadUser()
             registerForPushNotifications()
         } else {
-            let onboardingVC = OnboardingVC(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+            let onboardingVC = OnboardingVC(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
             onboardingVC.loginDelegate = self
             window!.rootViewController = onboardingVC
         }
@@ -87,17 +87,17 @@ extension AppDelegate: UIApplicationDelegate {
         return true
     }
     
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         if AuthManager.sharedInstance.isLoggedIn() {
             clearNotificationsCount()
         }
     }
     
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        var token = deviceToken.description.stringByReplacingOccurrencesOfString("-", withString: "")
-        token = token.stringByReplacingOccurrencesOfString("<", withString: "")
-        token = token.stringByReplacingOccurrencesOfString(">", withString: "")
-        token = token.stringByReplacingOccurrencesOfString(" ", withString: "")
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        var token = deviceToken.description.replacingOccurrences(of: "-", with: "")
+        token = token.replacingOccurrences(of: "<", with: "")
+        token = token.replacingOccurrences(of: ">", with: "")
+        token = token.replacingOccurrences(of: " ", with: "")
 
         print(token)
         PetseeAPI.updateDeviceToken(token) { _, error in
@@ -108,7 +108,7 @@ extension AppDelegate: UIApplicationDelegate {
 
 extension AppDelegate: OnboardingDelegate {
     
-    func didFinishLoginWithUser(user: User) {
+    func didFinishLoginWithUser(_ user: User) {
         registerForPushNotifications()
         authManager.setAuthenticatedUser(user)
         if let token = user.token {

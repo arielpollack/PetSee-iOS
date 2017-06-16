@@ -11,7 +11,7 @@ import MapKit
 import XLForm
 import SVProgressHUD
 
-class LocationValueTrasformer : NSValueTransformer {
+class LocationValueTrasformer : ValueTransformer {
     
     override class func transformedValueClass() -> AnyClass {
         return NSString.self
@@ -21,7 +21,7 @@ class LocationValueTrasformer : NSValueTransformer {
         return false
     }
     
-    override func transformedValue(value: AnyObject?) -> AnyObject? {
+    override func transformedValue(_ value: Any?) -> Any? {
         if let valueData = value, let location = valueData as? Location {
             return location.address ?? String(format: "%0.4f, %0.4f", location.latitude, location.longitude)
         }
@@ -50,13 +50,13 @@ class SelectLocationVC : UIViewController, XLFormRowDescriptorViewController, MK
     var rowDescriptor: XLFormRowDescriptor?
     lazy var mapView : MKMapView = { [unowned self] in
         let mapView = MKMapView(frame: self.view.frame)
-        mapView.autoresizingMask = [UIViewAutoresizing.FlexibleHeight, UIViewAutoresizing.FlexibleWidth]
+        mapView.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleWidth]
         return mapView
     }()
     
     var annotation: MapAnnotation?
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -84,18 +84,18 @@ class SelectLocationVC : UIViewController, XLFormRowDescriptorViewController, MK
     }
     
     let locationManager = CLLocationManager()
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         locationManager.delegate = self
-        if CLLocationManager.authorizationStatus() == .AuthorizedAlways {
+        if CLLocationManager.authorizationStatus() == .authorizedAlways {
             mapView.showsUserLocation = true
         } else {
             locationManager.requestAlwaysAuthorization()
         }
     }
     
-    private func setUserLocation(value: CLLocationCoordinate2D) {
+    fileprivate func setUserLocation(_ value: CLLocationCoordinate2D) {
         guard annotation == nil else {
             return
         }
@@ -105,11 +105,11 @@ class SelectLocationVC : UIViewController, XLFormRowDescriptorViewController, MK
         var region = MKCoordinateRegionMakeWithDistance(value, 500, 500)
         region = mapView.regionThatFits(region)
         mapView.region = region
-        mapView.setCenterCoordinate(value, animated: false)
+        mapView.setCenter(value, animated: false)
         didChooseLocation(value)
     }
     
-    private func didChooseLocation(coordinate: CLLocationCoordinate2D) {
+    fileprivate func didChooseLocation(_ coordinate: CLLocationCoordinate2D) {
         let location = Location()
         
         location.latitude = coordinate.latitude
@@ -126,12 +126,12 @@ class SelectLocationVC : UIViewController, XLFormRowDescriptorViewController, MK
     
     //MARK - - MKMapViewDelegate
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        if annotation.isKindOfClass(MapAnnotation.self) {
+        if annotation.isKind(of: MapAnnotation.self) {
             let pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "annotation")
             pinAnnotationView.pinTintColor =  MKPinAnnotationView.redPinColor()
-            pinAnnotationView.draggable = true
+            pinAnnotationView.isDraggable = true
             pinAnnotationView.animatesDrop = true
             return pinAnnotationView
         }
@@ -139,16 +139,16 @@ class SelectLocationVC : UIViewController, XLFormRowDescriptorViewController, MK
         return nil
     }
     
-    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         setUserLocation(userLocation.coordinate)
     }
     
     // MARK: handle gestures
     
-    func handleGesture(gesture: UIGestureRecognizer) {
+    func handleGesture(_ gesture: UIGestureRecognizer) {
         annotation?.coordinate = mapView.centerCoordinate
         
-        if [.Ended, .Cancelled].contains(gesture.state) {
+        if [.ended, .cancelled].contains(gesture.state) {
             didChooseLocation(mapView.centerCoordinate)
         }
     }
@@ -156,15 +156,15 @@ class SelectLocationVC : UIViewController, XLFormRowDescriptorViewController, MK
 
 extension SelectLocationVC: UIGestureRecognizerDelegate {
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 }
 
 extension SelectLocationVC: CLLocationManagerDelegate {
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedWhenInUse {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
             mapView.showsUserLocation = true
         }
     }

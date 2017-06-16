@@ -14,8 +14,8 @@ class Race: Mappable, Identifiable {
     var name: String!
     var image: String?
     
-    required init?(_ map: Map) {
-        if map.JSONDictionary["id"] == nil {
+    required init?(map: Map) {
+        if map.JSON["id"] == nil {
             return nil
         }
     }

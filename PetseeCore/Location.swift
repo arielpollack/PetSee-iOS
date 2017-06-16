@@ -14,9 +14,9 @@ class Location: Mappable {
     var latitude: Double!
     var longitude: Double!
     var address: String?
-    var timestamp: NSDate!
+    var timestamp: Date!
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         
     }
     

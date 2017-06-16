@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension NSDate {
+extension Date {
     
     var timeAgo: String {
         let deltaSeconds = secondsFrom(self)
@@ -62,11 +62,11 @@ extension NSDate {
         return years + " years ago"
     }
     
-    private func secondsFrom(date:NSDate) -> Int {
-        return NSCalendar.currentCalendar().components(.Second, fromDate: date, toDate: NSDate(), options: []).second
+    fileprivate func secondsFrom(_ date:Date) -> Int {
+        return (Calendar.current as NSCalendar).components(.second, from: date, to: Date(), options: []).second!
     }
     
-    private func flooredString(delta: Double, dividedBy: Double) -> String {
+    fileprivate func flooredString(_ delta: Double, dividedBy: Double) -> String {
         return String(Int(floor(delta/dividedBy)))
     }
 }

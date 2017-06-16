@@ -10,8 +10,8 @@ import UIKit
 import HCSStarRatingView
 
 protocol ServiceProviderCellDelegate: NSObjectProtocol {
-    func sendRequestForServiceProvider(provider: ServiceProvider)
-    func chooseServiceRequest(request: ServiceRequest)
+    func sendRequestForServiceProvider(_ provider: ServiceProvider)
+    func chooseServiceRequest(_ request: ServiceRequest)
 }
 
 class ServiceProviderCell: UITableViewCell {
@@ -27,7 +27,7 @@ class ServiceProviderCell: UITableViewCell {
     @IBOutlet weak var ratingStars: HCSStarRatingView! {
         didSet {
             ratingStars.minimumValue = 0
-            ratingStars.enabled = false
+            ratingStars.isEnabled = false
         }
     }
     @IBOutlet weak var btnSendRequest: UIButton!
@@ -44,41 +44,41 @@ class ServiceProviderCell: UITableViewCell {
         }
     }
     
-    static let rateFormatter: NSNumberFormatter = {
-        let nf = NSNumberFormatter()
-        nf.numberStyle = .CurrencyStyle
+    static let rateFormatter: NumberFormatter = {
+        let nf = NumberFormatter()
+        nf.numberStyle = .currency
         return nf
     }()
     
     weak var delegate: ServiceProviderCellDelegate?
     
-    private func loadServiceProviderInfo() {
+    fileprivate func loadServiceProviderInfo() {
         lblName.text = serviceProvider.name
         ratingStars.value = CGFloat(serviceProvider.rating ?? 0)
         lblReviewsCount.text = "(\(serviceProvider.ratingCount ?? 0) reviews)"
-        lblHourlyRate.text = ServiceProviderCell.rateFormatter.stringFromNumber(NSNumber(integer: serviceProvider.hourlyRate))
-        if let image = serviceProvider.image, url = NSURL(string: image) {
-            imgThumbnail.af_setImageWithURL(url)
+        lblHourlyRate.text = ServiceProviderCell.rateFormatter.string(from: NSNumber(value: serviceProvider.hourlyRate as Int))
+        if let image = serviceProvider.image, let url = URL(string: image) {
+            imgThumbnail.af_setImage(withURL: url)
         }
     }
     
-    private func loadServiceRequestInfo() {
+    fileprivate func loadServiceRequestInfo() {
         if let request = serviceRequest {
             if request.status == .Approved {
-                btnSendRequest.setTitle("Choose", forState: .Normal)
-                btnSendRequest.enabled = true
+                btnSendRequest.setTitle("Choose", for: UIControlState())
+                btnSendRequest.isEnabled = true
             } else {
-                btnSendRequest.setTitle(request.status.readableString, forState: .Normal)
-                btnSendRequest.enabled = false
+                btnSendRequest.setTitle(request.status.readableString, for: UIControlState())
+                btnSendRequest.isEnabled = false
             }
         } else {
-            btnSendRequest.setTitle("Send Request", forState: .Normal)
-            btnSendRequest.enabled = true
+            btnSendRequest.setTitle("Send Request", for: UIControlState())
+            btnSendRequest.isEnabled = true
         }
     }
     
     @IBAction func sendRequestTapped() {
-        if let request = serviceRequest where request.status == .Approved {
+        if let request = serviceRequest, request.status == .Approved {
             delegate?.chooseServiceRequest(request)
         } else {
             delegate?.sendRequestForServiceProvider(serviceProvider)

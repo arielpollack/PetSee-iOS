@@ -33,8 +33,8 @@ class ServiceRequest: Mappable, Identifiable {
     var serviceProvider: ServiceProvider!
     var status: Status!
     
-    required init?(_ map: Map) {
-        if map.JSONDictionary["id"] == nil {
+    required init?(map: Map) {
+        if map.JSON["id"] == nil {
             return nil
         }
     }

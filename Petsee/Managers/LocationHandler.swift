@@ -18,17 +18,17 @@ class LocationHandler: NSObject {
         return Static.manager
     }
     
-    private var trackingServices: [Service]!
-    lazy private var locationManager: CLLocationManager = {
+    fileprivate var trackingServices: [Service]!
+    lazy fileprivate var locationManager: CLLocationManager = {
         let m = CLLocationManager()
         m.delegate = self
         m.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         m.distanceFilter = 20
         return m
     }()
-    private var permissionRequestCompletion: ((Bool)->())?
+    fileprivate var permissionRequestCompletion: ((Bool)->())?
     
-    private override init() {
+    fileprivate override init() {
         super.init()
         
         trackingServices = UserDefaultsManager.lastTrackedServices
@@ -39,9 +39,9 @@ class LocationHandler: NSObject {
         // dummy func to get things running
     }
     
-    private func hasLocationPermissions() -> Bool {
+    fileprivate func hasLocationPermissions() -> Bool {
         switch CLLocationManager.authorizationStatus() {
-        case .AuthorizedAlways:
+        case .authorizedAlways:
             return true
             
         default:
@@ -49,11 +49,11 @@ class LocationHandler: NSObject {
         }
     }
     
-    private func requestLocationPermission() {
+    fileprivate func requestLocationPermission() {
         locationManager.requestAlwaysAuthorization()
     }
     
-    private func startLocationTrackingIfNeeded() {
+    fileprivate func startLocationTrackingIfNeeded() {
         guard trackingServices.count > 0 else {
             return
         }
@@ -78,7 +78,7 @@ class LocationHandler: NSObject {
         locationManager.startMonitoringSignificantLocationChanges()
     }
     
-    private func stopLocationTrackingIfNeeded() {
+    fileprivate func stopLocationTrackingIfNeeded() {
         guard trackingServices.count == 0 else {
             return
         }
@@ -89,7 +89,7 @@ class LocationHandler: NSObject {
         locationManager.stopMonitoringSignificantLocationChanges()
     }
     
-    private func updateLocationForService(service: Service, location: CLLocation) {
+    fileprivate func updateLocationForService(_ service: Service, location: CLLocation) {
         let coordinate = location.coordinate
         // we don't care about the callback
         PetseeAPI.addLocationForService(coordinate.latitude, longitude: coordinate.longitude, service: service, completion: { location, error in
@@ -97,7 +97,7 @@ class LocationHandler: NSObject {
         })
     }
     
-    func startTrackingService(service: Service) {
+    func startTrackingService(_ service: Service) {
         guard !trackingServices.contains(service) else {
             return
         }
@@ -109,14 +109,14 @@ class LocationHandler: NSObject {
         startLocationTrackingIfNeeded()
     }
     
-    func stopTrackingService(service: Service) {
+    func stopTrackingService(_ service: Service) {
         guard trackingServices.contains(service) else {
             return
         }
         
         print("stopped tracking service \(service.id)")
         
-        trackingServices.removeAtIndex(trackingServices.indexOf(service)!)
+        trackingServices.remove(at: trackingServices.index(of: service)!)
         UserDefaultsManager.lastTrackedServices = trackingServices
         stopLocationTrackingIfNeeded()
     }
@@ -124,15 +124,15 @@ class LocationHandler: NSObject {
 
 extension LocationHandler: CLLocationManagerDelegate {
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         // callback with success only if we have the right permission
-        permissionRequestCompletion?(status == .AuthorizedAlways)
+        permissionRequestCompletion?(status == .authorizedAlways)
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         // make sure the location is recent (past 15 seconds)
-        guard let location = locations.last where abs(location.timestamp.timeIntervalSinceNow) < 15 else {
+        guard let location = locations.last, abs(location.timestamp.timeIntervalSinceNow) < 15 else {
             return
         }
         

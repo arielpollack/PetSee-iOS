@@ -11,7 +11,7 @@ import UIKit
 class MyServicesVC: UIViewController {
 
     @IBOutlet var servicesTableView: UITableView!
-    private lazy var inboxView = InboxView(frame: CGRectMake(0, 0, 35, 35))
+    fileprivate lazy var inboxView = InboxView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
     
     var services = [Service]()
     
@@ -24,7 +24,7 @@ class MyServicesVC: UIViewController {
             navigationItem.leftBarButtonItem = button
             
             PetseeAPI.myServiceRequests({ requests, error in
-                guard let requests = requests where error == nil else {
+                guard let requests = requests, error == nil else {
                     return
                 }
                 
@@ -33,7 +33,7 @@ class MyServicesVC: UIViewController {
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if AuthManager.sharedInstance.authenticatedUser!.type == .ServiceProvider {
@@ -41,7 +41,7 @@ class MyServicesVC: UIViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // reload from server
@@ -51,7 +51,7 @@ class MyServicesVC: UIViewController {
         loadServices()
     }
 
-    private func loadServices() {
+    fileprivate func loadServices() {
         ServicesStore.sharedStore.fetchAll { services in
             self.services = services
             self.servicesTableView.reloadData()
@@ -59,14 +59,14 @@ class MyServicesVC: UIViewController {
     }
     
     func inboxTapped() {
-        let requestsVC = storyboard!.instantiateViewControllerWithIdentifier("ServiceRequests")
-        presentViewController(requestsVC, animated: true, completion: {
+        let requestsVC = storyboard!.instantiateViewController(withIdentifier: "ServiceRequests")
+        present(requestsVC, animated: true, completion: {
             self.inboxView.setBadgeCount(0)
         })
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let serviceVC = segue.destinationViewController as? ServiceVC else {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let serviceVC = segue.destination as? ServiceVC else {
             return
         }
         guard let indexPath = servicesTableView.indexPathForSelectedRow else {
@@ -80,12 +80,12 @@ class MyServicesVC: UIViewController {
 
 extension MyServicesVC: UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return services.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Service") as! ServiceCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Service") as! ServiceCell
         cell.service = services[indexPath.row]
         return cell
     }

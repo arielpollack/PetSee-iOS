@@ -12,8 +12,8 @@ import SVProgressHUD
 import CoreLocation
 
 protocol ServiceVCDelegate: NSObjectProtocol {
-    func serviceViewControllerDidApprove(controller: ServiceVC, service: Service)
-    func serviceViewControllerDidDeny(controller: ServiceVC, service: Service)
+    func serviceViewControllerDidApprove(_ controller: ServiceVC, service: Service)
+    func serviceViewControllerDidDeny(_ controller: ServiceVC, service: Service)
 }
 
 class ServiceVC: UITableViewController {
@@ -34,7 +34,7 @@ class ServiceVC: UITableViewController {
     @IBOutlet weak var lblPetName: UILabel!
  
     var service: Service!
-    private var isClient: Bool = {
+    fileprivate var isClient: Bool = {
         return AuthManager.sharedInstance.authenticatedUser!.type == .Client
     }()
     weak var delegate: ServiceVCDelegate?
@@ -43,81 +43,81 @@ class ServiceVC: UITableViewController {
     var cellTypes = [CellType]()
     
     enum CellType {
-        case Status
-        case StartDate
-        case EndDate
-        case Type
-        case Address
-        case TripRoute
-        case Distance
-        case Space
-        case WriteReviewButton
-        case CancelButton
-        case FindServiceProviderButton
-        case ApproveButton
-        case DenyButton
-        case StartService
-        case EndService
-        case LocationCell
+        case status
+        case startDate
+        case endDate
+        case type
+        case address
+        case tripRoute
+        case distance
+        case space
+        case writeReviewButton
+        case cancelButton
+        case findServiceProviderButton
+        case approveButton
+        case denyButton
+        case startService
+        case endService
+        case locationCell
         
-        static let BasicCells: [CellType] = [.Status, .Type, .StartDate, .EndDate]
+        static let BasicCells: [CellType] = [.status, .type, .startDate, .endDate]
         
-        static let dateFormatter: NSDateFormatter = {
-            let df = NSDateFormatter()
+        static let dateFormatter: DateFormatter = {
+            let df = DateFormatter()
             df.dateFormat = "dd LLL yy',' HH:mm"
             return df
         }()
         
-        func cell(service: Service, tableView: UITableView) -> UITableViewCell {
+        func cell(_ service: Service, tableView: UITableView) -> UITableViewCell {
             switch self {
-            case .Status:
-                let cell = tableView.dequeueReusableCellWithIdentifier("Detail")!
+            case .status:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Detail")!
                 cell.textLabel?.text = "Status"
                 cell.detailTextLabel?.text = service.status.readableString
                 cell.detailTextLabel?.textColor = service.status.presentingColor
                 return cell
-            case .StartDate:
-                let cell = tableView.dequeueReusableCellWithIdentifier("Detail")!
+            case .startDate:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Detail")!
                 cell.textLabel?.text = "Start date"
-                cell.detailTextLabel?.text = CellType.dateFormatter.stringFromDate(service.startDate)
-                cell.detailTextLabel?.textColor = UIColor.darkTextColor()
+                cell.detailTextLabel?.text = CellType.dateFormatter.string(from: service.startDate as Date)
+                cell.detailTextLabel?.textColor = UIColor.darkText
                 return cell
-            case .EndDate:
-                let cell = tableView.dequeueReusableCellWithIdentifier("Detail")!
+            case .endDate:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Detail")!
                 cell.textLabel?.text = "End date"
-                cell.detailTextLabel?.text = CellType.dateFormatter.stringFromDate(service.endDate)
-                cell.detailTextLabel?.textColor = UIColor.darkTextColor()
+                cell.detailTextLabel?.text = CellType.dateFormatter.string(from: service.endDate as Date)
+                cell.detailTextLabel?.textColor = UIColor.darkText
                 return cell
-            case .Type:
-                let cell = tableView.dequeueReusableCellWithIdentifier("Detail")!
+            case .type:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Detail")!
                 cell.textLabel?.text = "Type"
                 cell.detailTextLabel?.text = service.type.readableString
-                cell.detailTextLabel?.textColor = UIColor.darkTextColor()
+                cell.detailTextLabel?.textColor = UIColor.darkText
                 return cell
                 
-            case .Address:
-                let cell = tableView.dequeueReusableCellWithIdentifier("Detail")!
+            case .address:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Detail")!
                 cell.textLabel?.text = "Address"
                 cell.detailTextLabel?.text = service.location.address
-                cell.detailTextLabel?.textColor = UIColor.darkTextColor()
+                cell.detailTextLabel?.textColor = UIColor.darkText
                 return cell
                 
-            case .Distance:
-                let cell = tableView.dequeueReusableCellWithIdentifier("Detail")!
+            case .distance:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Detail")!
                 cell.textLabel?.text = "Distance"
                 cell.detailTextLabel?.text = "0km"
-                cell.detailTextLabel?.textColor = UIColor.darkTextColor()
+                cell.detailTextLabel?.textColor = UIColor.darkText
                 PetseeAPI.locationsForService(service, completion: { [weak cell] (locations, error) in
-                    guard let locations = locations where locations.count > 0 else {
+                    guard let locations = locations, locations.count > 0 else {
                         return
                     }
                     
-                    let distance = locations.reduce(["sum": Int(0), "loc": locations.first!], combine: { obj, location in
+                    let distance = locations.reduce(["sum": Int(0), "loc": locations.first!], { obj, location in
                         var sum = obj["sum"] as! Int
                         let lastLocation = obj["loc"] as! Location
                         let coord1 = CLLocation(latitude: lastLocation.latitude, longitude: lastLocation.longitude)
                         let coord2 = CLLocation(latitude: location.latitude, longitude: location.longitude)
-                        sum += Int(coord2.distanceFromLocation(coord1))
+                        sum += Int(coord2.distance(from: coord1))
                         return ["sum": sum, "loc": location]
                     })["sum"] as! Int
                     
@@ -125,79 +125,79 @@ class ServiceVC: UITableViewController {
                 })
                 return cell
                 
-            case .TripRoute:
-                let cell = tableView.dequeueReusableCellWithIdentifier("Map") as! ServiceTripRouteCell
+            case .tripRoute:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Map") as! ServiceTripRouteCell
                 cell.service = service
                 return cell
                 
-            case .Space:
-                return tableView.dequeueReusableCellWithIdentifier("Space")!
+            case .space:
+                return tableView.dequeueReusableCell(withIdentifier: "Space")!
                 
-            case .CancelButton:
-                let cell = tableView.dequeueReusableCellWithIdentifier("Button") as! ServiceButtonCell
+            case .cancelButton:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Button") as! ServiceButtonCell
                 cell.color = UIColor(hex: "c0392b")!
                 cell.title = "Cancel Service"
                 cell.action = {
-                    NSNotificationCenter.defaultCenter().postNotificationName(Notification.CancelServiceTapped, object: service)
+                    NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: Notification.CancelServiceTapped), object: service)
                 }
                 return cell
                 
-            case .FindServiceProviderButton:
-                let cell = tableView.dequeueReusableCellWithIdentifier("Button") as! ServiceButtonCell
+            case .findServiceProviderButton:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Button") as! ServiceButtonCell
                 cell.color = UIColor(hex: "3498db")!
                 cell.title = "Find Your \(service.type.readableString)er"
                 cell.action = {
-                    NSNotificationCenter.defaultCenter().postNotificationName(Notification.FindServiceProviderTapped, object: service)
+                    NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: Notification.FindServiceProviderTapped), object: service)
                 }
                 return cell
                 
-            case .WriteReviewButton:
-                let cell = tableView.dequeueReusableCellWithIdentifier("Button") as! ServiceButtonCell
+            case .writeReviewButton:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Button") as! ServiceButtonCell
                 cell.color = UIColor(hex: "2ecc71")!
                 cell.title = "Write a Review"
                 cell.action = {
-                    NSNotificationCenter.defaultCenter().postNotificationName(Notification.WriteReviewTapped, object: service)
+                    NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: Notification.WriteReviewTapped), object: service)
                 }
                 return cell
                 
-            case .ApproveButton:
-                let cell = tableView.dequeueReusableCellWithIdentifier("Button") as! ServiceButtonCell
+            case .approveButton:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Button") as! ServiceButtonCell
                 cell.color = UIColor(hex: "2ecc71")!
                 cell.title = "Approve Request"
                 cell.action = {
-                    NSNotificationCenter.defaultCenter().postNotificationName(Notification.ApproveServiceTapped, object: service)
+                    NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: Notification.ApproveServiceTapped), object: service)
                 }
                 return cell
                 
-            case .DenyButton:
-                let cell = tableView.dequeueReusableCellWithIdentifier("Button") as! ServiceButtonCell
+            case .denyButton:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Button") as! ServiceButtonCell
                 cell.color = UIColor(hex: "c0392b")!
                 cell.title = "Deny Request"
                 cell.action = {
-                    NSNotificationCenter.defaultCenter().postNotificationName(Notification.DenyServiceTapped, object: service)
+                    NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: Notification.DenyServiceTapped), object: service)
                 }
                 return cell
                 
-            case .StartService:
-                let cell = tableView.dequeueReusableCellWithIdentifier("Button") as! ServiceButtonCell
+            case .startService:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Button") as! ServiceButtonCell
                 cell.color = UIColor(hex: "2ecc71")!
                 cell.title = "Start Service"
                 cell.action = {
-                    NSNotificationCenter.defaultCenter().postNotificationName(Notification.StartServiceTapped, object: service)
+                    NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: Notification.StartServiceTapped), object: service)
                 }
                 return cell
                 
-            case .EndService:
-                let cell = tableView.dequeueReusableCellWithIdentifier("Button") as! ServiceButtonCell
+            case .endService:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Button") as! ServiceButtonCell
                 cell.color = UIColor(hex: "c0392b")!
                 cell.title = "End Service"
                 cell.action = {
-                    NSNotificationCenter.defaultCenter().postNotificationName(Notification.EndServiceTapped, object: service)
+                    NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: Notification.EndServiceTapped), object: service)
                 }
                 return cell
                 
-            case .LocationCell:
-                let cell = tableView.dequeueReusableCellWithIdentifier("Location") as! ServiceLocationCell
+            case .locationCell:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Location") as! ServiceLocationCell
                 cell.service = service
                 return cell
             }
@@ -205,11 +205,11 @@ class ServiceVC: UITableViewController {
         
         func height() -> CGFloat {
             switch self {
-            case .TripRoute, .LocationCell:
+            case .tripRoute, .locationCell:
                 return 230
-            case .CancelButton, .WriteReviewButton, .FindServiceProviderButton, .ApproveButton, .DenyButton, .StartService, .EndService:
+            case .cancelButton, .writeReviewButton, .findServiceProviderButton, .approveButton, .denyButton, .startService, .endService:
                 return 50
-            case .Space:
+            case .space:
                 return 24
                 
             default:
@@ -222,18 +222,18 @@ class ServiceVC: UITableViewController {
         super.viewDidLoad()
         loadViews()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(findServiceProviderTapped), name: Notification.FindServiceProviderTapped, object: service)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(writeReviewTapped), name: Notification.WriteReviewTapped, object: service)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cancelServiceTapped), name: Notification.CancelServiceTapped, object: service)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(approveServiceRequestTapped), name: Notification.ApproveServiceTapped, object: service)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(denyServiceRequestTapped), name: Notification.DenyServiceTapped, object: service)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(startServiceTapped), name: Notification.StartServiceTapped, object: service)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(endServiceTapped), name: Notification.EndServiceTapped, object: service)
+        NotificationCenter.default.addObserver(self, selector: #selector(findServiceProviderTapped), name: NSNotification.Name(rawValue: Notification.FindServiceProviderTapped), object: service)
+        NotificationCenter.default.addObserver(self, selector: #selector(writeReviewTapped), name: NSNotification.Name(rawValue: Notification.WriteReviewTapped), object: service)
+        NotificationCenter.default.addObserver(self, selector: #selector(cancelServiceTapped), name: NSNotification.Name(rawValue: Notification.CancelServiceTapped), object: service)
+        NotificationCenter.default.addObserver(self, selector: #selector(approveServiceRequestTapped), name: NSNotification.Name(rawValue: Notification.ApproveServiceTapped), object: service)
+        NotificationCenter.default.addObserver(self, selector: #selector(denyServiceRequestTapped), name: NSNotification.Name(rawValue: Notification.DenyServiceTapped), object: service)
+        NotificationCenter.default.addObserver(self, selector: #selector(startServiceTapped), name: NSNotification.Name(rawValue: Notification.StartServiceTapped), object: service)
+        NotificationCenter.default.addObserver(self, selector: #selector(endServiceTapped), name: NSNotification.Name(rawValue: Notification.EndServiceTapped), object: service)
         
         loadServiceInfo()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if showServiceProvidersOnOpen {
@@ -242,12 +242,12 @@ class ServiceVC: UITableViewController {
         }
     }
     
-    private func loadViews() {
+    fileprivate func loadViews() {
         let user = service.serviceProvider
         lblServiceProviderName.text = user?.name ?? "Not chosen"
         if let image = user?.image {
-            let url = NSURL(string: image)!
-            imgServiceProvider.af_setImageWithURL(url)
+            let url = URL(string: image)!
+            imgServiceProvider.af_setImage(withURL: url)
         } else {
             imgServiceProvider.image = UIImage(named: "user_profile_icon")
         }
@@ -255,15 +255,15 @@ class ServiceVC: UITableViewController {
         lblPetName.text = service.pet.name
         
         if let image = service.pet.image {
-            let url = NSURL(string: image)!
-            imgPet.af_setImageWithURL(url)
+            let url = URL(string: image)!
+            imgPet.af_setImage(withURL: url)
         }
     }
     
-    private func loadServiceInfo() {
+    fileprivate func loadServiceInfo() {
         let maybeAddress: [CellType]
         if let _ = service.location.address {
-            maybeAddress = [.Address]
+            maybeAddress = [.address]
         } else {
             maybeAddress = []
         }
@@ -272,15 +272,15 @@ class ServiceVC: UITableViewController {
             switch service.status! {
             case .Pending:
                 // Did not choose service provider yet
-                cellTypes = CellType.BasicCells + maybeAddress + [.Space, .FindServiceProviderButton, .CancelButton]
+                cellTypes = CellType.BasicCells + maybeAddress + [.space, .findServiceProviderButton, .cancelButton]
                 
             case .Confirmed:
                 // Waiting for the service to start on it's date
-                cellTypes = CellType.BasicCells + maybeAddress + [.Space, .CancelButton]
+                cellTypes = CellType.BasicCells + maybeAddress + [.space, .cancelButton]
                 
             case .Started, .Ended:
                 // In progress / ended
-                cellTypes = CellType.BasicCells + maybeAddress + [.TripRoute, .Distance, .Space, .WriteReviewButton]
+                cellTypes = CellType.BasicCells + maybeAddress + [.tripRoute, .distance, .space, .writeReviewButton]
                 
             case .Cancelled:
                 cellTypes = CellType.BasicCells + maybeAddress
@@ -291,19 +291,19 @@ class ServiceVC: UITableViewController {
             switch service.status! {
             case .Pending:
                 // waiting for my confirmation
-                cellTypes = CellType.BasicCells + maybeAddress + [.LocationCell, .Space, .ApproveButton, .DenyButton]
+                cellTypes = CellType.BasicCells + maybeAddress + [.locationCell, .space, .approveButton, .denyButton]
                 
             case .Confirmed:
                 // I need to start it
-                cellTypes = CellType.BasicCells + maybeAddress + [.LocationCell, .Space, .StartService]
+                cellTypes = CellType.BasicCells + maybeAddress + [.locationCell, .space, .startService]
                 
             case .Started:
                 // I need to end it
-                cellTypes = CellType.BasicCells + maybeAddress + [.TripRoute, .Distance, .Space, .EndService]
+                cellTypes = CellType.BasicCells + maybeAddress + [.tripRoute, .distance, .space, .endService]
                 
             case .Ended:
                 // just view the details
-                cellTypes = CellType.BasicCells + maybeAddress + [.TripRoute, .Distance, .Space, .WriteReviewButton]
+                cellTypes = CellType.BasicCells + maybeAddress + [.tripRoute, .distance, .space, .writeReviewButton]
                 
             default:
                 break
@@ -314,7 +314,7 @@ class ServiceVC: UITableViewController {
     }
     
     func findServiceProviderTapped() {
-        let vc = UIStoryboard(name: "Client", bundle: nil).instantiateViewControllerWithIdentifier("FindServiceProviderVC") as! FindServiceProviderVC
+        let vc = UIStoryboard(name: "Client", bundle: nil).instantiateViewController(withIdentifier: "FindServiceProviderVC") as! FindServiceProviderVC
         vc.service = service
         vc.delegate = self
         
@@ -322,7 +322,7 @@ class ServiceVC: UITableViewController {
     }
     
     func writeReviewTapped() {
-        let reviewVC = storyboard?.instantiateViewControllerWithIdentifier("AddReviewVC") as! AddReviewVC
+        let reviewVC = storyboard?.instantiateViewController(withIdentifier: "AddReviewVC") as! AddReviewVC
         reviewVC.user = isClient ? service.serviceProvider! : service.client
         navigationController?.pushViewController(reviewVC, animated: true)
     }
@@ -337,7 +337,7 @@ class ServiceVC: UITableViewController {
             }
             
             ServicesStore.sharedStore.remove(self.service)
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -379,20 +379,20 @@ class ServiceVC: UITableViewController {
         }
     }
     
-    func showError(error: String) {
+    func showError(_ error: String) {
         
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellTypes.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellType = cellTypes[indexPath.row]
         return cellType.cell(service, tableView: tableView)
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let cellType = cellTypes[indexPath.row]
         return cellType.height()
     }
@@ -417,7 +417,7 @@ class ServiceTripRouteCell: UITableViewCell {
         }
     }
     
-    private func loadTripRoute() {
+    fileprivate func loadTripRoute() {
         PetseeAPI.locationsForService(service) { [weak self] locations, error in
             if let locations = locations {
                 if locations.count > 0 {
@@ -431,7 +431,7 @@ class ServiceTripRouteCell: UITableViewCell {
         }
     }
     
-    private func loadGoogleImage(locations: [Location]) {
+    fileprivate func loadGoogleImage(_ locations: [Location]) {
         GoogleMapsService.imageMapForLocations(imgTripRoute.bounds.size, locations: locations) { [weak self] image in
             self?.imgTripRoute.image = image
             self?.loader.stopAnimating()
@@ -440,7 +440,7 @@ class ServiceTripRouteCell: UITableViewCell {
         }
     }
     
-    private func scheduleNextUpdate() {
+    fileprivate func scheduleNextUpdate() {
         // if it's ended locations won't be updated anymore
         if service.status == .Ended {
             return
@@ -448,8 +448,8 @@ class ServiceTripRouteCell: UITableViewCell {
         
         print("scheduled next route reload")
         
-        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * NSEC_PER_SEC))
-        dispatch_after(time, dispatch_get_main_queue()) {
+        let time = DispatchTime.now() + Double(Int64(10 * NSEC_PER_SEC)) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: time) {
             self.loadTripRoute()
         }
     }
@@ -457,7 +457,7 @@ class ServiceTripRouteCell: UITableViewCell {
 
 class ServiceLocationCell: ServiceTripRouteCell {
     
-    private override func loadTripRoute() {
+    fileprivate override func loadTripRoute() {
         GoogleMapsService.imageMapForLocation(imgTripRoute.bounds.size, location: service.location) { image in
             self.imgTripRoute.image = image
             self.loader.stopAnimating()
@@ -469,7 +469,7 @@ class ServiceButtonCell: UITableViewCell {
     
     @IBOutlet weak var button: PetseeButton! {
         didSet {
-            button.addTarget(self, action: #selector(didTap), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
             button.layer.cornerRadius = button.bounds.height / 2
 //            button.layer.masksToBounds = true
         }
@@ -477,11 +477,11 @@ class ServiceButtonCell: UITableViewCell {
     
     var title: String? {
         didSet {
-            button.setTitle(title, forState: .Normal)
+            button.setTitle(title, for: UIControlState())
         }
     }
     
-    var color: UIColor = UIColor.greenColor() {
+    var color: UIColor = UIColor.green {
         didSet {
             button.color = color
         }

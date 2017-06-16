@@ -27,10 +27,10 @@ enum UserType: String {
     var rating: Double?
     var type: UserType?
     
-    private var map: JSON?
+    fileprivate var map: JSON?
     
-    required init?(_ map: Map) {
-        if map.JSONDictionary["id"] == nil {
+    required init?(map: Map) {
+        if map.JSON["id"] == nil {
             return nil
         }
     }
@@ -48,7 +48,7 @@ enum UserType: String {
         type <- map["type"]
         
         #if DEBUG
-            self.map = map.JSONDictionary
+            self.map = map.JSON as JSON
         #endif
     }
 }
@@ -59,8 +59,8 @@ extension User: CustomStringConvertible {
             return map.description
         }
         
-        let comps: [String: AnyObject] = ["id": id,
-                                          "name": name ?? "empty",
+        let comps: [String: String] = ["id": "\(id)",
+                                          "name": name ?? "empty" ,
                                           "email": email ?? "empty"]
         return comps.description
     }

@@ -11,7 +11,7 @@ import HCSStarRatingView
 
 class ReviewCell: UIView {
     
-    private var review: Review!
+    fileprivate var review: Review!
     @IBOutlet weak var imgUser: UIImageView! {
         didSet {
             imgUser.layer.cornerRadius = imgUser.bounds.height / 2
@@ -23,39 +23,39 @@ class ReviewCell: UIView {
     @IBOutlet weak var lblCreatedAt: UILabel!
     @IBOutlet weak var reviewStars: HCSStarRatingView!
     
-    private struct Static {
-        static var dateFormatter: NSDateFormatter = {
-            let df = NSDateFormatter()
+    fileprivate struct Static {
+        static var dateFormatter: DateFormatter = {
+            let df = DateFormatter()
             df.dateFormat = "LLL yyyy"
             return df
         }()
     }
     
     class func cell() -> ReviewCell {
-        let nib = NSBundle.mainBundle().loadNibNamed("ReviewCell", owner: nil, options: [:])
-        let cell = nib[0] as! ReviewCell
+        let nib = Bundle.main.loadNibNamed("ReviewCell", owner: nil, options: [:])
+        let cell = nib?[0] as! ReviewCell
         cell.translatesAutoresizingMaskIntoConstraints = false
         return cell
     }
     
-    func configureWithReview(review: Review) {
+    func configureWithReview(_ review: Review) {
         self.review = review
         
-        if let image = review.writer?.image, url = NSURL(string: image) {
-            imgUser.af_setImageWithURL(url)
+        if let image = review.writer?.image, let url = URL(string: image) {
+            imgUser.af_setImage(withURL: url)
         } else {
             imgUser.af_cancelImageRequest()
             imgUser.image = UIImage(named: "person-placeholder")
         }
         lblFeedback.text = review.feedback
         lblUserName.text = review.writer?.name
-        lblCreatedAt.text = Static.dateFormatter.stringFromDate(review.createdAt)
+        lblCreatedAt.text = Static.dateFormatter.string(from: review.createdAt as Date)
         reviewStars.value = CGFloat(review.rate)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        reviewStars.enabled = false
+        reviewStars.isEnabled = false
     }
 }

@@ -21,7 +21,7 @@ class AddServiceVC: XLFormViewController {
         self.initializeForm()
     }
     
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: Bundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         self.initializeForm()
     }
@@ -32,35 +32,35 @@ class AddServiceVC: XLFormViewController {
         form.addFormSection(section)
         
         let petRow = XLFormRowDescriptor(tag: "pet", rowType: XLFormRowDescriptorTypeSelectorActionSheet, title: "Pet")
-        petRow.required = true
+        petRow.isRequired = true
         section.addFormRow(petRow)
         PetsStore.sharedStore.fetchAll { pets in
             petRow.value = pets.first?.name
-            petRow.selectorOptions = pets.map { $0.name }  ?? []
+            petRow.selectorOptions = pets.map { $0.name }  
             self.updateFormRow(petRow)
         }
         
         var row = XLFormRowDescriptor(tag: "type", rowType: XLFormRowDescriptorTypeSelectorActionSheet, title: "Service Type")
-        row.required = true
+        row.isRequired = true
         row.selectorOptions = ["Dogwalk", "Dogsit"]
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: "start_date", rowType: XLFormRowDescriptorTypeDateTime, title: "Start date")
-        row.required = true
-        row.cellConfigAtConfigure["minimumDate"] = NSDate()
+        row.isRequired = true
+        row.cellConfigAtConfigure["minimumDate"] = Date()
         row.cellConfigAtConfigure["minuteInterval"] = 10
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: "end_date", rowType: XLFormRowDescriptorTypeDateTime, title: "End date")
-        row.required = true
-        row.cellConfigAtConfigure["minimumDate"] = NSDate()
+        row.isRequired = true
+        row.cellConfigAtConfigure["minimumDate"] = Date()
         row.cellConfigAtConfigure["minuteInterval"] = 10
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: "location", rowType: XLFormRowDescriptorTypeSelectorPush, title: "Pickup Location")
         row.action.viewControllerClass = SelectLocationVC.self
         row.valueTransformer = LocationValueTrasformer.self
-        row.required = true
+        row.isRequired = true
         section.addFormRow(row)
         
         self.form = form
@@ -72,33 +72,33 @@ class AddServiceVC: XLFormViewController {
         tableView.tableFooterView = UIView()
     }
     
-    override func formRowDescriptorValueHasChanged(formRow: XLFormRowDescriptor!, oldValue: AnyObject!, newValue: AnyObject!) {
-        if let value = newValue as? NSDate where formRow.tag == "start_date" {
-            let row = form.formRowWithTag("end_date")!
-            let cell: XLFormDateCell = row.cellForFormController(self) as! XLFormDateCell
+    override func formRowDescriptorValueHasChanged(_ formRow: XLFormRowDescriptor!, oldValue: Any!, newValue: Any!) {
+        if let value = newValue as? Date, formRow.tag == "start_date" {
+            let row = form.formRow(withTag: "end_date")!
+            let cell: XLFormDateCell = row.cell(forForm: self) as! XLFormDateCell
             cell.minimumDate = value
-            row.value = value.dateByAddingTimeInterval(3600) // add an hour
+            row.value = value.addingTimeInterval(3600) // add an hour
             updateFormRow(row)
         }
     }
     
-    private func showCellError(cell: XLFormBaseCell) {
+    fileprivate func showCellError(_ cell: XLFormBaseCell) {
         let animation =
             CABasicAnimation(keyPath: "position")
         animation.duration = 0.1
         animation.autoreverses = true
-        animation.fromValue = NSValue(CGPoint: CGPointMake(cell.center.x - 20.0, cell.center.y))
-        animation.toValue = NSValue(CGPoint: CGPointMake(cell.center.x + 20.0, cell.center.y))
-        cell.layer.addAnimation(animation, forKey: "position")
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: cell.center.x - 20.0, y: cell.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: cell.center.x + 20.0, y: cell.center.y))
+        cell.layer.add(animation, forKey: "position")
     }
     
-    @IBAction func saveTapped(sender: AnyObject) {
+    @IBAction func saveTapped(_ sender: AnyObject) {
         let validationErrors : Array<NSError> = formValidationErrors() as! Array<NSError>
         if (validationErrors.count > 0) {
             for error in validationErrors {
                 if let status = error.userInfo[XLValidationStatusErrorKey] as? XLFormValidationStatus,
-                    let row: XLFormRowDescriptor = form.formRowWithTag(status.rowDescriptor!.tag!) {
-                    let cell = row.cellForFormController(self)
+                    let row: XLFormRowDescriptor = form.formRow(withTag: status.rowDescriptor!.tag!) {
+                    let cell = row.cell(forForm: self)
                     showCellError(cell)
                 }
             }
@@ -107,8 +107,8 @@ class AddServiceVC: XLFormViewController {
         
         let values = form.formValues()
         
-        service.startDate = values["start_date"] as! NSDate
-        service.endDate = values["end_date"] as! NSDate
+        service.startDate = values["start_date"] as! Date
+        service.endDate = values["end_date"] as! Date
         service.location = values["location"] as! Location
         
         let typeString = values["type"] as! String
@@ -132,27 +132,27 @@ class AddServiceVC: XLFormViewController {
         }
     }
     
-    @IBAction func cancelTapped(sender: AnyObject) {
-        let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { _ in
-            self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancelTapped(_ sender: AnyObject) {
+        let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
-    private func sendToServer() {
+    fileprivate func sendToServer() {
         SVProgressHUD.show()
         PetseeAPI.addService(service) { service, error in
             SVProgressHUD.dismiss()
             
-            guard let service = service where error == nil else {
+            guard let service = service, error == nil else {
                 // show error
                 return
             }
             
             ServicesStore.sharedStore.add(service)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }

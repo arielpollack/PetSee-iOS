@@ -14,12 +14,12 @@ class ServiceProvider: User {
     var hourlyRate: Int!
     var skills: [ServiceProviderSkill]?
     
-    required init?(_ map: Map) {
-        super.init(map)
+    required init?(map: Map) {
+        super.init(map: map)
     }
     
     override func mapping(map: Map) {
-        super.mapping(map)
+        super.mapping(map: map)
         
         skills <- map["skills"]
         hourlyRate <- map["hourly_rate"]

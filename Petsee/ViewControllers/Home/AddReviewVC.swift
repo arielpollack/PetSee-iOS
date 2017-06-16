@@ -16,7 +16,7 @@ class AddReviewVC: UIViewController {
     @IBOutlet weak var txtFeedback: UITextView!
     @IBOutlet weak var lblPlaceholder: UILabel!
     
-    private var review = Review()
+    fileprivate var review = Review()
     var user: User! {
         didSet {
             review.user = user
@@ -32,18 +32,18 @@ class AddReviewVC: UIViewController {
         preloadReview()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         txtFeedback.becomeFirstResponder()
     }
     
-    private func preloadReview() {
+    fileprivate func preloadReview() {
         SVProgressHUD.show()
         PetseeAPI.myReviewOnUser(user) { review, error in
             SVProgressHUD.dismiss()
             
-            guard let review = review where error == nil else {
+            guard let review = review, error == nil else {
                 return
             }
             
@@ -51,12 +51,12 @@ class AddReviewVC: UIViewController {
             self.reviewStars.value = CGFloat(review.rate)
             self.txtFeedback.text = review.feedback
             
-            self.lblPlaceholder.hidden = review.feedback != nil
+            self.lblPlaceholder.isHidden = review.feedback != nil
         }
     }
     
-    private func commitFilledReview() {
-        review.feedback = txtFeedback.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+    fileprivate func commitFilledReview() {
+        review.feedback = txtFeedback.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         review.rate = Int(reviewStars.value)
     }
     
@@ -73,19 +73,19 @@ class AddReviewVC: UIViewController {
                 return
             }
             
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }
 
 extension AddReviewVC: UITextViewDelegate {
-    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
-        lblPlaceholder.hidden = true
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        lblPlaceholder.isHidden = true
         return true
     }
     
-    func textViewShouldEndEditing(textView: UITextView) -> Bool {
-        lblPlaceholder.hidden = textView.text.characters.count > 0
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        lblPlaceholder.isHidden = textView.text.characters.count > 0
         return true
     }
 }

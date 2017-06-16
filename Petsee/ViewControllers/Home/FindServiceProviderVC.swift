@@ -19,8 +19,8 @@ class FindServiceProviderVC: UIViewController {
     var service: Service!
     weak var delegate: FindServiceProviderVCDelegate?
     
-    private var serviceRequests = [ServiceRequest]()
-    private var serviceProviders = [ServiceProvider]()
+    fileprivate var serviceRequests = [ServiceRequest]()
+    fileprivate var serviceProviders = [ServiceProvider]()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -30,15 +30,15 @@ class FindServiceProviderVC: UIViewController {
         title = "Find a \(service.type.readableString)er"
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         loadServiceProvidersAndRequests()
     }
     
-    private func loadServiceProvidersAndRequests() {
+    fileprivate func loadServiceProvidersAndRequests() {
         PetseeAPI.getAvailableServiceProviders(service) { providers, error in
-            guard let providers = providers where error == nil else {
+            guard let providers = providers, error == nil else {
                 // show error
                 return
             }
@@ -48,9 +48,9 @@ class FindServiceProviderVC: UIViewController {
         }
     }
     
-    private func loadServiceRequests() {
+    fileprivate func loadServiceRequests() {
         PetseeAPI.getServiceRequests(service) { requests, error in
-            guard let requests = requests where error == nil else {
+            guard let requests = requests, error == nil else {
                 // show error
                 return
             }
@@ -61,16 +61,16 @@ class FindServiceProviderVC: UIViewController {
         }
     }
     
-    private func filterApproachedServiceProviders() {
+    fileprivate func filterApproachedServiceProviders() {
         for request in serviceRequests {
-            if let index = serviceProviders.indexOf(request.serviceProvider) {
-                serviceProviders.removeAtIndex(index)
+            if let index = serviceProviders.index(of: request.serviceProvider) {
+                serviceProviders.remove(at: index)
             }
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let vc = segue.destinationViewController as? UserProfile, let indexPath = tableView.indexPathForSelectedRow {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? UserProfile, let indexPath = tableView.indexPathForSelectedRow {
             if indexPath.section == 1 || !haveServiceRequests() {
                 vc.user = serviceProviders[indexPath.row]
             } else {
@@ -82,15 +82,15 @@ class FindServiceProviderVC: UIViewController {
 
 extension FindServiceProviderVC: UITableViewDataSource {
     
-    private func haveServiceRequests() -> Bool {
+    fileprivate func haveServiceRequests() -> Bool {
         return serviceRequests.count > 0
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return haveServiceRequests() ? 2 : 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1 || !haveServiceRequests() {
             return serviceProviders.count
         }
@@ -98,8 +98,8 @@ extension FindServiceProviderVC: UITableViewDataSource {
         return serviceRequests.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ServiceProvider") as! ServiceProviderCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ServiceProvider") as! ServiceProviderCell
         cell.delegate = self
         
         if indexPath.section == 1 || !haveServiceRequests() {
@@ -118,7 +118,7 @@ extension FindServiceProviderVC: UITableViewDataSource {
 
 extension FindServiceProviderVC: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 || !haveServiceRequests() {
             return "Available Service Providers"
         }
@@ -129,12 +129,12 @@ extension FindServiceProviderVC: UITableViewDelegate {
 
 extension FindServiceProviderVC: ServiceProviderCellDelegate {
     
-    func sendRequestForServiceProvider(provider: ServiceProvider) {
+    func sendRequestForServiceProvider(_ provider: ServiceProvider) {
         SVProgressHUD.show()
         PetseeAPI.requestServiceProvider(service, serviceProvider: provider) { request, error in
             SVProgressHUD.dismiss()
             
-            guard let request = request where error == nil else {
+            guard let request = request, error == nil else {
                 // show error
                 return
             }
@@ -143,7 +143,7 @@ extension FindServiceProviderVC: ServiceProviderCellDelegate {
         }
     }
     
-    func chooseServiceRequest(request: ServiceRequest) {
+    func chooseServiceRequest(_ request: ServiceRequest) {
         PetseeAPI.chooseServiceRequest(service, serviceRequest: request) { object, error in
             guard error == nil else {
                 // show error
@@ -155,13 +155,13 @@ extension FindServiceProviderVC: ServiceProviderCellDelegate {
             ServicesStore.sharedStore.replace(self.service)
             
             self.delegate?.didChooseServiceProvider()
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
-    private func addServiceRequest(request: ServiceRequest) {
-        if let index = serviceProviders.indexOf(request.serviceProvider) {
-            serviceProviders.removeAtIndex(index)
+    fileprivate func addServiceRequest(_ request: ServiceRequest) {
+        if let index = serviceProviders.index(of: request.serviceProvider) {
+            serviceProviders.remove(at: index)
         }
     
         serviceRequests.append(request)

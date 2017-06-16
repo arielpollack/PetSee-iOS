@@ -19,16 +19,16 @@ class HomeVC: UITabBarController {
         
         loadNotificationsCount()
         
-        NSNotificationCenter.defaultCenter().addObserverForName(Notification.ClearBadge, object: nil, queue: nil) { [weak self] _ in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Notification.ClearBadge), object: nil, queue: nil) { [weak self] _ in
             self?.setNotificationsBadgeCount(0)
         }
         
-        NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationDidBecomeActiveNotification, object: nil, queue: nil, usingBlock: { [weak self] _ in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil, using: { [weak self] _ in
             self?.loadNotificationsCount()
             })
     }
     
-    private func loadNotificationsCount() {
+    fileprivate func loadNotificationsCount() {
         NotificationsStore.sharedStore.loadObjects() {
             NotificationsStore.sharedStore.fetchAll { notifications in
                 let unreadNotifications = notifications.filter { !$0.read }
@@ -37,7 +37,7 @@ class HomeVC: UITabBarController {
         }
     }
     
-    private func setNotificationsBadgeCount(count: Int) {
+    fileprivate func setNotificationsBadgeCount(_ count: Int) {
         let notificationItem = self.tabBar.items![1]
         notificationItem.badgeValue = count > 0 ? "\(count)" : nil
     }

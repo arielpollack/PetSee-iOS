@@ -12,7 +12,7 @@ protocol AuthManagerProtocol {
     
     func isLoggedIn() -> Bool
     
-    func setAuthenticatedUser(user: User)
+    func setAuthenticatedUser(_ user: User)
     func clearAuthenticatedUser()
 }
 
@@ -32,7 +32,7 @@ class AuthManager: AuthManagerProtocol {
         return authenticatedUser != nil
     }
     
-    func setAuthenticatedUser(user: User) {
+    func setAuthenticatedUser(_ user: User) {
         authenticatedUser = user
         UserDefaultsManager.userToken = user.token
     }

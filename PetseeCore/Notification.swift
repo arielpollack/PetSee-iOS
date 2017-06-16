@@ -11,13 +11,13 @@ import ObjectMapper
 
 class Notification: Mappable, Identifiable {
     
-    enum Type: Int {
-        case RequestYourService = 1
-        case ApprovedYourRequest = 2
-        case ConfirmedYouAsProvider = 3
-        case ServiceStarted = 4
-        case ServiceEnded = 5
-        case ServiceCancelled = 6
+    enum `Type`: Int {
+        case requestYourService = 1
+        case approvedYourRequest = 2
+        case confirmedYouAsProvider = 3
+        case serviceStarted = 4
+        case serviceEnded = 5
+        case serviceCancelled = 6
     }
     
     var id: Int!
@@ -25,10 +25,10 @@ class Notification: Mappable, Identifiable {
     var type: Type!
     var read: Bool!
     var object: AnyObject?
-    var createdAt: NSDate!
+    var createdAt: Date!
     
-    required init?(_ map: Map) {
-        if map.JSONDictionary["id"] == nil {
+    required init?(map: Map) {
+        if map.JSON["id"] == nil {
             return nil
         }
     }
@@ -39,12 +39,12 @@ class Notification: Mappable, Identifiable {
         type <- map["type"]
         read <- map["read"]
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
         createdAt <- (map["created_at"], DateFormatterTransform(dateFormatter: dateFormatter))
         
         switch type! {
-        case .RequestYourService:
+        case .requestYourService:
             var request: ServiceRequest?
             request <- map["object"]
             object = request

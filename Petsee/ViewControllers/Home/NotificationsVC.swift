@@ -12,7 +12,7 @@ class NotificationsVC: UIViewController {
     
     @IBOutlet weak var tableNotifications: UITableView!
     
-    private var notifications = [Notification]()
+    fileprivate var notifications = [Notification]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class NotificationsVC: UIViewController {
         tableNotifications.rowHeight = UITableViewAutomaticDimension
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // reload from server
@@ -34,11 +34,11 @@ class NotificationsVC: UIViewController {
         PetseeAPI.clearNotifications { _, _ in
             
             // tell the home view controller to clear the notifications badge
-            NSNotificationCenter.defaultCenter().postNotificationName(HomeVC.Notification.ClearBadge, object: nil)
+            NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: HomeVC.Notification.ClearBadge), object: nil)
         }
     }
     
-    private func loadNotifications() {
+    fileprivate func loadNotifications() {
         NotificationsStore.sharedStore.fetchAll { notifications in
             self.notifications = notifications
             self.tableNotifications.reloadData()
@@ -48,16 +48,16 @@ class NotificationsVC: UIViewController {
 
 extension NotificationsVC: UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notifications.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Notification") as! NotificationCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Notification") as! NotificationCell
         let notification = notifications[indexPath.row]
         cell.notification = notification
         return cell
@@ -67,9 +67,9 @@ extension NotificationsVC: UITableViewDataSource {
 
 extension NotificationsVC: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         
         let notification = notifications[indexPath.row]
         DeepLinkManager.openNotification(notification, fromViewController: self, push: true)

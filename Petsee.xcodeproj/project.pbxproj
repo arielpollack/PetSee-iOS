@@ -411,13 +411,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73F819971CD1E592001AC3FB /* Build configuration list for PBXNativeTarget "Petsee" */;
 			buildPhases = (
-				FC3502CD79236F8F6C9A5F9F /* Check Pods Manifest.lock */,
+				FC3502CD79236F8F6C9A5F9F /* [CP] Check Pods Manifest.lock */,
 				73F819811CD1E592001AC3FB /* Sources */,
 				73F819821CD1E592001AC3FB /* Frameworks */,
 				73F819831CD1E592001AC3FB /* Resources */,
 				73F819AB1CD1E5E0001AC3FB /* Embed Frameworks */,
-				A73E29D38C83501682B1FE7B /* Embed Pods Frameworks */,
-				6D20D1E86223856693793444 /* Copy Pods Resources */,
+				A73E29D38C83501682B1FE7B /* [CP] Embed Pods Frameworks */,
+				6D20D1E86223856693793444 /* [CP] Copy Pods Resources */,
 				B005EB391D85631B00A7C23B /* Fabric */,
 			);
 			buildRules = (
@@ -436,12 +436,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Ariel Pollack";
 				TargetAttributes = {
 					73F819841CD1E592001AC3FB = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 5H49663M79;
+						DevelopmentTeam = F92RQULD22;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -486,14 +488,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6D20D1E86223856693793444 /* Copy Pods Resources */ = {
+		6D20D1E86223856693793444 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,14 +503,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Petsee/Pods-Petsee-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A73E29D38C83501682B1FE7B /* Embed Pods Frameworks */ = {
+		A73E29D38C83501682B1FE7B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -530,19 +532,19 @@
 			shellPath = /bin/sh;
 			shellScript = "./Fabric.framework/run 3f7bbfba7a0473b3db1c7656259cb997ea21e05a ac0e322a298624f43e5d5a5549aaa6050b2bf5e522a8a3b1e3d84a963fe11894";
 		};
-		FC3502CD79236F8F6C9A5F9F /* Check Pods Manifest.lock */ = {
+		FC3502CD79236F8F6C9A5F9F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -647,8 +649,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -682,10 +686,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 515B63B5D88129E14DC0C163 /* Pods-Petsee.local.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 6;
+				DEVELOPMENT_TEAM = F92RQULD22;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Petsee/Vendor",
@@ -697,10 +703,12 @@
 					"$(PROJECT_DIR)",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -DDEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ios.petsee;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arielp.petsee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5ad67a06-a63f-40bc-bece-074c62219e0e";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Petsee/Petsee-bridgingHeader.h";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = local;

@@ -10,45 +10,56 @@ import Foundation
 import Moya
 
 enum PetseeAuth {
-    case Signup(email: String, password: String, name: String?, type: UserType)
-    case Login(email: String, password: String)
-    case CheckEmailExist(email: String)
+    case signup(email: String, password: String, name: String?, type: UserType)
+    case login(email: String, password: String)
+    case checkEmailExist(email: String)
 }
 
 extension PetseeAuth: TargetType {
-    var baseURL: NSURL { return NSURL(string: "https://petsee.herokuapp.com/auth")! }
+    var baseURL: URL { return URL(string: "https://petsee.herokuapp.com/auth")! }
 //    var baseURL: NSURL { return NSURL(string: "http://localhost:3000/auth")! }
     var path: String {
         switch self {
-        case .Signup:
+        case .signup:
             return "/signup"
-        case .Login:
+        case .login:
             return "/login"
-        case .CheckEmailExist:
+        case .checkEmailExist:
             return "/is_email_exist"
         }
     }
     var method: Moya.Method {
         switch self {
-        case .CheckEmailExist:
-            return .GET
+        case .checkEmailExist:
+            return .get
         default:
-            return .POST
+            return .post
         }
     }
-    var parameters: [String : AnyObject]? {
+    var parameters: [String : Any]? {
         switch self {
-        case .Signup(let email, let password, let name, let type):
+        case .signup(let email, let password, let name, let type):
             var params = ["email": email, "password": password, "type": type.rawValue]
             params["name"] = name
-            return params
-        case .Login(let email, let password):
-            return ["email": email, "password": password]
-        case .CheckEmailExist(let email):
-            return ["email": email]
+            return params as [String : AnyObject]
+        case .login(let email, let password):
+            return ["email": email as AnyObject, "password": password as AnyObject]
+        case .checkEmailExist(let email):
+            return ["email": email as AnyObject]
         }
     }
-    var sampleData: NSData {
-        return NSData()
+    var parameterEncoding: ParameterEncoding {
+        switch self {
+        case .checkEmailExist:
+            return URLEncoding()
+        default:
+            return JSONEncoding()
+        }
+    }
+    var task: Task {
+        return .request
+    }
+    var sampleData: Data {
+        return Data()
     }
 }
